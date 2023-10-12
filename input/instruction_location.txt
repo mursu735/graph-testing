@@ -1,0 +1,14 @@
+Following is an excerpt from Around the world in 80 days by Jules Verne. Try to extract as many people from the text as possible. Provide them as a list.
+Then extrapolate the location of each person as accurately as possible.
+
+Provide a CSV file with format [PERSON;LOCATION:ORDER].
+If the same person is in only in once position, provide [PERSON;LOCATION;all]
+If the same person is in multiple places, provide [PERSON;LOCATION;<number>]
+
+If an update is related to deleting an entity, provide ["DELETE", ENTITY].
+
+Example:
+prompt: Alice arrived in London. After spending the weekend there, she returned to Paris.
+updates:
+Alice;London;1
+Alice;Paris;2
