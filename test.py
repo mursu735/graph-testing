@@ -19,12 +19,12 @@ instruction = ""
 with open("input/instruction_location.txt") as file:
     instruction = ''.join(line.rstrip() for line in file)
 
-prompt = ""
+prompt = "prompt:"
 
 files = os.listdir("input/texts")
 
-with open("input/prompt.txt", encoding='utf-8') as file:
-    prompt = file.read()
+with open("input/Chapters/1.txt", encoding='utf-8') as file:
+    prompt += file.read()
 
 #print(prompt)
 
@@ -45,7 +45,8 @@ chat_completion = openai.ChatCompletion.create(model="gpt-4", messages=[{"role":
 
 # print the chat completion
 print(chat_completion.choices[0].message.content)
+print(chat_completion)
 
 
-with open("output/output_test.csv", "w") as file:
-   file.write(chat_completion.choices[0].message.content)
+#with open("output/output_test.csv", "w") as file:
+#   file.write(chat_completion.choices[0].message.content)

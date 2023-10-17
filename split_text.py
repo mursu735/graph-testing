@@ -1,5 +1,8 @@
 import os
 
+if not os.path.isdir("./input/Chapters"):
+    os.mkdir("./input/Chapters")
+
 with open("input/around the world.txt", encoding="utf-8") as file:
     lines = file.readlines()
     file_name = 0
