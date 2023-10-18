@@ -1,0 +1,18 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;Kholby, India;all;1
+Passepartout;Kholby, India;all;2
+Sir Francis Cromarty;Kholby, India;all;3
+Aouda;Kholby, India;all;4
+Phileas Fogg;Allahabad, India;all;1
+Passepartout;Allahabad, India;all;2
+Aouda;Allahabad, India;all;4
+Phileas Fogg;Benares, India;all;1
+Passepartout;Benares, India;all;2
+Aouda;Benares, India;all;4
+Sir Francis Cromarty;Benares, India;all;3
+Phileas Fogg;Calcutta, India;all;1
+Passepartout;Calcutta, India;all;2
+Aouda;Calcutta, India;all;4
+Phileas Fogg;Hong Kong;all;1
+Passepartout;Hong Kong;all;2
+Aouda;Hong Kong;all;4

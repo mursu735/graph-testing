@@ -1,0 +1,11 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;Plum Creek;1;1
+Phileas Fogg;Fort Kearney;2;1
+Aouda;Plum Creek;1;2
+Aouda;Fort Kearney;2;2
+Passepartout;Plum Creek;1;3
+Passepartout;Fort Kearney;2;3
+Fix;Plum Creek;1;4
+Fix;Fort Kearney;2;4
+Colonel Proctor;Plum Creek;1;5
+Colonel Proctor;Fort Kearney;2;5

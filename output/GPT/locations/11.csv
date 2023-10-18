@@ -1,0 +1,43 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;Bombay, India;Railway Station;1;1
+Phileas Fogg;Salcette, India;Train;2;1
+Phileas Fogg;Callyan, India;Train;3;1
+Phileas Fogg;Pauwell, India;Train;4;1
+Phileas Fogg;Nassik, India;Train;5;1
+Phileas Fogg;Milligaum, India;Train;6;1
+Phileas Fogg;Ellora, India;Train;7;1
+Phileas Fogg;Aurungabad, India;Train;8;1
+Phileas Fogg;Burhampoor, India;Train;9;1
+Phileas Fogg;Assurghur, India;Train;10;1
+Phileas Fogg;Sutpour Mountains, India;Train;11;1
+Phileas Fogg;Rothal, India;Train;12;1
+Phileas Fogg;Kholby, India;Train;13;1
+Phileas Fogg;Allahabad, India;Elephant;14;1
+Passepartout;Bombay, India;Railway Station;1;2
+Passepartout;Salcette, India;Train;2;2
+Passepartout;Callyan, India;Train;3;2
+Passepartout;Pauwell, India;Train;4;2
+Passepartout;Nassik, India;Train;5;2
+Passepartout;Milligaum, India;Train;6;2
+Passepartout;Ellora, India;Train;7;2
+Passepartout;Aurungabad, India;Train;8;2
+Passepartout;Burhampoor, India;Train;9;2
+Passepartout;Assurghur, India;Train;10;2
+Passepartout;Sutpour Mountains, India;Train;11;2
+Passepartout;Rothal, India;Train;12;2
+Passepartout;Kholby, India;Train;13;2
+Passepartout;Allahabad, India;Elephant;14;2
+Sir Francis Cromarty;Bombay, India;Train;1;3
+Sir Francis Cromarty;Salcette, India;Train;2;3
+Sir Francis Cromarty;Callyan, India;Train;3;3
+Sir Francis Cromarty;Pauwell, India;Train;4;3
+Sir Francis Cromarty;Nassik, India;Train;5;3
+Sir Francis Cromarty;Milligaum, India;Train;6;3
+Sir Francis Cromarty;Ellora, India;Train;7;3
+Sir Francis Cromarty;Aurungabad, India;Train;8;3
+Sir Francis Cromarty;Burhampoor, India;Train;9;3
+Sir Francis Cromarty;Assurghur, India;Train;10;3
+Sir Francis Cromarty;Sutpour Mountains, India;Train;11;3
+Sir Francis Cromarty;Rothal, India;Train;12;3
+Sir Francis Cromarty;Kholby, India;Train;13;3
+Sir Francis Cromarty;Allahabad, India;Elephant;14;3

@@ -1,0 +1,7 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;Hong Kong;English quarter;1;1
+Phileas Fogg;Hong Kong;hotel;2;1
+Aouda;Hong Kong;English quarter;1;2
+Aouda;Hong Kong;hotel;2;2
+Fix;Hong Kong;English quarter;all;3
+John Bunsby;Hong Kong;harbour;all;4

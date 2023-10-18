@@ -1,0 +1,14 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;San Francisco;all;1
+Aouda;San Francisco;all;2
+Passepartout;San Francisco;all;3
+Fix;San Francisco;all;4
+Elder William Hitch;Elko;train platform;5;5
+Joe Smith;Nauvoo;all;6;6
+Brigham Young;Nauvoo;all;7;7
+Passepartout;Great Salt Lake;train;8;3
+Phileas Fogg;Salt Lake City;all;1
+Aouda;Salt Lake City;all;2
+Passepartout;Salt Lake City;all;3
+Fix;Salt Lake City;all;4
+Unnamed Mormon man;Salt Lake City;train station;9;8

@@ -1,0 +1,18 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;Fort Kearney, Nebraska;Fort Kearney;1;1
+Passepartout;Fort Kearney, Nebraska;Fort Kearney;1;2
+Fix;Fort Kearney, Nebraska;Fort Kearney;1;3
+Aouda;Fort Kearney, Nebraska;Fort Kearney;1;4
+Mudge;Omaha, Nebraska;Omaha;2;5
+Phileas Fogg;Omaha, Nebraska;Omaha;2;1
+Passepartout;Omaha, Nebraska;Omaha;2;2
+Fix;Omaha, Nebraska;Omaha;2;3
+Aouda;Omaha, Nebraska;Omaha;2;4
+Phileas Fogg;Chicago, Illinois;Chicago;3;1
+Passepartout;Chicago, Illinois;Chicago;3;2
+Fix;Chicago, Illinois;Chicago;3;3
+Aouda;Chicago, Illinois;Chicago;3;4
+Phileas Fogg;New York, New York;New York;4;1
+Passepartout;New York, New York;New York;4;2
+Fix;New York, New York;New York;4;3
+Aouda;New York, New York;New York;4;4

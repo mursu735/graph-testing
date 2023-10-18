@@ -1,0 +1,10 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;Suez, Egypt;On the ship "Mongolia";1;1
+Passepartout;Suez, Egypt;On the ship "Mongolia";2;2
+Detective Fix;Suez, Egypt;On the ship "Mongolia";3;3
+Phileas Fogg;Aden, Yemen;Port of Aden;4;1
+Passepartout;Aden, Yemen;Port of Aden;5;2
+Detective Fix;Aden, Yemen;Port of Aden;6;3
+Phileas Fogg;Bombay, India;Port of Bombay;7;1
+Passepartout;Bombay, India;Port of Bombay;8;2
+Detective Fix;Bombay, India;Port of Bombay;9;3

@@ -1,0 +1,14 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;Allahabad, India;Railway Station;1;1
+Phileas Fogg;Benares, India;Train;2;1
+Phileas Fogg;Calcutta, India;Train;3;1
+Phileas Fogg;Hong Kong;Steamer;4;1
+Passepartout;Allahabad, India;City of Allahabad;1;2
+Passepartout;Benares, India;Train;2;2
+Passepartout;Calcutta, India;Train;3;2
+Sir Francis Cromarty;Allahabad, India;Elephant;1;3
+Sir Francis Cromarty;Benares, India;Train;2;3
+Aouda;Allahabad, India;Elephant;1;4
+Aouda;Benares, India;Train;2;4
+Aouda;Calcutta, India;Train;3;4
+Aouda;Hong Kong;Steamer;4;4

@@ -1,0 +1,9 @@
+Person;Mode;Order
+Phileas Fogg;on foot;1
+Phileas Fogg;palanquin;2
+Phileas Fogg;boat;3
+Aouda;on foot;1
+Aouda;palanquin;2
+Aouda;boat;3F
+ix;on foot;all
+John Bunsby;boat;all

@@ -1,0 +1,12 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;Calcutta;on the steamer "Rangoon";1;1
+Aouda;Calcutta;on the steamer "Rangoon";2;2
+Fix;Calcutta;on the steamer "Rangoon";3;3
+Phileas Fogg;Singapore;on the island of Singapore and the town;1;1
+Aouda;Singapore;on the island of Singapore and the town;2;2
+Fix;Singapore;on the island of Singapore and the town;3;3
+Passepartout;Singapore;on the steamer "Rangoon";4;4
+Phileas Fogg;Hong Kong;on the steamer "Rangoon";1;1
+Aouda;Hong Kong;on the steamer "Rangoon";2;2
+Fix;Hong Kong;on the steamer "Rangoon";3;3
+Passepartout;Hong Kong;on the steamer "Rangoon";4;4

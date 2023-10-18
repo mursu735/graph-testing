@@ -1,0 +1,76 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;San Francisco;Train from San Francisco to New York;1;1
+Phileas Fogg;Elko;Train stop at Elko;2;1
+Phileas Fogg;Great Salt Lake;Train reaches the Great Salt Lake;3;1
+Phileas Fogg;Ogden;Train stop at Ogden;4;1
+Phileas Fogg;Salt Lake City;Visit to Salt Lake City;5;1
+Phileas Fogg;Weber River;Train passes northward for an hour;6;1
+Phileas Fogg;Wahsatch Mountains;Train takes an easterly direction;7;1
+Phileas Fogg;Bitter Creek Valley;Train descends towards Bitter Creek Valley;8;1
+Phileas Fogg;Muddy Creek;Train crosses Muddy Creek;9;1
+Phileas Fogg;Green Creek;Train crosses Green Creek;10;1
+Phileas Fogg;Fort Bridger;Train stops at Fort Bridger station;11;1
+Phileas Fogg;Wyoming Territory;Train enters Wyoming Territory;12;1
+Phileas Fogg;Green River station;Train stops at Green River station;13;1
+Phileas Fogg;Bridger Pass;Train reaches Bridger Pass;14;1
+Phileas Fogg;North Platte River;Train passes North Platte River;15;1
+Phileas Fogg;Laramie Peak;Train passes Laramie Peak;16;1
+Phileas Fogg;Fort Halleck;Train passes sight of Fort Halleck;17;1
+Phileas Fogg;Medicine Bow;Train stops before a red signal;18;1
+Aouda;San Francisco;Train from San Francisco to New York;1;2
+Aouda;Elko;Train stop at Elko;2;2
+Aouda;Great Salt Lake;Train reaches the Great Salt Lake;3;2
+Aouda;Ogden;Train stop at Ogden;4;2
+Aouda;Salt Lake City;Visit to Salt Lake City;5;2
+Aouda;Weber River;Train passes northward for an hour;6;2
+Aouda;Wahsatch Mountains;Train takes an easterly direction;7;2
+Aouda;Bitter Creek Valley;Train descends towards Bitter Creek Valley;8;2
+Aouda;Muddy Creek;Train crosses Muddy Creek;9;2
+Aouda;Green Creek;Train crosses Green Creek;10;2
+Aouda;Fort Bridger;Train stops at Fort Bridger station;11;2
+Aouda;Wyoming Territory;Train enters Wyoming Territory;12;2
+Aouda;Green River station;Train stops at Green River station;13;2
+Aouda;Bridger Pass;Train reaches Bridger Pass;14;2
+Aouda;North Platte River;Train passes North Platte River;15;2
+Aouda;Laramie Peak;Train passes Laramie Peak;16;2
+Aouda;Fort Halleck;Train passes sight of Fort Halleck;17;2
+Aouda;Medicine Bow;Train stops before a red signal;18;2
+Passepartout;San Francisco;Train from San Francisco to New York;1;3
+Passepartout;Elko;Train stop at Elko;2;3
+Passepartout;Great Salt Lake;Train reaches the Great Salt Lake;3;3
+Passepartout;Ogden;Train stop at Ogden;4;3
+Passepartout;Salt Lake City;Visit to Salt Lake City;5;3
+Passepartout;Weber River;Train passes northward for an hour;6;3
+Passepartout;Wahsatch Mountains;Train takes an easterly direction;7;3
+Passepartout;Bitter Creek Valley;Train descends towards Bitter Creek Valley;8;3
+Passepartout;Muddy Creek;Train crosses Muddy Creek;9;3
+Passepartout;Green Creek;Train crosses Green Creek;10;3
+Passepartout;Fort Bridger;Train stops at Fort Bridger station;11;3
+Passepartout;Wyoming Territory;Train enters Wyoming Territory;12;3
+Passepartout;Green River station;Train stops at Green River station;13;3
+Passepartout;Bridger Pass;Train reaches Bridger Pass;14;3
+Passepartout;North Platte River;Train passes North Platte River;15;3
+Passepartout;Laramie Peak;Train passes Laramie Peak;16;3
+Passepartout;Fort Halleck;Train passes sight of Fort Halleck;17;3
+Passepartout;Medicine Bow;Train stops before a red signal;18;3
+Fix;San Francisco;Train from San Francisco to New York;1;4
+Fix;Elko;Train stop at Elko;2;4
+Fix;Great Salt Lake;Train reaches the Great Salt Lake;3;4
+Fix;Ogden;Train stop at Ogden;4;4
+Fix;Salt Lake City;Visit to Salt Lake City;5;4
+Fix;Weber River;Train passes northward for an hour;6;4
+Fix;Wahsatch Mountains;Train takes an easterly direction;7;4
+Fix;Bitter Creek Valley;Train descends towards Bitter Creek Valley;8;4
+Fix;Muddy Creek;Train crosses Muddy Creek;9;4
+Fix;Green Creek;Train crosses Green Creek;10;4
+Fix;Fort Bridger;Train stops at Fort Bridger station;11;4
+Fix;Wyoming Territory;Train enters Wyoming Territory;12;4
+Fix;Green River station;Train stops at Green River station;13;4
+Fix;Bridger Pass;Train reaches Bridger Pass;14;4
+Fix;North Platte River;Train passes North Platte River;15;4
+Fix;Laramie Peak;Train passes Laramie Peak;16;4
+Fix;Fort Halleck;Train passes sight of Fort Halleck;17;4
+Fix;Medicine Bow;Train stops before a red signal;18;4
+Colonel Stamp Proctor;Green River station;Recognised at Green River station;13;5
+Colonel Stamp Proctor;Medicine Bow;Seen at the red signal;18;5
+Forster;Medicine Bow;Proposes a plan to cross the bridge;18;6

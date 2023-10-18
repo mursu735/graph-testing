@@ -1,0 +1,16 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;Calcutta, India;Rangoon Steamer;1;1
+Aouda;Calcutta, India;Rangoon Steamer;2;2
+Fix;Calcutta, India;Rangoon Steamer;3;3
+Phileas Fogg;Andaman Islands, India;Rangoon Steamer;1;1
+Aouda;Andaman Islands, India;Rangoon Steamer;2;2
+Fix;Andaman Islands, India;Rangoon Steamer;3;3
+Phileas Fogg;Straits of Malacca;Rangoon Steamer;1;1
+Aouda;Straits of Malacca;Rangoon Steamer;2;2
+Fix;Straits of Malacca;Rangoon Steamer;3;3
+Phileas Fogg;Singapore;Rangoon Steamer;1;1
+Aouda;Singapore;Rangoon Steamer;2;2
+Fix;Singapore;Rangoon Steamer;3;3
+Phileas Fogg;Hong Kong;Rangoon Steamer;1;1
+Aouda;Hong Kong;Rangoon Steamer;2;2
+Fix;Hong Kong;Rangoon Steamer;3;3

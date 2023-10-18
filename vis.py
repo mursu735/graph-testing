@@ -204,9 +204,29 @@ directed_elements = [{'data': {'id': id_}} for id_ in elements] + directed_edges
 #print(secondary_edges)
 
 def create_map():
-    df = pd.read_csv("input/texts/locations.csv", sep=";")
+    df = pd.read_csv("output/GPT/locations.csv", sep=";")
     fig = go.Figure()
-    
+    labels = []
+    chapter = 1
+    prev_order = 0
+    for idx, row in df.iterrows():
+        # Only one location
+        if row["Order"] == "all":
+            labels.append(f"Chapter {chapter}, {row['Location']}")
+            chapter += 1
+            prev_order = 0
+            continue
+        # Chapter changes
+        if int(row["Order"]) < prev_order:
+            order = row["Order"]
+            labels.append(f"Chapter {chapter}, location number {order}, {row['Location']}")
+            chapter += 1
+            prev_order = 0
+        else:
+            order = row["Order"]
+            labels.append(f"Chapter {chapter}, location number {order}, {row['Location']}")
+            prev_order = int(row["Order"])
+
     fig.add_trace(go.Scattergeo(
         lat = df["Latitude"],
         lon = df["Longitude"],
@@ -218,7 +238,7 @@ def create_map():
         lat = df["Latitude"],
         lon = df["Longitude"],
         hoverinfo = 'text',
-        text = df['Location'],
+        text = labels,
         mode = 'markers',
         name = "Cities"
     ))

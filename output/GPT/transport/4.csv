@@ -1,0 +1,7 @@
+Person;Mode;Order
+Phileas Fogg;walking;1
+Phileas Fogg;cab;2
+Phileas Fogg;train;3
+Passepartout;walking;all
+Passepartout;cab;all
+Passepartout;train;all

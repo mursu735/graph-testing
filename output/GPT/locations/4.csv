@@ -1,0 +1,12 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;London;Reform Club;1;1
+Phileas Fogg;London;Saville Row;2;1
+Passepartout;London;Saville Row;3;2
+Phileas Fogg;Dover;all;4;1
+Passepartout;Dover;all;5;2
+Phileas Fogg;Calais;all;6;1
+Passepartout;Calais;all;7;2
+Phileas Fogg;Paris;all;8;1
+Passepartout;Paris;all;9;2
+Phileas Fogg;Sydenham;all;10;1
+Passepartout;Sydenham;all;11;2

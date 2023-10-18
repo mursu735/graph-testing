@@ -1,0 +1,10 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;Suez;Consul's office;1;1
+Passepartout;Suez;Quay;2;2
+Fix;Suez;Quay;3;3
+Passepartout;Suez;Shop;4;2
+Fix;Suez;Consulate;5;3
+Fix;Suez;Telegraph office;6;3
+Phileas Fogg;Suez;Ship "Mongolia";7;1
+Passepartout;Suez;Ship "Mongolia";8;2
+Fix;Suez;Ship "Mongolia";9;3

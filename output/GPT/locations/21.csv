@@ -1,0 +1,13 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;Hong Kong;Hong Kong docks;1;1
+Aouda;Hong Kong;Hong Kong docks;2;1
+Fix;Hong Kong;Hong Kong docks;3;1
+John Bunsby;Hong Kong;Hong Kong docks;4;2
+Phileas Fogg;Yokohama;On the boat "Tankadere";5;1
+Aouda;Yokohama;On the boat "Tankadere";6;1
+Fix;Yokohama;On the boat "Tankadere";7;1
+John Bunsby;Yokohama;On the boat "Tankadere";8;2
+Phileas Fogg;Shanghai;On the boat "Tankadere";9;1
+Aouda;Shanghai;On the boat "Tankadere";10;1
+Fix;Shanghai;On the boat "Tankadere";11;1
+John Bunsby;Shanghai;On the boat "Tankadere";12;2

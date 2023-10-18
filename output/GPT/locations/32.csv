@@ -1,0 +1,15 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;New York;Cunard pier;1;1
+Passepartout;New York;Cunard pier;2;2
+Aouda;New York;St. Nicholas Hotel;3;3
+Fix;New York;St. Nicholas Hotel;4;4
+Phileas Fogg;New York;Banks of the Hudson;5;1
+Andrew Speedy;New York;Onboard the "Henrietta";6;5
+Phileas Fogg;New York;St. Nicholas Hotel;7;1
+Passepartout;New York;St. Nicholas Hotel;8;2
+Aouda;New York;St. Nicholas Hotel;9;3
+Fix;New York;St. Nicholas Hotel;10;4
+Phileas Fogg;New York;Onboard the "Henrietta";11;1
+Passepartout;New York;Onboard the "Henrietta";12;2
+Aouda;New York;Onboard the "Henrietta";13;3
+Fix;New York;Onboard the "Henrietta";14;4

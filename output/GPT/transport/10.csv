@@ -1,0 +1,11 @@
+Person;Mode;Order
+Phileas Fogg;Ship;1
+Phileas Fogg;Walking;2
+Phileas Fogg;Train;3
+Passepartout;Ship;1
+Passepartout;Walking;2
+Passepartout;Running;3
+Passepartout;Train;4
+Detective Fix;Ship;1
+Detective Fix;Walking;2
+Detective Fix;Train;3

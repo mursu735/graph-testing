@@ -1,0 +1,16 @@
+Person;City;Location;Order;Importance
+Phileas Fogg;Kholby, India;Train;1;1
+Phileas Fogg;Vindhia Mountains, India;Elephant;2;1
+Phileas Fogg;Kallenger, India;Elephant;3;1
+Phileas Fogg;Bundelcund, India;Elephant;4;1
+Phileas Fogg;Pillaji, India;Elephant;5;1
+Passepartout;Kholby, India;Train;1;2
+Passepartout;Vindhia Mountains, India;Elephant;2;2
+Passepartout;Kallenger, India;Elephant;3;2
+Passepartout;Bundelcund, India;Elephant;4;2
+Passepartout;Pillaji, India;Elephant;5;2
+Sir Francis Cromarty;Kholby, India;Train;1;3
+Sir Francis Cromarty;Vindhia Mountains, India;Elephant;2;3
+Sir Francis Cromarty;Kallenger, India;Elephant;3;3
+Sir Francis Cromarty;Bundelcund, India;Elephant;4;3
+Sir Francis Cromarty;Pillaji, India;Elephant;5;3

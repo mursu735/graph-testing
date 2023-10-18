@@ -1,0 +1,11 @@
+Person;Mode;Order
+Phileas Fogg;Ferry;1
+Phileas Fogg;Carriage;2
+Phileas Fogg;Boat;3
+Phileas Fogg;Trading vessel "Henrietta";4
+Passepartout;Carriage;5
+Aouda;Carriage;6
+Fix;Carriage;7
+Passepartout;Trading vessel "Henrietta";8
+Aouda;Trading vessel "Henrietta";9
+Fix;Trading vessel "Henrietta";10
