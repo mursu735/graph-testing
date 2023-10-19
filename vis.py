@@ -5,6 +5,7 @@ import json
 import os
 import spacy
 import pandas as pd
+import numpy as np
 import plotly.graph_objects as go
 
 app = Dash(__name__)
@@ -49,61 +50,62 @@ stylesheet=[
 def create_location_graphs():
     
     directed_elements = {}
-    directory = "output/Chapters"
+    directory = "output/GPT/locations"
     files = os.listdir(directory)
-    #for file in files:
-    directed_edges= []
-    elements = []
-    seen_elements = []
-    #df = pd.read_csv(f"{directory}/{file}", sep=";", names=["name", "loc", "pos"])
-    df = pd.read_csv(f"{directory}/1.csv", sep=";", names=["name", "loc", "pos"])
-    #name = file.split(".")[0]
-    for idx, row in df.iterrows():       
-        if row["pos"] == "all":
-            source_id = row["name"].replace(" ", "").replace(".", "").replace(",", "")
-            source = row["name"].strip()
-            target_id = row["loc"].replace(" ", "").replace(".", "").replace(",", "")
-            target = row["loc"].strip()
-            directed_edges.append({'data': {'id': source_id + target_id, 'source': source_id, 'target': target_id}})
-            if source not in seen_elements:
-                seen_elements.append(source)
-                elements.append({"id": source_id, "label": source})
-            if target not in seen_elements:
-                seen_elements.append(target)
-                elements.append({"id": target_id, "label": target})
-            #print(f"Adding edge to chapter {name} {source}->{target}, position is same all text")
-            print(f"Adding edge {source}->{target}, position is same all text")
-            stylesheet.append({'selector': f"#{source_id + target_id}",
-                    'style': {
-                        'target-arrow-color': 'blue',
-                        'target-arrow-shape': 'vee',
-                        'line-color': 'blue'
-                    }})
-        else:
-            source_id = row["name"].replace(" ", "").replace(".", "").replace(",", "")
-            source = row["name"].strip()
-            target_id = row["loc"].replace(" ", "").replace(".", "").replace(",", "")
-            target = row["loc"].strip()
-            relation = row["pos"]
-            directed_edges.append({'data': {'id': source_id + target_id, 'source': source_id, 'target': target_id}})
-            #print(f"Adding edge to chapter {name} {source}->{target}, label {relation}")
-            print(f"Adding edge {source}->{target}, label {relation}")
-            if source not in seen_elements:
-                seen_elements.append(source)
-                elements.append({"id": source_id, "label": source})
-            if target not in seen_elements:
-                seen_elements.append(target)
-                elements.append({"id":target_id, "label": target})
-            stylesheet.append({'selector': f"#{source_id + target_id}",
-                    'style': {
-                        'label': relation,
-                        'target-arrow-color': 'blue',
-                        'target-arrow-shape': 'vee',
-                        'line-color': 'blue'
-                    }})
-    
-    directed_elements = [{'data': {'id': element["id"], "label": element["label"]}} for element in elements] + directed_edges
-    #directed_elements[name] = [{'data': {'id': id_}} for id_ in elements] + directed_edges
+    for file in files:
+        directed_edges= []
+        elements = []
+        seen_elements = []
+        df = pd.read_csv(f"{directory}/{file}", sep=";")
+        #df = pd.read_csv(f"{directory}/1.csv", sep=";", names=["name", "loc", "pos"])
+        #name = file.split(".")[0]
+        for idx, row in df.iterrows():       
+            if row["Order"] == "all":
+                source_id = row["Person"].replace(" ", "").replace(".", "").replace(",", "")
+                source = row["Person"].strip()
+                target_id = str(row["Location"]).replace(" ", "").replace(".", "").replace(",", "")
+                target = str(row["Location"]).strip()
+                directed_edges.append({'data': {'id': source_id + target_id, 'source': source_id, 'target': target_id}})
+                if source not in seen_elements:
+                    seen_elements.append(source)
+                    elements.append({"id": source_id, "label": source})
+                if target not in seen_elements:
+                    seen_elements.append(target)
+                    elements.append({"id": target_id, "label": target})
+                #print(f"Adding edge to chapter {name} {source}->{target}, position is same all text")
+                print(f"Adding edge {source}->{target}, position is same all text")
+                stylesheet.append({'selector': f"#{source_id + target_id}",
+                        'style': {
+                            'target-arrow-color': 'blue',
+                            'target-arrow-shape': 'vee',
+                            'line-color': 'blue'
+                        }})
+            else:
+                source_id = row["Person"].replace(" ", "").replace(".", "").replace(",", "")
+                source = row["Person"].strip()
+                target_id = str(row["Location"]).replace(" ", "").replace(".", "").replace(",", "")
+                target = str(row["Location"]).strip()
+                relation = row["Order"]
+                directed_edges.append({'data': {'id': source_id + target_id, 'source': source_id, 'target': target_id}})
+                #print(f"Adding edge to chapter {name} {source}->{target}, label {relation}")
+                print(f"Adding edge {source}->{target}, label {relation}")
+                if source not in seen_elements:
+                    seen_elements.append(source)
+                    elements.append({"id": source_id, "label": source})
+                if target not in seen_elements:
+                    seen_elements.append(target)
+                    elements.append({"id":target_id, "label": target})
+                stylesheet.append({'selector': f"#{source_id + target_id}",
+                        'style': {
+                            'label': relation,
+                            'target-arrow-color': 'blue',
+                            'target-arrow-shape': 'vee',
+                            'line-color': 'blue'
+                        }})
+        
+            #directed_elements = [{'data': {'id': element["id"], "label": element["label"]}} for element in elements] + directed_edges
+            name = "Chapter " + file.split(".")[0]
+            directed_elements[name] = [{'data': {'id': element["id"], "label": element["label"]}} for element in elements] + directed_edges
     return directed_elements
 
 '''
@@ -209,6 +211,10 @@ def create_map():
     labels = []
     chapter = 1
     prev_order = 0
+    df2 = pd.DataFrame(np.random.uniform(-0.008,0.008,size=(df.shape[0], 2)), columns=['lat', 'long'])
+    df["Latitude"] = df["Latitude"] + df2["lat"]
+    df["Longitude"] = df["Longitude"] + df2["long"]
+    #print(df)
     for idx, row in df.iterrows():
         # Only one location
         if row["Order"] == "all":
@@ -251,15 +257,16 @@ def create_map():
 
 map = create_map()
 directed_elements = create_location_graphs()
+print(directed_elements)
 #print(directed_elements)
 
 app.layout = html.Div([
-    dcc.Graph(figure=map),
+    dcc.Graph(id="map", figure=map),
     html.P("Dash Cytoscape:"),
     cyto.Cytoscape(
         id='cytoscape',
         layout={'name': 'cose'},
-        elements=directed_elements,
+        elements=directed_elements["Chapter 1"],
         stylesheet=stylesheet
     ),
     html.Div([
@@ -277,14 +284,19 @@ app.layout = html.Div([
         stylesheet=stylesheet
     ),
 ])
+
 '''
 @callback(
     Output('detail', 'elements'),
     Input('cytoscape', 'tapNodeData'),
     State('detail', 'elements'))
 def update_elements(data, elements):
+    print("/////")
+    print(data)
     if data:
-        node = data["id"]
+        #node = data["id"]
+        print(data)
+        
         # Some nodes may not have elements, if that is the case, don't do anything
         if node in secondary_elements:
             clicked_elements = secondary_elements[node]
@@ -292,7 +304,25 @@ def update_elements(data, elements):
             clicked_edges = secondary_edges[node]
             directed_elements = [{'data': {'id': id_}} for id_ in clicked_elements] + clicked_edges
             return directed_elements
+        
     return elements
 '''
+@callback(
+    Output('cytoscape', 'elements'),
+    Output('click-data', 'children'),
+    Input('map', 'clickData'),
+    State('cytoscape', 'elements'))
+def display_click_data(clickData, elements):
+    if clickData:
+        text = clickData["points"][0]["text"].split(",")[0]
+        summary = ""
+        number = text.split(" ")[1]
+        with open(f"output/GPT/summary/{number}.txt") as file:
+            summary = file.read()
+        summary = summary.replace(". ", ".\n")
+        return directed_elements[text], summary
+    return elements, ""
+
+
 if __name__ == '__main__':
     app.run(debug=True)
