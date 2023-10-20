@@ -1,5 +1,6 @@
 from dash import Dash, dcc, html, Input, Output, State, callback
 import dash_cytoscape as cyto
+import random
 import re
 import json
 import os
@@ -7,6 +8,7 @@ import spacy
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
+import plotly.express as px
 
 app = Dash(__name__)
 
@@ -48,18 +50,74 @@ stylesheet=[
             }]
 
 def create_location_graphs():
-    
+    named_colors = px.colors.DEFAULT_PLOTLY_COLORS
     directed_elements = {}
     directory = "output/GPT/locations"
     files = os.listdir(directory)
-    for file in files:
-        directed_edges= []
-        elements = []
-        seen_elements = []
-        df = pd.read_csv(f"{directory}/{file}", sep=";")
-        #df = pd.read_csv(f"{directory}/1.csv", sep=";", names=["name", "loc", "pos"])
-        #name = file.split(".")[0]
-        for idx, row in df.iterrows():       
+    # TODO: Change all of the chapters to the new format and uncomment these
+    #for file in files:
+    file = "4.csv"
+    directed_edges= []
+    elements = []
+    seen_elements = []
+    #seen_edges = []
+    groups = {}
+    #df = pd.read_csv(f"{directory}/{file}", sep=";")
+    df = pd.read_csv(f"{directory}/4.csv", sep=";")
+    #name = file.split(".")[0]
+    # If multiple characters are in one place, create intermediate Group node where all characters point to, then have only one arrow from group to location(s)
+    for idx, row in df.iterrows():
+        if "|" in row["Person"]:
+            characters = row["Person"].split("|")
+            if not row["Person"] in groups:
+                cur = len(groups) + 1
+                groups[row["Person"]] = {"group": f"Group {cur}", "locations": [], "color": random.choice(named_colors)}
+            groups[row["Person"]]["locations"].append(row["Location"])
+            # Draw line from person to groups and from group to first location
+            if len(groups[row["Person"]]["locations"]) == 1:
+                for character in characters:
+                    source_id = character.replace(" ", "").replace(".", "").replace(",", "")
+                    source = character.strip()
+                    group_id = str(groups[row["Person"]]["group"]).replace(" ", "").replace(".", "").replace(",", "")
+                    group = str(groups[row["Person"]]["group"]).strip()
+                    directed_edges.append({'data': {'id': source_id + group_id, 'source': source_id, 'target': group_id}})
+                    stylesheet.append({'selector': f"#{source_id + group_id}",
+                    'style': {
+                        'target-arrow-color': groups[row["Person"]]["color"],
+                        'target-arrow-shape': 'vee',
+                        'line-color': groups[row["Person"]]["color"]
+                    }})
+                    #seen_edges.append(f"#{source_id + group_id}")
+                    if source not in seen_elements:
+                        seen_elements.append(source)
+                        elements.append({"id": source_id, "label": source})
+                    if group not in seen_elements:
+                        seen_elements.append(group)
+                        elements.append({"id": group_id, "label": group})
+            # Draw line from group's last location to current
+            source_id = ""
+            source = ""
+            group_id = str(groups[row["Person"]]["group"]).replace(" ", "").replace(".", "").replace(",", "")
+            if len(groups[row["Person"]]["locations"]) == 1:
+                source_id = str(groups[row["Person"]]["group"]).replace(" ", "").replace(".", "").replace(",", "")
+                source = str(groups[row["Person"]]["group"]).strip()
+            else:
+                source_id = str(groups[row["Person"]]["locations"][-2]).replace(" ", "").replace(".", "").replace(",", "")
+                source = str(groups[row["Person"]]["locations"][-2]).strip()
+            target_id = str(groups[row["Person"]]["locations"][-1]).replace(" ", "").replace(".", "").replace(",", "")
+            target = str(groups[row["Person"]]["locations"][-1]).strip()
+            if target not in seen_elements:
+                seen_elements.append(target)
+                elements.append({"id": target_id, "label": target})
+            directed_edges.append({'data': {'id': source_id + target_id + group_id, 'source': source_id, 'target': target_id}})
+            stylesheet.append({'selector': f"#{source_id + target_id + group_id}",
+                            'style': {
+                                'label': idx + 1,
+                                'target-arrow-color': groups[row["Person"]]["color"],
+                                'target-arrow-shape': 'vee',
+                                'line-color': groups[row["Person"]]["color"],
+                            }})
+        else:
             if row["Order"] == "all":
                 source_id = row["Person"].replace(" ", "").replace(".", "").replace(",", "")
                 source = row["Person"].strip()
@@ -97,15 +155,15 @@ def create_location_graphs():
                     elements.append({"id":target_id, "label": target})
                 stylesheet.append({'selector': f"#{source_id + target_id}",
                         'style': {
-                            'label': relation,
+                            'label': idx + 1,
                             'target-arrow-color': 'blue',
                             'target-arrow-shape': 'vee',
                             'line-color': 'blue'
                         }})
-        
-            #directed_elements = [{'data': {'id': element["id"], "label": element["label"]}} for element in elements] + directed_edges
-            name = "Chapter " + file.split(".")[0]
-            directed_elements[name] = [{'data': {'id': element["id"], "label": element["label"]}} for element in elements] + directed_edges
+    
+        #directed_elements = [{'data': {'id': element["id"], "label": element["label"]}} for element in elements] + directed_edges
+        name = "Chapter " + file.split(".")[0]
+        directed_elements[name] = [{'data': {'id': element["id"], "label": element["label"]}} for element in elements] + directed_edges
     return directed_elements
 
 '''
@@ -209,29 +267,29 @@ def create_map():
     df = pd.read_csv("output/GPT/locations.csv", sep=";")
     fig = go.Figure()
     labels = []
-    chapter = 1
-    prev_order = 0
+    chapter = 0
+    prev_id = 0
     df2 = pd.DataFrame(np.random.uniform(-0.008,0.008,size=(df.shape[0], 2)), columns=['lat', 'long'])
     df["Latitude"] = df["Latitude"] + df2["lat"]
     df["Longitude"] = df["Longitude"] + df2["long"]
     #print(df)
+    locations = df.groupby("Chapter")
     for idx, row in df.iterrows():
-        # Only one location
-        if row["Order"] == "all":
-            labels.append(f"Chapter {chapter}, {row['Location']}")
-            chapter += 1
-            prev_order = 0
-            continue
-        # Chapter changes
-        if int(row["Order"]) < prev_order:
-            order = row["Order"]
-            labels.append(f"Chapter {chapter}, location number {order}, {row['Location']}")
-            chapter += 1
-            prev_order = 0
+        current_chapter = row["Chapter"]
+        number_of_locations = locations.get_group(current_chapter).count()["Location"]
+        # Many locations in the chapter
+        if (number_of_locations > 1):
+            # new chapter
+            if row["Chapter"] > chapter:
+                prev_id = idx
+                chapter = row["Chapter"]
+            number = idx - prev_id + 1    
+            labels.append(f"Chapter {current_chapter}, location number {number}, {row['Location']}")
         else:
-            order = row["Order"]
-            labels.append(f"Chapter {chapter}, location number {order}, {row['Location']}")
-            prev_order = int(row["Order"])
+            if row["Chapter"] > chapter:
+                chapter = row["Chapter"]
+            labels.append(f"Chapter {current_chapter}, {row['Location']}")
+
 
     fig.add_trace(go.Scattergeo(
         lat = df["Latitude"],
@@ -246,7 +304,11 @@ def create_map():
         hoverinfo = 'text',
         text = labels,
         mode = 'markers',
-        name = "Cities"
+        name = "Cities",
+        marker = dict(
+            color = list(range(0, len(labels))),
+            colorscale="RdBu"
+        ),       
     ))
     fig.update_geos(
     visible=False, resolution=50,
@@ -257,16 +319,15 @@ def create_map():
 
 map = create_map()
 directed_elements = create_location_graphs()
-print(directed_elements)
 #print(directed_elements)
-
+print(stylesheet)
 app.layout = html.Div([
     dcc.Graph(id="map", figure=map),
     html.P("Dash Cytoscape:"),
     cyto.Cytoscape(
         id='cytoscape',
         layout={'name': 'cose'},
-        elements=directed_elements["Chapter 1"],
+        elements=directed_elements["Chapter 4"],
         stylesheet=stylesheet
     ),
     html.Div([

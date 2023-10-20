@@ -1,17 +1,18 @@
 Given a text marked with "prompt:", try to extract the following information as accurately as possible. There may be additional context to the text. If present, it is marked with "context:"
 Provide four responses. Split the responses with delimiter "////".
 
-First extract key locations in the text to the nearest city. If the events do not occur on land, try to estimate the location to the best of your abilities.
-Provide a CSV file with format [LOCATION;LATITUDE;LONGITUDE;ORDER]
-If there are multiple locations, provide [LOCATION;LATITUDE;LONGITUDE;<number>], otherwise provide [LOCATION;LATITUDE;LONGITUDE;all]
+First extract key locations in the text to the nearest city. If the events do not occur on land, try to estimate the location to the best of your abilities. If the main character is not present in the location, quietly ignore it.
+Provide a CSV file with format [LOCATION;LATITUDE;LONGITUDE;ORDER;IMPORTANCE;CHAPTER]
+If there are multiple locations, provide [LOCATION;LATITUDE;LONGITUDE;<number>;IMPORTANCE;CHAPTER], otherwise provide [LOCATION;LATITUDE;LONGITUDE;all;IMPORTANCE;CHAPTER]
+Chapter is <chapter>. If the location is mentioned in past context, quietly ignore it.
 
 Next, extract as many people as possible and provide their location as accurately as possible. Provide both city, and a more precise location if available.
-Provide this as a CSV file with format [PERSON;CITY;LOCATION;ORDER;IMPORTANCE].
+Provide this as a CSV file with format [PERSON;CITY;LOCATION;ORDER;IMPORTANCE]. If multiple people are in the same location, provide them in the same row and separate person, order and importance "|"
 If one person is in multiple locations, provide [PERSON;CITY;LOCATION;<number>;IMPORTANCE], otherwise provide [PERSON;CITY;LOCATION;all;IMPORTANCE]
-Importance should be a number and more important characters should be higher. 
+Importance should be a number between 0.0 and 1.0 and more important characters should be higher. 
 
 Then extract the method of transport for each person as accurately as possible. This may be difficult, and the text may not explicitly state them, but try to estimate them to the best of your abilities.
-Provide a CSV file with format [PERSON;MODE;ORDER]. Order the list in the order they appear in the text. 
+Provide a CSV file with format [PERSON;MODE;ORDER]. Order the list in the order they appear in the text. If multiple people use the same method of transport, provide them in the same row separated by "|"
 If the same person uses only one method, provide [PERSON;MODE;all]
 If the same person uses multiple methods, provide [PERSON;MODE;<number>]
 If the same entity has multiple aliases, quietly delete the repeated entities. 
@@ -28,8 +29,7 @@ London;1
 Birmingham;2
 ////
 Alice;London;1;1
-Alice;Birmingham;2;1
-James;Birmingham;all;2
+Alice|James;Birmingham;1|2;2
 ////
 Alice;plane;1
 Alice;train;2

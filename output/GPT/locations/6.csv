@@ -1,6 +1,4 @@
 Person;City;Location;Order;Importance
-Phileas Fogg;London;all;1
-Passepartout;London;all;2
-British consul at Suez;Suez;all;3
-Fix;Suez;all;4
-Passenger;Suez;on the Mongolia;5
+British consul|Fix;Suez;Quay/Wharf;1|2;1|0.8
+Unknown Passenger;Suez;Quay/Steamer "Mongolia";all;0.6
+Master of the Unknown Passenger;Suez;Onboard the Steamer "Mongolia";all;0.7

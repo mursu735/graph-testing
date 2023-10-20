@@ -1,4 +1,5 @@
 Person;City;Location;Order;Importance
-Phileas Fogg;London;Saville Row;1;1
-Phileas Fogg;London;Reform Club;2;1
-Jean Passepartout;London;Saville Row;3;2
+Phileas Fogg;London;Saville Row;all;1.0
+Jean Passepartout|Mr. Fogg;London;house in Saville Row;all;0.9|1.0
+James Forster;London;Unknown;all;0.8
+Lord Longferry;London;Haymarket taverns;all;0.7

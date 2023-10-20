@@ -1,9 +1,5 @@
 Person;City;Location;Order;Importance
-Phileas Fogg;Suez;Consul's office;1;1
-Passepartout;Suez;Consul's office;2;1
-Fix;Suez;Consul's office;3;2
-British Consul;Suez;Consul's office;4;2
-Phileas Fogg;Suez;Quay;5;1
-Passepartout;Suez;Quay;6;1
-Phileas Fogg;Suez;Mongolia ship;7;1
-Passepartout;Suez;Mongolia ship;8;1
+Fix|Consul;Suez;Consul's office;all;1.0|0.9
+Phileas Fogg|Passepartout;Suez;Consul's office;all;1.0|0.8
+Phileas Fogg|Passepartout;Suez;The quay;all;0.9|0.8
+Phileas Fogg;Suez;“Mongolia” ship;all;0.8

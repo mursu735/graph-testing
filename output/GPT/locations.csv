@@ -1,159 +1,17 @@
-Location;Latitude;Longitude;Order
-London;51.5074;0.1278;all
-London;51.5074;0.1278;all
-London;51.5074;-0.1278;all
-London;51.5074;0.1278;1
-Dover;51.1279;1.3134;2
-Calais;50.9513;1.8587;3
-Paris;48.8566;2.3522;4
-Sydenham;51.4276;-0.0557;5
-London;51.5074;0.1278;all
-London;51.5074;0.1278;1
-Dover;51.1279;1.3130;2
-Calais;50.9513;1.8587;3
-Paris;48.8566;2.3522;4
-Suez;29.9668;32.5498;5
-Brindisi;40.6277;17.9360;6
-Bombay;19.0760;72.8777;7
-Aden;12.7855;45.0187;8
-Suez;29.9668;32.5498;1
-London;51.5074;-0.1278;2
-Suez, Egypt;29.9668;32.5498;all
-Suez, Egypt;29.9668;32.5498;1
-Aden, Yemen;12.7855;45.0187;2
-Bombay, India;19.0760;72.8777;3
-Suez, Egypt;29.9668;32.5498;1
-Aden, Yemen;12.7855;45.0187;2
-Bombay, India;19.0760;72.8777;3
-Calcutta, India;22.5726;88.3639;4
-Bombay, India;18.9387711;72.8353355;1
-Salcette, India;15.2712723;73.9585411;2
-Callyan, India;19.2086644;73.8751943;3
-Pauwell, India;18.932245;72.826438;4
-Nassik, India;20.011247;73.790236;5
-Milligaum, India;15.852792;74.498367;6
-Ellora, India;20.025964;75.176083;7
-Aurungabad, India;19.877263;75.3390241;8
-Burhampoor, India;21.300392;76.235774;9
-Assurghur, India;21.257584;75.160756;10
-Sutpour Mountains, India;21.333333;75.666667;11
-Rothal, India;21.863806;76.056279;12
-Kholby, India;26.420683;77.913553;13
-Allahabad, India;25.4381302;81.8338005;14
-Kholby, India;26.2821;77.4053;1
-Allahabad, India;25.4358;81.8463;2
-Vindhia Mountains, India;22.6758;78.5266;3
-Kallenger, India;26.3465;80.3044;4
-Cani, India;26.4743;80.3352;5
-Bundelcund, India;25.4305;78.5671;6
-Pillaji, India;25.4358;81.8463;7
-Kholby;26.6340;77.3724;1
-Allahabad;25.4358;81.8463;2
-Bombay;19.0760;72.8777;3
-Bundelcund;25.4305;78.5671;4
-Pillaji;25.6127;85.1588;5
-Kholby, India;27.2667;77.0167;1
-Allahabad, India;25.4358;81.8463;2
-Benares, India;25.3176;82.9739;3
-Calcutta, India;22.5726;88.3639;4
-Hong Kong;22.3193;114.1694;5
-Kholby, India;27.5883;77.4322;1
-Allahabad, India;25.4358;81.8463;2
-Benares, India;25.3176;82.9739;3
-Calcutta, India;22.5726;88.3639;4
-Hong Kong;22.3193;114.1694;5
-Calcutta, India;22.5726;88.3639;1
-Andaman Islands, India;12.6136;92.6586;2
-Straits of Malacca;4.2105;100.6350;3
-Singapore;1.3521;103.8198;4
-Hong Kong;22.3193;114.1694;5
-Calcutta;22.5726;88.3639;1
-Hong Kong;22.3193;114.1694;2
-Singapore;1.3521;103.8198;3
-Hong Kong;22.3193;114.1694;4
-Yokohama;35.4437;139.6380;5
-Hong Kong;22.3193;114.1694;all
-Hong Kong;22.3193;114.1694;all
-Hong Kong;22.3193;114.1694;all
-Hong Kong;22.3193;114.1694;1
-Yokohama;35.4437;139.6380;2
-Shanghai;31.2304;121.4737;3
-San Francisco;37.7749;-122.4194;4
-London;51.5074;-0.1278;5
-Hong Kong;22.3193;114.1694;1
-Yokohama;35.4437;139.6380;2
-Hong Kong;22.3193;114.1694;1
-Yokohama;35.4437;139.6380;2
-San Francisco;37.7749;-122.4194;3
-Shanghai;31.2304;121.4737;1
-Yokohama;35.4437;139.6380;2
-San Francisco;37.7749;-122.4194;3
-Nagasaki;32.7503;129.8777;4
-San Francisco;37.7749;-122.4194;all
-San Francisco;37.7749;-122.4194;1
-Omaha;41.2565;-95.9345;2
-New York;40.7128;-74.0060;3
-Sacramento;38.5816;-121.4944;4
-Reno;39.5296;-119.8138;5
-San Francisco;37.7749;-122.4194;1
-New York;40.7128;-74.0060;2
-Elko;40.8324;-115.7631;3
-Great Salt Lake;41.0962;-112.9441;4
-Ogden;41.2230;-111.9738;5
-Salt Lake City;40.7608;-111.8910;6
-San Francisco;37.7749;-122.4194;1
-Elko;40.8324;-115.7631;2
-Great Salt Lake;41.0962;-112.5767;3
-Ogden;41.2230;-111.9738;4
-Salt Lake City;40.7608;-111.8910;5
-Weber River;41.2810;-111.9026;6
-Wahsatch Mountains;41.1612;-111.9216;7
-Bitter Creek Valley;41.7911;-109.2078;8
-Muddy Creek;41.7177;-109.6258;9
-Green Creek;41.7177;-109.6258;10
-Fort Bridger;41.3202;-110.3857;11
-Wyoming Territory;43.0760;-107.2903;12
-Green River station;41.5286;-109.4662;13
-Bridger Pass;41.3183;-106.6056;14
-North Platte River;41.1239;-100.7654;15
-Laramie Peak;42.2458;-105.3039;16
-Fort Halleck;41.5768;-106.2236;17
-Medicine Bow;41.8950;-106.2028;18
-Fort Saunders;42.8236;-106.7335;1
-Cheyne Pass;41.2107;-105.0057;2
-Evans Pass;39.5501;-105.7821;3
-Denver;39.7392;-104.9903;4
-Camp Walbach;41.1403;-104.8202;5
-Lodge Pole Creek;41.2100;-102.6347;6
-Nebraska;41.4925;-99.9018;7
-Sedgwick;40.9353;-102.5264;8
-Julesburg;40.9889;-102.2644;9
-Fort McPherson;40.8136;-100.5469;10
-Omaha;41.2565;-95.9345;11
-North Platte;41.1239;-100.7654;12
-Plum Creek;40.8089;-99.9664;13
-Fort Kearney;40.6995;-99.0817;14
-Plum Creek;40.8324;-99.7898;1
-Fort Kearney;40.6995;-99.0817;2
-Fort Kearney, Nebraska;40.6995;-99.0817;1
-Omaha, Nebraska;41.2565;-95.9345;2
-Chicago, Illinois;41.8781;-87.6298;3
-New York, New York;40.7128;-74.0060;4
-New York;40.712776;-74.005974;1
-Liverpool;53.408371;-2.991573;2
-Bordeaux;44.837789;-0.57918;3
-London;51.507351;-0.127758;4
-New York;40.7128;-74.0060;1
-Hudson;42.2529;-73.7903;2
-Sandy Hook;40.4745;-74.0096;3
-Long Island;40.7896;-73.1350;4
-Fire Island;40.6476;-73.1459;5
-Banks of Newfoundland;48.5000;-48.0000;6
-Liverpool;53.4084;-2.9916;7
-Queenstown (Cobh);51.8503;-8.2943;8
-Dublin;53.3498;-6.2603;9
-Liverpool;53.4084;-2.9916;1
-London;51.5074;-0.1278;2
-London;51.5074;0.1278;all
-London;51.5074;0.1278;all
-London;51.5074;0.1278;all
+Location;Latitude;Longitude;Order;Importance;Chapter
+London;51.5074;0.1278;all;1;1
+London;51.5074;0.1278;all;1;2
+London;51.5074;-0.1278;all;1.0;3
+London;51.5074;-0.1278;all;1.0;4
+London;51.5074;0.1278;all;1.0;5
+Suez;29.9744;32.5326;all;1;6
+Suez (Consul's office);29.9744;32.5372;1;1;7
+Suez (The quay);29.9744;32.5372;2;0.9;7
+Suez (On the “Mongolia” ship);29.9744;32.5372;3;0.8;7
+Suez (Mr. Fogg's cabin on the “Mongolia”);29.9744;32.5372;4;0.7;7
+Suez;29.9737;32.5263;all;1.0;8
+Suez;29.9737;32.5370;all;0.8;9
+Aden;12.7895;45.0000;1;1.0;9
+Mocha;13.3480;43.2484;2;0.7;9
+Steamer Point;12.8000;45.0354;3;0.6;9
+Bombay;19.0760;72.8777;4;0.9;9

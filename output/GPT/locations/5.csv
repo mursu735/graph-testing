@@ -1,3 +1,4 @@
 Person;City;Location;Order;Importance
-Phileas Fogg;London;Reform Club;all;1
-Passepartout;London;Reform Club;all;2
+Phileas Fogg;London;Reform Club;all;1.0
+Lord Albemarle;London;Unknown;all;0.5
+Detective Fix;Suez;Unknown;all;0.5

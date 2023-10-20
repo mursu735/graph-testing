@@ -1,4 +1,3 @@
 Person;City;Location;Order;Importance
-Phileas Fogg;London;No. 7, Saville Row, Burlington Gardens;all;1
-James Forster;London;No. 7, Saville Row, Burlington Gardens;all;2
-Jean Passepartout;London;No. 7, Saville Row, Burlington Gardens;all;3
+Phileas Fogg|James Forster;London;Saville Row, Burlington Gardens;1|2;1|0.7
+Jean Passepartout;London;Saville Row, Burlington Gardens;3;0.8
