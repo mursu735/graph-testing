@@ -1,7 +1,6 @@
 Person;Mode;Order
-Phileas Fogg;train;all
-Aouda;train;all
-Passepartout;train;all
-Fix;train;all
+
+
+Phileas Fogg|Aouda|Passepartout|Fix;train;all
 Elder William Hitch;train;all
-Unnamed Mormon man;train;all
+Belated Mormon;running;all

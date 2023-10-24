@@ -1,9 +1,32 @@
 Person;Mode;Order
-Phileas Fogg;sledge;1
-Passepartout;sledge;1
-Fix;sledge;1
-Aouda;sledge;1
-Phileas Fogg;train;2
-Passepartout;train;2
-Fix;train;2
+
+
+Phileas Fogg;train;1
 Aouda;train;2
+Fix;train;3
+Passepartout;train;4
+Phileas Fogg;sledge;5
+Aouda;sledge;6
+Fix;sledge;7
+Passepartout;sledge;8
+Mudge;sledge;9
+Phileas Fogg;train;10
+Aouda;train;11
+Fix;train;12
+Passepartout;train;13
+Phileas Fogg;train;14
+Aouda;train;15
+Fix;train;16
+Passepartout;train;17
+Phileas Fogg;train;18
+Aouda;train;19
+Fix;train;20
+Passepartout;train;21
+Phileas Fogg;train;22
+Aouda;train;23
+Fix;train;24
+Passepartout;train;25
+Phileas Fogg;ship;26
+Aouda;ship;27
+Fix;ship;28
+Passepartout;ship;29

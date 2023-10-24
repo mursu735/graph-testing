@@ -1,5 +1,9 @@
 Person;Mode;Order
+
+
 Phileas Fogg;steamer;all
 Aouda;steamer;all
 Fix;steamer;all
 Passepartout;steamer;all
+Phileas Fogg|Aouda;walk;1|1
+Phileas Fogg|Aouda;carriage;2|2

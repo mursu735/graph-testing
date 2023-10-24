@@ -3,6 +3,7 @@ import dash_cytoscape as cyto
 import random
 import re
 import json
+import helpers
 import os
 import spacy
 import pandas as pd
@@ -55,115 +56,117 @@ def create_location_graphs():
     directory = "output/GPT/locations"
     files = os.listdir(directory)
     # TODO: Change all of the chapters to the new format and uncomment these
-    #for file in files:
-    file = "4.csv"
-    directed_edges= []
-    elements = []
-    seen_elements = []
-    #seen_edges = []
-    groups = {}
-    #df = pd.read_csv(f"{directory}/{file}", sep=";")
-    df = pd.read_csv(f"{directory}/4.csv", sep=";")
-    #name = file.split(".")[0]
-    # If multiple characters are in one place, create intermediate Group node where all characters point to, then have only one arrow from group to location(s)
-    for idx, row in df.iterrows():
-        if "|" in row["Person"]:
-            characters = row["Person"].split("|")
-            if not row["Person"] in groups:
-                cur = len(groups) + 1
-                groups[row["Person"]] = {"group": f"Group {cur}", "locations": [], "color": random.choice(named_colors)}
-            groups[row["Person"]]["locations"].append(row["Location"])
-            # Draw line from person to groups and from group to first location
-            if len(groups[row["Person"]]["locations"]) == 1:
-                for character in characters:
-                    source_id = character.replace(" ", "").replace(".", "").replace(",", "")
-                    source = character.strip()
-                    group_id = str(groups[row["Person"]]["group"]).replace(" ", "").replace(".", "").replace(",", "")
-                    group = str(groups[row["Person"]]["group"]).strip()
-                    directed_edges.append({'data': {'id': source_id + group_id, 'source': source_id, 'target': group_id}})
-                    stylesheet.append({'selector': f"#{source_id + group_id}",
-                    'style': {
-                        'target-arrow-color': groups[row["Person"]]["color"],
-                        'target-arrow-shape': 'vee',
-                        'line-color': groups[row["Person"]]["color"]
-                    }})
-                    #seen_edges.append(f"#{source_id + group_id}")
-                    if source not in seen_elements:
-                        seen_elements.append(source)
-                        elements.append({"id": source_id, "label": source})
-                    if group not in seen_elements:
-                        seen_elements.append(group)
-                        elements.append({"id": group_id, "label": group})
-            # Draw line from group's last location to current
-            source_id = ""
-            source = ""
-            group_id = str(groups[row["Person"]]["group"]).replace(" ", "").replace(".", "").replace(",", "")
-            if len(groups[row["Person"]]["locations"]) == 1:
-                source_id = str(groups[row["Person"]]["group"]).replace(" ", "").replace(".", "").replace(",", "")
-                source = str(groups[row["Person"]]["group"]).strip()
-            else:
-                source_id = str(groups[row["Person"]]["locations"][-2]).replace(" ", "").replace(".", "").replace(",", "")
-                source = str(groups[row["Person"]]["locations"][-2]).strip()
-            target_id = str(groups[row["Person"]]["locations"][-1]).replace(" ", "").replace(".", "").replace(",", "")
-            target = str(groups[row["Person"]]["locations"][-1]).strip()
-            if target not in seen_elements:
-                seen_elements.append(target)
-                elements.append({"id": target_id, "label": target})
-            directed_edges.append({'data': {'id': source_id + target_id + group_id, 'source': source_id, 'target': target_id}})
-            stylesheet.append({'selector': f"#{source_id + target_id + group_id}",
-                            'style': {
-                                'label': idx + 1,
-                                'target-arrow-color': groups[row["Person"]]["color"],
-                                'target-arrow-shape': 'vee',
-                                'line-color': groups[row["Person"]]["color"],
-                            }})
-        else:
-            if row["Order"] == "all":
-                source_id = row["Person"].replace(" ", "").replace(".", "").replace(",", "")
-                source = row["Person"].strip()
-                target_id = str(row["Location"]).replace(" ", "").replace(".", "").replace(",", "")
-                target = str(row["Location"]).strip()
-                directed_edges.append({'data': {'id': source_id + target_id, 'source': source_id, 'target': target_id}})
-                if source not in seen_elements:
-                    seen_elements.append(source)
-                    elements.append({"id": source_id, "label": source})
+    for file in files:
+        directed_edges= []
+        elements = []
+        seen_elements = []
+        #seen_edges = []
+        groups = {}
+        df = pd.read_csv(f"{directory}/{file}", sep=";")
+        #df = pd.read_csv(f"{directory}/4.csv", sep=";")
+        #name = file.split(".")[0]
+        # If multiple characters are in one place, create intermediate Group node where all characters point to, then have only one arrow from group to location(s)
+        for idx, row in df.iterrows():
+            location = row["City"] + ", " + str(row["Location"])
+            if "|" in row["Person"]:
+                characters = row["Person"].split("|")
+                if not row["Person"] in groups:
+                    cur = len(groups) + 1
+                    groups[row["Person"]] = {"group": f"Group {cur}", "locations": [], "color": random.choice(named_colors)}
+                groups[row["Person"]]["locations"].append(location)
+                # Draw line from person to groups and from group to first location
+                if len(groups[row["Person"]]["locations"]) == 1:
+                    for character in characters:
+                        source_id = character.replace(" ", "").replace(".", "").replace(",", "")
+                        source = character.strip()
+                        group_id = str(groups[row["Person"]]["group"]).replace(" ", "").replace(".", "").replace(",", "")
+                        group = str(groups[row["Person"]]["group"]).strip()
+                        directed_edges.append({'data': {'id': source_id + group_id, 'source': source_id, 'target': group_id}})
+                        stylesheet.append({'selector': f"#{source_id + group_id}",
+                        'style': {
+                            'target-arrow-color': groups[row["Person"]]["color"],
+                            'label': idx + 1,
+                            'target-arrow-shape': 'vee',
+                            'line-color': groups[row["Person"]]["color"]
+                        }})
+                        #seen_edges.append(f"#{source_id + group_id}")
+                        if source not in seen_elements:
+                            seen_elements.append(source)
+                            elements.append({"id": source_id, "label": source})
+                        if group not in seen_elements:
+                            seen_elements.append(group)
+                            elements.append({"id": group_id, "label": group})
+                # Draw line from group's last location to current
+                source_id = ""
+                source = ""
+                group_id = str(groups[row["Person"]]["group"]).replace(" ", "").replace(".", "").replace(",", "")
+                if len(groups[row["Person"]]["locations"]) == 1:
+                    source_id = str(groups[row["Person"]]["group"]).replace(" ", "").replace(".", "").replace(",", "")
+                    source = str(groups[row["Person"]]["group"]).strip()
+                else:
+                    source_id = str(groups[row["Person"]]["locations"][-2]).replace(" ", "").replace(".", "").replace(",", "")
+                    source = str(groups[row["Person"]]["locations"][-2]).strip()
+                target_id = str(groups[row["Person"]]["locations"][-1]).replace(" ", "").replace(".", "").replace(",", "")
+                target = str(groups[row["Person"]]["locations"][-1]).strip()
                 if target not in seen_elements:
                     seen_elements.append(target)
                     elements.append({"id": target_id, "label": target})
-                #print(f"Adding edge to chapter {name} {source}->{target}, position is same all text")
-                print(f"Adding edge {source}->{target}, position is same all text")
-                stylesheet.append({'selector': f"#{source_id + target_id}",
-                        'style': {
-                            'target-arrow-color': 'blue',
-                            'target-arrow-shape': 'vee',
-                            'line-color': 'blue'
-                        }})
+                directed_edges.append({'data': {'id': source_id + target_id + group_id, 'source': source_id, 'target': target_id}})
+                stylesheet.append({'selector': f"#{source_id + target_id + group_id}",
+                                'style': {
+                                    'curve-style': 'unbundled-bezier',
+                                    'label': idx + 1,
+                                    'target-arrow-color': groups[row["Person"]]["color"],
+                                    'target-arrow-shape': 'vee',
+                                    'line-color': groups[row["Person"]]["color"],
+                                }})
             else:
-                source_id = row["Person"].replace(" ", "").replace(".", "").replace(",", "")
-                source = row["Person"].strip()
-                target_id = str(row["Location"]).replace(" ", "").replace(".", "").replace(",", "")
-                target = str(row["Location"]).strip()
-                relation = row["Order"]
-                directed_edges.append({'data': {'id': source_id + target_id, 'source': source_id, 'target': target_id}})
-                #print(f"Adding edge to chapter {name} {source}->{target}, label {relation}")
-                print(f"Adding edge {source}->{target}, label {relation}")
-                if source not in seen_elements:
-                    seen_elements.append(source)
-                    elements.append({"id": source_id, "label": source})
-                if target not in seen_elements:
-                    seen_elements.append(target)
-                    elements.append({"id":target_id, "label": target})
-                stylesheet.append({'selector': f"#{source_id + target_id}",
-                        'style': {
-                            'label': idx + 1,
-                            'target-arrow-color': 'blue',
-                            'target-arrow-shape': 'vee',
-                            'line-color': 'blue'
-                        }})
-    
-        #directed_elements = [{'data': {'id': element["id"], "label": element["label"]}} for element in elements] + directed_edges
-        name = "Chapter " + file.split(".")[0]
-        directed_elements[name] = [{'data': {'id': element["id"], "label": element["label"]}} for element in elements] + directed_edges
+                if row["Order"] == "all":
+                    source_id = row["Person"].replace(" ", "").replace(".", "").replace(",", "")
+                    source = row["Person"].strip()
+                    target_id = str(location).replace(" ", "").replace(".", "").replace(",", "")
+                    target = str(location).strip()
+                    directed_edges.append({'data': {'id': source_id + target_id, 'source': source_id, 'target': target_id}})
+                    if source not in seen_elements:
+                        seen_elements.append(source)
+                        elements.append({"id": source_id, "label": source})
+                    if target not in seen_elements:
+                        seen_elements.append(target)
+                        elements.append({"id": target_id, "label": target})
+                    #print(f"Adding edge to chapter {name} {source}->{target}, position is same all text")
+                    print(f"Adding edge {source}->{target}, position is same all text")
+                    stylesheet.append({'selector': f"#{source_id + target_id}",
+                            'style': {
+                                'target-arrow-color': 'blue',
+                                'target-arrow-shape': 'vee',
+                                'line-color': 'blue'
+                            }})
+                else:
+                    source_id = row["Person"].replace(" ", "").replace(".", "").replace(",", "")
+                    source = row["Person"].strip()
+                    target_id = str(row["Location"]).replace(" ", "").replace(".", "").replace(",", "")
+                    target = str(location).strip()
+                    relation = row["Order"]
+                    directed_edges.append({'data': {'id': source_id + target_id, 'source': source_id, 'target': target_id}})
+                    #print(f"Adding edge to chapter {name} {source}->{target}, label {relation}")
+                    print(f"Adding edge {source}->{target}, label {relation}")
+                    if source not in seen_elements:
+                        seen_elements.append(source)
+                        elements.append({"id": source_id, "label": source})
+                    if target not in seen_elements:
+                        seen_elements.append(target)
+                        elements.append({"id":target_id, "label": target})
+                    stylesheet.append({'selector': f"#{source_id + target_id}",
+                            'style': {
+                                'label': idx + 1,
+                                'target-arrow-color': 'blue',
+                                'target-arrow-shape': 'vee',
+                                'line-color': 'blue'
+                            }})
+        
+            #directed_elements = [{'data': {'id': element["id"], "label": element["label"]}} for element in elements] + directed_edges
+            name = "Chapter " + file.split(".")[0]
+            directed_elements[name] = [{'data': {'id': element["id"], "label": element["label"]}} for element in elements] + directed_edges
     return directed_elements
 
 '''
@@ -264,33 +267,32 @@ directed_elements = [{'data': {'id': id_}} for id_ in elements] + directed_edges
 #print(secondary_edges)
 
 def create_map():
-    df = pd.read_csv("output/GPT/locations.csv", sep=";")
-    fig = go.Figure()
-    labels = []
-    chapter = 0
-    prev_id = 0
+    locations = []
+    directory = "output/GPT/locations"
+    files = os.listdir(directory)
+    files = helpers.natural_sort(files)
+    # TODO: Change all of the chapters to the new format and uncomment these
+    for file in files:
+        df = pd.read_csv(f"{directory}/{file}", sep=";")
+        df = df.dropna()
+        df = df.astype({'Latitude':'float','Longitude':'float'})
+        df["Label"] = "Chapter " + file.split(".")[0] + ", " + df["City"]
+        df = df.loc[df['Person'].str.contains("Fogg")]
+        locations.append(df)
+
+    #print(locations)
+    df = pd.concat(locations)
+    #print(df)
+    df = df.reset_index()
     df2 = pd.DataFrame(np.random.uniform(-0.008,0.008,size=(df.shape[0], 2)), columns=['lat', 'long'])
+    print(df["Latitude"])
+    df = df.reindex()
+    print(df)
     df["Latitude"] = df["Latitude"] + df2["lat"]
     df["Longitude"] = df["Longitude"] + df2["long"]
-    #print(df)
-    locations = df.groupby("Chapter")
-    for idx, row in df.iterrows():
-        current_chapter = row["Chapter"]
-        number_of_locations = locations.get_group(current_chapter).count()["Location"]
-        # Many locations in the chapter
-        if (number_of_locations > 1):
-            # new chapter
-            if row["Chapter"] > chapter:
-                prev_id = idx
-                chapter = row["Chapter"]
-            number = idx - prev_id + 1    
-            labels.append(f"Chapter {current_chapter}, location number {number}, {row['Location']}")
-        else:
-            if row["Chapter"] > chapter:
-                chapter = row["Chapter"]
-            labels.append(f"Chapter {current_chapter}, {row['Location']}")
+    
 
-
+    fig = go.Figure()
     fig.add_trace(go.Scattergeo(
         lat = df["Latitude"],
         lon = df["Longitude"],
@@ -302,11 +304,11 @@ def create_map():
         lat = df["Latitude"],
         lon = df["Longitude"],
         hoverinfo = 'text',
-        text = labels,
+        text = df["Label"],
         mode = 'markers',
         name = "Cities",
         marker = dict(
-            color = list(range(0, len(labels))),
+            color = list(range(0, df.shape[0])),
             colorscale="RdBu"
         ),       
     ))

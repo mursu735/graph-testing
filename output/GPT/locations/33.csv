@@ -1,49 +1,9 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;New York;Henrietta;1;1
-Passepartout;New York;Henrietta;2;2
-Aouda;New York;Henrietta;3;3
-Fix;New York;Henrietta;4;4
-Captain Speedy;New York;Henrietta;5;5
-Phileas Fogg;Hudson;Henrietta;2;1
-Passepartout;Hudson;Henrietta;3;2
-Aouda;Hudson;Henrietta;4;3
-Fix;Hudson;Henrietta;5;4
-Captain Speedy;Hudson;Henrietta;6;5
-Phileas Fogg;Sandy Hook;Henrietta;3;1
-Passepartout;Sandy Hook;Henrietta;4;2
-Aouda;Sandy Hook;Henrietta;5;3
-Fix;Sandy Hook;Henrietta;6;4
-Captain Speedy;Sandy Hook;Henrietta;7;5
-Phileas Fogg;Long Island;Henrietta;4;1
-Passepartout;Long Island;Henrietta;5;2
-Aouda;Long Island;Henrietta;6;3
-Fix;Long Island;Henrietta;7;4
-Captain Speedy;Long Island;Henrietta;8;5
-Phileas Fogg;Fire Island;Henrietta;5;1
-Passepartout;Fire Island;Henrietta;6;2
-Aouda;Fire Island;Henrietta;7;3
-Fix;Fire Island;Henrietta;8;4
-Captain Speedy;Fire Island;Henrietta;9;5
-Phileas Fogg;Banks of Newfoundland;Henrietta;6;1
-Passepartout;Banks of Newfoundland;Henrietta;7;2
-Aouda;Banks of Newfoundland;Henrietta;8;3
-Fix;Banks of Newfoundland;Henrietta;9;4
-Captain Speedy;Banks of Newfoundland;Henrietta;10;5
-Phileas Fogg;Liverpool;Henrietta;7;1
-Passepartout;Liverpool;Henrietta;8;2
-Aouda;Liverpool;Henrietta;9;3
-Fix;Liverpool;Henrietta;10;4
-Captain Speedy;Liverpool;Henrietta;11;5
-Phileas Fogg;Queenstown (Cobh);Henrietta;8;1
-Passepartout;Queenstown (Cobh);Henrietta;9;2
-Aouda;Queenstown (Cobh);Henrietta;10;3
-Fix;Queenstown (Cobh);Henrietta;11;4
-Captain Speedy;Queenstown (Cobh);Henrietta;12;5
-Phileas Fogg;Dublin;Train;9;1
-Passepartout;Dublin;Train;10;2
-Aouda;Dublin;Train;11;3
-Fix;Dublin;Train;12;4
-Phileas Fogg;Liverpool;Quay;10;1
-Passepartout;Liverpool;Quay;11;2
-Aouda;Liverpool;Quay;12;3
-Fix;Liverpool;Quay;13;4
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Passepartout|Aouda|Fix;New York;40.7128;-74.0060;Hotel;1|2|3|4;1|0.8|0.6|0.4
+Phileas Fogg|Passepartout|Aouda|Fix;New York;40.7128;-74.0060;Henrietta;1|2|3|4;1|0.8|0.6|0.4
+Phileas Fogg|Passepartout|Aouda|Fix;Atlantic Ocean;14.5994;-28.6731;Henrietta;1|2|3|4;1|0.8|0.6|0.4
+Phileas Fogg|Passepartout|Aouda|Fix;Liverpool;53.4084;-2.9916;Henrietta;1|2|3|4;1|0.8|0.6|0.4
+Phileas Fogg|Passepartout|Aouda|Fix;Queenstown;51.8503;-8.2943;Henrietta;1|2|3|4;1|0.8|0.6|0.4
+Phileas Fogg|Passepartout|Aouda|Fix;Dublin;53.3498;-6.2603;Train;1|2|3|4;1|0.8|0.6|0.4
+Phileas Fogg|Passepartout|Aouda|Fix;Liverpool;53.4084;-2.9916;Steamer;1|2|3|4;1|0.8|0.6|0.4
+Phileas Fogg|Passepartout|Aouda|Fix;Liverpool;53.4084;-2.9916;Train;1|2|3|4;1|0.8|0.6|0.4

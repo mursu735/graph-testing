@@ -1,3 +1,4 @@
-Person;City;Location;Order;Importance
-Phileas Fogg|James Forster;London;Saville Row, Burlington Gardens;1|2;1|0.7
-Jean Passepartout;London;Saville Row, Burlington Gardens;3;0.8
+Person;City;Latitude;Longitude;Location;Order;Importance
+Mr. Phileas Fogg;London;51.5074;0.1278;No. 7, Saville Row, Burlington Gardens;1;1.0
+Jean Passepartout;London;51.5074;0.1278;No. 7, Saville Row, Burlington Gardens;2;0.8
+James Forster;London;51.5074;0.1278;No. 7, Saville Row, Burlington Gardens;3;0.6 

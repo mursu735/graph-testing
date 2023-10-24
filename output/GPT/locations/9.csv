@@ -1,10 +1,5 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;Suez, Egypt;On the ship "Mongolia";1;1
-Passepartout;Suez, Egypt;On the ship "Mongolia";2;2
-Detective Fix;Suez, Egypt;On the ship "Mongolia";3;3
-Phileas Fogg;Aden, Yemen;Port of Aden;4;1
-Passepartout;Aden, Yemen;Port of Aden;5;2
-Detective Fix;Aden, Yemen;Port of Aden;6;3
-Phileas Fogg;Bombay, India;Port of Bombay;7;1
-Passepartout;Bombay, India;Port of Bombay;8;2
-Detective Fix;Bombay, India;Port of Bombay;9;3
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Passepartout|Fix;Suez;29.9668;32.5498;Consul's office;1|2|3;1|0.8|0.6
+Phileas Fogg|Passepartout|Fix;Suez;29.9668;32.5498;Ship "Mongolia";4|5|6;1|0.8|0.6
+Phileas Fogg|Passepartout|Fix;Aden;12.7855;45.0187;Steamer Point;7|8|9;1|0.8|0.6
+Phileas Fogg|Passepartout|Fix;Bombay;19.0760;72.8777;;10|11|12;1|0.8|0.6

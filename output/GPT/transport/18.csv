@@ -1,5 +1,7 @@
 Person;Mode;Order
-Phileas Fogg;Steamer;all
-Aouda;Steamer;all
-Fix;Steamer;all
-Passepartout;Steamer;all
+
+
+Phileas Fogg|Aouda|Fix;steamer;1|2|3
+Phileas Fogg|Aouda;walk;4|5
+Phileas Fogg|Aouda;palanquin;6|7
+Passepartout;walk;all

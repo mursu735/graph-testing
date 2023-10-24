@@ -1,14 +1,9 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;Allahabad, India;Railway Station;1;1
-Phileas Fogg;Benares, India;Train;2;1
-Phileas Fogg;Calcutta, India;Train;3;1
-Phileas Fogg;Hong Kong;Steamer;4;1
-Passepartout;Allahabad, India;City of Allahabad;1;2
-Passepartout;Benares, India;Train;2;2
-Passepartout;Calcutta, India;Train;3;2
-Sir Francis Cromarty;Allahabad, India;Elephant;1;3
-Sir Francis Cromarty;Benares, India;Train;2;3
-Aouda;Allahabad, India;Elephant;1;4
-Aouda;Benares, India;Train;2;4
-Aouda;Calcutta, India;Train;3;4
-Aouda;Hong Kong;Steamer;4;4
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg;Kholby;27.5883;77.4325;Kholby;1;1.0
+Passepartout;Kholby;27.5883;77.4325;Kholby;2;0.9
+Sir Francis Cromarty;Kholby;27.5883;77.4325;Kholby;3;0.8
+Aouda;Kholby;27.5883;77.4325;Kholby;4;0.7
+Phileas Fogg|Passepartout|Sir Francis Cromarty|Aouda;Allahabad;25.4358;81.8463;Allahabad;1|2|3|4;1.0|0.9|0.8|0.7
+Phileas Fogg|Passepartout|Aouda;Benares;25.3176;82.9739;Benares;1|2|3;1.0|0.9|0.7
+Phileas Fogg|Passepartout|Aouda;Calcutta;22.5726;88.3639;Calcutta;1|2|3;1.0|0.9|0.7
+Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Hong Kong;1|2;1.0|0.7

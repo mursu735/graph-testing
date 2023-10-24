@@ -1,6 +1,6 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;London;Saville Row;all;1
-Passepartout;London;Saville Row;all;2
-Samuel Wilson;London;Clergyman’s house;all;3
-Aouda;London;Saville Row;all;4
-James Strand;Edinburgh;unknown;all;5
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg;London;51.5074;0.1278;Saville Row;1;1.0
+Passepartout;London;51.5074;0.1278;Saville Row;2;0.8
+James Strand;Edinburgh;55.9533;-3.1883;;3;0.2
+Reverend Samuel Wilson;London;51.5074;0.1278;His house;4;0.6
+Aouda;London;51.5074;0.1278;Phileas Fogg's house;5;0.9

@@ -1,3 +1,8 @@
-Person;City;Location;Order;Importance
-Passepartout|Fix;Suez;Quay;1|2;1.0|0.8
-Passepartout;Suez;Shop;all;1.0
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg;Suez;29.9745;32.5263;Consul's office;1;1.0
+Passepartout|Fix;Suez;29.9745;32.5263;Quay;2|3;0.9|0.8
+Phileas Fogg|Passepartout;Suez;29.9745;32.5263;Ship "Mongolia";4|5;1.0|0.9
+Passepartout|Fix;Suez;29.9745;32.5263;Shop;6|7;0.9|0.8
+Fix;Suez;29.9745;32.5263;Consulate;8;0.8
+Fix;Suez;29.9745;32.5263;Telegraph office;9;0.8
+Fix;Suez;29.9745;32.5263;Ship "Mongolia";10;0.8

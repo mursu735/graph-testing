@@ -1,7 +1,6 @@
-Person;City;Location;Order;Importance
-Phileas Fogg|Passepartout;London;Reform Club;1|2;1|2
-Phileas Fogg|Passepartout;London;Saville Row;2|3;1|2
-Phileas Fogg|Passepartout;London;Charing Cross station;3|4;1|2
-Beggar-woman;London;Outside Charing Cross station;5;3
-Ralph|Stuart;London;Charing Cross station;6|7;4|5
-Phileas Fogg|Passepartout;On the train;First-class carriage;8|9;1|2
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg;London;51.5074;0.1278;Reform Club;1;1.0
+Phileas Fogg|Passepartout;London;51.5074;0.1278;Saville Row;2|3;1.0|0.8
+Phileas Fogg|Passepartout;London;51.5074;0.1278;Charing Cross;4|5;1.0|0.8
+Phileas Fogg|Passepartout;London;51.5074;0.1278;Railway Station;6|7;1.0|0.8
+Phileas Fogg|Passepartout;On a train;51.5074;0.1278;;8|9;1.0|0.8

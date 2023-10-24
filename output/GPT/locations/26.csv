@@ -1,22 +1,8 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;San Francisco;International Hotel;1;1
-Aouda;San Francisco;International Hotel;2;2
-Passepartout;San Francisco;International Hotel;3;2
-Fix;San Francisco;International Hotel;4;3
-Colonel Stamp Proctor;San Francisco;Montgomery Street;5;4
-Phileas Fogg;Omaha;Train;6;1
-Aouda;Omaha;Train;7;2
-Passepartout;Omaha;Train;8;2
-Fix;Omaha;Train;9;3
-Phileas Fogg;New York;Atlantic Steamer;10;1
-Aouda;New York;Atlantic Steamer;11;2
-Passepartout;New York;Atlantic Steamer;12;2
-Fix;New York;Atlantic Steamer;13;3
-Phileas Fogg;Sacramento;Train;14;1
-Aouda;Sacramento;Train;15;2
-Passepartout;Sacramento;Train;16;2
-Fix;Sacramento;Train;17;3
-Phileas Fogg;Reno;Train;18;1
-Aouda;Reno;Train;19;2
-Passepartout;Reno;Train;20;2
-Fix;Reno;Train;21;3
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;International Hotel;1|2|3|4;1.0|0.8|0.7|0.6
+Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;Montgomery Street;1|2|3|4;1.0|0.8|0.7|0.6
+Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;Train station;1|2|3|4;1.0|0.8|0.7|0.6
+Phileas Fogg|Aouda|Passepartout|Fix;Omaha;41.2565;-95.9345;Train;1|2|3|4;1.0|0.8|0.7|0.6
+Phileas Fogg|Aouda|Passepartout|Fix;Sacramento;38.5816;-121.4944;Train;1|2|3|4;1.0|0.8|0.7|0.6
+Phileas Fogg|Aouda|Passepartout|Fix;Reno;39.5296;-119.8138;Train;1|2|3|4;1.0|0.8|0.7|0.6
+Phileas Fogg|Aouda|Passepartout|Fix;Utah;39.3209;-111.0937;Train;1|2|3|4;1.0|0.8|0.7|0.6

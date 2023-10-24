@@ -1,6 +1,7 @@
 Person;Mode;Order
-Fix;Walking;1
-Phileas Fogg;Walking;2
-Passepartout;Walking;3
-Phileas Fogg;Boat;4
-Passepartout;Boat;5
+
+
+Phileas Fogg|Passepartout;cab;1|2
+Phileas Fogg|Passepartout;train;3|4
+Phileas Fogg|Passepartout;ship;5|6
+Fix;foot;all

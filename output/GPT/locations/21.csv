@@ -1,13 +1,7 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;Hong Kong;Hong Kong docks;1;1
-Aouda;Hong Kong;Hong Kong docks;2;1
-Fix;Hong Kong;Hong Kong docks;3;1
-John Bunsby;Hong Kong;Hong Kong docks;4;2
-Phileas Fogg;Yokohama;On the boat "Tankadere";5;1
-Aouda;Yokohama;On the boat "Tankadere";6;1
-Fix;Yokohama;On the boat "Tankadere";7;1
-John Bunsby;Yokohama;On the boat "Tankadere";8;2
-Phileas Fogg;Shanghai;On the boat "Tankadere";9;1
-Aouda;Shanghai;On the boat "Tankadere";10;1
-Fix;Shanghai;On the boat "Tankadere";11;1
-John Bunsby;Shanghai;On the boat "Tankadere";12;2
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg;Hong Kong;22.3193;114.1694;Docks;1;1.0
+Aouda;Hong Kong;22.3193;114.1694;Docks;2;0.9
+Fix;Hong Kong;22.3193;114.1694;Docks;3;0.8
+John Bunsby;Hong Kong;22.3193;114.1694;Docks;4;0.7
+Phileas Fogg|Aouda|Fix|John Bunsby;Yokohama;35.4437;139.6380;Boat;1|2|3|4;1.0|0.9|0.8|0.7
+Phileas Fogg|Aouda|Fix;Shanghai;31.2304;121.4737;Boat;1|2|3;1.0|0.9|0.8

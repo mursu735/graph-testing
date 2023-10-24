@@ -1,12 +1,16 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;Calcutta;on the steamer "Rangoon";1;1
-Aouda;Calcutta;on the steamer "Rangoon";2;2
-Fix;Calcutta;on the steamer "Rangoon";3;3
-Phileas Fogg;Singapore;on the island of Singapore and the town;1;1
-Aouda;Singapore;on the island of Singapore and the town;2;2
-Fix;Singapore;on the island of Singapore and the town;3;3
-Passepartout;Singapore;on the steamer "Rangoon";4;4
-Phileas Fogg;Hong Kong;on the steamer "Rangoon";1;1
-Aouda;Hong Kong;on the steamer "Rangoon";2;2
-Fix;Hong Kong;on the steamer "Rangoon";3;3
-Passepartout;Hong Kong;on the steamer "Rangoon";4;4
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg;Singapore;1.3521;103.8198;On the steamer "Rangoon";1;1.0
+Aouda;Singapore;1.3521;103.8198;On the steamer "Rangoon";2;0.8
+Fix;Singapore;1.3521;103.8198;On the steamer "Rangoon";3;0.6
+Passepartout;Singapore;1.3521;103.8198;On the steamer "Rangoon";4;0.7
+Phileas Fogg|Aouda;Singapore;1.3521;103.8198;On a walk on shore;5|6;1.0|0.8
+Fix;Singapore;1.3521;103.8198;Following Fogg and Aouda;7;0.6
+Passepartout;Singapore;1.3521;103.8198;Doing his usual errands;8;0.7
+Phileas Fogg|Aouda;Singapore;1.3521;103.8198;In a carriage;9|10;1.0|0.8
+Phileas Fogg|Aouda;Singapore;1.3521;103.8198;Returning to the town;11|12;1.0|0.8
+Fix;Singapore;1.3521;103.8198;Following Fogg and Aouda;13;0.6
+Passepartout;Singapore;1.3521;103.8198;Purchasing mangoes;14;0.7
+Phileas Fogg;On the way to Hong Kong;22.3193;114.1694;On the steamer "Rangoon";15;1.0
+Aouda;On the way to Hong Kong;22.3193;114.1694;On the steamer "Rangoon";16;0.8
+Fix;On the way to Hong Kong;22.3193;114.1694;On the steamer "Rangoon";17;0.6
+Passepartout;On the way to Hong Kong;22.3193;114.1694;On the steamer "Rangoon";18;0.7

@@ -1,6 +1,4 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;Hong Kong;Victoria Port;1;1
-Aouda;Hong Kong;Victoria Port;2;2
-Fix;Hong Kong;Victoria Port;3;2
-Passepartout;Hong Kong;Victoria Port;4;2
-Jeejeeh;Europe;N/A;5;3
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Aouda|Fix|Passepartout;Hong Kong;22.3193;114.1694;Victoria port;1|2|3|4;1|0.8|0.6|0.9
+Phileas Fogg|Aouda|Fix|Passepartout;Hong Kong;22.3193;114.1694;Steamer office;5|6|7|8;1|0.8|0.6|0.9
+Phileas Fogg|Aouda|Fix|Passepartout;Hong Kong;22.3193;114.1694;Tavern;9|10|11|12;1|0.8|0.6|0.9

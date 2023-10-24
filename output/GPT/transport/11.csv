@@ -1,7 +1,7 @@
 Person;Mode;Order
-Phileas Fogg;Train;1
-Phileas Fogg;Elephant;2
-Passepartout;Train;1
-Passepartout;Elephant;2
-Sir Francis Cromarty;Train;1
-Sir Francis Cromarty;Elephant;2
+
+
+Phileas Fogg|Passepartout|Detective Fix;ship;1|2|3
+Phileas Fogg;foot;4
+Phileas Fogg|Passepartout|Detective Fix;train;5|6|7
+Phileas Fogg|Passepartout|Sir Francis Cromarty;elephant;8|9|10

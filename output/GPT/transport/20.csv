@@ -1,9 +1,6 @@
 Person;Mode;Order
-Phileas Fogg;on foot;1
-Phileas Fogg;palanquin;2
-Phileas Fogg;boat;3
-Aouda;on foot;1
-Aouda;palanquin;2
-Aouda;boat;3F
-ix;on foot;all
-John Bunsby;boat;all
+
+
+Phileas Fogg|Aouda;Palanquin;1|2
+Phileas Fogg|Aouda|Fix;Foot;3|4|5
+Phileas Fogg|Aouda|Fix;Pilot-boat "Tankadere";6|7|8

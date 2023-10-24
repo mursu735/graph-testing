@@ -1,5 +1,6 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;Hong Kong;On the steamer Rangoon;all;1
-Aouda;Hong Kong;On the steamer Rangoon;all;2
-Fix;Hong Kong;On the steamer Rangoon;all;3
-Passepartout;Hong Kong;On the steamer Rangoon;all;4
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Aouda|Fix;Calcutta;22.5726;88.3639;Steamer "Rangoon";1|2|3;1|0.8|0.6
+Phileas Fogg|Aouda|Fix;Singapore;1.3521;103.8198;City;4|5|6;1|0.8|0.6
+Phileas Fogg|Aouda|Fix;Hong Kong;22.3193;114.1694;Port of Hong Kong;7|8|9;1|0.8|0.6
+Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Club Hotel;10|11;1|0.8
+Phileas Fogg;Hong Kong;22.3193;114.1694;Exchange;12;1

@@ -1,4 +1,8 @@
 Person;Mode;Order
-Phileas Fogg;Steamer;all
-Aouda;Steamer;all
-Fix;Steamer;all
+
+
+Phileas Fogg|Passepartout|Aouda;Elephant;1
+Phileas Fogg|Passepartout|Aouda;Train;2
+Phileas Fogg|Passepartout|Aouda;Boat;3
+Phileas Fogg|Passepartout|Aouda;Steamer;4
+Fix;Stealth;all

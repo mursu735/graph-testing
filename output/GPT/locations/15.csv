@@ -1,18 +1,8 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;Kholby, India;all;1
-Passepartout;Kholby, India;all;2
-Sir Francis Cromarty;Kholby, India;all;3
-Aouda;Kholby, India;all;4
-Phileas Fogg;Allahabad, India;all;1
-Passepartout;Allahabad, India;all;2
-Aouda;Allahabad, India;all;4
-Phileas Fogg;Benares, India;all;1
-Passepartout;Benares, India;all;2
-Aouda;Benares, India;all;4
-Sir Francis Cromarty;Benares, India;all;3
-Phileas Fogg;Calcutta, India;all;1
-Passepartout;Calcutta, India;all;2
-Aouda;Calcutta, India;all;4
-Phileas Fogg;Hong Kong;all;1
-Passepartout;Hong Kong;all;2
-Aouda;Hong Kong;all;4
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Passepartout|Sir Francis Cromarty|Aouda;Kholby;27.0000;77.7500;all;1|2|3|4;0.8|0.7|0.6|0.5
+Phileas Fogg|Passepartout|Sir Francis Cromarty|Aouda;Allahabad;25.4358;81.8463;all;1|2|3|4;0.8|0.7|0.6|0.5
+Phileas Fogg|Passepartout|Sir Francis Cromarty;Benares;25.3176;82.9739;all;1|2|3;0.8|0.7|0.6
+Phileas Fogg|Passepartout|Aouda;Calcutta;22.5726;88.3639;all;1|2|3;0.8|0.7|0.5
+Phileas Fogg|Passepartout|Aouda;Calcutta;22.5726;88.3639;Courtroom;1|2|3;0.8|0.7|0.5
+Phileas Fogg|Passepartout|Aouda;Calcutta;22.5726;88.3639;Quay;1|2|3;0.8|0.7|0.5
+Phileas Fogg|Passepartout|Aouda;Hong Kong;22.3193;114.1694;Steamer Rangoon;1|2|3;0.8|0.7|0.5

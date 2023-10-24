@@ -1,7 +1,9 @@
 Person;Mode;Order
-Phileas Fogg;walking;1
-Phileas Fogg;ship;2
-Passepartout;walking;1
+
+
+Phileas Fogg;ship;1
 Passepartout;ship;2
-Fix;walking;1
-Fix;ship;2
+Fix;ship;3
+Passepartout;walking;4
+Fix;walking;5
+Fix;telegraph;6

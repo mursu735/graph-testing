@@ -1,17 +1,7 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;Hong Kong;Boat "Tankadere";1;1
-Aouda;Hong Kong;Boat "Tankadere";1;2
-Fix;Hong Kong;Boat "Tankadere";1;3
-John Bunsby;Hong Kong;Boat "Tankadere";1;4
-Passepartout;Hong Kong;Steamer "Carnatic";1;5
-Passepartout;Yokohama;City streets;2;5
-Passepartout;Yokohama;Native dealer in old clothes;3;5
-Passepartout;Yokohama;Tea-house;4;5
-Passepartout;Yokohama;Docks;5;5
-Passepartout;Yokohama;Honourable William Batulcar’s establishment;6;5
-Phileas Fogg;Yokohama;Theatre;7;1
-Aouda;Yokohama;Theatre;7;2
-Passepartout;Yokohama;Theatre;7;5
-Phileas Fogg;Yokohama;American steamer;8;1
-Aouda;Yokohama;American steamer;8;2
-Passepartout;Yokohama;American steamer;8;5
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Aouda|Fix|John Bunsby;Hong Kong;22.3193;114.1694;Boat "Tankadere";1|2|3|4;1|0.9|0.8|0.7
+Passepartout;Hong Kong;22.3193;114.1694;Ship "Carnatic";5;0.6
+Passepartout;Yokohama;35.4437;139.6380;City;6;0.6
+Phileas Fogg|Aouda|Fix|John Bunsby;Chinese seas;35.8617;104.1954;Boat "Tankadere";7|8|9|10;1|0.9|0.8|0.7
+Passepartout;San Francisco;37.7749;-122.4194;American Steamer;11;0.6
+Phileas Fogg|Aouda;San Francisco;37.7749;-122.4194;American Steamer;12|13;1|0.9

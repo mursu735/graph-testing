@@ -1,6 +1,9 @@
 import os
 import re
+import time
 import openai
+import tiktoken
+import helpers
 
 
 def natural_sort(l):
@@ -12,7 +15,6 @@ def determine(file):
     filename = file.split(".")
     filename = filename[0]
     return os.path.isfile(f"output/GPT/locations/{filename}.csv")
-
 
 key = ""
 with open("key.txt") as file:
@@ -27,16 +29,15 @@ openai.api_key = key
 # print the first model's id
 #print(models.data)
 
-instruction = ""
-with open("input/instruction_location.txt") as file:
-    instruction = ''.join(line.rstrip() for line in file)
+instruction = helpers.get_instruction()
+print(instruction)
 
 if not os.path.exists("output/GPT"):
     os.mkdir("output/GPT")
     
-if not os.path.isfile("output/GPT/locations.csv"):
-   with open("output/GPT/locations.csv", "w", encoding="utf-8") as file:
-       file.write("Location;Latitude;Longitude;Order\n")
+#if not os.path.isfile("output/GPT/locations.csv"):
+#   with open("output/GPT/locations.csv", "w", encoding="utf-8") as file:
+#       file.write("Location;Latitude;Longitude;Order\n")
 
 if not os.path.exists("output/GPT/locations"):
     os.mkdir("output/GPT/locations")
@@ -67,42 +68,59 @@ if len(os.listdir("output/GPT/summary")) > 0:
 
 #print(f"Summary: {summary}")
 
+last_request = time.time()
+
 for file in files:
-    filename = file.split(".")
-    filename = filename[0]
-    with open(f"input/Chapters/{file}", encoding='utf-8') as file:
-        prompt = ""
-        if not summary == "":
-            prompt += "context:\n" + summary + "\n"
-        prompt += "prompt:"
-        prompt += file.read()
-        # create a chat completion
-        chat_completion = openai.ChatCompletion.create(model="gpt-4", messages=[{"role": "system", "content": instruction}, {"role": "user", "content": prompt}], temperature=0.5)
-        #chat_completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "system", "content": instruction}, {"role": "user", "content": prompt}])
+    filename = int(file.split(".")[0])
+    print(f"Processing chapter {filename}")
+    #with open(f"input/Chapters/{file}", encoding='utf-8') as file:
+    prompt = helpers.get_chapter(filename)
 
-        # print the chat completion
-        message = chat_completion.choices[0].message.content
-        print(message)
+    # Check for number of tokens sent in the last minute
+    whole_prompt = instruction + "\n" + prompt
+    encoding = tiktoken.encoding_for_model("gpt-4")
+    num_tokens = len(encoding.encode(whole_prompt))
+    time_to_wait = last_request - time.time() + 60
+    # Don't wait for the first response
+    if time_to_wait < 0:
+        print(f" {time_to_wait} seconds passed since last request, no need to wait, sending request now")
+    else:
+        if time_to_wait < 59.5:
+            print(f"Send only one request per minute, wait for {time_to_wait} seconds")
+            time.sleep(time_to_wait)
 
-        parts = message.split("////")
-        # Put all main locations to single file
-        locations = parts[0]
-        with open("output/GPT/locations.csv", "a", encoding="utf-8") as file:
-            file.write(locations)
-        # Put peoples' locations to different files
-        people = "Person;City;Location;Order;Importance\n"
-        people += parts[1]
-        with open(f"output/GPT/locations/{filename}.csv", "a", encoding="utf-8") as file:
-            file.write(people)
-        transport = "Person;Mode;Order\n"
-        transport += parts[2]
-        with open(f"output/GPT/transport/{filename}.csv", "a", encoding="utf-8") as file:
-            file.write(transport)
-        # Put summaries to different files
-        summary = parts[3]
-        with open(f"output/GPT/summary/{filename}.txt", "a", encoding="utf-8") as file:
-            file.write(summary)
+    print("Send request to GPT")
+    # create a chat completion
+    last_request = time.time()
+    chat_completion = openai.ChatCompletion.create(model="gpt-4", messages=[{"role": "system", "content": instruction}, {"role": "user", "content": prompt}], temperature=0)
+    #chat_completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "system", "content": instruction}, {"role": "user", "content": prompt}])
+    # print the chat completion
+    message = chat_completion.choices[0].message.content
+    print(message)
+    tokens = chat_completion.usage["total_tokens"]
+    print(f"Tokens in last message {tokens}")
+    #print(message)
 
+    parts = message.split("////")
+    # Put all main locations to single file
+    #locations = parts[0]
+    #with open("output/GPT/locations.csv", "a", encoding="utf-8") as file:
+    #    file.write(locations)
+    # Put locations of people to different files
+    people = "Person;City;Latitude;Longitude;Location;Order;Importance\n"
+    people += parts[0]
+    with open(f"output/GPT/locations/{filename}.csv", "a", encoding="utf-8") as file:
+        file.write(people)
+    transport = "Person;Mode;Order\n"
+    transport += parts[1]
+    with open(f"output/GPT/transport/{filename}.csv", "a", encoding="utf-8") as file:
+        file.write(transport)
+    # Put summaries to different files
+    #summary = parts[3]
+    #if not os.path.isfile("output/GPT/summary/{filename}.txt"):
+        #with open(f"output/GPT/summary/{filename}.txt", "a", encoding="utf-8") as file:
+            #file.write(summary)
+    
 #print(prompt)
 
 '''

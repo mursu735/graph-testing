@@ -1,18 +1,17 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;Fort Kearney, Nebraska;Fort Kearney;1;1
-Passepartout;Fort Kearney, Nebraska;Fort Kearney;1;2
-Fix;Fort Kearney, Nebraska;Fort Kearney;1;3
-Aouda;Fort Kearney, Nebraska;Fort Kearney;1;4
-Mudge;Omaha, Nebraska;Omaha;2;5
-Phileas Fogg;Omaha, Nebraska;Omaha;2;1
-Passepartout;Omaha, Nebraska;Omaha;2;2
-Fix;Omaha, Nebraska;Omaha;2;3
-Aouda;Omaha, Nebraska;Omaha;2;4
-Phileas Fogg;Chicago, Illinois;Chicago;3;1
-Passepartout;Chicago, Illinois;Chicago;3;2
-Fix;Chicago, Illinois;Chicago;3;3
-Aouda;Chicago, Illinois;Chicago;3;4
-Phileas Fogg;New York, New York;New York;4;1
-Passepartout;New York, New York;New York;4;2
-Fix;New York, New York;New York;4;3
-Aouda;New York, New York;New York;4;4
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg;Fort Kearney;40.6995;-99.0817;Fort Kearney;1;1.0
+Aouda;Fort Kearney;40.6995;-99.0817;Fort Kearney;2;0.8
+Fix;Fort Kearney;40.6995;-99.0817;Fort Kearney;3;0.7
+Mudge;Fort Kearney;40.6995;-99.0817;Fort Kearney;4;0.6
+Phileas Fogg;Omaha;41.2565;-95.9345;Omaha train station;5;1.0
+Aouda;Omaha;41.2565;-95.9345;Omaha train station;6;0.8
+Fix;Omaha;41.2565;-95.9345;Omaha train station;7;0.7
+Passepartout;Omaha;41.2565;-95.9345;Omaha train station;8;0.9
+Phileas Fogg;Chicago;41.8781;-87.6298;Chicago train station;9;1.0
+Aouda;Chicago;41.8781;-87.6298;Chicago train station;10;0.8
+Fix;Chicago;41.8781;-87.6298;Chicago train station;11;0.7
+Passepartout;Chicago;41.8781;-87.6298;Chicago train station;12;0.9
+Phileas Fogg;New York;40.7128;-74.0060;Cunard Line Pier;13;1.0
+Aouda;New York;40.7128;-74.0060;Cunard Line Pier;14;0.8
+Fix;New York;40.7128;-74.0060;Cunard Line Pier;15;0.7
+Passepartout;New York;40.7128;-74.0060;Cunard Line Pier;16;0.9

@@ -1,6 +1,5 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;San Francisco;International Hotel;1;1
-Aouda;San Francisco;International Hotel;2;1
-Passepartout;San Francisco;International Hotel;3;1
-Fix;San Francisco;International Hotel;4;1
-Colonel Stamp Proctor;San Francisco;Montgomery Street;all;2
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;International Hotel;1|2|3|4;1|0.8|0.7|0.6
+Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;Montgomery Street;1|2|3|4;1|0.8|0.7|0.6
+Phileas Fogg|Aouda|Fix;San Francisco;37.7749;-122.4194;Tailor's;1|2|3;1|0.8|0.6
+Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;Train Station;1|2|3|4;1|0.8|0.7|0.6

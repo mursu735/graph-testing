@@ -1,5 +1,3 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;London;Saville Row;all;1.0
-Jean Passepartout|Mr. Fogg;London;house in Saville Row;all;0.9|1.0
-James Forster;London;Unknown;all;0.8
-Lord Longferry;London;Haymarket taverns;all;0.7
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg;London;51.5074;0.1278;Saville Row;1;1.0
+Jean Passepartout;London;51.5074;0.1278;Saville Row;2;0.8

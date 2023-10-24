@@ -1,7 +1,7 @@
 Person;Mode;Order
-Phileas Fogg;Train;1
-Phileas Fogg;Elephant;2
-Passepartout;Train;1
-Passepartout;Elephant;2
-Sir Francis Cromarty;Train;1
-Sir Francis Cromarty;Elephant;2
+
+Phileas Fogg|Passepartout|Sir Francis Cromarty;Train;1|2|3
+Phileas Fogg|Passepartout|Sir Francis Cromarty;Elephant;4|5|6
+Phileas Fogg|Passepartout|Sir Francis Cromarty;Walking;7|8|9
+Phileas Fogg|Passepartout|Sir Francis Cromarty;Elephant;10|11|12
+Phileas Fogg|Passepartout|Sir Francis Cromarty;Elephant;13|14|15

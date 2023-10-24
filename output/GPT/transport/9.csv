@@ -1,4 +1,5 @@
 Person;Mode;Order
-Phileas Fogg;Ship "Mongolia";all
-Passepartout;Ship "Mongolia";all
-Detective Fix;Ship "Mongolia";all
+
+
+Phileas Fogg|Passepartout|Fix;ship;1|2|3
+Phileas Fogg|Passepartout|Fix;ship;all|all|all

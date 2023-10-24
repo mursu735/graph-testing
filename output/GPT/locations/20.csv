@@ -1,7 +1,11 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;Hong Kong;English quarter;1;1
-Phileas Fogg;Hong Kong;hotel;2;1
-Aouda;Hong Kong;English quarter;1;2
-Aouda;Hong Kong;hotel;2;2
-Fix;Hong Kong;English quarter;all;3
-John Bunsby;Hong Kong;harbour;all;4
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg;Hong Kong;22.3193;114.1694;English quarter;1;1.0
+Aouda;Hong Kong;22.3193;114.1694;English quarter;2;0.9
+Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Hotel;3|4;1.0|0.9
+Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Quay;5|6;1.0|0.9
+Fix;Hong Kong;22.3193;114.1694;Quay;7;0.8
+Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Docks;8|9;1.0|0.9
+Phileas Fogg|Aouda|Fix;Hong Kong;22.3193;114.1694;Police station;10|11|12;1.0|0.9|0.8
+Phileas Fogg|Aouda|Fix;Hong Kong;22.3193;114.1694;Wharf;13|14|15;1.0|0.9|0.8
+Phileas Fogg|Aouda|Fix;Hong Kong;22.3193;114.1694;On board the "Tankadere";16|17|18;1.0|0.9|0.8
+John Bunsby;Hong Kong;22.3193;114.1694;On board the "Tankadere";19;0.7

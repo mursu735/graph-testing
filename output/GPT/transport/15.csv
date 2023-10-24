@@ -1,17 +1,9 @@
 Person;Mode;Order
-Phileas Fogg;Elephant;1
-Passepartout;Elephant;1
-Sir Francis Cromarty;Elephant;1
-Aouda;Elephant;1
-Phileas Fogg;Train;2
-Passepartout;Train;2
-Aouda;Train;2
-Phileas Fogg;Steamer;3
-Passepartout;Steamer;3
-Aouda;Steamer;3
-Phileas Fogg;Four-wheeled carriage;4
-Passepartout;Four-wheeled carriage;4
-Aouda;Four-wheeled carriage;4
-Phileas Fogg;Boat;5
-Passepartout;Boat;5
-Aouda;Boat;5
+
+
+Phileas Fogg|Passepartout|Sir Francis Cromarty|Aouda;elephant;1
+Phileas Fogg|Passepartout|Sir Francis Cromarty|Aouda;train;2
+Phileas Fogg|Passepartout|Aouda;train;3
+Phileas Fogg|Passepartout|Aouda;steamer;4
+Phileas Fogg|Passepartout|Aouda;palkigahri;5
+Phileas Fogg|Passepartout|Aouda;boat;6

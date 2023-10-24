@@ -1,8 +1,7 @@
 Person;Mode;Order
-Phileas Fogg;carriage;1
-Phileas Fogg;train;2
-Aouda;carriage;1
-Aouda;train;2
-Passepartout;carriage;1
-Passepartout;train;2
-Fix;walking;all
+
+
+Phileas Fogg|Aouda|Passepartout;Ship;1
+Phileas Fogg|Aouda|Passepartout;Carriage;2
+Phileas Fogg|Aouda|Passepartout|Fix;Foot;3
+Phileas Fogg|Aouda|Passepartout|Fix;Train;4

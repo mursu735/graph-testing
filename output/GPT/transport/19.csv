@@ -1,7 +1,7 @@
 Person;Mode;Order
-Phileas Fogg;steamer;all
-Aouda;steamer;all
-Fix;steamer;all
-Passepartout;steamer;1
-Passepartout;walking;2
-Passepartout;opium pipe;3
+
+
+Phileas Fogg|Aouda|Fix|Passepartout;steamer;1
+Phileas Fogg|Aouda|Fix|Passepartout;walking;2
+Passepartout;palanquin;3
+Passepartout;opium pipe;4

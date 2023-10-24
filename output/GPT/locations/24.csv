@@ -1,11 +1,7 @@
-Person;City;Location;Order;Importance
-Phileas Fogg;Shanghai;on the "Tankadere";1;1
-Aouda;Shanghai;on the "Tankadere";2;1
-John Busby;Shanghai;unknown;3;2
-Phileas Fogg;Yokohama;on the "Carnatic";4;1
-Aouda;Yokohama;on the "Carnatic";5;1
-Passepartout;Yokohama;on the "Carnatic";6;1
-Phileas Fogg;San Francisco;on the "General Grant";7;1
-Aouda;San Francisco;on the "General Grant";8;1
-Passepartout;San Francisco;on the "General Grant";9;1
-Fix;San Francisco;on the "General Grant";10;2
+Person;City;Latitude;Longitude;Location;Order;Importance
+Passepartout;Yokohama;35.4437;139.6380;Cabin;1;0.8
+Honourable William Batulcar;Yokohama;35.4437;139.6380;Cabin;2;0.4
+Phileas Fogg|Aouda;Yokohama;35.4437;139.6380;American steamer;3|4;1|0.9
+John Busby;Yokohama;35.4437;139.6380;American steamer;5;0.3
+Fix;Yokohama;35.4437;139.6380;American steamer;6;0.7
+Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;Steamer "General Grant";7|8|9|10;1|0.9|0.8|0.7

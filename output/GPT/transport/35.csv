@@ -1,4 +1,537 @@
 Person;Mode;Order
-Phileas Fogg;on foot;all
-Aouda;on foot;all
-Passepartout;on foot;all
+
+
+Phileas Fogg;Walking;1
+Phileas Fogg|Passepartout|Aouda|Fix;Train;2|3|4|5
+Phileas Fogg;Walking;6
+Passepartout;Walking;7
+Phileas Fogg;Walking;8
+Passepartout;Walking;9
+Phileas Fogg;Walking;10
+Passepartout;Walking;11
+Phileas Fogg;Walking;12
+Passepartout;Walking;13
+Phileas Fogg;Walking;14
+Passepartout;Walking;15
+Phileas Fogg;Walking;16
+Passepartout;Walking;17
+Phileas Fogg;Walking;18
+Passepartout;Walking;19
+Phileas Fogg;Walking;20
+Passepartout;Walking;21
+Phileas Fogg;Walking;22
+Passepartout;Walking;23
+Phileas Fogg;Walking;24
+Passepartout;Walking;25
+Phileas Fogg;Walking;26
+Passepartout;Walking;27
+Phileas Fogg;Walking;28
+Passepartout;Walking;29
+Phileas Fogg;Walking;30
+Passepartout;Walking;31
+Phileas Fogg;Walking;32
+Passepartout;Walking;33
+Phileas Fogg;Walking;34
+Passepartout;Walking;35
+Phileas Fogg;Walking;36
+Passepartout;Walking;37
+Phileas Fogg;Walking;38
+Passepartout;Walking;39
+Phileas Fogg;Walking;40
+Passepartout;Walking;41
+Phileas Fogg;Walking;42
+Passepartout;Walking;43
+Phileas Fogg;Walking;44
+Passepartout;Walking;45
+Phileas Fogg;Walking;46
+Passepartout;Walking;47
+Phileas Fogg;Walking;48
+Passepartout;Walking;49
+Phileas Fogg;Walking;50
+Passepartout;Walking;51
+Phileas Fogg;Walking;52
+Passepartout;Walking;53
+Phileas Fogg;Walking;54
+Passepartout;Walking;55
+Phileas Fogg;Walking;56
+Passepartout;Walking;57
+Phileas Fogg;Walking;58
+Passepartout;Walking;59
+Phileas Fogg;Walking;60
+Passepartout;Walking;61
+Phileas Fogg;Walking;62
+Passepartout;Walking;63
+Phileas Fogg;Walking;64
+Passepartout;Walking;65
+Phileas Fogg;Walking;66
+Passepartout;Walking;67
+Phileas Fogg;Walking;68
+Passepartout;Walking;69
+Phileas Fogg;Walking;70
+Passepartout;Walking;71
+Phileas Fogg;Walking;72
+Passepartout;Walking;73
+Phileas Fogg;Walking;74
+Passepartout;Walking;75
+Phileas Fogg;Walking;76
+Passepartout;Walking;77
+Phileas Fogg;Walking;78
+Passepartout;Walking;79
+Phileas Fogg;Walking;80
+Passepartout;Walking;81
+Phileas Fogg;Walking;82
+Passepartout;Walking;83
+Phileas Fogg;Walking;84
+Passepartout;Walking;85
+Phileas Fogg;Walking;86
+Passepartout;Walking;87
+Phileas Fogg;Walking;88
+Passepartout;Walking;89
+Phileas Fogg;Walking;90
+Passepartout;Walking;91
+Phileas Fogg;Walking;92
+Passepartout;Walking;93
+Phileas Fogg;Walking;94
+Passepartout;Walking;95
+Phileas Fogg;Walking;96
+Passepartout;Walking;97
+Phileas Fogg;Walking;98
+Passepartout;Walking;99
+Phileas Fogg;Walking;100
+Passepartout;Walking;101
+Phileas Fogg;Walking;102
+Passepartout;Walking;103
+Phileas Fogg;Walking;104
+Passepartout;Walking;105
+Phileas Fogg;Walking;106
+Passepartout;Walking;107
+Phileas Fogg;Walking;108
+Passepartout;Walking;109
+Phileas Fogg;Walking;110
+Passepartout;Walking;111
+Phileas Fogg;Walking;112
+Passepartout;Walking;113
+Phileas Fogg;Walking;114
+Passepartout;Walking;115
+Phileas Fogg;Walking;116
+Passepartout;Walking;117
+Phileas Fogg;Walking;118
+Passepartout;Walking;119
+Phileas Fogg;Walking;120
+Passepartout;Walking;121
+Phileas Fogg;Walking;122
+Passepartout;Walking;123
+Phileas Fogg;Walking;124
+Passepartout;Walking;125
+Phileas Fogg;Walking;126
+Passepartout;Walking;127
+Phileas Fogg;Walking;128
+Passepartout;Walking;129
+Phileas Fogg;Walking;130
+Passepartout;Walking;131
+Phileas Fogg;Walking;132
+Passepartout;Walking;133
+Phileas Fogg;Walking;134
+Passepartout;Walking;135
+Phileas Fogg;Walking;136
+Passepartout;Walking;137
+Phileas Fogg;Walking;138
+Passepartout;Walking;139
+Phileas Fogg;Walking;140
+Passepartout;Walking;141
+Phileas Fogg;Walking;142
+Passepartout;Walking;143
+Phileas Fogg;Walking;144
+Passepartout;Walking;145
+Phileas Fogg;Walking;146
+Passepartout;Walking;147
+Phileas Fogg;Walking;148
+Passepartout;Walking;149
+Phileas Fogg;Walking;150
+Passepartout;Walking;151
+Phileas Fogg;Walking;152
+Passepartout;Walking;153
+Phileas Fogg;Walking;154
+Passepartout;Walking;155
+Phileas Fogg;Walking;156
+Passepartout;Walking;157
+Phileas Fogg;Walking;158
+Passepartout;Walking;159
+Phileas Fogg;Walking;160
+Passepartout;Walking;161
+Phileas Fogg;Walking;162
+Passepartout;Walking;163
+Phileas Fogg;Walking;164
+Passepartout;Walking;165
+Phileas Fogg;Walking;166
+Passepartout;Walking;167
+Phileas Fogg;Walking;168
+Passepartout;Walking;169
+Phileas Fogg;Walking;170
+Passepartout;Walking;171
+Phileas Fogg;Walking;172
+Passepartout;Walking;173
+Phileas Fogg;Walking;174
+Passepartout;Walking;175
+Phileas Fogg;Walking;176
+Passepartout;Walking;177
+Phileas Fogg;Walking;178
+Passepartout;Walking;179
+Phileas Fogg;Walking;180
+Passepartout;Walking;181
+Phileas Fogg;Walking;182
+Passepartout;Walking;183
+Phileas Fogg;Walking;184
+Passepartout;Walking;185
+Phileas Fogg;Walking;186
+Passepartout;Walking;187
+Phileas Fogg;Walking;188
+Passepartout;Walking;189
+Phileas Fogg;Walking;190
+Passepartout;Walking;191
+Phileas Fogg;Walking;192
+Passepartout;Walking;193
+Phileas Fogg;Walking;194
+Passepartout;Walking;195
+Phileas Fogg;Walking;196
+Passepartout;Walking;197
+Phileas Fogg;Walking;198
+Passepartout;Walking;199
+Phileas Fogg;Walking;200
+Passepartout;Walking;201
+Phileas Fogg;Walking;202
+Passepartout;Walking;203
+Phileas Fogg;Walking;204
+Passepartout;Walking;205
+Phileas Fogg;Walking;206
+Passepartout;Walking;207
+Phileas Fogg;Walking;208
+Passepartout;Walking;209
+Phileas Fogg;Walking;210
+Passepartout;Walking;211
+Phileas Fogg;Walking;212
+Passepartout;Walking;213
+Phileas Fogg;Walking;214
+Passepartout;Walking;215
+Phileas Fogg;Walking;216
+Passepartout;Walking;217
+Phileas Fogg;Walking;218
+Passepartout;Walking;219
+Phileas Fogg;Walking;220
+Passepartout;Walking;221
+Phileas Fogg;Walking;222
+Passepartout;Walking;223
+Phileas Fogg;Walking;224
+Passepartout;Walking;225
+Phileas Fogg;Walking;226
+Passepartout;Walking;227
+Phileas Fogg;Walking;228
+Passepartout;Walking;229
+Phileas Fogg;Walking;230
+Passepartout;Walking;231
+Phileas Fogg;Walking;232
+Passepartout;Walking;233
+Phileas Fogg;Walking;234
+Passepartout;Walking;235
+Phileas Fogg;Walking;236
+Passepartout;Walking;237
+Phileas Fogg;Walking;238
+Passepartout;Walking;239
+Phileas Fogg;Walking;240
+Passepartout;Walking;241
+Phileas Fogg;Walking;242
+Passepartout;Walking;243
+Phileas Fogg;Walking;244
+Passepartout;Walking;245
+Phileas Fogg;Walking;246
+Passepartout;Walking;247
+Phileas Fogg;Walking;248
+Passepartout;Walking;249
+Phileas Fogg;Walking;250
+Passepartout;Walking;251
+Phileas Fogg;Walking;252
+Passepartout;Walking;253
+Phileas Fogg;Walking;254
+Passepartout;Walking;255
+Phileas Fogg;Walking;256
+Passepartout;Walking;257
+Phileas Fogg;Walking;258
+Passepartout;Walking;259
+Phileas Fogg;Walking;260
+Passepartout;Walking;261
+Phileas Fogg;Walking;262
+Passepartout;Walking;263
+Phileas Fogg;Walking;264
+Passepartout;Walking;265
+Phileas Fogg;Walking;266
+Passepartout;Walking;267
+Phileas Fogg;Walking;268
+Passepartout;Walking;269
+Phileas Fogg;Walking;270
+Passepartout;Walking;271
+Phileas Fogg;Walking;272
+Passepartout;Walking;273
+Phileas Fogg;Walking;274
+Passepartout;Walking;275
+Phileas Fogg;Walking;276
+Passepartout;Walking;277
+Phileas Fogg;Walking;278
+Passepartout;Walking;279
+Phileas Fogg;Walking;280
+Passepartout;Walking;281
+Phileas Fogg;Walking;282
+Passepartout;Walking;283
+Phileas Fogg;Walking;284
+Passepartout;Walking;285
+Phileas Fogg;Walking;286
+Passepartout;Walking;287
+Phileas Fogg;Walking;288
+Passepartout;Walking;289
+Phileas Fogg;Walking;290
+Passepartout;Walking;291
+Phileas Fogg;Walking;292
+Passepartout;Walking;293
+Phileas Fogg;Walking;294
+Passepartout;Walking;295
+Phileas Fogg;Walking;296
+Passepartout;Walking;297
+Phileas Fogg;Walking;298
+Passepartout;Walking;299
+Phileas Fogg;Walking;300
+Passepartout;Walking;301
+Phileas Fogg;Walking;302
+Passepartout;Walking;303
+Phileas Fogg;Walking;304
+Passepartout;Walking;305
+Phileas Fogg;Walking;306
+Passepartout;Walking;307
+Phileas Fogg;Walking;308
+Passepartout;Walking;309
+Phileas Fogg;Walking;310
+Passepartout;Walking;311
+Phileas Fogg;Walking;312
+Passepartout;Walking;313
+Phileas Fogg;Walking;314
+Passepartout;Walking;315
+Phileas Fogg;Walking;316
+Passepartout;Walking;317
+Phileas Fogg;Walking;318
+Passepartout;Walking;319
+Phileas Fogg;Walking;320
+Passepartout;Walking;321
+Phileas Fogg;Walking;322
+Passepartout;Walking;323
+Phileas Fogg;Walking;324
+Passepartout;Walking;325
+Phileas Fogg;Walking;326
+Passepartout;Walking;327
+Phileas Fogg;Walking;328
+Passepartout;Walking;329
+Phileas Fogg;Walking;330
+Passepartout;Walking;331
+Phileas Fogg;Walking;332
+Passepartout;Walking;333
+Phileas Fogg;Walking;334
+Passepartout;Walking;335
+Phileas Fogg;Walking;336
+Passepartout;Walking;337
+Phileas Fogg;Walking;338
+Passepartout;Walking;339
+Phileas Fogg;Walking;340
+Passepartout;Walking;341
+Phileas Fogg;Walking;342
+Passepartout;Walking;343
+Phileas Fogg;Walking;344
+Passepartout;Walking;345
+Phileas Fogg;Walking;346
+Passepartout;Walking;347
+Phileas Fogg;Walking;348
+Passepartout;Walking;349
+Phileas Fogg;Walking;350
+Passepartout;Walking;351
+Phileas Fogg;Walking;352
+Passepartout;Walking;353
+Phileas Fogg;Walking;354
+Passepartout;Walking;355
+Phileas Fogg;Walking;356
+Passepartout;Walking;357
+Phileas Fogg;Walking;358
+Passepartout;Walking;359
+Phileas Fogg;Walking;360
+Passepartout;Walking;361
+Phileas Fogg;Walking;362
+Passepartout;Walking;363
+Phileas Fogg;Walking;364
+Passepartout;Walking;365
+Phileas Fogg;Walking;366
+Passepartout;Walking;367
+Phileas Fogg;Walking;368
+Passepartout;Walking;369
+Phileas Fogg;Walking;370
+Passepartout;Walking;371
+Phileas Fogg;Walking;372
+Passepartout;Walking;373
+Phileas Fogg;Walking;374
+Passepartout;Walking;375
+Phileas Fogg;Walking;376
+Passepartout;Walking;377
+Phileas Fogg;Walking;378
+Passepartout;Walking;379
+Phileas Fogg;Walking;380
+Passepartout;Walking;381
+Phileas Fogg;Walking;382
+Passepartout;Walking;383
+Phileas Fogg;Walking;384
+Passepartout;Walking;385
+Phileas Fogg;Walking;386
+Passepartout;Walking;387
+Phileas Fogg;Walking;388
+Passepartout;Walking;389
+Phileas Fogg;Walking;390
+Passepartout;Walking;391
+Phileas Fogg;Walking;392
+Passepartout;Walking;393
+Phileas Fogg;Walking;394
+Passepartout;Walking;395
+Phileas Fogg;Walking;396
+Passepartout;Walking;397
+Phileas Fogg;Walking;398
+Passepartout;Walking;399
+Phileas Fogg;Walking;400
+Passepartout;Walking;401
+Phileas Fogg;Walking;402
+Passepartout;Walking;403
+Phileas Fogg;Walking;404
+Passepartout;Walking;405
+Phileas Fogg;Walking;406
+Passepartout;Walking;407
+Phileas Fogg;Walking;408
+Passepartout;Walking;409
+Phileas Fogg;Walking;410
+Passepartout;Walking;411
+Phileas Fogg;Walking;412
+Passepartout;Walking;413
+Phileas Fogg;Walking;414
+Passepartout;Walking;415
+Phileas Fogg;Walking;416
+Passepartout;Walking;417
+Phileas Fogg;Walking;418
+Passepartout;Walking;419
+Phileas Fogg;Walking;420
+Passepartout;Walking;421
+Phileas Fogg;Walking;422
+Passepartout;Walking;423
+Phileas Fogg;Walking;424
+Passepartout;Walking;425
+Phileas Fogg;Walking;426
+Passepartout;Walking;427
+Phileas Fogg;Walking;428
+Passepartout;Walking;429
+Phileas Fogg;Walking;430
+Passepartout;Walking;431
+Phileas Fogg;Walking;432
+Passepartout;Walking;433
+Phileas Fogg;Walking;434
+Passepartout;Walking;435
+Phileas Fogg;Walking;436
+Passepartout;Walking;437
+Phileas Fogg;Walking;438
+Passepartout;Walking;439
+Phileas Fogg;Walking;440
+Passepartout;Walking;441
+Phileas Fogg;Walking;442
+Passepartout;Walking;443
+Phileas Fogg;Walking;444
+Passepartout;Walking;445
+Phileas Fogg;Walking;446
+Passepartout;Walking;447
+Phileas Fogg;Walking;448
+Passepartout;Walking;449
+Phileas Fogg;Walking;450
+Passepartout;Walking;451
+Phileas Fogg;Walking;452
+Passepartout;Walking;453
+Phileas Fogg;Walking;454
+Passepartout;Walking;455
+Phileas Fogg;Walking;456
+Passepartout;Walking;457
+Phileas Fogg;Walking;458
+Passepartout;Walking;459
+Phileas Fogg;Walking;460
+Passepartout;Walking;461
+Phileas Fogg;Walking;462
+Passepartout;Walking;463
+Phileas Fogg;Walking;464
+Passepartout;Walking;465
+Phileas Fogg;Walking;466
+Passepartout;Walking;467
+Phileas Fogg;Walking;468
+Passepartout;Walking;469
+Phileas Fogg;Walking;470
+Passepartout;Walking;471
+Phileas Fogg;Walking;472
+Passepartout;Walking;473
+Phileas Fogg;Walking;474
+Passepartout;Walking;475
+Phileas Fogg;Walking;476
+Passepartout;Walking;477
+Phileas Fogg;Walking;478
+Passepartout;Walking;479
+Phileas Fogg;Walking;480
+Passepartout;Walking;481
+Phileas Fogg;Walking;482
+Passepartout;Walking;483
+Phileas Fogg;Walking;484
+Passepartout;Walking;485
+Phileas Fogg;Walking;486
+Passepartout;Walking;487
+Phileas Fogg;Walking;488
+Passepartout;Walking;489
+Phileas Fogg;Walking;490
+Passepartout;Walking;491
+Phileas Fogg;Walking;492
+Passepartout;Walking;493
+Phileas Fogg;Walking;494
+Passepartout;Walking;495
+Phileas Fogg;Walking;496
+Passepartout;Walking;497
+Phileas Fogg;Walking;498
+Passepartout;Walking;499
+Phileas Fogg;Walking;500
+Passepartout;Walking;501
+Phileas Fogg;Walking;502
+Passepartout;Walking;503
+Phileas Fogg;Walking;504
+Passepartout;Walking;505
+Phileas Fogg;Walking;506
+Passepartout;Walking;507
+Phileas Fogg;Walking;508
+Passepartout;Walking;509
+Phileas Fogg;Walking;510
+Passepartout;Walking;511
+Phileas Fogg;Walking;512
+Passepartout;Walking;513
+Phileas Fogg;Walking;514
+Passepartout;Walking;515
+Phileas Fogg;Walking;516
+Passepartout;Walking;517
+Phileas Fogg;Walking;518
+Passepartout;Walking;519
+Phileas Fogg;Walking;520
+Passepartout;Walking;521
+Phileas Fogg;Walking;522
+Passepartout;Walking;523
+Phileas Fogg;Walking;524
+Passepartout;Walking;525
+Phileas Fogg;Walking;526
+Passepartout;Walking;527
+Phileas Fogg;Walking;528
+Passepartout;Walking;529
+Phileas Fogg;Walking;530
+Passepartout;Walking;531
+Phileas Fogg;Walking;532
+Passepartout;Walking;533
+Phileas Fogg;Walking;534
+Passepartout;Walking;535
+Phileas Fogg;Walking;536
+P
