@@ -1,6 +1,7 @@
 Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg|Passepartout|Sir Francis Cromarty;Kholby;25.328751;81.521641;Train station;1|2|3;1|0.8|0.6
-Phileas Fogg|Passepartout|Sir Francis Cromarty;Allahabad;25.4358;81.8463;Ruined bungalow;4|5|6;1|0.8|0.6
-Phileas Fogg|Passepartout|Sir Francis Cromarty;Allahabad;25.4358;81.8463;Under a clump of bananas;7|8|9;1|0.8|0.6
-Phileas Fogg|Passepartout|Sir Francis Cromarty;Allahabad;25.4358;81.8463;Thick forest;10|11|12;1|0.8|0.6
-Phileas Fogg|Passepartout|Sir Francis Cromarty;Allahabad;25.4358;81.8463;Pagoda of Pillaji;13|14|15;1|0.8|0.6
+Phileas Fogg;Vindhia Mountains;23.4;80.6;Elephant;1;1.0
+Sir Francis Cromarty;Vindhia Mountains;23.4;80.6;Elephant;2;0.8
+Passepartout;Vindhia Mountains;23.4;80.6;Elephant;3;0.7
+Phileas Fogg;Allahabad;25.4358;81.8463;Elephant;2;1.0
+Sir Francis Cromarty;Allahabad;25.4358;81.8463;Elephant;2;0.8
+Passepartout;Allahabad;25.4358;81.8463;Elephant;3;0.7.6

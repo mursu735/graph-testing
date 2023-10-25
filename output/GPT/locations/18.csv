@@ -1,6 +1,13 @@
 Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg|Aouda|Fix;Calcutta;22.5726;88.3639;Steamer "Rangoon";1|2|3;1|0.8|0.6
-Phileas Fogg|Aouda|Fix;Singapore;1.3521;103.8198;City;4|5|6;1|0.8|0.6
-Phileas Fogg|Aouda|Fix;Hong Kong;22.3193;114.1694;Port of Hong Kong;7|8|9;1|0.8|0.6
-Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Club Hotel;10|11;1|0.8
-Phileas Fogg;Hong Kong;22.3193;114.1694;Exchange;12;1
+Phileas Fogg;Hong Kong;22.3193;114.1694;Rangoon;1;1.0
+Aouda;Hong Kong;22.3193;114.1694;Rangoon;2;0.8
+Detective Fix;Hong Kong;22.3193;114.1694;Rangoon;1;0.7
+Passepartout;Hong Kong;22.3193;114.1694;Rangoon;3;0.7
+Phileas Fogg;Hong Kong;22.3193;114.1694;Club Hotel;2;1.0
+Aouda;Hong Kong;22.3193;114.1694;Club Hotel;2;0.8
+Passepartout;Hong Kong;22.3193;114.1694;Club Hotel;4;0.7
+Phileas Fogg;Hong Kong;22.3193;114.1694;Exchange;3;1.0
+Aouda;Hong Kong;22.3193;114.1694;Exchange;3;0.8
+Phileas Fogg;Hong Kong;22.3193;114.1694;Carnatic;4;1.0
+Aouda;Hong Kong;22.3193;114.1694;Carnatic;4;0.8
+Passepartout;Hong Kong;22.3193;114.1694;Carnatic;5;0.7

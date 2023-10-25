@@ -1,6 +1,5 @@
 Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;Kholby;25.3526;81.5362;Elephant;1;1.0
-Passepartout;Kholby;25.3526;81.5362;Elephant;2;0.9
-Sir Francis Cromarty;Kholby;25.3526;81.5362;Elephant;3;0.8
-Aouda;Kholby;25.3526;81.5362;Pagoda of Pillaji;4;0.7
-Phileas Fogg|Passepartout|Sir Francis Cromarty|Aouda;Allahabad;25.4358;81.8463;Elephant;5|6|7|8;1.0|0.9|0.8|0.7
+Phileas Fogg;Pagoda of Pillaji;24.5854;73.7125;Elephant;1;1.0
+Sir Francis Cromarty;Pagoda of Pillaji;24.5854;73.7125;Elephant;2;0.8
+Passepartout;Pagoda of Pillaji;24.5854;73.7125;Elephant;3;0.7
+Aouda;Pagoda of Pillaji;24.5854;73.7125;Elephant;4;0.6

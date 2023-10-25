@@ -39,6 +39,12 @@ def natural_sort(l):
     alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
     return sorted(l, key=alphanum_key)
 
+spacy.prefer_gpu()
+# More accurate but slower. If this model does not work, comment this out and uncomment the next model
+nlp = spacy.load("en_core_web_trf")
+# Less accurate but faster and most likely does not need GPU
+#nlp = spacy.load("en_core_web_sm")
+
 locations = []
 directory = "output/GPT/locations"
 files = os.listdir(directory)
@@ -50,8 +56,13 @@ for file in files:
     df = df.astype({'Latitude':'float','Longitude':'float'})
     df["Label"] = "Chapter " + file.split(".")[0] + ", " + df["City"]
     df["Chapter"] = int(file.split(".")[0])
+    
+    doc2 = nlp(df.to_string())
+    # Identify the persons
+    persons = [ent.text for ent in doc2.ents if ent.label_ == 'PERSON']
+    print(persons)
     #df["Order"] = df["index"]
-    df = df.loc[df['Person'].str.contains("Fogg")]
+    #df = df.loc[df['Person'].str.contains("Fogg")]
     locations.append(df)
 
 #print(locations)
@@ -59,7 +70,15 @@ df = pd.concat(locations)
 #df.sort_values(by=["Chapter"])
 #print(df)
 df = df.reset_index()
-df.to_csv("test.csv")
+    # Create Doc object
+doc2 = nlp(df.to_string())
+
+# Identify the persons
+persons = [ent.text for ent in doc2.ents if ent.label_ == 'PERSON']
+print(persons)
+
+    # Return persons
+#df.to_csv("test.csv")
 '''
 for file in files:
     df = pd.read_csv(f"{directory}/{file}", sep=";")

@@ -1,11 +1,5 @@
 Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;London;51.5074;0.1278;Fogg's residence;1;1.0
-Passepartout;London;51.5074;0.1278;Fogg's residence;2;0.9
-Phileas Fogg|Passepartout;Dover;51.1279;1.3134;Dover;3|4;0.8|0.7
-Phileas Fogg|Passepartout;Calais;50.9513;1.8587;Calais;5|6;0.8|0.7
-Phileas Fogg|Passepartout;Paris;48.8566;2.3522;Paris;7|8;0.8|0.7
-Phileas Fogg|Passepartout;Suez;29.9668;32.5498;Suez;9|10;0.8|0.7
-Fix;Suez;29.9668;32.5498;Consul's office;11;0.6
-British consul;Suez;29.9668;32.5498;Consul's office;12;0.5
-Phileas Fogg|Passepartout;Suez;29.9668;32.5498;Consul's office;13|14;0.8|0.7
-Phileas Fogg|Passepartout;Suez;29.9668;32.5498;Mongolia;15|16;0.8|0.7
+Detective Fix;Suez;29.9745;32.5263;Consul's office;1;0.8
+Phileas Fogg|Passepartout;Suez;29.9745;32.5263;Consul's office;2|3;1|0.6
+Phileas Fogg|Passepartout;Suez;29.9745;32.5263;Quay;4|5;1|0.6
+Phileas Fogg;Suez;29.9745;32.5263;Mongolia's cabin;6;1

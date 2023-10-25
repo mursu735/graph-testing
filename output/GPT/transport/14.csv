@@ -1,10 +1,13 @@
 Person;Mode;Order
 
 
-Phileas Fogg|Passepartout|Sir Francis Cromarty;elephant;1|2|3
-Phileas Fogg|Passepartout|Aouda;train;1|2|3
-Phileas Fogg|Aouda;steamer;1|2
-Passepartout;on foot;all
-Phileas Fogg|Passepartout|Aouda;carriage;1|2|3
-Phileas Fogg|Passepartout|Aouda;train;1|2|3
-Phileas Fogg|Aouda;steamer;1|2
+Phileas Fogg;elephant;1
+Aouda;elephant;1
+Passepartout;elephant;1
+Phileas Fogg;train;2
+Aouda;train;2
+Passepartout;train;2
+Sir Francis Cromarty;train;1
+Phileas Fogg;train;3
+Aouda;train;3
+Passepartout;train;3

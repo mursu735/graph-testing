@@ -1,7 +1,13 @@
 Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg|Aouda|Fix|John Bunsby;Hong Kong;22.3193;114.1694;Boat "Tankadere";1|2|3|4;1|0.9|0.8|0.7
-Passepartout;Hong Kong;22.3193;114.1694;Ship "Carnatic";5;0.6
-Passepartout;Yokohama;35.4437;139.6380;City;6;0.6
-Phileas Fogg|Aouda|Fix|John Bunsby;Chinese seas;35.8617;104.1954;Boat "Tankadere";7|8|9|10;1|0.9|0.8|0.7
-Passepartout;San Francisco;37.7749;-122.4194;American Steamer;11;0.6
-Phileas Fogg|Aouda;San Francisco;37.7749;-122.4194;American Steamer;12|13;1|0.9
+Passepartout;Yokohama;35.4437;139.6380;Tea-house;1;0.7
+Passepartout;Yokohama;35.4437;139.6380;Docks;2;0.7
+Passepartout;Yokohama;35.4437;139.6380;Japanese quarter;3;0.7
+Passepartout;Yokohama;35.4437;139.6380;William Batulcar's establishment;4;0.7
+Phileas Fogg;Yokohama;35.4437;139.6380;William Batulcar's establishment;1;1.0
+Aouda;Yokohama;35.4437;139.6380;William Batulcar's establishment;1;0.8
+Passepartout;Yokohama;35.4437;139.6380;Theatre;5;0.7
+Phileas Fogg;Yokohama;35.4437;139.6380;Theatre;2;1.0
+Aouda;Yokohama;35.4437;139.6380;Theatre;2;0.8
+Passepartout;Yokohama;35.4437;139.6380;American steamer;6;0.7
+Phileas Fogg;Yokohama;35.4437;139.6380;American steamer;3;1.0
+Aouda;Yokohama;35.4437;139.6380;American steamer;3;0.8

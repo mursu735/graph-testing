@@ -1,7 +1,4 @@
 Person;Mode;Order
-
-
-Phileas Fogg;boat;1
-Aouda;boat;2
-Fix;boat;3
-John Bunsby;boat;all
+Phileas Fogg;boat;all
+Aouda;boat;all
+Detective Fix;boat;all

@@ -1,33 +1,23 @@
 Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;Train;1|2|3|4;1.0
-Phileas Fogg|Aouda|Passepartout|Fix;Elko;40.8324;-115.7631;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Great Salt Lake;41.0831;-112.6554;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Ogden;41.2230;-111.9738;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Salt Lake City;40.7608;-111.8910;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Weber River;41.2603;-111.9523;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Wahsatch Mountains;40.6197;-111.5379;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Bitter Creek Valley;41.3656;-108.9245;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Muddy Creek;38.9847;-111.3133;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Green Creek;38.3653;-119.4179;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Fort Bridger;41.3198;-110.3896;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Wyoming Territory;43.075968;-107.290284;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Green River station;41.5286;-109.4662;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Bridger Pass;41.3972;-106.5476;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;North Platte River;41.1239;-100.7654;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Laramie Peak;42.2711;-105.5050;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Fort Halleck;41.7566;-106.2275;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Medicine Bow;41.8953;-106.2028;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Fort Saunders;42.7556;-107.2097;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Cheyne Pass;42.7556;-107.2097;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Evans Pass;42.7556;-107.2097;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Denver;39.7392;-104.9903;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Camp Walbach;41.1239;-100.7654;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Lodge Pole Creek;41.2000;-102.9667;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Nebraska;41.4925;-99.9018;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Sedgwick;40.9358;-102.5264;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Julesburg;40.9889;-102.2644;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Fort McPherson;40.8136;-100.6204;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Omaha;41.2565;-95.9345;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;North Platte;41.1239;-100.7654;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Plum Creek;40.8089;-99.9664;Train;1|2|3|4;0.9
-Phileas Fogg|Aouda|Passepartout|Fix;Fort Kearney;40.6994;-99.0817;Train;1|2|3|4;0.9
+Phileas Fogg;San Francisco;37.7749;-122.4194;Train;1;1.0
+Phileas Fogg;Cheyne Pass;41.1465;-104.5202;Train;2;1.0
+Phileas Fogg;Evans Pass;39.5501;-105.7821;Train;3;1.0
+Phileas Fogg;Denver;39.7392;-104.9903;Train;4;1.0
+Phileas Fogg;Fort Saunders;42.8486;-106.3253;Train;5;1.0
+Phileas Fogg;Camp Walbach;41.1403;-104.8202;Train;6;1.0
+Phileas Fogg;Lodge Pole Creek;41.2107;-102.6346;Train;7;1.0
+Phileas Fogg;Sedgwick;40.9359;-102.5264;Train;8;1.0
+Phileas Fogg;Julesburg;40.9875;-102.2644;Train;9;1.0
+Phileas Fogg;Fort McPherson;40.7200;-100.6436;Train;10;1.0
+Phileas Fogg;North Platte;41.1239;-100.7654;Train;11;1.0
+Phileas Fogg;Omaha;41.2565;-95.9345;Train;12;1.0
+Phileas Fogg;Plum Creek;40.8089;-99.9812;Train;13;1.0
+Colonel Proctor;Plum Creek;40.8089;-99.9812;Train;14;0.8
+Aouda;Plum Creek;40.8089;-99.9812;Train;15;0.7
+Fix;Plum Creek;40.8089;-99.9812;Train;16;0.6
+Passepartout;Plum Creek;40.8089;-99.9812;Train;17;0.5
+Phileas Fogg;Fort Kearney;40.6994;-99.0817;Train;18;1.0
+Colonel Proctor;Fort Kearney;40.6994;-99.0817;Train;19;0.8
+Aouda;Fort Kearney;40.6994;-99.0817;Train;20;0.7
+Fix;Fort Kearney;40.6994;-99.0817;Train;21;0.6
+Passepartout;Fort Kearney;40.6994;-99.0817;Train;22;0.5

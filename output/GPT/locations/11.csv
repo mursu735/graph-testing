@@ -1,16 +1,7 @@
 Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg|Passepartout|Detective Fix;Suez;29.9668;32.5498;Ship "Mongolia";1|2|3;1|0.9|0.8
-Phileas Fogg|Passepartout|Detective Fix;Aden;12.7855;45.0187;Refueling station;4|5|6;1|0.9|0.8
-Phileas Fogg;Bombay;18.9388;72.8353;Passport office;7;1
-Phileas Fogg;Bombay;18.9388;72.8353;Railway station;8;1
-Passepartout;Bombay;18.9388;72.8353;Streets of Bombay;9;0.9
-Passepartout;Bombay;18.9388;72.8353;Pagoda;10;0.9
-Passepartout;Bombay;18.9388;72.8353;Railway station;11;0.9
-Detective Fix;Bombay;18.9388;72.8353;Headquarters of the Bombay police;12;0.8
-Phileas Fogg|Passepartout|Detective Fix;Calcutta;22.5726;88.3639;Train;13|14|15;1|0.9|0.8
-Phileas Fogg|Sir Francis Cromarty;Train;16|17;1|0.7
-Phileas Fogg|Passepartout|Sir Francis Cromarty;Burhampoor;21.3002;76.2352;Train;18|19|20;1|0.9|0.7
-Phileas Fogg|Passepartout|Sir Francis Cromarty;Assurghur;21.257584;75.300703;Train;21|22|23;1|0.9|0.7
-Phileas Fogg|Passepartout|Sir Francis Cromarty;Kholby;26.492778;77.014444;Train;24|25|26;1|0.9|0.7
-Phileas Fogg|Passepartout|Sir Francis Cromarty;Kholby;26.492778;77.014444;Elephant;27|28|29;1|0.9|0.7
-Phileas Fogg|Passepartout|Sir Francis Cromarty;Allahabad;25.4381;81.8338;Elephant;30|31|32;1|0.9|0.7
+Phileas Fogg;Bombay;18.975;72.8258;Train;1;1.0
+Sir Francis Cromarty;Bombay;18.975;72.8258;Train;2;0.8
+Passepartout;Bombay;18.975;72.8258;Train;3;0.7
+Phileas Fogg;Kholby;27.702;77.897;Elephant;2;1.0
+Sir Francis Cromarty;Kholby;27.702;77.897;Elephant;2;0.8
+Passepartout;Kholby;27.702;77.897;Elephant;3;0.7

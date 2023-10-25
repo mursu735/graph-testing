@@ -1,8 +1,8 @@
 Person;Mode;Order
 
 
-Phileas Fogg|Aouda|Passepartout|Fix;Train;all
-Colonel Stamp Proctor;Train;all
-Forster;Train;all
-Thomas C. Durant;Train;all
-General Dodge;Train;all
+Phileas Fogg;Train;all
+Colonel Proctor;Train;all
+Aouda;Train;all
+Fix;Train;all
+Passepartout;Train;all

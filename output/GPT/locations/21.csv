@@ -1,7 +1,10 @@
 Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;Hong Kong;22.3193;114.1694;Docks;1;1.0
-Aouda;Hong Kong;22.3193;114.1694;Docks;2;0.9
-Fix;Hong Kong;22.3193;114.1694;Docks;3;0.8
-John Bunsby;Hong Kong;22.3193;114.1694;Docks;4;0.7
-Phileas Fogg|Aouda|Fix|John Bunsby;Yokohama;35.4437;139.6380;Boat;1|2|3|4;1.0|0.9|0.8|0.7
-Phileas Fogg|Aouda|Fix;Shanghai;31.2304;121.4737;Boat;1|2|3;1.0|0.9|0.8
+Phileas Fogg;Hong Kong;22.3193;114.1694;Tankadere;1;1.0
+Aouda;Hong Kong;22.3193;114.1694;Tankadere;2;0.8
+Detective Fix;Hong Kong;22.3193;114.1694;Tankadere;1;0.7
+Phileas Fogg;Straits of Fo-Kien;26.0745;119.2965;Tankadere;2;1.0
+Aouda;Straits of Fo-Kien;26.0745;119.2965;Tankadere;2;0.8
+Detective Fix;Straits of Fo-Kien;26.0745;119.2965;Tankadere;2;0.7
+Phileas Fogg;Shanghai;31.2304;121.4737;Tankadere;3;1.0
+Aouda;Shanghai;31.2304;121.4737;Tankadere;3;0.8
+Detective Fix;Shanghai;31.2304;121.4737;Tankadere;3;0.7

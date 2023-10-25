@@ -1,9 +1,13 @@
 Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;Kholby;27.5883;77.4325;Kholby;1;1.0
-Passepartout;Kholby;27.5883;77.4325;Kholby;2;0.9
-Sir Francis Cromarty;Kholby;27.5883;77.4325;Kholby;3;0.8
-Aouda;Kholby;27.5883;77.4325;Kholby;4;0.7
-Phileas Fogg|Passepartout|Sir Francis Cromarty|Aouda;Allahabad;25.4358;81.8463;Allahabad;1|2|3|4;1.0|0.9|0.8|0.7
-Phileas Fogg|Passepartout|Aouda;Benares;25.3176;82.9739;Benares;1|2|3;1.0|0.9|0.7
-Phileas Fogg|Passepartout|Aouda;Calcutta;22.5726;88.3639;Calcutta;1|2|3;1.0|0.9|0.7
-Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Hong Kong;1|2;1.0|0.7
+Phileas Fogg;Allahabad;25.4358;81.8463;Train station;1;1.0
+Aouda;Allahabad;25.4358;81.8463;Train station;2;0.8
+Passepartout;Allahabad;25.4358;81.8463;Train station;3;0.7
+Phileas Fogg;Allahabad;25.4358;81.8463;City streets;2;1.0
+Passepartout;Allahabad;25.4358;81.8463;City streets;4;0.7
+Phileas Fogg;Benares;25.3176;82.9739;Train;3;1.0
+Aouda;Benares;25.3176;82.9739;Train;3;0.8
+Passepartout;Benares;25.3176;82.9739;Train;5;0.7
+Sir Francis Cromarty;Benares;25.3176;82.9739;Train;1;0.8
+Phileas Fogg;Calcutta;22.5726;88.3639;Train station;4;1.0
+Aouda;Calcutta;22.5726;88.3639;Train station;4;0.8
+Passepartout;Calcutta;22.5726;88.3639;Train station;6;0.7

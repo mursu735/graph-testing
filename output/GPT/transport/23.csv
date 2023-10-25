@@ -1,8 +1,13 @@
 Person;Mode;Order
-
-
-Phileas Fogg|Aouda|Fix|John Bunsby;Boat;1|2|3|4
-Passepartout;Ship;5
-Passepartout;Walking;6
-Passepartout;American Steamer;7
-Phileas Fogg|Aouda;American Steamer;8|9
+Passepartout;on foot;1
+Passepartout;on foot;2
+Passepartout;on foot;3
+Passepartout;on foot;4
+Phileas Fogg;on foot;1
+Aouda;on foot;1
+Passepartout;on foot;5
+Phileas Fogg;on foot;2
+Aouda;on foot;2
+Passepartout;boat;1
+Phileas Fogg;boat;1
+Aouda;boat;1

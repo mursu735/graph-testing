@@ -1,9 +1,7 @@
 Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;Train;1|2|3|4;1.0
-Phileas Fogg|Aouda|Passepartout|Fix;New York;40.7128;-74.0060;Train;1|2|3|4;1.0
-Phileas Fogg|Aouda|Passepartout|Fix;Great Salt Lake;41.0962;-112.5767;Train;1|2|3|4;1.0
-Elder William Hitch;Great Salt Lake;41.0962;-112.5767;Train;5;0.5
-Phileas Fogg|Aouda|Passepartout|Fix;Ogden;41.2230;-111.9738;Train;1|2|3|4;1.0
-Phileas Fogg|Aouda|Passepartout|Fix;Salt Lake City;40.7608;-111.8910;City streets;1|2|3|4;1.0
-Phileas Fogg|Aouda|Passepartout|Fix;Salt Lake City;40.7608;-111.8910;Train;1|2|3|4;1.0
-Belated Mormon;Salt Lake City;40.7608;-111.8910;Train;6;0.5
+Passepartout;Train;40.7608;-111.8910;Train No. 48;1;1.0
+Elder William Hitch;Train;40.7608;-111.8910;Train No. 48;2;0.8
+Mr. Fogg;Ogden;41.2230;-111.9738;Ogden Train Station;3;0.6
+Fix;Ogden;41.2230;-111.9738;Ogden Train Station;4;0.4
+Passepartout|Mr. Fogg|Fix;Salt Lake City;40.7608;-111.8910;Salt Lake City;5|6|7;1.0|0.6|0.4
+Mormon Man;Train;40.7608;-111.8910;Train;8;0.2

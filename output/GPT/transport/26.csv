@@ -1,6 +1,5 @@
 Person;Mode;Order
 
 
-Phileas Fogg|Aouda|Passepartout|Fix;foot;1|2|3|4
-Phileas Fogg|Aouda|Passepartout|Fix;train;2|3|4|5
-Passepartout;gun;all
+Phileas Fogg;train;all
+Passepartout;train;all

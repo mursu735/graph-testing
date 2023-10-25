@@ -266,49 +266,68 @@ directed_elements = [{'data': {'id': id_}} for id_ in elements] + directed_edges
 #print(secondary_elements)
 #print(secondary_edges)
 
+
+
 def create_map():
-    locations = []
+    locations = {}
+    names = ["Fix", "Passepartout", "Fogg"]
+    # "Aouda", "Cromarty", "Proctor"]
+    for name in names:
+        locations[name] = []
     directory = "output/GPT/locations"
     files = os.listdir(directory)
     files = helpers.natural_sort(files)
-    # TODO: Change all of the chapters to the new format and uncomment these
     for file in files:
         df = pd.read_csv(f"{directory}/{file}", sep=";")
         df = df.dropna()
         df = df.astype({'Latitude':'float','Longitude':'float'})
         df["Label"] = "Chapter " + file.split(".")[0] + ", " + df["City"]
-        df = df.loc[df['Person'].str.contains("Fogg")]
-        locations.append(df)
+        for name in names:
+            filtered = df.loc[df['Person'].str.contains(name)]
+            locations[name].append(filtered)
 
+    journeys = {}
+    for name in names:
     #print(locations)
-    df = pd.concat(locations)
-    #print(df)
-    df = df.reset_index()
-    df2 = pd.DataFrame(np.random.uniform(-0.008,0.008,size=(df.shape[0], 2)), columns=['lat', 'long'])
-    print(df["Latitude"])
-    df = df.reindex()
-    print(df)
-    df["Latitude"] = df["Latitude"] + df2["lat"]
-    df["Longitude"] = df["Longitude"] + df2["long"]
-    
-
+        df = pd.concat(locations[name])
+        #print(df)
+        df = df.reset_index()
+        df2 = pd.DataFrame(np.random.uniform(-0.008,0.008,size=(df.shape[0], 2)), columns=['lat', 'long'])
+        print(df["Latitude"])
+        df = df.reindex()
+        #print(df)
+        df["Latitude"] = df["Latitude"] + df2["lat"]
+        df["Longitude"] = df["Longitude"] + df2["long"]
+        journeys[name] = df
+        journeys[name].to_csv(f"{name}.csv")
     fig = go.Figure()
+    for name in names:
+        if "Fogg" not in name:
+            fig.add_trace(go.Scattergeo(
+                lat = journeys[name]["Latitude"],
+                lon = journeys[name]["Longitude"],
+                mode = 'lines',
+                line = dict(width = 2),
+                name = name,
+                hoverinfo="skip"
+            ))
+        else:
+            fig.add_trace(go.Scattergeo(
+                lat = journeys[name]["Latitude"],
+                lon = journeys[name]["Longitude"],
+                mode = 'lines',
+                line = dict(width = 2),
+                name = name
+            ))
     fig.add_trace(go.Scattergeo(
-        lat = df["Latitude"],
-        lon = df["Longitude"],
-        mode = 'lines',
-        line = dict(width = 2, color = 'blue'),
-        name = "Journey"
-    ))
-    fig.add_trace(go.Scattergeo(
-        lat = df["Latitude"],
-        lon = df["Longitude"],
+        lat = journeys["Fogg"]["Latitude"],
+        lon = journeys["Fogg"]["Longitude"],
         hoverinfo = 'text',
-        text = df["Label"],
+        text = journeys["Fogg"]["Label"],
         mode = 'markers',
         name = "Cities",
         marker = dict(
-            color = list(range(0, df.shape[0])),
+            color = list(range(0, journeys["Fogg"].shape[0])),
             colorscale="RdBu"
         ),       
     ))

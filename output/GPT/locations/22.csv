@@ -1,10 +1,9 @@
 Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg|Aouda|Fix|John Bunsby;Hong Kong;22.3193;114.1694;Boat "Tankadere";1|2|3|4;1.0|0.8|0.6|0.4
-Passepartout;Hong Kong;22.3193;114.1694;Opium den;5;0.7
-Passepartout;On the way to Yokohama;35.4437;139.6380;On the boat "Carnatic";6;0.7
-Passepartout;Yokohama;35.4437;139.6380;Port of Yokohama;7;0.7
-Passepartout;Yokohama;35.4437;139.6380;European quarter;8;0.7
-Passepartout;Yokohama;35.4437;139.6380;Japanese quarter - Benten;9;0.7
-Passepartout;Yokohama;35.4437;139.6380;Fields, in the midst of vast rice plantations;10;0.7
-Passepartout;Yokohama;35.4437;139.6380;Native quarter;11;0.7
-Passepartout;Yokohama;35.4437;139.6380;Harbour;12;0.7
+Passepartout;Hong Kong;22.3193;114.1694;Carnatic;1;0.7
+Passepartout;Yokohama;35.4437;139.6380;Carnatic;2;0.7
+Passepartout;Yokohama;35.4437;139.6380;After-deck;3;0.7
+Passepartout;Yokohama;35.4437;139.6380;Saloon;4;0.7
+Passepartout;Yokohama;35.4437;139.6380;Streets of Yokohama;5;0.7
+Passepartout;Yokohama;35.4437;139.6380;Benten;6;0.7
+Passepartout;Yokohama;35.4437;139.6380;Fields;7;0.7
+Passepartout;Yokohama;35.4437;139.6380;Harbour;8;0.7
