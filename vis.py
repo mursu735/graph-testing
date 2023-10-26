@@ -57,6 +57,8 @@ def create_location_graphs():
     files = os.listdir(directory)
     # TODO: Change all of the chapters to the new format and uncomment these
     for file in files:
+        # Use the next line for debugging if needed
+        #file = "28.csv"
         directed_edges= []
         elements = []
         seen_elements = []
@@ -67,6 +69,7 @@ def create_location_graphs():
         #name = file.split(".")[0]
         # If multiple characters are in one place, create intermediate Group node where all characters point to, then have only one arrow from group to location(s)
         for idx, row in df.iterrows():
+            #print(groups)
             location = row["City"] + ", " + str(row["Location"])
             if "|" in row["Person"]:
                 characters = row["Person"].split("|")
@@ -134,7 +137,7 @@ def create_location_graphs():
                         seen_elements.append(target)
                         elements.append({"id": target_id, "label": target})
                     #print(f"Adding edge to chapter {name} {source}->{target}, position is same all text")
-                    print(f"Adding edge {source}->{target}, position is same all text")
+                    #print(f"Adding edge {source}->{target}, position is same all text")
                     stylesheet.append({'selector': f"#{source_id + target_id}",
                             'style': {
                                 'target-arrow-color': 'blue',
@@ -144,12 +147,12 @@ def create_location_graphs():
                 else:
                     source_id = row["Person"].replace(" ", "").replace(".", "").replace(",", "")
                     source = row["Person"].strip()
-                    target_id = str(row["Location"]).replace(" ", "").replace(".", "").replace(",", "")
+                    target_id = str(location).replace(" ", "").replace(".", "").replace(",", "")
                     target = str(location).strip()
                     relation = row["Order"]
                     directed_edges.append({'data': {'id': source_id + target_id, 'source': source_id, 'target': target_id}})
                     #print(f"Adding edge to chapter {name} {source}->{target}, label {relation}")
-                    print(f"Adding edge {source}->{target}, label {relation}")
+                    #print(f"Adding edge {source}->{target}, label {relation}")
                     if source not in seen_elements:
                         seen_elements.append(source)
                         elements.append({"id": source_id, "label": source})
@@ -293,7 +296,7 @@ def create_map():
         #print(df)
         df = df.reset_index()
         df2 = pd.DataFrame(np.random.uniform(-0.008,0.008,size=(df.shape[0], 2)), columns=['lat', 'long'])
-        print(df["Latitude"])
+        #print(df["Latitude"])
         df = df.reindex()
         #print(df)
         df["Latitude"] = df["Latitude"] + df2["lat"]
@@ -341,14 +344,14 @@ def create_map():
 map = create_map()
 directed_elements = create_location_graphs()
 #print(directed_elements)
-print(stylesheet)
+#print(stylesheet)
 app.layout = html.Div([
     dcc.Graph(id="map", figure=map),
     html.P("Dash Cytoscape:"),
     cyto.Cytoscape(
         id='cytoscape',
         layout={'name': 'cose'},
-        elements=directed_elements["Chapter 4"],
+        elements=directed_elements["Chapter 28"],
         stylesheet=stylesheet
     ),
     html.Div([
