@@ -56,6 +56,7 @@ files = natural_sort(files)
 #print(files)
 # Only include chapters that haven't been parsed yet to reduce load and cost
 files = [file for file in files if not determine(file)]
+print(f"Processing files {files}")
 #print("After:")
 #print(files)
 # Check if summaries already exist and get the last one

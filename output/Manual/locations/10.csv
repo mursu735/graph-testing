@@ -1,0 +1,7 @@
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Fix|Passepartout;Bombay;19.076090;72.877426;Dock;1;1.0|0.7|0.9
+Phileas Fogg;Bombay;19.076090;72.877426;train station;2;1.0
+Fix;Bombay;19.076090;72.877426;police station;2;0.7
+Passepartout;Bombay;19.076090;72.877426;Malabar Hill pagoda;2;0.9
+Passepartout;Bombay;19.076090;72.877426;train station;3;0.9
+Fix;Bombay;19.076090;72.877426;train station;3;0.7

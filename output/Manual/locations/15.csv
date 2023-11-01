@@ -1,0 +1,4 @@
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Passepartout|Aouda;Calcutta;22.572672;88.363882;Train station;1;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Calcutta;22.572672;88.363882;Courthouse;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Calcutta;22.572672;88.363882;Steamer "Rangoon";3;1.0|0.8|0.8|0.5

@@ -1,19 +1,11 @@
 Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;Suez;29.9668;32.5498;Ship "Mongolia";1;1.0
-Phileas Fogg;Aden;12.7855;45.0187;Ship "Mongolia";2;1.0
-Phileas Fogg;Bombay;19.0760;72.8777;Ship "Mongolia";3;1.0
-Passepartout;Suez;29.9668;32.5498;Ship "Mongolia";1;0.8
-Passepartout;Aden;12.7855;45.0187;Ship "Mongolia";2;0.8
-Passepartout;Bombay;19.0760;72.8777;Ship "Mongolia";3;0.8
-Detective Fix;Suez;29.9668;32.5498;Ship "Mongolia";1;0.6
-Detective Fix;Aden;12.7855;45.0187;Ship "Mongolia";2;0.6
-Detective Fix;Bombay;19.0760;72.8777;Ship "Mongolia";3;0.6
-Phileas Fogg;Bombay;19.0760;72.8777;Railway Station;4;1.0
-Detective Fix;Bombay;19.0760;72.8777;Police Headquarters;5;0.6
-Passepartout;Bombay;19.0760;72.8777;Streets of Bombay;6;0.8
-Passepartout;Bombay;19.0760;72.8777;Pagoda on Malabar Hill;7;0.8
-Passepartout;Bombay;19.0760;72.8777;Railway Station;8;0.8
-Detective Fix;Bombay;19.0760;72.8777;Railway Station;9;0.6
-Phileas Fogg;Bombay;19.0760;72.8777;Train to Calcutta;10;1.0
-Passepartout;Bombay;19.0760;72.8777;Train to Calcutta;11;0.8
-Detective Fix;Bombay;19.0760;72.8777;Train to Calcutta;12;0.6
+Mr. Fogg;Bombay;18.9750;72.8258;Passport office;1;1.0
+Mr. Fogg;Bombay;18.9750;72.8258;Railway station;2;1.0
+Fix;Bombay;18.9750;72.8258;Headquarters of the Bombay police;1;0.8
+Passepartout;Bombay;18.9750;72.8258;Streets of Bombay;1;0.7
+Passepartout;Bombay;18.9750;72.8258;Pagoda on Malabar Hill;2;0.7
+Passepartout;Bombay;18.9750;72.8258;Railway station;3;0.7
+Fix;Bombay;18.9750;72.8258;Railway station;2;0.8
+Mr. Fogg;Bombay;18.9750;72.8258;Train;3;1.0
+Passepartout;Bombay;18.9750;72.8258;Train;4;0.7
+Fix;Bombay;18.9750;72.8258;Train;3;0.8

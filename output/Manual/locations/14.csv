@@ -1,0 +1,7 @@
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Passepartout|Sir Francis Cromart|Parsee|Aouda;Pillaji;22.45;79.740278;elephant;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Sir Francis Cromart|Parsee|Aouda;Allahabad;25.435833;81.846389;Train station;2;1.0|0.8|0.8|0.5
+Passepartou;Allahabad;25.435833;81.846389;City;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Sir Francis Cromart|Aouda;Allahabad;25.435833;81.846389;Train;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Sir Francis Cromart|Aouda;Benares;25.316667;83;Train;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda;Calcutta;22.572672;88.363882;Train;2;1.0|0.8|0.8|0.5

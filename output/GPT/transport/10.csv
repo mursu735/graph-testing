@@ -1,11 +1,9 @@
 Person;Mode;Order
 
 
-Phileas Fogg;ship;1
-Phileas Fogg;train;2
-Passepartout;ship;1
-Passepartout;on foot;2
-Passepartout;train;3
-Detective Fix;ship;1
-Detective Fix;on foot;2
-Detective Fix;train;3
+Mr. Fogg;foot;1
+Mr. Fogg;train;2
+Fix;foot;1
+Fix;train;2
+Passepartout;foot;1
+Passepartout;train;2

@@ -8,11 +8,12 @@ def get_instruction():
 
 def get_chapter(chapter):
     prompt = ""
+    '''
     if chapter > 1:
         with open(f"output/GPT/summary/{chapter - 1}.txt", encoding="utf-8") as file:
             text = file.read()
             prompt += f"context:\n{text}"
-
+    '''
     prompt += "\n\n"
     with open(f"input/Chapters/{chapter}.txt", encoding="utf-8") as file:
         text = file.read()
