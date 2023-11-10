@@ -6,3 +6,9 @@
 
 If this does not work, replace model with `en_core_web_sm`
 
+
+## How to install Graphviz and Pygraphviz on Windows
+
+1. Download and install Graphviz v2.46.0 https://gitlab.com/graphviz/graphviz/-/package_files/6164164/download (later versions may or may not work)
+2. Run `python -m pip install --global-option=build_ext --global-option="-IC:\Program Files\Graphviz\include" --global-option="-LC:\Program Files\Graphviz\lib" pygraphviz`
+(replace path to Graphviz directories if needed)

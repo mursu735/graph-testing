@@ -98,8 +98,15 @@ for file in files:
     # print the chat completion
     message = chat_completion.choices[0].message.content
     print(message)
-    tokens = chat_completion.usage["total_tokens"]
-    print(f"Tokens in last message {tokens}")
+    prompt_tokens = chat_completion.usage["prompt_tokens"]
+    completion_tokens = chat_completion.usage["completion_tokens"]
+    total_tokens = chat_completion.usage["total_tokens"]
+    if not os.path.isfile(f"output/GPT/tokens/tokens.csv"):
+        with open("output/GPT/tokens/tokens.csv", "w", encoding='utf-8') as file:
+            file.write("Chapter;Prompt;Completion;Total\n")
+
+    with open("output/GPT/tokens/tokens.csv", "a", encoding="utf-8") as file:
+        file.write(f"{filename};{prompt_tokens};{completion_tokens};{total_tokens}\n")
     #print(message)
 
     parts = message.split("////")
