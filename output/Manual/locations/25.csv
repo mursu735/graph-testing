@@ -1,0 +1,6 @@
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Passepartout|Aouda;San Francisco;37.7775;-122.416389;the International Hotel;1;1.0|0.8|0.8|0.5
+Phileas Fogg|Aouda|Fix;San Francisco;37.7775;-122.416389;Consulate;2;1.0|0.8|0.5
+Phileas Fogg|Aouda|Fix|Colonel Stamp Proctor;San Francisco;37.7775;-122.416389;Montgomery Street;2;1.0|0.8|0.5|0.5
+Phileas Fogg|Aouda|Fix;San Francisco;37.7775;-122.416389;Tailor;2;1.0|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;San Francisco;37.7775;-122.416389;Train;1;1.0|0.8|0.8|0.5|0.5

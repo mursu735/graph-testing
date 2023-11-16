@@ -1,0 +1,8 @@
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Passepartout|Aouda|Fix|Colonel Stamp Proctor;Fort Kearney;40.65;-99;Fort;2;1.0|0.8|0.8|0.5
+Phileas Fogg;Fort Kearney;40.65;-99;Fort;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout;South of Fort Kearney;40.50;-99;Indian Camp;2;1.0|0.8|0.8|0.5
+Aouda|Fix|Colonel Stamp Proctor;Fort Kearney;40.65;-99;Train station;2;1.0|0.8|0.8|0.5
+Colonel Stamp Proctor;Fort Kearney;40.65;-99;Train to New York;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Fort Kearney;40.65;-99;Fort;2;1.0|0.8|0.8|0.5
+

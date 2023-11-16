@@ -1,0 +1,15 @@
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Passepartout|Aouda|Fix;Fort Saunders;37.753;-100.0833;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Cheyne Pass;41.286389;-105.214722;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Evans Pass;41.131111;-105.398056;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Camp Walbach;41.28887;-105.1847;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Lodge Pole Creek;40.955;-102.384444;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Sedgwick;40.935833;-102.525278;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Julesburg;40.988333;-102.266667;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Fort McPherson;41.016111;-100.5175;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix|Colonel Stamp Proctor;North Platte;41.136111;-100.763056;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix|Colonel Stamp Proctor;Plum Creek;39.556389;-105.061111;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Fix|Colonel Stamp Proctor;Plum Creek;39.556389;-105.061111;Train car duel;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Aouda|Fix|Colonel Stamp Proctor;Fort Kearney;40.65;-99;Train;1;1.0|0.8|0.8|0.5|0.5
+
+

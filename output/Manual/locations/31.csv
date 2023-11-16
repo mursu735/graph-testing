@@ -1,0 +1,16 @@
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Mudge;Fort Kearney;40.65;-99;Hut;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda|Fix|Mudge;Fort Kearney;40.65;-99;Sledge;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda|Fix|Mudge;Platte River;40.975051;-98.151997;Sledge;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda|Fix|Mudge;Omaha;41.258611;-95.9375;Sledge;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Omaha;41.258611;-95.9375;Train;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Council Bluffs;41.263889;-95.895833;Train;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Des Moines;41.619549;-93.598022;Train;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Iowa City;41.66;-91.53;Train;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Davenport;41.543056;-90.590833;Train;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Rock Islands;41.489167;-90.573056;Train;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Chicago;41.881944;-87.627778;Train;2;1.0|0.8|0.8|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;New York;40.712778;-74.006111;Train;2;1.0|0.8|0.8|0.5
+
+
+

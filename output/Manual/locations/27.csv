@@ -1,0 +1,4 @@
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Passepartout|Aouda|Fix;Ogden;41.227778;-111.961111;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Salt Lake City;40.760833;-111.891111;Around the city;1;1.0|0.8|0.8|0.5|0.5
+

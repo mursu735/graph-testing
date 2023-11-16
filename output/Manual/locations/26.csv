@@ -1,0 +1,11 @@
+Person;City;Latitude;Longitude;Location;Order;Importance
+Phileas Fogg|Passepartout|Aouda|Fix;San Francisco;37.7775;-122.416389;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Oakland;37.804444;-122.270833;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Sacramento;38.581667;-121.494444;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Rocklin;38.8;-121.246667;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Auburn;38.898611;-121.074444;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Colfax;39.097222;-120.953889;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Carson Valley;39.092778;-119.735556;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Reno;39.527222;-119.821944;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Humboldt Range;40.4175;-118.165278;Train;1;1.0|0.8|0.8|0.5|0.5
+Phileas Fogg|Passepartout|Aouda|Fix;Great Salt Lake;41.166667;-112.533333;Train;1;1.0|0.8|0.8|0.5|0.5
