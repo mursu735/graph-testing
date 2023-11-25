@@ -10,6 +10,7 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 import plotly.express as px
+from gen_pygraphviz import generate_graph
 
 app = Dash(__name__)
 
@@ -51,220 +52,20 @@ stylesheet=[
             }]
 
 def create_location_graphs():
-    named_colors = px.colors.DEFAULT_PLOTLY_COLORS
+    #named_colors = px.colors.DEFAULT_PLOTLY_COLORS
     directed_elements = {}
     directory = "output/GPT/locations"
     files = os.listdir(directory)
-    # TODO: Change all of the chapters to the new format and uncomment these
+    #files = ["4.csv"]
     for file in files:
         # Use the next line for debugging if needed
         #file = "28.csv"
-        directed_edges= []
-        elements = []
-        seen_elements = []
-        #seen_edges = []
-        groups = {}
-        df = pd.read_csv(f"{directory}/{file}", sep=";")
-        #df = pd.read_csv(f"{directory}/4.csv", sep=";")
-        #name = file.split(".")[0]
-        # If multiple characters are in one place, create intermediate Group node where all characters point to, then have only one arrow from group to location(s)
-        for idx, row in df.iterrows():
-            #print(groups)
-            location = row["City"] + ", " + str(row["Location"])
-            if "|" in row["Person"]:
-                characters = row["Person"].split("|")
-                if not row["Person"] in groups:
-                    cur = len(groups) + 1
-                    groups[row["Person"]] = {"group": f"Group {cur}", "locations": [], "color": random.choice(named_colors)}
-                groups[row["Person"]]["locations"].append(location)
-                # Draw line from person to groups and from group to first location
-                if len(groups[row["Person"]]["locations"]) == 1:
-                    for character in characters:
-                        source_id = character.replace(" ", "").replace(".", "").replace(",", "")
-                        source = character.strip()
-                        group_id = str(groups[row["Person"]]["group"]).replace(" ", "").replace(".", "").replace(",", "")
-                        group = str(groups[row["Person"]]["group"]).strip()
-                        directed_edges.append({'data': {'id': source_id + group_id, 'source': source_id, 'target': group_id}})
-                        stylesheet.append({'selector': f"#{source_id + group_id}",
-                        'style': {
-                            'target-arrow-color': groups[row["Person"]]["color"],
-                            'label': idx + 1,
-                            'target-arrow-shape': 'vee',
-                            'line-color': groups[row["Person"]]["color"]
-                        }})
-                        #seen_edges.append(f"#{source_id + group_id}")
-                        if source not in seen_elements:
-                            seen_elements.append(source)
-                            elements.append({"id": source_id, "label": source})
-                        if group not in seen_elements:
-                            seen_elements.append(group)
-                            elements.append({"id": group_id, "label": group})
-                # Draw line from group's last location to current
-                source_id = ""
-                source = ""
-                group_id = str(groups[row["Person"]]["group"]).replace(" ", "").replace(".", "").replace(",", "")
-                if len(groups[row["Person"]]["locations"]) == 1:
-                    source_id = str(groups[row["Person"]]["group"]).replace(" ", "").replace(".", "").replace(",", "")
-                    source = str(groups[row["Person"]]["group"]).strip()
-                else:
-                    source_id = str(groups[row["Person"]]["locations"][-2]).replace(" ", "").replace(".", "").replace(",", "")
-                    source = str(groups[row["Person"]]["locations"][-2]).strip()
-                target_id = str(groups[row["Person"]]["locations"][-1]).replace(" ", "").replace(".", "").replace(",", "")
-                target = str(groups[row["Person"]]["locations"][-1]).strip()
-                if target not in seen_elements:
-                    seen_elements.append(target)
-                    elements.append({"id": target_id, "label": target})
-                directed_edges.append({'data': {'id': source_id + target_id + group_id, 'source': source_id, 'target': target_id}})
-                stylesheet.append({'selector': f"#{source_id + target_id + group_id}",
-                                'style': {
-                                    'curve-style': 'unbundled-bezier',
-                                    'label': idx + 1,
-                                    'target-arrow-color': groups[row["Person"]]["color"],
-                                    'target-arrow-shape': 'vee',
-                                    'line-color': groups[row["Person"]]["color"],
-                                }})
-            else:
-                if row["Order"] == "all":
-                    source_id = row["Person"].replace(" ", "").replace(".", "").replace(",", "")
-                    source = row["Person"].strip()
-                    target_id = str(location).replace(" ", "").replace(".", "").replace(",", "")
-                    target = str(location).strip()
-                    directed_edges.append({'data': {'id': source_id + target_id, 'source': source_id, 'target': target_id}})
-                    if source not in seen_elements:
-                        seen_elements.append(source)
-                        elements.append({"id": source_id, "label": source})
-                    if target not in seen_elements:
-                        seen_elements.append(target)
-                        elements.append({"id": target_id, "label": target})
-                    #print(f"Adding edge to chapter {name} {source}->{target}, position is same all text")
-                    #print(f"Adding edge {source}->{target}, position is same all text")
-                    stylesheet.append({'selector': f"#{source_id + target_id}",
-                            'style': {
-                                'target-arrow-color': 'blue',
-                                'target-arrow-shape': 'vee',
-                                'line-color': 'blue'
-                            }})
-                else:
-                    source_id = row["Person"].replace(" ", "").replace(".", "").replace(",", "")
-                    source = row["Person"].strip()
-                    target_id = str(location).replace(" ", "").replace(".", "").replace(",", "")
-                    target = str(location).strip()
-                    relation = row["Order"]
-                    directed_edges.append({'data': {'id': source_id + target_id, 'source': source_id, 'target': target_id}})
-                    #print(f"Adding edge to chapter {name} {source}->{target}, label {relation}")
-                    #print(f"Adding edge {source}->{target}, label {relation}")
-                    if source not in seen_elements:
-                        seen_elements.append(source)
-                        elements.append({"id": source_id, "label": source})
-                    if target not in seen_elements:
-                        seen_elements.append(target)
-                        elements.append({"id":target_id, "label": target})
-                    stylesheet.append({'selector': f"#{source_id + target_id}",
-                            'style': {
-                                'label': idx + 1,
-                                'target-arrow-color': 'blue',
-                                'target-arrow-shape': 'vee',
-                                'line-color': 'blue'
-                            }})
-        
-            #directed_elements = [{'data': {'id': element["id"], "label": element["label"]}} for element in elements] + directed_edges
-            name = "Chapter " + file.split(".")[0]
-            directed_elements[name] = [{'data': {'id': element["id"], "label": element["label"]}} for element in elements] + directed_edges
+        graph = generate_graph(f"{directory}/{file}")
+        #print(graph)   
+        name = "Chapter " + file.split(".")[0]
+        directed_elements[name] = graph
     return directed_elements
 
-'''
-files = os.listdir("output/Chapters")
-for file in files:
-    df = pd.read_csv(f"input/texts/{file}", sep=";")
-    for idx, row in df.iterrows():       
-        if len(split) == 2:
-            source_id = split[0].replace(" ", "")
-            source = split[0].strip()
-            target_id = split[1].replace(" ", "")
-            target = split[1].strip()
-            if source not in secondary_edges:
-                secondary_edges[source] = []
-            secondary_edges[source].append({'data': {'id': source_id + target_id, 'source': source, 'target': target}})
-            if source not in secondary_elements:
-                secondary_elements[source] = []
-            if target not in secondary_elements:
-                secondary_elements[source].append(target)
-            stylesheet.append({'selector': f"#{source_id + target_id}",
-                'style': {
-                    'line-color': 'blue'
-                }})
-        
-        if len(row["pos"]) == "all":
-            for i in range(2, len(split)):
-                # Look for names in ENTITY 2
-                doc = nlp(line)
-                entity = split[i].strip()
-                should_add_to_main = True
-                if " " in entity or "'" in entity:
-                    #print(f"Delimiter found in string {entity}")
-                    split_list = re.split(r" |'", entity)
-                    #print(my_list)
-                    for word in split_list:
-                        for target in doc:
-                            # Need to replace all delimiters from the string processed by spaCy, as they aren't included in the regex split
-                            if word == target.text.replace("'", ""):
-                                if not target.pos_ == "PROPN":
-                                    print(f"Word {target.text} was not a proper noun, skipping '{entity}'")
-                                    should_add_to_main = False
-                                    break
-                else:
-                    for target in doc:
-                            if entity == target.text:
-                                if not target.pos_ == "PROPN":
-                                    print(f"Word {target.text} was not a proper noun, skipping '{entity}'")
-                                    should_add_to_main = False
-                                    break
-            
-            should_add_to_main = True
-            print(f"From: {split[0].strip()}, to {split[i].strip()}, label: {split[1].strip()}")
-            if should_add_to_main:
-                source_id = split[0].replace(" ", "")
-                source = split[0].strip()
-                target_id = split[i].replace(" ", "")
-                target = split[i].strip()
-                relation = split[1].strip()
-                directed_edges.append({'data': {'id': source_id + target_id, 'source': source, 'target': target}})
-                print(f"Adding edge {source}->{split[i].strip()}, label {relation}")
-                if source not in elements:
-                    elements.append(source)
-                if target not in elements:
-                    elements.append(target)
-                stylesheet.append({'selector': f"#{source_id + target_id}",
-                        'style': {
-                            'label': relation,
-                            'target-arrow-color': 'blue',
-                            'target-arrow-shape': 'vee',
-                            'line-color': 'blue'
-                        }})
-            # If ENTITY 2 is not a proper noun, add it to the secondary graph
-            else:
-                source_id = split[0].replace(" ", "")
-                source = split[0].strip()
-                target_id = split[i].replace(" ", "")
-                target = split[i].strip()
-                relation = split[1].strip()
-                if source not in secondary_edges:
-                    secondary_edges[source] = []
-                secondary_edges[source].append({'data': {'id': source_id + target_id, 'source': source, 'target': target}})
-                if source not in secondary_elements:
-                    secondary_elements[source] = []
-                if target not in secondary_elements:
-                    secondary_elements[source].append(target)
-                                    
-                stylesheet.append({'selector': f"#{source_id + target_id}",
-                        'style': {
-                            'label': relation,
-                            'target-arrow-color': 'blue',
-                            'target-arrow-shape': 'vee',
-                            'line-color': 'blue'
-                        }})              
-directed_elements = [{'data': {'id': id_}} for id_ in elements] + directed_edges
-'''
 
 #print(secondary_elements)
 #print(secondary_edges)
@@ -341,19 +142,17 @@ def create_map():
     # display DataFrame
     return fig
 
+print("Creating map")
 map = create_map()
+print("Creating location graphs")
 directed_elements = create_location_graphs()
+print("Done")
 #print(directed_elements)
 #print(stylesheet)
 app.layout = html.Div([
     dcc.Graph(id="map", figure=map),
     html.P("Dash Cytoscape:"),
-    cyto.Cytoscape(
-        id='cytoscape',
-        layout={'name': 'cose'},
-        elements=directed_elements["Chapter 28"],
-        stylesheet=stylesheet
-    ),
+    dcc.Graph(id="cytoscape", figure=directed_elements["Chapter 1"]),
     html.Div([
             dcc.Markdown("""
                 **Click Data**
@@ -393,17 +192,18 @@ def update_elements(data, elements):
     return elements
 '''
 @callback(
-    Output('cytoscape', 'elements'),
+    Output('cytoscape', 'figure'),
     Output('click-data', 'children'),
     Input('map', 'clickData'),
-    State('cytoscape', 'elements'))
+    State('cytoscape', 'figure'))
 def display_click_data(clickData, elements):
     if clickData:
         text = clickData["points"][0]["text"].split(",")[0]
-        summary = ""
+        summary = "No summary found"
         number = text.split(" ")[1]
-        with open(f"output/GPT/summary/{number}.txt") as file:
-            summary = file.read()
+        if os.path.isfile(f"output/GPT/summary/{number}.txt"):
+            with open(f"output/GPT/summary/{number}.txt") as file:
+                summary = file.read()
         summary = summary.replace(". ", ".\n")
         return directed_elements[text], summary
     return elements, ""
