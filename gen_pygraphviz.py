@@ -4,8 +4,28 @@ import random
 import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
+import matplotlib.pyplot as plt
 import networkx as nx
 import pandas as pd
+
+from z3 import *
+
+
+def get_positions(characters, pos, graph):
+    # Each character can be in one and only one position
+    # All positions must be filled
+    # Character must go through a specific nodes
+    # Minimize the number of edge crossings
+    print(characters)
+    # Get the starting positions of each character
+    X = [pos[person] for person in characters]
+    print(X)
+    print(pos)
+    #for person in characters:
+    #    print(f"{person}, location: {pos[person]}")
+
+
+
 
 #G = pgv.AGraph(strict=False)
 def generate_graph(path):
@@ -19,13 +39,16 @@ def generate_graph(path):
     locations = []
     people_ending_in_location = {}
     people_starting_in_location = {}
-    named_colors = px.colors.DEFAULT_PLOTLY_COLORS
+    with open("colors.txt") as file:
+        named_colors = file.read()
+        named_colors = named_colors.replace("\n", " ").split(", ")
+    #named_colors = px.colors.DEFAULT_PLOTLY_COLORS
     used_colors = []
 
     for idx, row in df.iterrows():
         target = row["City"] + ", " + str(row["Location"])
         if target not in locations:
-            G.add_node(target, shape="square")
+            G.add_node(target, shape="rect")
             locations.append(target)
             people_ending_in_location[target] = [] 
             people_starting_in_location[target] = [] 
@@ -46,10 +69,10 @@ def generate_graph(path):
                 people_and_locations[person] = []
                 people_starting_in_location[person] = [] 
                 people_starting_in_location[person].append(person)
-                G.add_edge(person, target, person=person)
+                G.add_edge(person, target, person=person, color=people_list[person])
             # Add edge from last location to current location
             else:
-                G.add_edge(people_and_locations[person][-1], target, person=person)
+                G.add_edge(people_and_locations[person][-1], target, person=person, color=people_list[person])
                 people_starting_in_location[people_and_locations[person][-1]].append(person)
             people_and_locations[person].append(target)
 
@@ -68,6 +91,13 @@ def generate_graph(path):
         args='-Grankdir=LR' + ' ' + '-Gnewrank=true'
     )
 
+    nx.draw_networkx(G, pos=pos, with_labels = True)
+    
+    nx.drawing.nx_agraph.write_dot(G, "network.dot")
+    #plt.show()
+
+    get_positions(list(people_list.keys()), pos, G)
+
     # Define the location shapes manually to make sure that the edges start and end nicely, (could maybe be done with backoff, investigate? (might make the different locations a pain...))
     location_shapes = {}
     size_x = 50
@@ -84,6 +114,7 @@ def generate_graph(path):
     # Check the "level" of each character. This is done to make sure that there are as few edge crossings as possible
     # The level marks the y-coordinate of where each edge should end and the start of the next edge if applicable
     # Could z3 be used to determine the order in which the nodes should be placed to minimize crossing?
+    # Alternative: If more than one character starts at one point, sort them based on the highest y-coordinate?
 
     # Handle the location of start point and end point separately for each node
 
