@@ -10,17 +10,81 @@ import pandas as pd
 
 from z3 import *
 
+def create_path_ranks(characters, pos, graph):
+    keys = list(set(pos.keys()) - set(characters))
+    place_positions = {k:pos[k] for k in keys}
+    values = place_positions.values()
+    # Needed for padding the path of characters that do not go to every node
+    individual_x = sorted(set(coord[0] for coord in values))
+    # Higher node in graph should point to higher rank
+    individual_y = sorted(set(coord[1] for coord in values), reverse=True)
+    #print(individual_x)
+    #print(individual_y)
+    y_rank = {j:i+1 for i,j in enumerate(individual_y)}
+    x_rank = {j:i+1 for i,j in enumerate(individual_x)}
+    #print(x_rank)
+    pos_y_rank = {}
+    pos_x_rank = {}
+    for place, coord in place_positions.items():
+        pos_y_rank[place] = y_rank[coord[1]]
+        pos_x_rank[place] = x_rank[coord[0]]
+    #print(pos_x_rank)
+    # Recreate the path of each character and pad it to the same length for all
+    character_paths = {key: [] for key in characters}
+    #for person in characters:
+        #print(person)
+    edges_visited = []
+    for edge in graph.edges():
+        if edge not in edges_visited:
+            edges_visited.append(edge)
+            edge_data = graph.get_edge_data(edge[0], edge[1])
+            #print(edge_data)
+            for i, data in edge_data.items():
+                #print(edge[0], "->", edge[1], data)
+                #print(data["person"])
+                character_paths[data["person"]].append(edge[1])
+    #print(character_paths)
+    def sort_func(e):
+        return pos_x_rank[e]
+    
+    for person in character_paths:
+        new_locs = sorted(character_paths[person], key=sort_func)
+        character_paths[person] = new_locs
+
+    x_ranks = {}
+    y_ranks = {}
+    for person, locations in character_paths.items():
+        x_ranks[person] = list(map(lambda x: pos_x_rank[x], locations))
+        y_ranks[person] = list(map(lambda x: pos_y_rank[x], locations))
+
+    # Determine which locations should be padded for each character
+    for person in characters:
+        missing = set(pos_x_rank.values()).difference(set(x_ranks[person]))
+        print(f"Missing for {person}: {missing}")
+        first = min(x_ranks[person])
+        last = max(x_ranks[person])
+        print(first, last)
+        for value in missing:
+            # If in the beginning or end, set it to -1
+            if value < first or value > last:
+                y_pad = -1
+            # Otherwise get the previous value
+            else:
+                y_pad = y_ranks[person][value - 2]
+            x_ranks[person].insert(value - 1, value)
+            y_ranks[person].insert(value - 1, y_pad)
+    print(x_ranks)
+    print(y_ranks)
+    return x_ranks, y_ranks
 
 def get_positions(characters, pos, graph):
     # Each character can be in one and only one position
     # All positions must be filled
     # Character must go through a specific nodes
     # Minimize the number of edge crossings
-    print(characters)
-    # Get the starting positions of each character
-    X = [pos[person] for person in characters]
-    print(X)
-    print(pos)
+    x_ranks, y_ranks = create_path_ranks(characters, pos, graph)
+    # Get the positions of each character
+    
     #for person in characters:
     #    print(f"{person}, location: {pos[person]}")
 
@@ -39,10 +103,12 @@ def generate_graph(path):
     locations = []
     people_ending_in_location = {}
     people_starting_in_location = {}
+    '''
     with open("colors.txt") as file:
         named_colors = file.read()
         named_colors = named_colors.replace("\n", " ").split(", ")
-    #named_colors = px.colors.DEFAULT_PLOTLY_COLORS
+     '''   
+    named_colors = px.colors.DEFAULT_PLOTLY_COLORS
     used_colors = []
 
     for idx, row in df.iterrows():
