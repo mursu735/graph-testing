@@ -1,6 +1,7 @@
 import pygraphviz as pgv
 from collections import Counter
 import random
+import time
 import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
@@ -73,8 +74,8 @@ def create_path_ranks(characters, pos, graph):
                 y_pad = y_ranks[person][value - 2]
             x_ranks[person].insert(value - 1, value)
             y_ranks[person].insert(value - 1, y_pad)
-    print(x_ranks)
-    print(y_ranks)
+    #print(x_ranks)
+    #print(y_ranks)
     return x_ranks, y_ranks
 
 def get_positions(characters, pos, graph):
@@ -83,13 +84,74 @@ def get_positions(characters, pos, graph):
     # Character must go through a specific nodes
     # Minimize the number of edge crossings
     x_ranks, y_ranks = create_path_ranks(characters, pos, graph)
-    # Get the positions of each character
+    solver = Optimize()
+    n_vertices = len(characters)
+
+    # Assignment of vertices to vertical positions and rank within edges in the drawing
+    # `Assignment` is represented by character name
+    Assignment = []
+    conversion_map = {}
+    for person in characters:
+        as_variable = Int(person)
+        Assignment.append(as_variable)
+        conversion_map[as_variable] = person
+
     
-    #for person in characters:
-    #    print(f"{person}, location: {pos[person]}")
+    for Person in Assignment:
+        solver.add(Person >= 1)
+        solver.add(Person <= n_vertices)
+        person = conversion_map[Person]
+
+    solver.add(Distinct(Assignment))
+    #print(Assignment)
+    
+    edges = []
+    for i in range(len(Assignment)):
+        first = Assignment[i]
+        for j in range(i+1, len(Assignment)):
+            second = Assignment[j]
+            for path in range(len(y_ranks[conversion_map[first]])):
+                first_path = y_ranks[conversion_map[first]][path]
+                second_path = y_ranks[conversion_map[second]][path]
+                edges.append(If(And(first > second, first_path < second_path), 1, 0))
+                # TODO: May need to improve this
+
+    #Crossings = Sum([ Abs(character - level) for character in Assignment for level in y_ranks[conversion_map[character]] ])
+    Crossings = Sum(edges)
+    #print(Crossings)
+    solver.minimize(Crossings)
+    solver.check()
+    #print(solver.model())
+    answer = solver.model()
+    result = {}
+    for person in Assignment:
+        result[conversion_map[person]] = answer[person]
+
+    print("Results:", result)
+    return result
 
 
+def update_character_locations(pos, ranking):
+    new_positions = {}
+    #print("Positions before:")
+    #print(pos)
+    def sort_func(e):
+        return ranking[e].as_long()
+    for character in ranking:
+        x, y = pos[character]
+        if x not in new_positions:
+            new_positions[x] = {'y' : [], 'characters': []}
+        new_positions[x]['y'].append(y)
+        new_positions[x]['characters'].append(character)
 
+    for x in new_positions:
+        new_positions[x]['y'] = sorted(new_positions[x]['y'], reverse=True)
+        new_positions[x]['characters'] = sorted(new_positions[x]['characters'], key=sort_func)
+        for i in range(len(new_positions[x]['characters'])):
+            character = new_positions[x]['characters'][i]
+            pos[character] = (x, new_positions[x]['y'][i])
+    #print("Positions after:")
+    #print(pos)
 
 #G = pgv.AGraph(strict=False)
 def generate_graph(path):
@@ -162,7 +224,9 @@ def generate_graph(path):
     nx.drawing.nx_agraph.write_dot(G, "network.dot")
     #plt.show()
 
-    get_positions(list(people_list.keys()), pos, G)
+    result = get_positions(list(people_list.keys()), pos, G)
+
+    update_character_locations(pos, result)
 
     # Define the location shapes manually to make sure that the edges start and end nicely, (could maybe be done with backoff, investigate? (might make the different locations a pain...))
     location_shapes = {}
@@ -186,7 +250,9 @@ def generate_graph(path):
 
     # Calculate where the edge of each character should be relative to each other
     def sort_func(e):
-        return pos[e]
+        return result[e].as_long()
+        #return pos[e]
+
     # Ranks for each character, this determines the y-coordinate of the node
     ranks = sorted(people_list, key=sort_func, reverse=True)
     #print(f"Sorted list: {ranks}")
@@ -213,8 +279,10 @@ def generate_graph(path):
         edge_data = G.get_edge_data(edge[0], edge[1])
         people_in_edge_start = people_starting_in_location[edge[0]]
         people_in_edge_end = people_ending_in_location[edge[1]]
-        end_edge_order = sorted(people_in_edge_end, key=sort_func, reverse=True)
-        start_edge_order = sorted(people_in_edge_start, key=sort_func, reverse=True)
+        # NOTE: With reverse=True: old sorting based on location
+        # Without reverse=True: new sorting based only on z3 optimizer
+        end_edge_order = sorted(people_in_edge_end, key=sort_func)#, reverse=True)
+        start_edge_order = sorted(people_in_edge_start, key=sort_func)#, reverse=True)
         #print(f"Start edge: {edge[0]}, people in it: {start_edge_order}")
         #print(f"End edge: {edge[1]}, people in it: {end_edge_order}")
         #print(edge_order)
