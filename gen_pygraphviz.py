@@ -11,6 +11,9 @@ import pandas as pd
 
 from z3 import *
 
+
+aliases = {"Mr. Phileas Fogg": "Phileas Fogg", "Mr. Fogg": "Phileas Fogg", "Jean Passepartout": "Passepartout", "Detective Fix": "Fix", "John Busby": "John Bunsby", "Colonel Proctor": "Colonel Stamp Proctor"}
+
 def create_path_ranks(characters, pos, graph):
     keys = list(set(pos.keys()) - set(characters))
     place_positions = {k:pos[k] for k in keys}
@@ -74,6 +77,8 @@ def create_path_ranks(characters, pos, graph):
                 y_pad = y_ranks[person][value - 2]
             x_ranks[person].insert(value - 1, value)
             y_ranks[person].insert(value - 1, y_pad)
+    #for person in x_ranks:
+    #    print(person, len(x_ranks[person]))
     #print(x_ranks)
     #print(y_ranks)
     return x_ranks, y_ranks
@@ -182,12 +187,18 @@ def generate_graph(path):
             people_starting_in_location[target] = [] 
         people = row["Person"].split("|")
         for person in people:
+            if person in aliases:
+                person = aliases[person]
             people_ending_in_location[target].append(person)
             # First time person was seen, choose color and add to list
             if person not in people_list:
                 col = random.choice(named_colors)
                 while col in used_colors:
                     col = random.choice(named_colors)
+                    # Reset in case there are too many characters for the colors
+                    if len(used_colors) > (len(named_colors) - 2):
+                        used_colors = []
+                    
                 used_colors.append(col)
                 G.add_node(person, shape="circle", color=col)
                 people_list[person] = col
@@ -219,9 +230,9 @@ def generate_graph(path):
         args='-Grankdir=LR' + ' ' + '-Gnewrank=true'
     )
 
-    nx.draw_networkx(G, pos=pos, with_labels = True)
+    #nx.draw_networkx(G, pos=pos, with_labels = True)
     
-    nx.drawing.nx_agraph.write_dot(G, "network.dot")
+    #nx.drawing.nx_agraph.write_dot(G, "network.dot")
     #plt.show()
 
     result = get_positions(list(people_list.keys()), pos, G)
