@@ -19,6 +19,7 @@ use_new_sorting = False
 def create_path_ranks(characters, pos, graph):
     keys = list(set(pos.keys()) - set(characters))
     place_positions = {k:pos[k] for k in keys}
+    #print(place_positions)
     values = place_positions.values()
     # Needed for padding the path of characters that do not go to every node
     individual_x = sorted(set(coord[0] for coord in values))
@@ -34,7 +35,8 @@ def create_path_ranks(characters, pos, graph):
     for place, coord in place_positions.items():
         pos_y_rank[place] = y_rank[coord[1]]
         pos_x_rank[place] = x_rank[coord[0]]
-    #print(pos_x_rank)
+    #print("x:", pos_x_rank)
+    #print("y:", pos_y_rank)
     # Recreate the path of each character and pad it to the same length for all
     character_paths = {key: [] for key in characters}
     #for person in characters:
@@ -62,7 +64,8 @@ def create_path_ranks(characters, pos, graph):
     for person, locations in character_paths.items():
         x_ranks[person] = list(map(lambda x: pos_x_rank[x], locations))
         y_ranks[person] = list(map(lambda x: pos_y_rank[x], locations))
-
+    #print(x_ranks)
+    
     # Determine which locations should be padded for each character
     for person in characters:
         missing = set(pos_x_rank.values()).difference(set(x_ranks[person]))
@@ -71,12 +74,14 @@ def create_path_ranks(characters, pos, graph):
         last = max(x_ranks[person])
         print(first, last)
         for value in missing:
+            #print(x_ranks[person])
             # If in the beginning or end, set it to -1
             if value < first or value > last:
                 y_pad = -1
             # Otherwise get the previous value
             else:
                 y_pad = y_ranks[person][value - 2]
+            #print("Adding value", value)
             x_ranks[person].insert(value - 1, value)
             y_ranks[person].insert(value - 1, y_pad)
     #for person in x_ranks:
@@ -115,14 +120,19 @@ def get_positions(characters, pos, graph):
     edges = []
     for i in range(len(Assignment)):
         first = Assignment[i]
+        #print("First:", first)
         for j in range(i+1, len(Assignment)):
             second = Assignment[j]
+            #print("Second:", second)
             for path in range(len(y_ranks[conversion_map[first]])):
                 first_path = y_ranks[conversion_map[first]][path]
                 second_path = y_ranks[conversion_map[second]][path]
+                # And(first > second, first_path < second_path)
+                #if (first_path < second_path):
+                #edges.append(If(And(not first_path == -1, not second_path == -1, And(first > second, first_path < second_path)), 1, 0))
                 edges.append(If(And(first > second, first_path < second_path), 1, 0))
                 # TODO: May need to improve this
-
+    #print(edges)
     #Crossings = Sum([ Abs(character - level) for character in Assignment for level in y_ranks[conversion_map[character]] ])
     Crossings = Sum(edges)
     #print(Crossings)
@@ -236,10 +246,10 @@ def generate_graph(path):
     
     #nx.drawing.nx_agraph.write_dot(G, "network.dot")
     #plt.show()
+    if (len(people_list) > 1):
+        result = get_positions(list(people_list.keys()), pos, G)
 
-    result = get_positions(list(people_list.keys()), pos, G)
-
-    update_character_locations(pos, result)
+        update_character_locations(pos, result)
 
     # Define the location shapes manually to make sure that the edges start and end nicely, (could maybe be done with backoff, investigate? (might make the different locations a pain...))
     location_shapes = {}
