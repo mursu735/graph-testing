@@ -60,6 +60,7 @@ def create_location_graphs():
     for file in files:
         # Use the next line for debugging if needed
         #file = "28.csv"
+        print(f"Generating for chapter {file}")
         graph = generate_graph(f"{directory}/{file}")
         #print(graph)   
         name = "Chapter " + file.split(".")[0]
@@ -202,7 +203,7 @@ def display_click_data(clickData, elements):
         summary = "No summary found"
         number = text.split(" ")[1]
         if os.path.isfile(f"output/GPT/summary/{number}.txt"):
-            with open(f"output/GPT/summary/{number}.txt") as file:
+            with open(f"output/GPT/summary/{number}.txt", encoding="utf-8") as file:
                 summary = file.read()
         summary = summary.replace(". ", ".\n")
         return directed_elements[text], summary

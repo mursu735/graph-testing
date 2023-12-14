@@ -14,6 +14,8 @@ from z3 import *
 
 aliases = {"Mr. Phileas Fogg": "Phileas Fogg", "Mr. Fogg": "Phileas Fogg", "Jean Passepartout": "Passepartout", "Detective Fix": "Fix", "John Busby": "John Bunsby", "Colonel Proctor": "Colonel Stamp Proctor"}
 
+use_new_sorting = False
+
 def create_path_ranks(characters, pos, graph):
     keys = list(set(pos.keys()) - set(characters))
     place_positions = {k:pos[k] for k in keys}
@@ -79,8 +81,8 @@ def create_path_ranks(characters, pos, graph):
             y_ranks[person].insert(value - 1, y_pad)
     #for person in x_ranks:
     #    print(person, len(x_ranks[person]))
-    #print(x_ranks)
-    #print(y_ranks)
+    print(x_ranks)
+    print(y_ranks)
     return x_ranks, y_ranks
 
 def get_positions(characters, pos, graph):
@@ -261,8 +263,10 @@ def generate_graph(path):
 
     # Calculate where the edge of each character should be relative to each other
     def sort_func(e):
-        return result[e].as_long()
-        #return pos[e]
+        if use_new_sorting:
+            return result[e].as_long()
+        else:
+            return pos[e]
 
     # Ranks for each character, this determines the y-coordinate of the node
     ranks = sorted(people_list, key=sort_func, reverse=True)
@@ -292,8 +296,12 @@ def generate_graph(path):
         people_in_edge_end = people_ending_in_location[edge[1]]
         # NOTE: With reverse=True: old sorting based on location
         # Without reverse=True: new sorting based only on z3 optimizer
-        end_edge_order = sorted(people_in_edge_end, key=sort_func)#, reverse=True)
-        start_edge_order = sorted(people_in_edge_start, key=sort_func)#, reverse=True)
+        if use_new_sorting:
+            end_edge_order = sorted(people_in_edge_end, key=sort_func)#, reverse=True)
+            start_edge_order = sorted(people_in_edge_start, key=sort_func)#, reverse=True)
+        else:
+            end_edge_order = sorted(people_in_edge_end, key=sort_func, reverse=True)
+            start_edge_order = sorted(people_in_edge_start, key=sort_func, reverse=True)
         #print(f"Start edge: {edge[0]}, people in it: {start_edge_order}")
         #print(f"End edge: {edge[1]}, people in it: {end_edge_order}")
         #print(edge_order)
