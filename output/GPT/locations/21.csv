@@ -1,7 +1,7 @@
 ;Person;City;Latitude;Longitude;Location;Order;Importance;Country
-0;Phileas Fogg;Hong Kong;22.3193;114.1694;Tankadere;1;1.0;cn
-1;Aouda;Hong Kong;22.3193;114.1694;Tankadere;2;0.8;cn
-2;Detective Fix;Hong Kong;22.3193;114.1694;Tankadere;1;0.7;cn
+0;Phileas Fogg;Hong Kong;22.3193;114.1694;Tankadere;1;1.0;hk
+1;Aouda;Hong Kong;22.3193;114.1694;Tankadere;2;0.8;hk
+2;Detective Fix;Hong Kong;22.3193;114.1694;Tankadere;1;0.7;hk
 3;Phileas Fogg;Straits of Fo-Kien;26.0745;119.2965;Tankadere;2;1.0;cn
 4;Aouda;Straits of Fo-Kien;26.0745;119.2965;Tankadere;2;0.8;cn
 5;Detective Fix;Straits of Fo-Kien;26.0745;119.2965;Tankadere;2;0.7;cn

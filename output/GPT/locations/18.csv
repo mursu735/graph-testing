@@ -1,13 +1,13 @@
 ;Person;City;Latitude;Longitude;Location;Order;Importance;Country
-0;Phileas Fogg;Hong Kong;22.3193;114.1694;Rangoon;1;1.0;cn
-1;Aouda;Hong Kong;22.3193;114.1694;Rangoon;2;0.8;cn
-2;Detective Fix;Hong Kong;22.3193;114.1694;Rangoon;1;0.7;cn
-3;Passepartout;Hong Kong;22.3193;114.1694;Rangoon;3;0.7;cn
-4;Phileas Fogg;Hong Kong;22.3193;114.1694;Club Hotel;2;1.0;cn
-5;Aouda;Hong Kong;22.3193;114.1694;Club Hotel;2;0.8;cn
-6;Passepartout;Hong Kong;22.3193;114.1694;Club Hotel;4;0.7;cn
-7;Phileas Fogg;Hong Kong;22.3193;114.1694;Exchange;3;1.0;cn
-8;Aouda;Hong Kong;22.3193;114.1694;Exchange;3;0.8;cn
-9;Phileas Fogg;Hong Kong;22.3193;114.1694;Carnatic;4;1.0;cn
-10;Aouda;Hong Kong;22.3193;114.1694;Carnatic;4;0.8;cn
-11;Passepartout;Hong Kong;22.3193;114.1694;Carnatic;5;0.7;cn
+0;Phileas Fogg;Hong Kong;22.3193;114.1694;Rangoon;1;1.0;hk
+1;Aouda;Hong Kong;22.3193;114.1694;Rangoon;2;0.8;hk
+2;Detective Fix;Hong Kong;22.3193;114.1694;Rangoon;1;0.7;hk
+3;Passepartout;Hong Kong;22.3193;114.1694;Rangoon;3;0.7;hk
+4;Phileas Fogg;Hong Kong;22.3193;114.1694;Club Hotel;2;1.0;hk
+5;Aouda;Hong Kong;22.3193;114.1694;Club Hotel;2;0.8;hk
+6;Passepartout;Hong Kong;22.3193;114.1694;Club Hotel;4;0.7;hk
+7;Phileas Fogg;Hong Kong;22.3193;114.1694;Exchange;3;1.0;hk
+8;Aouda;Hong Kong;22.3193;114.1694;Exchange;3;0.8;hk
+9;Phileas Fogg;Hong Kong;22.3193;114.1694;Carnatic;4;1.0;hk
+10;Aouda;Hong Kong;22.3193;114.1694;Carnatic;4;0.8;hk
+11;Passepartout;Hong Kong;22.3193;114.1694;Carnatic;5;0.7;hk

@@ -1,4 +1,4 @@
 ;Person;City;Latitude;Longitude;Location;Order;Importance;Country
-0;Phileas Fogg|Aouda|Fix|Passepartout;Hong Kong;22.3193;114.1694;Victoria port;1|2|3|4;1|0.8|0.6|0.9;cn
-1;Phileas Fogg|Aouda|Fix|Passepartout;Hong Kong;22.3193;114.1694;Steamer office;5|6|7|8;1|0.8|0.6|0.9;cn
-2;Phileas Fogg|Aouda|Fix|Passepartout;Hong Kong;22.3193;114.1694;Tavern;9|10|11|12;1|0.8|0.6|0.9;cn
+0;Phileas Fogg|Aouda|Fix|Passepartout;Hong Kong;22.3193;114.1694;Victoria port;1|2|3|4;1|0.8|0.6|0.9;hk
+1;Phileas Fogg|Aouda|Fix|Passepartout;Hong Kong;22.3193;114.1694;Steamer office;5|6|7|8;1|0.8|0.6|0.9;hk
+2;Phileas Fogg|Aouda|Fix|Passepartout;Hong Kong;22.3193;114.1694;Tavern;9|10|11|12;1|0.8|0.6|0.9;hk
