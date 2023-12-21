@@ -1,13 +1,13 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Passepartout;Yokohama;35.4437;139.6380;Tea-house;1;0.7
-Passepartout;Yokohama;35.4437;139.6380;Docks;2;0.7
-Passepartout;Yokohama;35.4437;139.6380;Japanese quarter;3;0.7
-Passepartout;Yokohama;35.4437;139.6380;William Batulcar's establishment;4;0.7
-Phileas Fogg;Yokohama;35.4437;139.6380;William Batulcar's establishment;1;1.0
-Aouda;Yokohama;35.4437;139.6380;William Batulcar's establishment;1;0.8
-Passepartout;Yokohama;35.4437;139.6380;Theatre;5;0.7
-Phileas Fogg;Yokohama;35.4437;139.6380;Theatre;2;1.0
-Aouda;Yokohama;35.4437;139.6380;Theatre;2;0.8
-Passepartout;Yokohama;35.4437;139.6380;American steamer;6;0.7
-Phileas Fogg;Yokohama;35.4437;139.6380;American steamer;3;1.0
-Aouda;Yokohama;35.4437;139.6380;American steamer;3;0.8
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Passepartout;Yokohama;35.4437;139.638;Tea-house;1;0.7;jp
+1;Passepartout;Yokohama;35.4437;139.638;Docks;2;0.7;jp
+2;Passepartout;Yokohama;35.4437;139.638;Japanese quarter;3;0.7;jp
+3;Passepartout;Yokohama;35.4437;139.638;William Batulcar's establishment;4;0.7;jp
+4;Phileas Fogg;Yokohama;35.4437;139.638;William Batulcar's establishment;1;1.0;jp
+5;Aouda;Yokohama;35.4437;139.638;William Batulcar's establishment;1;0.8;jp
+6;Passepartout;Yokohama;35.4437;139.638;Theatre;5;0.7;jp
+7;Phileas Fogg;Yokohama;35.4437;139.638;Theatre;2;1.0;jp
+8;Aouda;Yokohama;35.4437;139.638;Theatre;2;0.8;jp
+9;Passepartout;Yokohama;35.4437;139.638;American steamer;6;0.7;jp
+10;Phileas Fogg;Yokohama;35.4437;139.638;American steamer;3;1.0;jp
+11;Aouda;Yokohama;35.4437;139.638;American steamer;3;0.8;jp

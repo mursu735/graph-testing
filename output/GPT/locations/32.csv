@@ -1,6 +1,6 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;New York;40.7128;-74.0060;St. Nicholas Hotel;1;1.0
-Passepartout|Aouda|Fix;New York;40.7128;-74.0060;St. Nicholas Hotel;2|3|4;0.8|0.7|0.6
-Phileas Fogg;New York;40.7128;-74.0060;Banks of the Hudson;5;1.0
-Andrew Speedy;New York;40.7128;-74.0060;On board the "Henrietta";7;0.5
-Phileas Fogg|Passepartout|Aouda|Fix;New York;40.7128;-74.0060;On board the "Henrietta";8|9|10|11;1.0|0.8|0.7|0.6
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg;New York;40.7128;-74.006;St. Nicholas Hotel;1;1.0;us
+1;Passepartout|Aouda|Fix;New York;40.7128;-74.006;St. Nicholas Hotel;2|3|4;0.8|0.7|0.6;us
+2;Phileas Fogg;New York;40.7128;-74.006;Banks of the Hudson;5;1.0;us
+3;Andrew Speedy;New York;40.7128;-74.006;"On board the ""Henrietta""";7;0.5;us
+4;Phileas Fogg|Passepartout|Aouda|Fix;New York;40.7128;-74.006;"On board the ""Henrietta""";8|9|10|11;1.0|0.8|0.7|0.6;us

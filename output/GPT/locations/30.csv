@@ -1,12 +1,12 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;Plum Creek;40.5253;-98.0526;Train;1;1.0
-Aouda;Plum Creek;40.5253;-98.0526;Train;2;0.9
-Passepartout;Plum Creek;40.5253;-98.0526;Train;3;0.8
-Fix;Plum Creek;40.5253;-98.0526;Train;4;0.7
-Colonel Proctor;Plum Creek;40.5253;-98.0526;Train;5;0.6
-Phileas Fogg;Fort Kearney;40.6995;-99.0815;;1;1.0
-Aouda;Fort Kearney;40.6995;-99.0815;;2;0.9
-Fix;Fort Kearney;40.6995;-99.0815;;3;0.7
-Phileas Fogg;South of Fort Kearney;40.6995;-99.0815;;2;1.0
-Passepartout;South of Fort Kearney;40.6995;-99.0815;;4;0.8
-Colonel Proctor;Train;40.6995;-99.0815;;6;0.6
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg;Plum Creek;40.5253;-98.0526;Train;1;1.0;us
+1;Aouda;Plum Creek;40.5253;-98.0526;Train;2;0.9;us
+2;Passepartout;Plum Creek;40.5253;-98.0526;Train;3;0.8;us
+3;Fix;Plum Creek;40.5253;-98.0526;Train;4;0.7;us
+4;Colonel Proctor;Plum Creek;40.5253;-98.0526;Train;5;0.6;us
+5;Phileas Fogg;Fort Kearney;40.6995;-99.0815;;1;1.0;us
+6;Aouda;Fort Kearney;40.6995;-99.0815;;2;0.9;us
+7;Fix;Fort Kearney;40.6995;-99.0815;;3;0.7;us
+8;Phileas Fogg;South of Fort Kearney;40.6995;-99.0815;;2;1.0;us
+9;Passepartout;South of Fort Kearney;40.6995;-99.0815;;4;0.8;us
+10;Colonel Proctor;Train;40.6995;-99.0815;;6;0.6;us

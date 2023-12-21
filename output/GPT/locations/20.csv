@@ -1,11 +1,11 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;Hong Kong;22.3193;114.1694;English quarter;1;1.0
-Aouda;Hong Kong;22.3193;114.1694;English quarter;2;0.9
-Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Hotel;3|4;1.0|0.9
-Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Quay;5|6;1.0|0.9
-Fix;Hong Kong;22.3193;114.1694;Quay;7;0.8
-Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Docks;8|9;1.0|0.9
-Phileas Fogg|Aouda|Fix;Hong Kong;22.3193;114.1694;Police station;10|11|12;1.0|0.9|0.8
-Phileas Fogg|Aouda|Fix;Hong Kong;22.3193;114.1694;Wharf;13|14|15;1.0|0.9|0.8
-Phileas Fogg|Aouda|Fix;Hong Kong;22.3193;114.1694;On board the "Tankadere";16|17|18;1.0|0.9|0.8
-John Bunsby;Hong Kong;22.3193;114.1694;On board the "Tankadere";19;0.7
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg;Hong Kong;22.3193;114.1694;English quarter;1;1.0;cn
+1;Aouda;Hong Kong;22.3193;114.1694;English quarter;2;0.9;cn
+2;Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Hotel;3|4;1.0|0.9;cn
+3;Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Quay;5|6;1.0|0.9;cn
+4;Fix;Hong Kong;22.3193;114.1694;Quay;7;0.8;cn
+5;Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Docks;8|9;1.0|0.9;cn
+6;Phileas Fogg|Aouda|Fix;Hong Kong;22.3193;114.1694;Police station;10|11|12;1.0|0.9|0.8;cn
+7;Phileas Fogg|Aouda|Fix;Hong Kong;22.3193;114.1694;Wharf;13|14|15;1.0|0.9|0.8;cn
+8;Phileas Fogg|Aouda|Fix;Hong Kong;22.3193;114.1694;"On board the ""Tankadere""";16|17|18;1.0|0.9|0.8;cn
+9;John Bunsby;Hong Kong;22.3193;114.1694;"On board the ""Tankadere""";19;0.7;cn

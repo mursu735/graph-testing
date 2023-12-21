@@ -1,13 +1,13 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;Allahabad;25.4358;81.8463;Train station;1;1.0
-Aouda;Allahabad;25.4358;81.8463;Train station;2;0.8
-Passepartout;Allahabad;25.4358;81.8463;Train station;3;0.7
-Phileas Fogg;Allahabad;25.4358;81.8463;City streets;2;1.0
-Passepartout;Allahabad;25.4358;81.8463;City streets;4;0.7
-Phileas Fogg;Benares;25.3176;82.9739;Train;3;1.0
-Aouda;Benares;25.3176;82.9739;Train;3;0.8
-Passepartout;Benares;25.3176;82.9739;Train;5;0.7
-Sir Francis Cromarty;Benares;25.3176;82.9739;Train;1;0.8
-Phileas Fogg;Calcutta;22.5726;88.3639;Train station;4;1.0
-Aouda;Calcutta;22.5726;88.3639;Train station;4;0.8
-Passepartout;Calcutta;22.5726;88.3639;Train station;6;0.7
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg;Allahabad;25.4358;81.8463;Train station;1;1.0;in
+1;Aouda;Allahabad;25.4358;81.8463;Train station;2;0.8;in
+2;Passepartout;Allahabad;25.4358;81.8463;Train station;3;0.7;in
+3;Phileas Fogg;Allahabad;25.4358;81.8463;City streets;2;1.0;in
+4;Passepartout;Allahabad;25.4358;81.8463;City streets;4;0.7;in
+5;Phileas Fogg;Benares;25.3176;82.9739;Train;3;1.0;in
+6;Aouda;Benares;25.3176;82.9739;Train;3;0.8;in
+7;Passepartout;Benares;25.3176;82.9739;Train;5;0.7;in
+8;Sir Francis Cromarty;Benares;25.3176;82.9739;Train;1;0.8;in
+9;Phileas Fogg;Calcutta;22.5726;88.3639;Train station;4;1.0;in
+10;Aouda;Calcutta;22.5726;88.3639;Train station;4;0.8;in
+11;Passepartout;Calcutta;22.5726;88.3639;Train station;6;0.7;in

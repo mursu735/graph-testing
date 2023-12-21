@@ -1,13 +1,13 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;Calcutta;22.5726;88.3639;Rangoon;1;1.0
-Aouda;Calcutta;22.5726;88.3639;Rangoon;2;0.8
-Phileas Fogg;Andaman Islands;12.6131;92.6258;Rangoon;2;1.0
-Aouda;Andaman Islands;12.6131;92.6258;Rangoon;2;0.8
-Phileas Fogg;Straits of Malacca;4.2105;100.6034;Rangoon;3;1.0
-Aouda;Straits of Malacca;4.2105;100.6034;Rangoon;3;0.8
-Detective Fix;Calcutta;22.5726;88.3639;Rangoon;1;0.7
-Detective Fix;Andaman Islands;12.6131;92.6258;Rangoon;2;0.7
-Detective Fix;Straits of Malacca;4.2105;100.6034;Rangoon;3;0.7
-Passepartout;Calcutta;22.5726;88.3639;Rangoon;3;0.7
-Passepartout;Andaman Islands;12.6131;92.6258;Rangoon;4;0.7
-Passepartout;Straits of Malacca;4.2105;100.6034;Rangoon;5;0.7
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg;Calcutta;22.5726;88.3639;Rangoon;1;1.0;in
+1;Aouda;Calcutta;22.5726;88.3639;Rangoon;2;0.8;in
+2;Phileas Fogg;Andaman Islands;12.6131;92.6258;Rangoon;2;1.0;in
+3;Aouda;Andaman Islands;12.6131;92.6258;Rangoon;2;0.8;in
+4;Phileas Fogg;Straits of Malacca;4.2105;100.6034;Rangoon;3;1.0;my
+5;Aouda;Straits of Malacca;4.2105;100.6034;Rangoon;3;0.8;my
+6;Detective Fix;Calcutta;22.5726;88.3639;Rangoon;1;0.7;in
+7;Detective Fix;Andaman Islands;12.6131;92.6258;Rangoon;2;0.7;in
+8;Detective Fix;Straits of Malacca;4.2105;100.6034;Rangoon;3;0.7;my
+9;Passepartout;Calcutta;22.5726;88.3639;Rangoon;3;0.7;in
+10;Passepartout;Andaman Islands;12.6131;92.6258;Rangoon;4;0.7;in
+11;Passepartout;Straits of Malacca;4.2105;100.6034;Rangoon;5;0.7;my

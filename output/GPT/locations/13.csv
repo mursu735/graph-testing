@@ -1,5 +1,5 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;Pagoda of Pillaji;24.5854;73.7125;Elephant;1;1.0
-Sir Francis Cromarty;Pagoda of Pillaji;24.5854;73.7125;Elephant;2;0.8
-Passepartout;Pagoda of Pillaji;24.5854;73.7125;Elephant;3;0.7
-Aouda;Pagoda of Pillaji;24.5854;73.7125;Elephant;4;0.6
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg;Pagoda of Pillaji;24.5854;73.7125;Elephant;1;1.0;in
+1;Sir Francis Cromarty;Pagoda of Pillaji;24.5854;73.7125;Elephant;2;0.8;in
+2;Passepartout;Pagoda of Pillaji;24.5854;73.7125;Elephant;3;0.7;in
+3;Aouda;Pagoda of Pillaji;24.5854;73.7125;Elephant;4;0.6;in

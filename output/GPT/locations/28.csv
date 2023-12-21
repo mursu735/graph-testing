@@ -1,12 +1,12 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg|Passepartout|Fix|Aouda;Great Salt Lake;41.0961;-112.0997;Train;1|2|3|4;1|0.6|0.8|0.7
-Phileas Fogg|Passepartout|Fix|Aouda;Weber River;41.2826;-111.9534;Train;5|6|7|8;1|0.6|0.8|0.7
-Phileas Fogg|Passepartout|Fix|Aouda;Wahsatch Mountains;40.6197;-111.5379;Train;9|10|11|12;1|0.6|0.8|0.7
-Phileas Fogg|Passepartout|Fix|Aouda;Bitter Creek Valley;41.3622;-108.9346;Train;13|14|15|16;1|0.6|0.8|0.7
-Phileas Fogg|Passepartout|Fix|Aouda;Fort Bridger;41.3172;-110.3870;Train;17|18|19|20;1|0.6|0.8|0.7
-Phileas Fogg|Passepartout|Fix|Aouda;Wyoming;43.0759;-107.2903;Train;21|22|23|24;1|0.6|0.8|0.7
-Phileas Fogg|Passepartout|Fix|Aouda;Green River;41.5286;-109.4662;Train;25|26|27|28;1|0.6|0.8|0.7
-Phileas Fogg|Passepartout|Fix|Aouda;Bridger Pass;41.3975;-106.5472;Train;29|30|31|32;1|0.6|0.8|0.7
-Phileas Fogg|Passepartout|Fix|Aouda;Fort Halleck;41.8975;-106.2736;Train;33|34|35|36;1|0.6|0.8|0.7
-Phileas Fogg|Passepartout|Fix|Aouda;Medicine Bow;41.8950;-106.2028;Train;37|38|39|40;1|0.6|0.8|0.7
-Colonel Stamp Proctor;Medicine Bow;41.8950;-106.2028;Train;41;0.5
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg|Passepartout|Fix|Aouda;Great Salt Lake;41.0961;-112.0997;Train;1|2|3|4;1|0.6|0.8|0.7;us
+1;Phileas Fogg|Passepartout|Fix|Aouda;Weber River;41.2826;-111.9534;Train;5|6|7|8;1|0.6|0.8|0.7;us
+2;Phileas Fogg|Passepartout|Fix|Aouda;Wahsatch Mountains;40.6197;-111.5379;Train;9|10|11|12;1|0.6|0.8|0.7;us
+3;Phileas Fogg|Passepartout|Fix|Aouda;Bitter Creek Valley;41.3622;-108.9346;Train;13|14|15|16;1|0.6|0.8|0.7;us
+4;Phileas Fogg|Passepartout|Fix|Aouda;Fort Bridger;41.3172;-110.387;Train;17|18|19|20;1|0.6|0.8|0.7;us
+5;Phileas Fogg|Passepartout|Fix|Aouda;Wyoming;43.0759;-107.2903;Train;21|22|23|24;1|0.6|0.8|0.7;us
+6;Phileas Fogg|Passepartout|Fix|Aouda;Green River;41.5286;-109.4662;Train;25|26|27|28;1|0.6|0.8|0.7;us
+7;Phileas Fogg|Passepartout|Fix|Aouda;Bridger Pass;41.3975;-106.5472;Train;29|30|31|32;1|0.6|0.8|0.7;us
+8;Phileas Fogg|Passepartout|Fix|Aouda;Fort Halleck;41.8975;-106.2736;Train;33|34|35|36;1|0.6|0.8|0.7;us
+9;Phileas Fogg|Passepartout|Fix|Aouda;Medicine Bow;41.895;-106.2028;Train;37|38|39|40;1|0.6|0.8|0.7;us
+10;Colonel Stamp Proctor;Medicine Bow;41.895;-106.2028;Train;41;0.5;us

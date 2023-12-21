@@ -1,6 +1,6 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;London;51.5074;0.1278;Reform Club;1;1.0
-Phileas Fogg|Passepartout;London;51.5074;0.1278;Saville Row;2|3;1.0|0.8
-Phileas Fogg|Passepartout;London;51.5074;0.1278;Charing Cross;4|5;1.0|0.8
-Phileas Fogg|Passepartout;London;51.5074;0.1278;Railway Station;6|7;1.0|0.8
-Phileas Fogg|Passepartout;On a train;51.5074;0.1278;;8|9;1.0|0.8
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg;London;51.5074;0.1278;Reform Club;1;1.0;gb
+1;Phileas Fogg|Passepartout;London;51.5074;0.1278;Saville Row;2|3;1.0|0.8;gb
+2;Phileas Fogg|Passepartout;London;51.5074;0.1278;Charing Cross;4|5;1.0|0.8;gb
+3;Phileas Fogg|Passepartout;London;51.5074;0.1278;Railway Station;6|7;1.0|0.8;gb
+4;Phileas Fogg|Passepartout;On a train;51.5074;0.1278;;8|9;1.0|0.8;gb

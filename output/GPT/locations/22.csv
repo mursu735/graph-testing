@@ -1,9 +1,9 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Passepartout;Hong Kong;22.3193;114.1694;Carnatic;1;0.7
-Passepartout;Yokohama;35.4437;139.6380;Carnatic;2;0.7
-Passepartout;Yokohama;35.4437;139.6380;After-deck;3;0.7
-Passepartout;Yokohama;35.4437;139.6380;Saloon;4;0.7
-Passepartout;Yokohama;35.4437;139.6380;Streets of Yokohama;5;0.7
-Passepartout;Yokohama;35.4437;139.6380;Benten;6;0.7
-Passepartout;Yokohama;35.4437;139.6380;Fields;7;0.7
-Passepartout;Yokohama;35.4437;139.6380;Harbour;8;0.7
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Passepartout;Hong Kong;22.3193;114.1694;Carnatic;1;0.7;cn
+1;Passepartout;Yokohama;35.4437;139.638;Carnatic;2;0.7;jp
+2;Passepartout;Yokohama;35.4437;139.638;After-deck;3;0.7;jp
+3;Passepartout;Yokohama;35.4437;139.638;Saloon;4;0.7;jp
+4;Passepartout;Yokohama;35.4437;139.638;Streets of Yokohama;5;0.7;jp
+5;Passepartout;Yokohama;35.4437;139.638;Benten;6;0.7;jp
+6;Passepartout;Yokohama;35.4437;139.638;Fields;7;0.7;jp
+7;Passepartout;Yokohama;35.4437;139.638;Harbour;8;0.7;jp

@@ -1,7 +1,7 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;Bombay;18.975;72.8258;Train;1;1.0
-Sir Francis Cromarty;Bombay;18.975;72.8258;Train;2;0.8
-Passepartout;Bombay;18.975;72.8258;Train;3;0.7
-Phileas Fogg;Kholby;27.702;77.897;Elephant;2;1.0
-Sir Francis Cromarty;Kholby;27.702;77.897;Elephant;2;0.8
-Passepartout;Kholby;27.702;77.897;Elephant;3;0.7
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg;Bombay;18.975;72.8258;Train;1;1.0;in
+1;Sir Francis Cromarty;Bombay;18.975;72.8258;Train;2;0.8;in
+2;Passepartout;Bombay;18.975;72.8258;Train;3;0.7;in
+3;Phileas Fogg;Kholby;27.702;77.897;Elephant;2;1.0;in
+4;Sir Francis Cromarty;Kholby;27.702;77.897;Elephant;2;0.8;in
+5;Passepartout;Kholby;27.702;77.897;Elephant;3;0.7;in

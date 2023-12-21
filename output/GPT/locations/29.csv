@@ -1,23 +1,23 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;San Francisco;37.7749;-122.4194;Train;1;1.0
-Phileas Fogg;Cheyne Pass;41.1465;-104.5202;Train;2;1.0
-Phileas Fogg;Evans Pass;39.5501;-105.7821;Train;3;1.0
-Phileas Fogg;Denver;39.7392;-104.9903;Train;4;1.0
-Phileas Fogg;Fort Saunders;42.8486;-106.3253;Train;5;1.0
-Phileas Fogg;Camp Walbach;41.1403;-104.8202;Train;6;1.0
-Phileas Fogg;Lodge Pole Creek;41.2107;-102.6346;Train;7;1.0
-Phileas Fogg;Sedgwick;40.9359;-102.5264;Train;8;1.0
-Phileas Fogg;Julesburg;40.9875;-102.2644;Train;9;1.0
-Phileas Fogg;Fort McPherson;40.7200;-100.6436;Train;10;1.0
-Phileas Fogg;North Platte;41.1239;-100.7654;Train;11;1.0
-Phileas Fogg;Omaha;41.2565;-95.9345;Train;12;1.0
-Phileas Fogg;Plum Creek;40.8089;-99.9812;Train;13;1.0
-Colonel Proctor;Plum Creek;40.8089;-99.9812;Train;14;0.8
-Aouda;Plum Creek;40.8089;-99.9812;Train;15;0.7
-Fix;Plum Creek;40.8089;-99.9812;Train;16;0.6
-Passepartout;Plum Creek;40.8089;-99.9812;Train;17;0.5
-Phileas Fogg;Fort Kearney;40.6994;-99.0817;Train;18;1.0
-Colonel Proctor;Fort Kearney;40.6994;-99.0817;Train;19;0.8
-Aouda;Fort Kearney;40.6994;-99.0817;Train;20;0.7
-Fix;Fort Kearney;40.6994;-99.0817;Train;21;0.6
-Passepartout;Fort Kearney;40.6994;-99.0817;Train;22;0.5
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg;San Francisco;37.7749;-122.4194;Train;1;1.0;us
+1;Phileas Fogg;Cheyne Pass;41.1465;-104.5202;Train;2;1.0;us
+2;Phileas Fogg;Evans Pass;39.5501;-105.7821;Train;3;1.0;us
+3;Phileas Fogg;Denver;39.7392;-104.9903;Train;4;1.0;us
+4;Phileas Fogg;Fort Saunders;42.8486;-106.3253;Train;5;1.0;us
+5;Phileas Fogg;Camp Walbach;41.1403;-104.8202;Train;6;1.0;us
+6;Phileas Fogg;Lodge Pole Creek;41.2107;-102.6346;Train;7;1.0;us
+7;Phileas Fogg;Sedgwick;40.9359;-102.5264;Train;8;1.0;us
+8;Phileas Fogg;Julesburg;40.9875;-102.2644;Train;9;1.0;us
+9;Phileas Fogg;Fort McPherson;40.72;-100.6436;Train;10;1.0;us
+10;Phileas Fogg;North Platte;41.1239;-100.7654;Train;11;1.0;us
+11;Phileas Fogg;Omaha;41.2565;-95.9345;Train;12;1.0;us
+12;Phileas Fogg;Plum Creek;40.8089;-99.9812;Train;13;1.0;us
+13;Colonel Proctor;Plum Creek;40.8089;-99.9812;Train;14;0.8;us
+14;Aouda;Plum Creek;40.8089;-99.9812;Train;15;0.7;us
+15;Fix;Plum Creek;40.8089;-99.9812;Train;16;0.6;us
+16;Passepartout;Plum Creek;40.8089;-99.9812;Train;17;0.5;us
+17;Phileas Fogg;Fort Kearney;40.6994;-99.0817;Train;18;1.0;us
+18;Colonel Proctor;Fort Kearney;40.6994;-99.0817;Train;19;0.8;us
+19;Aouda;Fort Kearney;40.6994;-99.0817;Train;20;0.7;us
+20;Fix;Fort Kearney;40.6994;-99.0817;Train;21;0.6;us
+21;Passepartout;Fort Kearney;40.6994;-99.0817;Train;22;0.5;us

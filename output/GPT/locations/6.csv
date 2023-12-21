@@ -1,10 +1,10 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;London;51.5074;0.1278;all;1;1.0
-Passepartout;London;51.5074;0.1278;all;2;0.8
-Phileas Fogg|Passepartout;Dover;51.1279;1.3134;all;3|4;1.0|0.8
-Phileas Fogg|Passepartout;Calais;50.9513;1.8587;all;5|6;1.0|0.8
-Phileas Fogg|Passepartout;Paris;48.8566;2.3522;all;7|8;1.0|0.8
-Fix;Suez;29.9668;32.5498;all;9;0.6
-British consul;Suez;29.9668;32.5498;all;10;0.4
-Phileas Fogg;Suez;29.9668;32.5498;all;11;1.0
-Passepartout;Suez;29.9668;32.5498;all;12;0.8
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg;London;51.5074;0.1278;all;1;1.0;gb
+1;Passepartout;London;51.5074;0.1278;all;2;0.8;gb
+2;Phileas Fogg|Passepartout;Dover;51.1279;1.3134;all;3|4;1.0|0.8;gb
+3;Phileas Fogg|Passepartout;Calais;50.9513;1.8587;all;5|6;1.0|0.8;fr
+4;Phileas Fogg|Passepartout;Paris;48.8566;2.3522;all;7|8;1.0|0.8;fr
+5;Fix;Suez;29.9668;32.5498;all;9;0.6;eg
+6;British consul;Suez;29.9668;32.5498;all;10;0.4;eg
+7;Phileas Fogg;Suez;29.9668;32.5498;all;11;1.0;eg
+8;Passepartout;Suez;29.9668;32.5498;all;12;0.8;eg

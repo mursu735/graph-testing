@@ -1,17 +1,17 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;Fort Kearney;40.6995;-99.0817;Fort Kearney;1;1.0
-Aouda;Fort Kearney;40.6995;-99.0817;Fort Kearney;2;0.8
-Fix;Fort Kearney;40.6995;-99.0817;Fort Kearney;3;0.7
-Mudge;Fort Kearney;40.6995;-99.0817;Fort Kearney;4;0.6
-Phileas Fogg;Omaha;41.2565;-95.9345;Omaha train station;5;1.0
-Aouda;Omaha;41.2565;-95.9345;Omaha train station;6;0.8
-Fix;Omaha;41.2565;-95.9345;Omaha train station;7;0.7
-Passepartout;Omaha;41.2565;-95.9345;Omaha train station;8;0.9
-Phileas Fogg;Chicago;41.8781;-87.6298;Chicago train station;9;1.0
-Aouda;Chicago;41.8781;-87.6298;Chicago train station;10;0.8
-Fix;Chicago;41.8781;-87.6298;Chicago train station;11;0.7
-Passepartout;Chicago;41.8781;-87.6298;Chicago train station;12;0.9
-Phileas Fogg;New York;40.7128;-74.0060;Cunard Line Pier;13;1.0
-Aouda;New York;40.7128;-74.0060;Cunard Line Pier;14;0.8
-Fix;New York;40.7128;-74.0060;Cunard Line Pier;15;0.7
-Passepartout;New York;40.7128;-74.0060;Cunard Line Pier;16;0.9
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg;Fort Kearney;40.6995;-99.0817;Fort Kearney;1;1.0;us
+1;Aouda;Fort Kearney;40.6995;-99.0817;Fort Kearney;2;0.8;us
+2;Fix;Fort Kearney;40.6995;-99.0817;Fort Kearney;3;0.7;us
+3;Mudge;Fort Kearney;40.6995;-99.0817;Fort Kearney;4;0.6;us
+4;Phileas Fogg;Omaha;41.2565;-95.9345;Omaha train station;5;1.0;us
+5;Aouda;Omaha;41.2565;-95.9345;Omaha train station;6;0.8;us
+6;Fix;Omaha;41.2565;-95.9345;Omaha train station;7;0.7;us
+7;Passepartout;Omaha;41.2565;-95.9345;Omaha train station;8;0.9;us
+8;Phileas Fogg;Chicago;41.8781;-87.6298;Chicago train station;9;1.0;us
+9;Aouda;Chicago;41.8781;-87.6298;Chicago train station;10;0.8;us
+10;Fix;Chicago;41.8781;-87.6298;Chicago train station;11;0.7;us
+11;Passepartout;Chicago;41.8781;-87.6298;Chicago train station;12;0.9;us
+12;Phileas Fogg;New York;40.7128;-74.006;Cunard Line Pier;13;1.0;us
+13;Aouda;New York;40.7128;-74.006;Cunard Line Pier;14;0.8;us
+14;Fix;New York;40.7128;-74.006;Cunard Line Pier;15;0.7;us
+15;Passepartout;New York;40.7128;-74.006;Cunard Line Pier;16;0.9;us

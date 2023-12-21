@@ -1,5 +1,5 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Detective Fix;Suez;29.9745;32.5263;Consul's office;1;0.8
-Phileas Fogg|Passepartout;Suez;29.9745;32.5263;Consul's office;2|3;1|0.6
-Phileas Fogg|Passepartout;Suez;29.9745;32.5263;Quay;4|5;1|0.6
-Phileas Fogg;Suez;29.9745;32.5263;Mongolia's cabin;6;1
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Detective Fix;Suez;29.9745;32.5263;Consul's office;1;0.8;eg
+1;Phileas Fogg|Passepartout;Suez;29.9745;32.5263;Consul's office;2|3;1|0.6;eg
+2;Phileas Fogg|Passepartout;Suez;29.9745;32.5263;Quay;4|5;1|0.6;eg
+3;Phileas Fogg;Suez;29.9745;32.5263;Mongolia's cabin;6;1;eg

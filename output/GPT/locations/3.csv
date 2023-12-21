@@ -1,3 +1,3 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;London;51.5074;0.1278;Saville Row;1;1.0
-Phileas Fogg|Andrew Stuart|John Sullivan|Samuel Fallentin|Thomas Flanagan|Gauthier Ralph;London;51.5074;0.1278;Reform Club;2|3|4|5|6|7;0.8|0.6|0.6|0.6|0.6|0.6
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg;London;51.5074;0.1278;Saville Row;1;1.0;gb
+1;Phileas Fogg|Andrew Stuart|John Sullivan|Samuel Fallentin|Thomas Flanagan|Gauthier Ralph;London;51.5074;0.1278;Reform Club;2|3|4|5|6|7;0.8|0.6|0.6|0.6|0.6|0.6;gb

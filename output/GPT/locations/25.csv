@@ -1,5 +1,5 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;International Hotel;1|2|3|4;1|0.8|0.7|0.6
-Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;Montgomery Street;1|2|3|4;1|0.8|0.7|0.6
-Phileas Fogg|Aouda|Fix;San Francisco;37.7749;-122.4194;Tailor's;1|2|3;1|0.8|0.6
-Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;Train Station;1|2|3|4;1|0.8|0.7|0.6
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;International Hotel;1|2|3|4;1|0.8|0.7|0.6;us
+1;Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;Montgomery Street;1|2|3|4;1|0.8|0.7|0.6;us
+2;Phileas Fogg|Aouda|Fix;San Francisco;37.7749;-122.4194;Tailor's;1|2|3;1|0.8|0.6;us
+3;Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;Train Station;1|2|3|4;1|0.8|0.7|0.6;us

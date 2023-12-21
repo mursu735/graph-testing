@@ -1,8 +1,8 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;Suez;29.9745;32.5263;Consul's office;1;1.0
-Passepartout|Fix;Suez;29.9745;32.5263;Quay;2|3;0.9|0.8
-Phileas Fogg|Passepartout;Suez;29.9745;32.5263;Ship "Mongolia";4|5;1.0|0.9
-Passepartout|Fix;Suez;29.9745;32.5263;Shop;6|7;0.9|0.8
-Fix;Suez;29.9745;32.5263;Consulate;8;0.8
-Fix;Suez;29.9745;32.5263;Telegraph office;9;0.8
-Fix;Suez;29.9745;32.5263;Ship "Mongolia";10;0.8
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg;Suez;29.9745;32.5263;Consul's office;1;1.0;eg
+1;Passepartout|Fix;Suez;29.9745;32.5263;Quay;2|3;0.9|0.8;eg
+2;Phileas Fogg|Passepartout;Suez;29.9745;32.5263;"Ship ""Mongolia""";4|5;1.0|0.9;eg
+3;Passepartout|Fix;Suez;29.9745;32.5263;Shop;6|7;0.9|0.8;eg
+4;Fix;Suez;29.9745;32.5263;Consulate;8;0.8;eg
+5;Fix;Suez;29.9745;32.5263;Telegraph office;9;0.8;eg
+6;Fix;Suez;29.9745;32.5263;"Ship ""Mongolia""";10;0.8;eg

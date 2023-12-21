@@ -1,5 +1,5 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg;London;51.5074;0.1278;Reform Club;1;1.0
-Passepartout;London;51.5074;0.1278;Reform Club;2;0.8
-Lord Albemarle;London;51.5074;0.1278;unknown;3;0.6
-Fix;Suez;29.9668;32.5498;unknown;4;0.7
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg;London;51.5074;0.1278;Reform Club;1;1.0;gb
+1;Passepartout;London;51.5074;0.1278;Reform Club;2;0.8;gb
+2;Lord Albemarle;London;51.5074;0.1278;unknown;3;0.6;gb
+3;Fix;Suez;29.9668;32.5498;unknown;4;0.7;eg

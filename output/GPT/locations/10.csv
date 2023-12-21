@@ -1,11 +1,11 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Mr. Fogg;Bombay;18.9750;72.8258;Passport office;1;1.0
-Mr. Fogg;Bombay;18.9750;72.8258;Railway station;2;1.0
-Fix;Bombay;18.9750;72.8258;Headquarters of the Bombay police;1;0.8
-Passepartout;Bombay;18.9750;72.8258;Streets of Bombay;1;0.7
-Passepartout;Bombay;18.9750;72.8258;Pagoda on Malabar Hill;2;0.7
-Passepartout;Bombay;18.9750;72.8258;Railway station;3;0.7
-Fix;Bombay;18.9750;72.8258;Railway station;2;0.8
-Mr. Fogg;Bombay;18.9750;72.8258;Train;3;1.0
-Passepartout;Bombay;18.9750;72.8258;Train;4;0.7
-Fix;Bombay;18.9750;72.8258;Train;3;0.8
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Mr. Fogg;Bombay;18.975;72.8258;Passport office;1;1.0;in
+1;Mr. Fogg;Bombay;18.975;72.8258;Railway station;2;1.0;in
+2;Fix;Bombay;18.975;72.8258;Headquarters of the Bombay police;1;0.8;in
+3;Passepartout;Bombay;18.975;72.8258;Streets of Bombay;1;0.7;in
+4;Passepartout;Bombay;18.975;72.8258;Pagoda on Malabar Hill;2;0.7;in
+5;Passepartout;Bombay;18.975;72.8258;Railway station;3;0.7;in
+6;Fix;Bombay;18.975;72.8258;Railway station;2;0.8;in
+7;Mr. Fogg;Bombay;18.975;72.8258;Train;3;1.0;in
+8;Passepartout;Bombay;18.975;72.8258;Train;4;0.7;in
+9;Fix;Bombay;18.975;72.8258;Train;3;0.8;in

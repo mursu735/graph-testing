@@ -1,19 +1,58 @@
+import os
 import gen_pygraphviz
 import networkx as nx
 import plotly.express as px
 import pandas as pd
 import matplotlib.pyplot as plt
 import random
+from geopy.geocoders import Nominatim
+import helpers
 
 
 
-path = "output/Manual/locations/14.csv"
+path = "output/GPT/locations/17.csv"
 
 fig = gen_pygraphviz.generate_graph(path)
 
 fig.show()
 
+'''
+for index, row in df.iterrows(): 
+    # Create list for the current row 
+    lat = row.Latitude
+    lon = row.Longitude
+    coord = str(lat) + "," + str(lon)
+    if coord not in visited_locations:
+        location = geolocator.reverse(coord)
+        print(location)
+        if location is not None:
+            row["Country"] = location.raw['address']['country_code']
+            visited_locations[coord] = location.raw['address']['country_code']
+        else:
+            row["Country"] = "sea"
+            visited_locations[coord] = "sea"
+    else:
+        row["Country"] = visited_locations[coord]
+    # Display
+    print(location)
+   ''' 
 
+'''
+locations = []
+#for lat, lon in locations:
+for i in range(175, 180):
+    lat, lon = locations[i]
+    location = geolocator.reverse(str(lat)+","+str(lon))
+ 
+    # Display
+    print(location)
+    #print(location.raw['address']['country_code'])
+    if location is not None:
+        print(location.raw['address']['country_code'])
+    else:
+        print("sea")
+
+'''
 '''
 G = nx.MultiDiGraph()
 
@@ -63,7 +102,7 @@ for idx, row in df.iterrows():
 
 #G.add_edge("b", "c")  # adds edge 'b'-'c' (and also nodes 'b', 'c')
 
-#G.layout()´
+#G.layout()
 
 #print(people_ending_in_location)
 

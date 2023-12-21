@@ -1,7 +1,7 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Passepartout;Train;40.7608;-111.8910;Train No. 48;1;1.0
-Elder William Hitch;Train;40.7608;-111.8910;Train No. 48;2;0.8
-Mr. Fogg;Ogden;41.2230;-111.9738;Ogden Train Station;3;0.6
-Fix;Ogden;41.2230;-111.9738;Ogden Train Station;4;0.4
-Passepartout|Mr. Fogg|Fix;Salt Lake City;40.7608;-111.8910;Salt Lake City;5|6|7;1.0|0.6|0.4
-Mormon Man;Train;40.7608;-111.8910;Train;8;0.2
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Passepartout;Train;40.7608;-111.891;Train No. 48;1;1.0;us
+1;Elder William Hitch;Train;40.7608;-111.891;Train No. 48;2;0.8;us
+2;Mr. Fogg;Ogden;41.223;-111.9738;Ogden Train Station;3;0.6;us
+3;Fix;Ogden;41.223;-111.9738;Ogden Train Station;4;0.4;us
+4;Passepartout|Mr. Fogg|Fix;Salt Lake City;40.7608;-111.891;Salt Lake City;5|6|7;1.0|0.6|0.4;us
+5;Mormon Man;Train;40.7608;-111.891;Train;8;0.2;us

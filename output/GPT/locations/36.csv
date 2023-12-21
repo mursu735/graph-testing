@@ -1,6 +1,6 @@
-Person;City;Latitude;Longitude;Location;Order;Importance
-Phileas Fogg|Aouda|Passepartout;London;51.5074;0.1278;Saville Row;1|2|3;1.0|0.8|0.8
-Phileas Fogg;Saville Row, London;51.5074;0.1278;House;1;1
-James Strand;Edinburgh;55.9533;-3.1883;;2;0.7
-Phileas Fogg;Reform Club, Pall Mall, London;51.5073;0.1337;Threshold;3;1
-John Sullivan|Samuel Fallentin|Andrew Stuart|Gauthier Ralph|Thomas Flanagan;Reform Club, Pall Mall, London;51.5073;0.1337;Great Saloon;4|5|6|7|8;0.8|0.8|0.8|0.8|0.8
+;Person;City;Latitude;Longitude;Location;Order;Importance;Country
+0;Phileas Fogg|Aouda|Passepartout;London;51.5074;0.1278;Saville Row;1|2|3;1.0|0.8|0.8;gb
+1;Phileas Fogg;Saville Row, London;51.5074;0.1278;House;1;1;gb
+2;James Strand;Edinburgh;55.9533;-3.1883;;2;0.7;gb
+3;Phileas Fogg;Reform Club, Pall Mall, London;51.5073;0.1337;Threshold;3;1;gb
+4;John Sullivan|Samuel Fallentin|Andrew Stuart|Gauthier Ralph|Thomas Flanagan;Reform Club, Pall Mall, London;51.5073;0.1337;Great Saloon;4|5|6|7|8;0.8|0.8|0.8|0.8|0.8;gb
