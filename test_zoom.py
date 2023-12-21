@@ -78,8 +78,12 @@ def display_relayout_data(relayoutData):
         print(x_delta, "level:", lod_level)
         relayoutData["x_delta"] = x_delta
         relayoutData["level_of_detail"] = lod_level
-        return figs[lod_level], json.dumps(relayoutData, indent=2)
-    if "xaxis.autorange" in relayoutData:
+        figure = figs[lod_level]
+        figure['layout']['xaxis'] = {'range': (x_min, x_max)}
+        if "yaxis.range[0]" in relayoutData:
+            figure['layout']['yaxis'] = {'range': (relayoutData["yaxis.range[0]"], relayoutData["yaxis.range[1]"])}
+        return figure, json.dumps(relayoutData, indent=2)
+    if relayoutData and "xaxis.autorange" in relayoutData:
         return figs[-1], json.dumps(relayoutData, indent=2)
     return dash.no_update, json.dumps(relayoutData, indent=2)
 
