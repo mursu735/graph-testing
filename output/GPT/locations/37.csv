@@ -2,5 +2,5 @@
 0;Phileas Fogg;London;51.5074;0.1278;Saville Row;1;1.0;gb
 1;Passepartout;London;51.5074;0.1278;Saville Row;2;0.8;gb
 2;James Strand;Edinburgh;55.9533;-3.1883;;3;0.2;gb
-3;Reverend Samuel Wilson;London;51.5074;0.1278;His house;4;0.6;gb
+3;Reverend Samuel Wilson|Passepartout;London;51.5074;0.1278;His house;4;0.6|0.8;gb
 4;Aouda;London;51.5074;0.1278;Phileas Fogg's house;5;0.9;gb

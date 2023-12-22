@@ -2,6 +2,7 @@ import pygraphviz as pgv
 from collections import Counter
 import random
 import time
+import helpers
 import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
@@ -12,9 +13,7 @@ import pandas as pd
 from z3 import *
 
 
-aliases = {"Mr. Phileas Fogg": "Phileas Fogg", "Mr. Fogg": "Phileas Fogg", "Jean Passepartout": "Passepartout", "Detective Fix": "Fix", "John Busby": "John Bunsby", "Colonel Proctor": "Colonel Stamp Proctor"}
-
-use_new_sorting = False
+use_new_sorting = True
 
 def create_path_ranks(characters, pos, graph):
     keys = list(set(pos.keys()) - set(characters))
@@ -68,7 +67,7 @@ def create_path_ranks(characters, pos, graph):
     
     # Determine which locations should be padded for each character
     for person in characters:
-        missing = set(pos_x_rank.values()).difference(set(x_ranks[person]))
+        missing = sorted(set(pos_x_rank.values()).difference(set(x_ranks[person])))
         print(f"Missing for {person}: {missing}")
         first = min(x_ranks[person])
         last = max(x_ranks[person])
@@ -80,14 +79,15 @@ def create_path_ranks(characters, pos, graph):
                 y_pad = -1
             # Otherwise get the previous value
             else:
+               # print(value)
                 y_pad = y_ranks[person][value - 2]
             #print("Adding value", value)
             x_ranks[person].insert(value - 1, value)
             y_ranks[person].insert(value - 1, y_pad)
     #for person in x_ranks:
-    #    print(person, len(x_ranks[person]))
-    print(x_ranks)
-    print(y_ranks)
+    #   print(person, len(x_ranks[person]))
+    #print("!!!X:", x_ranks)
+    #print(y_ranks)
     return x_ranks, y_ranks
 
 def get_positions(characters, pos, graph):
@@ -120,10 +120,10 @@ def get_positions(characters, pos, graph):
     edges = []
     for i in range(len(Assignment)):
         first = Assignment[i]
-        #print("First:", first)
+        #print("First:", first, len(y_ranks[conversion_map[first]]))
         for j in range(i+1, len(Assignment)):
             second = Assignment[j]
-            #print("Second:", second)
+            #print("Second:", second, len(y_ranks[conversion_map[second]]))
             for path in range(len(y_ranks[conversion_map[first]])):
                 first_path = y_ranks[conversion_map[first]][path]
                 second_path = y_ranks[conversion_map[second]][path]
@@ -186,12 +186,12 @@ def generate_graph(path):
     with open("colors.txt") as file:
         named_colors = file.read()
         named_colors = named_colors.replace("\n", " ").split(", ")
-     '''   
+    '''
     named_colors = px.colors.DEFAULT_PLOTLY_COLORS
     used_colors = []
-
+    aliases = helpers.get_aliases()
     for idx, row in df.iterrows():
-        target = row["City"] + ", " + str(row["Location"])
+        target = row["City"] + ", " + str(row["Location"]) + "_" + str(row["Chapter"])
         if target not in locations:
             G.add_node(target, shape="rect")
             locations.append(target)
@@ -226,7 +226,9 @@ def generate_graph(path):
                 G.add_edge(people_and_locations[person][-1], target, person=person, color=people_list[person])
                 people_starting_in_location[people_and_locations[person][-1]].append(person)
             people_and_locations[person].append(target)
-
+    
+    #with open("x_people.txt", "w") as file:
+    #    file.write(str(people_and_locations))
     #G.add_node("a")  # adds node 'a'
 
     #G.add_edge("b", "c")  # adds edge 'b'-'c' (and also nodes 'b', 'c')
@@ -239,18 +241,19 @@ def generate_graph(path):
     pos = nx.drawing.nx_agraph.pygraphviz_layout(
         G,
         prog='dot',
-        args='-Grankdir=LR' + ' ' + '-Gnewrank=true'
+        args='-Grankdir=LR' + ' ' + '-Gordering=in'
     )
 
     #nx.draw_networkx(G, pos=pos, with_labels = True)
     
     #nx.drawing.nx_agraph.write_dot(G, "network.dot")
     #plt.show()
+    print("Calculating character positions with z3")
     if (len(people_list) > 1):
         result = get_positions(list(people_list.keys()), pos, G)
 
         update_character_locations(pos, result)
-
+    
     # Define the location shapes manually to make sure that the edges start and end nicely, (could maybe be done with backoff, investigate? (might make the different locations a pain...))
     location_shapes = {}
     size_x = 50

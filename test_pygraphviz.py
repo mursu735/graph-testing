@@ -9,12 +9,27 @@ from geopy.geocoders import Nominatim
 import helpers
 
 
-
+'''
 path = "output/GPT/locations/17.csv"
 
 fig = gen_pygraphviz.generate_graph(path)
 
 fig.show()
+'''
+prefix = "output/GPT/locations"
+files = helpers.natural_sort(os.listdir(prefix))
+
+countries = []
+
+for file in files:
+    df = pd.read_csv(f"{prefix}/{file}", sep=";")
+    print(file, df.Country.unique())
+    for code in df.Country.unique():
+        if code not in countries:
+            countries.append(code)
+
+print(countries)
+
 
 '''
 for index, row in df.iterrows(): 
