@@ -14,6 +14,7 @@ import numpy as np
 import plotly.graph_objects as go
 import plotly.express as px
 import networkx as nx
+import matplotlib.pyplot as plt
 from gen_pygraphviz import generate_graph
 
 use_new_sorting = False
@@ -84,7 +85,7 @@ def generate_positions(path):
     pos = nx.drawing.nx_agraph.pygraphviz_layout(
         G,
         prog='dot',
-        args='-Grankdir=LR' + ' ' + '-Gordering=in'
+        args='-Grankdir=LR' + ' ' + '-Gordering=in' + " " #+ "-Gnodesep=250"
     )
     positions = {}
     for place in pos:
@@ -137,7 +138,12 @@ def generate_country(path):
     for idx, row in df.iterrows():
         target = row["Country"] + "_" + str(row["Chapter"])
         if target not in locations:
-            G.add_node(target, shape="rect")
+            G.add_node(target)
+            #n = G.get_node(target)
+            #n.attr["shape"] = "box"
+            #n.attr["height"] = ""
+            #n.attr["width"] = 250.0
+            nx.set_node_attributes(G, {target: {"shape": "box", "width": 250.0}})
             locations.append(target)
             people_ending_in_location[target] = [] 
             people_starting_in_location[target] = [] 
@@ -166,20 +172,28 @@ def generate_country(path):
                 people_starting_in_location[person] = [] 
                 people_starting_in_location[person].append(person)
                 G.add_edge(person, target, person=person, color=people_list[person])
-            # Add edge from last location to current location
+                people_and_locations[person].append(target)
+            # Add edge from last location to current location, but only if it does not exist in the list
             else:
-                if person not in people_starting_in_location[people_and_locations[person][-1]]:
-                    G.add_edge(people_and_locations[person][-1], target, person=person, color=people_list[person])
-                    people_starting_in_location[people_and_locations[person][-1]].append(person)
-            people_and_locations[person].append(target)
+                if target not in people_and_locations[person]:
+                    if person not in people_starting_in_location[people_and_locations[person][-1]]:
+                        G.add_edge(people_and_locations[person][-1], target, person=person, color=people_list[person])
+                        people_starting_in_location[people_and_locations[person][-1]].append(person)
+                        people_and_locations[person].append(target)
+            
 
 
-    print(people_ending_in_location)
+    print(people_and_locations)
 
     #pos = nx.spring_layout(G)
     pos = generate_positions(path)
-    print(pos)
-    #nx.draw_networkx(G, pos=pos, with_labels = True)
+    #print(pos)
+
+    #pos_tuple = {}
+    #for loc in pos:
+    #    pos_tuple[loc] = (pos[loc]["x"], pos[loc]["y"])
+
+    #nx.draw_networkx(G, pos=pos_tuple, with_labels = True)
     
     #nx.drawing.nx_agraph.write_dot(G, "network.dot")
     #plt.show()
@@ -191,14 +205,14 @@ def generate_country(path):
     '''
     # Define the location shapes manually to make sure that the edges start and end nicely, (could maybe be done with backoff, investigate? (might make the different locations a pain...))
     location_shapes = {}
-    size_x = 50
-    size_y = 50
+    size_x = 750
+    size_y = 75
 
     for loc in locations:
         if "backup" not in loc:
-            location_shapes[loc] = {'x0': pos[loc]["x"] - (size_x/2), 'x1': pos[loc]["y"] + (size_x/2), 'y0': pos[loc]["x"] - (size_y/2), 'y1': pos[loc]["y"] + (size_y/2), 'image': loc.split("_")[0]}
+            location_shapes[loc] = {'x0': pos[loc]["x"], 'x1': pos[loc]["x"] + (size_x), 'y0': pos[loc]["y"], 'y1': pos[loc]["y"] + (size_y), 'image': loc.split("_")[0]}
 
-    print(location_shapes)
+    #print(location_shapes)
 
     #G.draw("graph.png")
     #print(f"Layout data: {pos}")
@@ -220,7 +234,7 @@ def generate_country(path):
         return (pos[e]["x"], pos[e]["y"])
 
     # Ranks for each character, this determines the y-coordinate of the node
-    print(people_list)
+    #print(people_list)
     ranks = sorted(people_list, key=sort_func, reverse=True)
     #print(f"Sorted list: {ranks}")
 
@@ -237,7 +251,7 @@ def generate_country(path):
     markers = {}
     edges_seen = {}
     #print(G.nodes.data())
-    #print(f"!!!edges:\n {G.edges()}")
+    print(f"!!!edges:\n {G.edges()}")
     for edge in G.edges():
         if edge not in edges_seen:
             edges_seen[edge] = 0
@@ -266,10 +280,12 @@ def generate_country(path):
             edge_y[person] = []
             markers[person] = []
         # Edge starts from a person so no need to do the complex calculations
+        #print(edge[0])
         if edge[0] in people_list:
-            x0, y0 = pos[edge[0]]
+            #print(pos[edge[0]])
+            x0, y0 = pos[edge[0]]["x"], pos[edge[0]]["y"]
         else:
-            print(location_shapes[edge[0]])
+            #print(location_shapes[edge[0]])
             x0, start_y = location_shapes[edge[0]]['x1'], location_shapes[edge[0]]['y1']
             number_of_edges_start = start_counts[edge[0]] + 1
             start_increment = size_y / number_of_edges_start
@@ -283,8 +299,8 @@ def generate_country(path):
         end_location = end_edge_order.index(person) + 1
         y1 = end_y - (end_location * end_increment)
         #x1, y1 = pos[edge[1]]
-        print(edge)
-        print(x1, x0)
+        #print(f"Person: {person}, edge {edge}: {x0, x1}, {y0, y1}")
+        #print(x1, x0)
         dx = x1 - x0
         dy = y1 - y0
         #x1, y1 = (x1 - 0.02*dx, y1)
@@ -311,12 +327,16 @@ def generate_country(path):
 
     traces = []
 
+    print(edge_x)
+
     for person in edge_x:
         traces.append(go.Scatter( 
         x=edge_x[person], y=edge_y[person],
         line=dict(width=1, color=people_list[person]),
         line_shape='spline',
-        hoverinfo='none',
+        hoverinfo='text',
+        hovertemplate="%{x}, %{y}",
+        text=person,
         mode='lines+markers',
         marker=dict(
             symbol="arrow",
@@ -331,7 +351,7 @@ def generate_country(path):
     for node in people_list:
         #print(node)
         data = {}
-        x, y = pos[node]
+        x, y = pos[node]["x"], pos[node]["y"]
         data["label"] = node
         data["x"] = x
         data["y"] = y
@@ -358,25 +378,36 @@ def generate_country(path):
                     titlefont_size=16,
                     showlegend=False,
                     hovermode='closest',
-                    xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-                    yaxis=dict(showgrid=False, zeroline=False, showticklabels=False)
+                    #xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+                    #yaxis=dict(showgrid=False, zeroline=False, showticklabels=False)
                     )
                     )
 
     for loc in location_shapes:
         img_path = location_shapes[loc]["image"]
         image = Image.open(f"pictures/Flags/{img_path}.png")
+        #print(loc, "x:", location_shapes[loc]['x0'], location_shapes[loc]['x1'], ", y:", location_shapes[loc]['y0'], location_shapes[loc]['y1'])
         fig.add_layout_image(
-            x=location_shapes[loc]['x0'],
-            y=location_shapes[loc]['y0'],
+            x=location_shapes[loc]['x0'] + (size_x/2),
+            y=location_shapes[loc]['y0'] + (size_y/2),
             source=image,
             xref="x",
             yref="y",
-            sizex=100,
-            sizey=100,
+            sizex=size_x,
+            sizey=size_y,
             xanchor="center",
             yanchor="middle",
         )
+        fig.add_trace(
+            go.Scatter(
+                x=[location_shapes[loc]['x0'],location_shapes[loc]['x0'],location_shapes[loc]['x1'],location_shapes[loc]['x1'],location_shapes[loc]['x0']], #x1-x1-x2-x2-x1
+                y=[location_shapes[loc]['y0'],location_shapes[loc]['y1'],location_shapes[loc]['y1'],location_shapes[loc]['y0'],location_shapes[loc]['y0']], #y1-y2-y2-y1-y1
+                fill="toself",
+                mode='lines',
+                name='',
+                text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
+                opacity=1
+            ))
     return fig
 
 
