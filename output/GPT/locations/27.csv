@@ -4,4 +4,4 @@
 2;Mr. Fogg;Ogden;41.223;-111.9738;Ogden Train Station;3;0.6;us
 3;Fix;Ogden;41.223;-111.9738;Ogden Train Station;4;0.4;us
 4;Passepartout|Mr. Fogg|Fix;Salt Lake City;40.7608;-111.891;Salt Lake City;5|6|7;1.0|0.6|0.4;us
-5;Mormon Man;Train;40.7608;-111.891;Train;8;0.2;us
+5;Mormon Man|Passepartout|Mr. Fogg|Fix;Train;40.7608;-111.891;Train;8;0.2|1.0|0.6|0.4;us
