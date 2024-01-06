@@ -129,6 +129,7 @@ def generate_country(path):
     country_last_chapter = {}
     people_last_chapter = {}
     number_of_locations = {}
+    location_importance = {}
     number_of_character_mentions = {}
     locations = []
     people_ending_in_location = {}
@@ -144,6 +145,7 @@ def generate_country(path):
     for idx, row in df.iterrows():
         target = row["Country"]# + "_" + str(row["Chapter"])
         if target not in country_last_chapter:
+            location_importance[target] = 1
             country_last_chapter[target] = row["Chapter"]
             number_of_locations[target] = 1
             G.add_node(target)
@@ -168,8 +170,12 @@ def generate_country(path):
                 locations.append(target)
                 people_ending_in_location[target] = [] 
                 people_starting_in_location[target] = []
+                location_importance[target] = 1
             else:
+                if row["Chapter"] - country_last_chapter[target] == 1:
+                    location_importance[target] += 1
                 country_last_chapter[target] = row["Chapter"]
+            
                  
         people = row["Person"].split("|")
         for person in people:
@@ -220,7 +226,10 @@ def generate_country(path):
             
 
 
-    print("People and locations:", people_and_locations)
+    #print("People and locations:", people_and_locations)
+    # TODO: Change flags to GPT generated images in some layout, try with just UK for now, then add the other images
+    print("Location importance:", location_importance)
+
 
     #pos = nx.spring_layout(G)
     pos = nx.drawing.nx_agraph.pygraphviz_layout(
@@ -246,16 +255,39 @@ def generate_country(path):
     '''
     # Define the location shapes manually to make sure that the edges start and end nicely, (could maybe be done with backoff, investigate? (might make the different locations a pain...))
     location_shapes = {}
-    size_x = 750
-    size_y = 75
-    for loc in pos:
-        pos[loc] = {"x": pos[loc][0] / 10, "y": pos[loc][1]}
     
-    print(pos)
+    size_x = 500
+    
+    scale_x = 10
+    scale_y = 1
+    max_x = 0
+    max_y = 0
+    for loc in pos:
+        pos[loc] = {"x": pos[loc][0] / 5, "y": pos[loc][1]}
+        if pos[loc]["x"] > max_x:
+            max_x = pos[loc]["x"]
+        if pos[loc]["y"] > max_y:
+            max_y = pos[loc]["y"]
+    print("Maximum:", max_x, max_y)
+    aspect_ratio = max_y / max_x
+    print("Aspect ratio:", aspect_ratio)
+
+    img_size_x = 1300
+    img_size_y = img_size_x * aspect_ratio * 2
+    size_y = size_x * aspect_ratio
+
+    #print(pos)
 
     for loc in locations:
         if "backup" not in loc:
-            location_shapes[loc] = {'x0': pos[loc]["x"], 'x1': pos[loc]["x"] + (size_x), 'y0': pos[loc]["y"], 'y1': pos[loc]["y"] + (size_y), 'image': loc.split("_")[0]}
+            location_shapes[loc] = {'x0': pos[loc]["x"], 'x1': pos[loc]["x"] + (size_x + (scale_x * location_importance[loc])), 'y0': pos[loc]["y"], 'y1': pos[loc]["y"] + (size_y + (scale_y * location_importance[loc])), 'image': loc.split("_")[0]}
+            if loc == "gb":
+                location_shapes[loc]["test"] = True
+                img_rows = math.ceil(location_importance[loc] / 2)
+                location_shapes[loc]["rows"] = img_rows
+                location_shapes[loc]["x1"] = pos[loc]["x"] + (img_size_x * min(2, img_rows))
+                location_shapes[loc]["y1"] = pos[loc]["y"] + (img_size_y * img_rows)
+            #location_shapes[loc] = {'x0': pos[loc]["x"], 'x1': pos[loc]["x"] + (size_x), 'y0': pos[loc]["y"], 'y1': pos[loc]["y"] + (size_y ), 'image': loc.split("_")[0]}
 
     #print(location_shapes)
 
@@ -296,7 +328,7 @@ def generate_country(path):
     markers = {}
     edges_seen = {}
     #print(G.nodes.data())
-    print(f"!!!edges:\n {G.edges()}")
+    #print(f"!!!edges:\n {G.edges()}")
     for edge in G.edges():
         if edge not in edges_seen:
             edges_seen[edge] = 0
@@ -333,14 +365,21 @@ def generate_country(path):
             #print(location_shapes[edge[0]])
             x0, start_y = location_shapes[edge[0]]['x1'], location_shapes[edge[0]]['y1']
             number_of_edges_start = start_counts[edge[0]] + 1
-            start_increment = size_y / number_of_edges_start
+            start_gap = size_y
+            if "test" in location_shapes[edge[0]]:
+                start_gap = location_shapes[edge[0]]["rows"] * img_size_y
+            start_increment = start_gap / number_of_edges_start
             start_location = start_edge_order.index(person) + 1
             y0 = start_y - (start_location * start_increment)
         # Get the rank of person, determine where the edge should end along the shape y axis
         x1, end_y = location_shapes[edge[1]]['x0'], location_shapes[edge[1]]['y1']
         # Determine into how many pieces the edge should be divided 
         number_of_edges_end = end_counts[edge[1]] + 1
-        end_increment = size_y / number_of_edges_end
+        end_gap = size_y
+        if "test" in location_shapes[edge[1]]:
+                end_gap = location_shapes[edge[1]]["rows"] * img_size_y
+        end_increment = end_gap / number_of_edges_end
+        print(edge[1], end_increment, number_of_edges_end)
         end_location = end_edge_order.index(person) + 1
         y1 = end_y - (end_location * end_increment)
         #x1, y1 = pos[edge[1]]
@@ -372,7 +411,7 @@ def generate_country(path):
 
     traces = []
 
-    print(edge_x)
+    #print(edge_x)
 
     for person in edge_x:
         traces.append(go.Scatter( 
@@ -414,7 +453,7 @@ def generate_country(path):
         x=df["x"], y=df["y"],
         mode='markers+text',
         text=df["label"],
-        marker=dict(size=50,symbol=df["shape"],color=df["color"])))
+        marker=dict(size=30,symbol=df["shape"],color=df["color"])))
 
 
     fig = go.Figure(data=traces,
@@ -429,35 +468,86 @@ def generate_country(path):
                     )
 
     for loc in location_shapes:
-        img_path = location_shapes[loc]["image"]
-        image = Image.open(f"pictures/Flags/{img_path}.png")
-        #print(loc, "x:", location_shapes[loc]['x0'], location_shapes[loc]['x1'], ", y:", location_shapes[loc]['y0'], location_shapes[loc]['y1'])
-        fig.add_layout_image(
-            x=location_shapes[loc]['x0'] + (size_x/2),
-            y=location_shapes[loc]['y0'] + (size_y/2),
-            source=image,
-            xref="x",
-            yref="y",
-            sizex=size_x,
-            sizey=size_y,
-            xanchor="center",
-            yanchor="middle",
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=[location_shapes[loc]['x0'],location_shapes[loc]['x0'],location_shapes[loc]['x1'],location_shapes[loc]['x1'],location_shapes[loc]['x0']], #x1-x1-x2-x2-x1
-                y=[location_shapes[loc]['y0'],location_shapes[loc]['y1'],location_shapes[loc]['y1'],location_shapes[loc]['y0'],location_shapes[loc]['y0']], #y1-y2-y2-y1-y1
-                fill="toself",
-                mode='lines',
-                name='',
-                text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
-                opacity=1
-            ))
+        if "test" in location_shapes[loc]:
+            path = location_shapes[loc]['image']
+            images = os.listdir(f"pictures/Chapters/{path}")
+            # Two images per row, last one may have one or two images
+            number_of_rows = math.ceil(len(images) / 2)
+            print(images)
+            fig.add_trace(
+                go.Scatter(
+                    x=[location_shapes[loc]['x0'],location_shapes[loc]['x0'],location_shapes[loc]['x1'],location_shapes[loc]['x1'],location_shapes[loc]['x0']], #x1-x1-x2-x2-x1
+                    y=[location_shapes[loc]['y0'],location_shapes[loc]['y1'],location_shapes[loc]['y1'],location_shapes[loc]['y0'],location_shapes[loc]['y0']], #y1-y2-y2-y1-y1
+                    fill="toself",
+                    mode='lines',
+                    name='',
+                    text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
+                    opacity=1
+                ))
+            row = -1
+            for i in range(len(images)):
+                if i % 2 == 0:
+                    row += 1
+                image = Image.open(f"pictures/Chapters/{path}/{images[i]}")
+                x0 = location_shapes[loc]['x0'] + ((i % 2) * img_size_x)
+                x1 = x0 + img_size_x
+                y0 = location_shapes[loc]['y1'] - (row * img_size_y)
+                y1 = y0 - img_size_y
+                print(images[i], "x0", x0, "x1", x1, "y0", y0, "y1", y1, "row", row)
+                
+                fig.add_layout_image(
+                    x=x0,
+                    y=y0,
+                    source=image,
+                    xref="x",
+                    yref="y",
+                    sizex=img_size_x,
+                    sizey=img_size_y,
+                    xanchor="left",
+                    yanchor="top",
+                )
+                
+                fig.add_trace(
+                    go.Scatter(
+                        x=[x0,x0,x1,x1,x0], #x1-x1-x2-x2-x1
+                        y=[y0,y1,y1,y0,y0], #y1-y2-y2-y1-y1
+                        fill="toself",
+                        mode='lines',
+                        name='',
+                        text=f"{loc}, {images[i]}, x0: {x0}, x1: {x1}, y0: {y0}, y1: {y1}",
+                        opacity=1
+                    ))
+        else:
+            img_path = location_shapes[loc]["image"]
+            image = Image.open(f"pictures/Flags/{img_path}.png")
+            #print(loc, "x:", location_shapes[loc]['x0'], location_shapes[loc]['x1'], ", y:", location_shapes[loc]['y0'], location_shapes[loc]['y1'])
+            fig.add_layout_image(
+                x=location_shapes[loc]['x0'] + (size_x/2),
+                y=location_shapes[loc]['y0'] + (size_y/2),
+                source=image,
+                xref="x",
+                yref="y",
+                sizex=size_x,
+                sizey=size_y,
+                xanchor="center",
+                yanchor="middle",
+            )
+            fig.add_trace(
+                go.Scatter(
+                    x=[location_shapes[loc]['x0'],location_shapes[loc]['x0'],location_shapes[loc]['x1'],location_shapes[loc]['x1'],location_shapes[loc]['x0']], #x1-x1-x2-x2-x1
+                    y=[location_shapes[loc]['y0'],location_shapes[loc]['y1'],location_shapes[loc]['y1'],location_shapes[loc]['y0'],location_shapes[loc]['y0']], #y1-y2-y2-y1-y1
+                    fill="toself",
+                    mode='lines',
+                    name='',
+                    text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
+                    opacity=1
+                ))
     return fig
 
 
 #print(generate_positions("whole_book.csv"))
 fig = generate_country("whole_book.csv")
+
 fig.show()
 '''
 def nonlinspace(start, stop, num):
