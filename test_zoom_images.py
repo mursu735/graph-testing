@@ -153,7 +153,7 @@ def generate_country(path):
             #n.attr["shape"] = "box"
             #n.attr["height"] = ""
             #n.attr["width"] = 250.0
-            nx.set_node_attributes(G, {target: {"shape": "box", "width": 250.0}})
+            nx.set_node_attributes(G, {target: {"shape": "box"}})
             locations.append(target)
             people_ending_in_location[target] = [] 
             people_starting_in_location[target] = []
@@ -166,7 +166,7 @@ def generate_country(path):
                 target = row["Country"] + "_" + str(number_of_locations[target])
                 country_last_chapter[target] = row["Chapter"]
                 G.add_node(target)
-                nx.set_node_attributes(G, {target: {"shape": "box", "width": 250.0}})
+                nx.set_node_attributes(G, {target: {"shape": "box"}})
                 locations.append(target)
                 people_ending_in_location[target] = [] 
                 people_starting_in_location[target] = []
@@ -229,23 +229,73 @@ def generate_country(path):
     #print("People and locations:", people_and_locations)
     # TODO: Change flags to GPT generated images in some layout, try with just UK for now, then add the other images
     print("Location importance:", location_importance)
+    landscape_aspect_ratio = 7 / 4
+    portrait_aspect_ratio = 4 / 7
+    dpi = 96.0
+    img_size_x = 128
+    img_size_y = img_size_x
+    #size_y = size_x * aspect_ratio
+    padding = 5
+
+    for loc in locations:
+        if "backup" not in loc:            # Calculate the boundaries of the large box that surrounds the pictures
+        #if loc == "gb":
+            #location_shapes[loc]["test"] = True
+            # Each country should have a manually written file called layout that determines how the final panel will be shaped
+            with open(f"pictures/Chapters/{loc}/layout", encoding="utf-8") as file:
+                text = file.readlines()
+                number_of_rows = len(text)
+                #print("Number of rows:", number_of_rows)
+                longest_row = 0
+                total_height = 0
+                for line in text:
+                    line = line.replace("\n", "")
+                    #print(line)
+                    #img_rows = math.ceil(location_importance[loc] / 2)
+                    #location_shapes[loc]["rows"] = number_of_rows
+                    total_width = 0
+                    panels = line.split(",")
+                    max_height = 0
+                    for panel in panels:
+                        img_height = 0
+                        img_type = panel.split("/")[1]
+                        # Square
+                        if img_type == "s":
+                            total_width += img_size_x
+                            img_height = img_size_y
+                        # Landscape
+                        elif img_type == "l":
+                            total_width += img_size_x * landscape_aspect_ratio
+                            img_height = img_size_y
+                        # Portrait, has the same aspect ratio, but vertical
+                        else:
+                            total_width += img_size_x
+                            img_height = img_size_y * landscape_aspect_ratio
+                        if img_height > max_height:
+                            max_height = img_height
+                    if total_width > longest_row:
+                        longest_row = total_width
+                    total_height += max_height
+                    #print("Total height:", total_height)     
+                    nx.set_node_attributes(G, {loc: {"width": longest_row / dpi, "height": total_height / dpi}})
+        #location_shapes[loc] = {'x0': pos[loc]["x"], 'x1': pos[loc]["x"] + (size_x), 'y0': pos[loc]["y"], 'y1': pos[loc]["y"] + (size_y ), 'image': loc.split("_")[0]}
 
 
     #pos = nx.spring_layout(G)
     pos = nx.drawing.nx_agraph.pygraphviz_layout(
         G,
         prog='dot',
-        args='-Grankdir=LR' + ' ' + '-Gordering=in' + " " #+ "-Gnodesep=250"
+        args='-Grankdir=LR' + ' ' + '-Gordering=in' + " " + "-Gratio=1.78" + " " + "-Gnodesep=10.0"
     )
     #print(pos)
 
     #pos_tuple = {}
     #for loc in pos:
     #    pos_tuple[loc] = (pos[loc]["x"], pos[loc]["y"])
-
-    #nx.draw_networkx(G, pos=pos_tuple, with_labels = True)
+    print(pos)
+    nx.draw_networkx(G, pos=pos, with_labels = True)
     
-    #nx.drawing.nx_agraph.write_dot(G, "network.dot")
+    nx.drawing.nx_agraph.write_dot(G, "network.dot")
     #plt.show()
     '''
     if (len(people_list) > 1):
@@ -263,7 +313,7 @@ def generate_country(path):
     max_x = 0
     max_y = 0
     for loc in pos:
-        pos[loc] = {"x": pos[loc][0] / 5, "y": pos[loc][1]}
+        pos[loc] = {"x": pos[loc][0], "y": pos[loc][1]}
         if pos[loc]["x"] > max_x:
             max_x = pos[loc]["x"]
         if pos[loc]["y"] > max_y:
@@ -275,8 +325,8 @@ def generate_country(path):
 
     landscape_aspect_ratio = 7 / 4
     portrait_aspect_ratio = 4 / 7
-    img_size_x = 1024
-    img_size_y = img_size_x * aspect_ratio * 2
+    #img_size_x = 1024
+    img_size_y = img_size_x * aspect_ratio
     size_y = size_x * aspect_ratio
     padding = 5
 
@@ -284,48 +334,49 @@ def generate_country(path):
 
     for loc in locations:
         if "backup" not in loc:
-            location_shapes[loc] = {'x0': pos[loc]["x"] - padding, 'x1': pos[loc]["x"] + (size_x + (scale_x * location_importance[loc])), 'y0': pos[loc]["y"] - padding, 'y1': pos[loc]["y"] + (size_y + (scale_y * location_importance[loc])), 'image': loc.split("_")[0]}
+            #location_shapes[loc] = {'x0': pos[loc]["x"] - padding, 'x1': pos[loc]["x"] + (size_x + (scale_x * location_importance[loc])), 'y0': pos[loc]["y"] - padding, 'y1': pos[loc]["y"] + (size_y + (scale_y * location_importance[loc])), 'image': loc.split("_")[0]}
+            location_shapes[loc] = {'x0': pos[loc]["x"] - padding, 'y0': pos[loc]["y"] - padding, 'image': loc.split("_")[0]}
             # Calculate the boundaries of the large box that surrounds the pictures
-            if loc == "gb":
-                location_shapes[loc]["test"] = True
-                # Each country should have a manually written file called layout that determines how the final panel will be shaped
-                with open(f"pictures/Chapters/{loc}/layout", encoding="utf-8") as file:
-                    text = file.readlines()
-                    number_of_rows = len(text)
-                    #print("Number of rows:", number_of_rows)
-                    longest_row = 0
-                    total_height = 0
-                    for line in text:
-                        line = line.replace("\n", "")
-                        #print(line)
-                        #img_rows = math.ceil(location_importance[loc] / 2)
-                        location_shapes[loc]["rows"] = number_of_rows
-                        total_width = 0
-                        panels = line.split(",")
-                        max_height = 0
-                        for panel in panels:
-                            img_height = 0
-                            img_type = panel.split("/")[1]
-                            # Square
-                            if img_type == "s":
-                                total_width += img_size_x
-                                img_height = img_size_y
-                            # Landscape
-                            elif img_type == "l":
-                                total_width += img_size_x * landscape_aspect_ratio
-                                img_height = img_size_y
-                            # Portrait, has the same aspect ratio, but vertical
-                            else:
-                                total_width += img_size_x
-                                img_height = img_size_y * landscape_aspect_ratio
-                            if img_height > max_height:
-                                max_height = img_height
-                        if total_width > longest_row:
-                            longest_row = total_width
-                        total_height += max_height
-                        #print("Total height:", total_height)     
-                    location_shapes[loc]["x1"] = pos[loc]["x"] + (longest_row) + padding
-                    location_shapes[loc]["y1"] = pos[loc]["y"] + (total_height) + padding
+            #if loc == "gb":
+                #location_shapes[loc]["test"] = True
+            # Each country should have a manually written file called layout that determines how the final panel will be shaped
+            with open(f"pictures/Chapters/{loc}/layout", encoding="utf-8") as file:
+                text = file.readlines()
+                number_of_rows = len(text)
+                #print("Number of rows:", number_of_rows)
+                longest_row = 0
+                total_height = 0
+                for line in text:
+                    line = line.replace("\n", "")
+                    #print(line)
+                    #img_rows = math.ceil(location_importance[loc] / 2)
+                    location_shapes[loc]["rows"] = number_of_rows
+                    total_width = 0
+                    panels = line.split(",")
+                    max_height = 0
+                    for panel in panels:
+                        img_height = 0
+                        img_type = panel.split("/")[1]
+                        # Square
+                        if img_type == "s":
+                            total_width += img_size_x
+                            img_height = img_size_y
+                        # Landscape
+                        elif img_type == "l":
+                            total_width += img_size_x * landscape_aspect_ratio
+                            img_height = img_size_y
+                        # Portrait, has the same aspect ratio, but vertical
+                        else:
+                            total_width += img_size_x
+                            img_height = img_size_y * landscape_aspect_ratio
+                        if img_height > max_height:
+                            max_height = img_height
+                    if total_width > longest_row:
+                        longest_row = total_width
+                    total_height += max_height
+                    #print("Total height:", total_height)     
+                location_shapes[loc]["x1"] = pos[loc]["x"] + (longest_row) + padding
+                location_shapes[loc]["y1"] = pos[loc]["y"] + (total_height) + padding
             #location_shapes[loc] = {'x0': pos[loc]["x"], 'x1': pos[loc]["x"] + (size_x), 'y0': pos[loc]["y"], 'y1': pos[loc]["y"] + (size_y ), 'image': loc.split("_")[0]}
 
     #print(location_shapes)
@@ -405,8 +456,8 @@ def generate_country(path):
             x0, start_y = location_shapes[edge[0]]['x1'], location_shapes[edge[0]]['y1']
             number_of_edges_start = start_counts[edge[0]] + 1
             start_gap = size_y
-            if "test" in location_shapes[edge[0]]:
-                start_gap = location_shapes[edge[0]]["rows"] * img_size_y
+            #if "test" in location_shapes[edge[0]]:
+            start_gap = location_shapes[edge[0]]["rows"] * img_size_y
             start_increment = start_gap / number_of_edges_start
             start_location = start_edge_order.index(person) + 1
             y0 = start_y - (start_location * start_increment)
@@ -415,8 +466,8 @@ def generate_country(path):
         # Determine into how many pieces the edge should be divided 
         number_of_edges_end = end_counts[edge[1]] + 1
         end_gap = size_y
-        if "test" in location_shapes[edge[1]]:
-                end_gap = location_shapes[edge[1]]["rows"] * img_size_y
+        #if "test" in location_shapes[edge[1]]:
+        end_gap = location_shapes[edge[1]]["rows"] * img_size_y
         end_increment = end_gap / number_of_edges_end
         #print(edge[1], end_increment, number_of_edges_end)
         end_location = end_edge_order.index(person) + 1
@@ -507,85 +558,104 @@ def generate_country(path):
                     )
 
     for loc in location_shapes:
-        if "test" in location_shapes[loc]:
-            path = location_shapes[loc]['image']
-            images = [s for s in os.listdir(f"pictures/Chapters/{path}/") if s.endswith('.png')]
-            layout = ""
-            with open(f"pictures/Chapters/{loc}/layout", encoding="utf-8") as file:
-                layout = file.readlines()
-            number_of_rows = len(layout)
-            print(images)
-            fig.add_trace(
-                go.Scatter(
-                    x=[location_shapes[loc]['x0'],location_shapes[loc]['x0'],location_shapes[loc]['x1'],location_shapes[loc]['x1'],location_shapes[loc]['x0']], #x1-x1-x2-x2-x1
-                    y=[location_shapes[loc]['y0'],location_shapes[loc]['y1'],location_shapes[loc]['y1'],location_shapes[loc]['y0'],location_shapes[loc]['y0']], #y1-y2-y2-y1-y1
-                    fill="toself",
-                    mode='lines',
-                    name='',
-                    text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
-                    opacity=1
-                ))
-            row = -1
-            previous_y = location_shapes[loc]['y1'] - (padding)
-            print(layout)
-            # Go through layout file, generate the required images
-            for line in layout:
-                line = line.replace("\n", "")
-                largest_y_in_row = 0
-                pictures = line.split(",")
-                previous_x = location_shapes[loc]['x0'] + (padding)
-                for i in range(len(pictures)):
-                    current = pictures[i]
-                    filename, shape = current.split("/")
-                    if f"{filename}.png" in images:
-                        image = Image.open(f"pictures/Chapters/{path}/{filename}.png")
-                        current_img_size_x = 0
-                        current_img_size_y = 0
-                        print("start:", filename, "x:", current_img_size_x, "y:", current_img_size_y)
-                        if shape == "s":
-                            current_img_size_x = img_size_x
-                            current_img_size_y = img_size_y
-                        elif shape == "l":
-                            current_img_size_x = img_size_x * landscape_aspect_ratio
-                            current_img_size_y = img_size_y
-                        else:
-                            current_img_size_x = img_size_x
-                            current_img_size_y = img_size_y * landscape_aspect_ratio
-                        x0 = previous_x
-                        print("after:", filename, "x:", current_img_size_x, "y:", current_img_size_y)
-                        x1 = x0 + current_img_size_x
-                        previous_x = x1
-                        y0 = previous_y
-                        y1 = y0 - current_img_size_y
-                        if current_img_size_y > largest_y_in_row:
-                            largest_y_in_row = current_img_size_y
-                        print(filename, "x0", x0, "x1", x1, "y0", y0, "y1", y1)
-                        print("Image y:", current_img_size_y)
-                        fig.add_layout_image(
-                            x=x0,
-                            y=y0,
-                            source=image,
-                            xref="x",
-                            yref="y",
-                            sizex=current_img_size_x,
-                            sizey=current_img_size_y,
-                            xanchor="left",
-                            yanchor="top",
-                        )
-                        
-                        fig.add_trace(
-                            go.Scatter(
-                                x=[x0,x0,x1,x1,x0], #x1-x1-x2-x2-x1
-                                y=[y0,y1,y1,y0,y0], #y1-y2-y2-y1-y1
-                                fill="toself",
-                                mode='lines',
-                                name='',
-                                text=f"{loc}, {images[i]}, x0: {x0}, x1: {x1}, y0: {y0}, y1: {y1}",
-                                opacity=1
-                            ))
+        #if "test" in location_shapes[loc]:
+        #path = location_shapes[loc]['image']
+        path = loc
+        images = [s for s in os.listdir(f"pictures/Chapters/{path}/") if s.endswith('.png')]
+        layout = ""
+        with open(f"pictures/Chapters/{loc}/layout", encoding="utf-8") as file:
+            layout = file.readlines()
+        number_of_rows = len(layout)
+        #print(images)
+        country = loc.split("_")[0]
+        x_delta = location_shapes[loc]['x1'] - location_shapes[loc]['x0']
+        middle = (location_shapes[loc]['x1'] + location_shapes[loc]['x0']) / 2
+        country_image_size_x = x_delta / 3
+        country_image_size_y = country_image_size_x * aspect_ratio
+        country_image = Image.open(f"pictures/Chapters/{path}/{country}.png")
+        fig.add_layout_image(
+                        x=middle,
+                        y=location_shapes[loc]['y1'],
+                        source=country_image,
+                        xref="x",
+                        yref="y",
+                        sizex=country_image_size_x,
+                        sizey=country_image_size_y,
+                        xanchor="center",
+                        yanchor="bottom",
+                    )
+        fig.add_trace(
+            go.Scatter(
+                x=[location_shapes[loc]['x0'],location_shapes[loc]['x0'],location_shapes[loc]['x1'],location_shapes[loc]['x1'],location_shapes[loc]['x0']], #x1-x1-x2-x2-x1
+                y=[location_shapes[loc]['y0'],location_shapes[loc]['y1'],location_shapes[loc]['y1'],location_shapes[loc]['y0'],location_shapes[loc]['y0']], #y1-y2-y2-y1-y1
+                fill="toself",
+                mode='lines',
+                name='',
+                text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
+                opacity=1
+            ))
+        row = -1
+        previous_y = location_shapes[loc]['y1'] - (padding)
+        #print(layout)
+        # Go through layout file, add the required images
+        for line in layout:
+            line = line.replace("\n", "")
+            largest_y_in_row = 0
+            pictures = line.split(",")
+            previous_x = location_shapes[loc]['x0'] + (padding)
+            for i in range(len(pictures)):
+                current = pictures[i]
+                filename, shape = current.split("/")
+                if f"{filename}.png" in images:
+                    image = Image.open(f"pictures/Chapters/{path}/{filename}.png")
+                    current_img_size_x = 0
+                    current_img_size_y = 0
+                    #print("start:", filename, "x:", current_img_size_x, "y:", current_img_size_y)
+                    if shape == "s":
+                        current_img_size_x = img_size_x
+                        current_img_size_y = img_size_y
+                    elif shape == "l":
+                        current_img_size_x = img_size_x * landscape_aspect_ratio
+                        current_img_size_y = img_size_y
                     else:
-                        print(f"WARN: Image name {filename} not found, ignoring it")
-                previous_y -= largest_y_in_row
+                        current_img_size_x = img_size_x
+                        current_img_size_y = img_size_y * landscape_aspect_ratio
+                    x0 = previous_x
+                    #print("after:", filename, "x:", current_img_size_x, "y:", current_img_size_y)
+                    x1 = x0 + current_img_size_x
+                    previous_x = x1
+                    y0 = previous_y
+                    y1 = y0 - current_img_size_y
+                    if current_img_size_y > largest_y_in_row:
+                        largest_y_in_row = current_img_size_y
+                    #print(filename, "x0", x0, "x1", x1, "y0", y0, "y1", y1)
+                    #print("Image y:", current_img_size_y)
+                    fig.add_layout_image(
+                        x=x0,
+                        y=y0,
+                        source=image,
+                        xref="x",
+                        yref="y",
+                        sizex=current_img_size_x,
+                        sizey=current_img_size_y,
+                        xanchor="left",
+                        yanchor="top",
+                    )
+                    
+                    fig.add_trace(
+                        go.Scatter(
+                            x=[x0,x0,x1,x1,x0], #x1-x1-x2-x2-x1
+                            y=[y0,y1,y1,y0,y0], #y1-y2-y2-y1-y1
+                            fill="toself",
+                            mode='lines',
+                            name='',
+                            text=f"{loc}, {images[i]}, x0: {x0}, x1: {x1}, y0: {y0}, y1: {y1}",
+                            opacity=1
+                        ))
+                else:
+                    print(f"WARN: Image name {filename} not found, ignoring it")
+            previous_y -= largest_y_in_row
+        '''  
         else:
             img_path = location_shapes[loc]["image"]
             image = Image.open(f"pictures/Flags/{img_path}.png")
@@ -611,7 +681,9 @@ def generate_country(path):
                     text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
                     opacity=1
                 ))
+        '''
     return fig
+
 
 
 #print(generate_positions("whole_book.csv"))
