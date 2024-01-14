@@ -15,9 +15,9 @@ import plotly.graph_objects as go
 import plotly.express as px
 import networkx as nx
 import matplotlib.pyplot as plt
-from gen_pygraphviz import generate_graph
+from gen_pygraphviz import get_positions, update_character_locations
 
-use_new_sorting = False
+use_new_sorting = True
 
 def generate_positions(path):
     G = nx.MultiDiGraph()
@@ -289,13 +289,17 @@ def generate_country(path):
     )
     #print(pos)
 
+    result = get_positions(list(people_list.keys()), pos, G)
+
+    update_character_locations(pos, result)
+    print("Updated character positions")
     #pos_tuple = {}
     #for loc in pos:
     #    pos_tuple[loc] = (pos[loc]["x"], pos[loc]["y"])
     print(pos)
-    nx.draw_networkx(G, pos=pos, with_labels = True)
+    #nx.draw_networkx(G, pos=pos, with_labels = True)
     
-    nx.drawing.nx_agraph.write_dot(G, "network.dot")
+    #nx.drawing.nx_agraph.write_dot(G, "network.dot")
     #plt.show()
     '''
     if (len(people_list) > 1):
@@ -393,12 +397,10 @@ def generate_country(path):
 
     # Calculate where the edge of each character should be relative to each other
     def sort_func(e):
-        '''
         if use_new_sorting:
             return result[e].as_long()
         else:
-        '''
-        return (pos[e]["x"], pos[e]["y"])
+            return (pos[e]["x"], pos[e]["y"])
 
     # Ranks for each character, this determines the y-coordinate of the node
     #print(people_list)
@@ -628,7 +630,7 @@ def generate_country(path):
                     y1 = y0 - current_img_size_y
                     if current_img_size_y > largest_y_in_row:
                         largest_y_in_row = current_img_size_y
-                    #print(filename, "x0", x0, "x1", x1, "y0", y0, "y1", y1)
+                    print(filename, "x0", x0, "x1", x1, "y0", y0, "y1", y1)
                     #print("Image y:", current_img_size_y)
                     fig.add_layout_image(
                         x=x0,
@@ -641,7 +643,14 @@ def generate_country(path):
                         xanchor="left",
                         yanchor="top",
                     )
-                    
+                    chapter = filename.split("_")[0]
+                    summary = ""
+                    with open(f"output/GPT/summary/{chapter}.txt", encoding="utf-8") as file:
+                        summary = file.read()
+                        summary = summary.replace(". ", ".<br>")
+                    country = loc
+                    if country in helpers.country_code_to_name:
+                        country = helpers.country_code_to_name[country]
                     fig.add_trace(
                         go.Scatter(
                             x=[x0,x0,x1,x1,x0], #x1-x1-x2-x2-x1
@@ -649,7 +658,8 @@ def generate_country(path):
                             fill="toself",
                             mode='lines',
                             name='',
-                            text=f"{loc}, {images[i]}, x0: {x0}, x1: {x1}, y0: {y0}, y1: {y1}",
+                            text=f"{country}, Chapter {chapter}: {summary}",
+                            #text=f"{loc}, Chapter {chapter}, x0: {x0}, x1: {x1}, y0: {y0}, y1: {y1}",
                             opacity=1
                         ))
                 else:

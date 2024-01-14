@@ -31,3 +31,5 @@ def natural_sort(l):
 
 def get_aliases():
     return {"Mr. Phileas Fogg": "Phileas Fogg", "Mr. Fogg": "Phileas Fogg", "Jean Passepartout": "Passepartout", "Detective Fix": "Fix", "John Busby": "John Bunsby", "Colonel Proctor": "Colonel Stamp Proctor"}
+
+country_code_to_name = {"gb": "Great Britain", "fr": "France", "eg": "Egypt", "ye": "Yemen", "in": "India", "sg": "Singapore", "my": "Malaysia", "hk": "Hong Kong", "cn": "China", "jp": "Japan", "us": "USA", "ie": "Ireland"}
