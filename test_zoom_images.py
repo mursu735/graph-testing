@@ -282,10 +282,14 @@ def generate_country(path):
 
 
     #pos = nx.spring_layout(G)
+    # 16:9 ratio
+    ratio = 1.78
+    # What the window most likely will look like
+    #ratio = 8.5
     pos = nx.drawing.nx_agraph.pygraphviz_layout(
         G,
         prog='dot',
-        args='-Grankdir=LR' + ' ' + '-Gordering=in' + " " + "-Gratio=1.78" + " " + "-Gnodesep=10.0"
+        args='-Grankdir=LR' + ' ' + '-Gordering=in' + " " + f"-Gratio={ratio}" + " " + "-Gnodesep=10.0"
     )
     #print(pos)
 
@@ -558,21 +562,23 @@ def generate_country(path):
                     #yaxis=dict(showgrid=False, zeroline=False, showticklabels=False)
                     )
                     )
-
+    # Flags and the big boxes should be the same in both levels of detail
     for loc in location_shapes:
-        #if "test" in location_shapes[loc]:
-        #path = location_shapes[loc]['image']
-        path = loc
-        images = [s for s in os.listdir(f"pictures/Chapters/{path}/") if s.endswith('.png')]
-        layout = ""
-        with open(f"pictures/Chapters/{loc}/layout", encoding="utf-8") as file:
-            layout = file.readlines()
-        number_of_rows = len(layout)
-        #print(images)
+        fig.add_trace(
+            go.Scatter(
+                x=[location_shapes[loc]['x0'],location_shapes[loc]['x0'],location_shapes[loc]['x1'],location_shapes[loc]['x1'],location_shapes[loc]['x0']], #x1-x1-x2-x2-x1
+                y=[location_shapes[loc]['y0'],location_shapes[loc]['y1'],location_shapes[loc]['y1'],location_shapes[loc]['y0'],location_shapes[loc]['y0']], #y1-y2-y2-y1-y1
+                fill="toself",
+                mode='lines',
+                name='',
+                text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
+                opacity=1
+            ))
         country = loc.split("_")[0]
         x_delta = location_shapes[loc]['x1'] - location_shapes[loc]['x0']
         middle = (location_shapes[loc]['x1'] + location_shapes[loc]['x0']) / 2
         country_image_size_x = x_delta / 3
+        path = loc
         country_image_size_y = country_image_size_x * aspect_ratio
         country_image = Image.open(f"pictures/Chapters/{path}/{country}.png")
         fig.add_layout_image(
@@ -586,16 +592,24 @@ def generate_country(path):
                         xanchor="center",
                         yanchor="bottom",
                     )
-        fig.add_trace(
-            go.Scatter(
-                x=[location_shapes[loc]['x0'],location_shapes[loc]['x0'],location_shapes[loc]['x1'],location_shapes[loc]['x1'],location_shapes[loc]['x0']], #x1-x1-x2-x2-x1
-                y=[location_shapes[loc]['y0'],location_shapes[loc]['y1'],location_shapes[loc]['y1'],location_shapes[loc]['y0'],location_shapes[loc]['y0']], #y1-y2-y2-y1-y1
-                fill="toself",
-                mode='lines',
-                name='',
-                text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
-                opacity=1
-            ))
+    return fig, location_shapes, aspect_ratio, max_x
+
+def add_images(fig, location_shapes, aspect_ratio):
+    img_size_x = 128
+    img_size_y = img_size_x * aspect_ratio
+    landscape_aspect_ratio = 7 / 4
+    padding = 5
+    
+    for loc in location_shapes:
+        #if "test" in location_shapes[loc]:
+        #path = location_shapes[loc]['image']
+        path = loc
+        images = [s for s in os.listdir(f"pictures/Chapters/{path}/") if s.endswith('.png')]
+        layout = ""
+        with open(f"pictures/Chapters/{loc}/layout", encoding="utf-8") as file:
+            layout = file.readlines()
+        number_of_rows = len(layout)
+        #print(images)
         row = -1
         previous_y = location_shapes[loc]['y1'] - (padding)
         #print(layout)
@@ -695,89 +709,162 @@ def generate_country(path):
     return fig
 
 
+def add_overall_images(fig, location_shapes, aspect_ratio):
+    #img_size_x = 128
+    #img_size_y = img_size_x * aspect_ratio
+    #landscape_aspect_ratio = 7 / 4
+    #padding = 5
+    
+    for loc in location_shapes:
+        #if "test" in location_shapes[loc]:
+        #path = location_shapes[loc]['image']
+        path = loc
+        images = [s for s in os.listdir(f"pictures/Chapters/{path}/") if s.endswith('.png')]
+        layout = ""
+        with open(f"pictures/Chapters/{loc}/layout_overview", encoding="utf-8") as file:
+            layout = file.readline()
+        print(images)
+        fig.add_trace(
+            go.Scatter(
+                x=[location_shapes[loc]['x0'],location_shapes[loc]['x0'],location_shapes[loc]['x1'],location_shapes[loc]['x1'],location_shapes[loc]['x0']], #x1-x1-x2-x2-x1
+                y=[location_shapes[loc]['y0'],location_shapes[loc]['y1'],location_shapes[loc]['y1'],location_shapes[loc]['y0'],location_shapes[loc]['y0']], #y1-y2-y2-y1-y1
+                fill="toself",
+                mode='lines',
+                name='',
+                text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
+                opacity=1
+            ))
+        row = -1
+        #previous_y = location_shapes[loc]['y1'] - (padding)
+        #print(layout)
+        # Go through layout file, add the required images
+        filename = layout
+        if f"{filename}.png" in images:
+            image = Image.open(f"pictures/Chapters/{path}/{filename}.png")
+            x0, x1 = location_shapes[loc]['x0'], location_shapes[loc]['x1']
+            center = (x1 + x0) / 2
+            y0, y1 = location_shapes[loc]['y0'], location_shapes[loc]['y1']
+            middle = (y0 + y1) / 2
+            img_size_x = x1 - x0
+            img_size_y = y1 - y0
+            fig.add_layout_image(
+                x=center,
+                y=middle,
+                source=image,
+                xref="x",
+                yref="y",
+                sizex=img_size_x,
+                sizey=img_size_y,
+                xanchor="center",
+                yanchor="middle",
+            )
+
+        else:
+            print(f"WARN: Image name {filename} not found, ignoring it")
+        
+    return fig
+
+
 
 #print(generate_positions("whole_book.csv"))
-fig = generate_country("whole_book.csv")
-
-fig.show()
-'''
-def nonlinspace(start, stop, num):
-    linear = np.linspace(0, 1, num)
-    my_curvature = 1
-    curve = 1 - np.exp(-my_curvature*linear)
-    curve = curve/np.max(curve)   #  normalize between 0 and 1
-    curve  = curve*(stop - start-1) + start
-    return curve
-
-app = Dash(__name__)
-
-styles = {
-    'pre': {
-        'border': 'thin lightgrey solid',
-        'overflowX': 'scroll'
-    }
-}
-
-x = []
-y = []
-
-for i in range(0, 100, 5):
-    x.append(i)
-    y.append(math.sin(i))
-
-x_range = max(x)
-lod_cutoff = x_range / 5
-print(lod_cutoff)
-
 figs = []
+base_fig, location_shapes, aspect_ratio, max_x = generate_country("whole_book.csv")
+print("Base figure generated, adding images")
+detailed_fig = add_images(go.Figure(base_fig), location_shapes, aspect_ratio)
+figs.append(detailed_fig)
+overall_fig = add_overall_images(go.Figure(base_fig), location_shapes, aspect_ratio)
+figs.append(overall_fig)
+#fig.show()
 
-arr = nonlinspace(0.1, 5, 5)
-print(arr)
+run_server = False
 
-for level in range(1, 6):
+if not run_server:
+    #detailed_fig.show()
+    overall_fig.show()
+else:
+    app = Dash(__name__)
+
+    styles = {
+        'pre': {
+            'border': 'thin lightgrey solid',
+            'overflowX': 'scroll'
+        }
+    }
+
+    x_range = max_x
+    lod_cutoff = x_range / 2
+    print(lod_cutoff)
+
+    '''
+    def nonlinspace(start, stop, num):
+        linear = np.linspace(0, 1, num)
+        my_curvature = 1
+        curve = 1 - np.exp(-my_curvature*linear)
+        curve = curve/np.max(curve)   #  normalize between 0 and 1
+        curve  = curve*(stop - start-1) + start
+        return curve
+
+
+
     x = []
     y = []
-    step = arr[level - 1]
-    for i in np.arange(0, 100, step):
+
+    for i in range(0, 100, 5):
         x.append(i)
         y.append(math.sin(i))
-    fig = go.Figure(
-        data=[go.Scatter(x=x, y=y)],
-        layout=go.Layout(
-            title=go.layout.Title(text="A Figure Specified By A Graph Object")
+
+    #x_range = max(x)
+    lod_cutoff = x_range
+    print(lod_cutoff)
+    figs = []
+
+    arr = nonlinspace(0.1, 5, 5)
+    print(arr)
+
+    for level in range(1, 6):
+        x = []
+        y = []
+        step = arr[level - 1]
+        for i in np.arange(0, 100, step):
+            x.append(i)
+            y.append(math.sin(i))
+        fig = go.Figure(
+            data=[go.Scatter(x=x, y=y)],
+            layout=go.Layout(
+                title=go.layout.Title(text="A Figure Specified By A Graph Object")
+            )
         )
-    )
-    figs.append(fig)
+        figs.append(fig)
+    '''
 
-@callback(Output('map', 'figure'),
-        Output('click-data', 'children'),
-        Input('map', 'relayoutData'))
-def display_relayout_data(relayoutData):
-    print(relayoutData)
-    if relayoutData and "xaxis.range[0]" in relayoutData:
-        x_min = relayoutData["xaxis.range[0]"]
-        x_max = relayoutData["xaxis.range[1]"]
-        x_delta = x_max - x_min
-        print("Delta:", x_delta, "Division:", lod_cutoff)
-        lod_level = math.floor(x_delta / lod_cutoff)
-        print(x_delta, "level:", lod_level)
-        relayoutData["x_delta"] = x_delta
-        relayoutData["level_of_detail"] = lod_level
-        figure = figs[lod_level]
-        figure['layout']['xaxis'] = {'range': (x_min, x_max)}
-        if "yaxis.range[0]" in relayoutData:
-            figure['layout']['yaxis'] = {'range': (relayoutData["yaxis.range[0]"], relayoutData["yaxis.range[1]"])}
-        return figure, json.dumps(relayoutData, indent=2)
-    if relayoutData and "xaxis.autorange" in relayoutData:
-        return figs[-1], json.dumps(relayoutData, indent=2)
-    return dash.no_update, json.dumps(relayoutData, indent=2)
+    @callback(Output('map', 'figure'),
+            Output('click-data', 'children'),
+            Input('map', 'relayoutData'))
+    def display_relayout_data(relayoutData):
+        print(relayoutData)
+        if relayoutData and "xaxis.range[0]" in relayoutData:
+            x_min = relayoutData["xaxis.range[0]"]
+            x_max = relayoutData["xaxis.range[1]"]
+            x_delta = x_max - x_min
+            print("Delta:", x_delta, "Division:", lod_cutoff)
+            lod_level = math.floor(x_delta / lod_cutoff)
+            print(x_delta, "level:", lod_level)
+            relayoutData["x_delta"] = x_delta
+            relayoutData["level_of_detail"] = lod_level
+            figure = figs[lod_level]
+            figure['layout']['xaxis'] = {'range': (x_min, x_max)}
+            if "yaxis.range[0]" in relayoutData:
+                figure['layout']['yaxis'] = {'range': (relayoutData["yaxis.range[0]"], relayoutData["yaxis.range[1]"])}
+            return figure, json.dumps(relayoutData, indent=2)
+        if relayoutData and "xaxis.autorange" in relayoutData:
+            return figs[-1], json.dumps(relayoutData, indent=2)
+        return dash.no_update, json.dumps(relayoutData, indent=2)
 
 
-app.layout = html.Div([
-    dcc.Graph(id="map", figure=figs[-1]),
-    html.Pre(id='click-data', style=styles['pre'])
-])
+    app.layout = html.Div([
+        dcc.Graph(id="map", figure=figs[-1]),
+        html.Pre(id='click-data', style=styles['pre'])
+    ])
 
-if __name__ == '__main__':
-    app.run(debug=True)
-'''
+    if __name__ == '__main__':
+        app.run(debug=True)
