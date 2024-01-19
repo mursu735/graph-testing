@@ -598,7 +598,7 @@ def generate_country(path):
         country_image_size_x = x_delta / 3
         path = loc
         country_image_size_y = country_image_size_x * aspect_ratio
-        country_image = Image.open(f"pictures/Chapters/{path}/{country}.png")
+        country_image = Image.open(f"pictures/Chapters/{path}/{country}.webp")
         fig.add_layout_image(
                         x=middle,
                         y=location_shapes[loc]['y1'],
@@ -622,7 +622,7 @@ def add_images(fig, location_shapes, aspect_ratio):
         #if "test" in location_shapes[loc]:
         #path = location_shapes[loc]['image']
         path = loc
-        images = [s for s in os.listdir(f"pictures/Chapters/{path}/") if s.endswith('.png')]
+        images = [s for s in os.listdir(f"pictures/Chapters/{path}/") if s.endswith('.webp')]
         layout = ""
         with open(f"pictures/Chapters/{loc}/layout", encoding="utf-8") as file:
             layout = file.readlines()
@@ -640,8 +640,8 @@ def add_images(fig, location_shapes, aspect_ratio):
             for i in range(len(pictures)):
                 current = pictures[i]
                 filename, shape = current.split("/")
-                if f"{filename}.png" in images:
-                    image = Image.open(f"pictures/Chapters/{path}/{filename}.png")
+                if f"{filename}.webp" in images:
+                    image = Image.open(f"pictures/Chapters/{path}/{filename}.webp")
                     current_img_size_x = 0
                     current_img_size_y = 0
                     #print("start:", filename, "x:", current_img_size_x, "y:", current_img_size_y)
@@ -737,7 +737,7 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
         #if "test" in location_shapes[loc]:
         #path = location_shapes[loc]['image']
         path = loc
-        images = [s for s in os.listdir(f"pictures/Chapters/{path}/") if s.endswith('.png')]
+        images = [s for s in os.listdir(f"pictures/Chapters/{path}/") if s.endswith('.webp')]
         layout = ""
         with open(f"pictures/Chapters/{loc}/layout_overview", encoding="utf-8") as file:
             layout = file.readline()
@@ -757,8 +757,8 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
         #print(layout)
         # Go through layout file, add the required images
         filename = layout
-        if f"{filename}.png" in images:
-            image = Image.open(f"pictures/Chapters/{path}/{filename}.png")
+        if f"{filename}.webp" in images:
+            image = Image.open(f"pictures/Chapters/{path}/{filename}.webp")
             x0, x1 = location_shapes[loc]['x0'], location_shapes[loc]['x1']
             center = (x1 + x0) / 2
             y0, y1 = location_shapes[loc]['y0'], location_shapes[loc]['y1']
@@ -797,14 +797,14 @@ overall_fig = add_overall_images(go.Figure(base_fig), location_shapes, aspect_ra
 figs.append(overall_fig)
 #fig.show()
 
-run_server = True
+run_server = False
 
 if not run_server:
     base_fig.show()
     detailed_fig.show()
-    #detailed_fig.write_html("detailed_images.html")
+    detailed_fig.write_html("detailed_images.html")
     overall_fig.show()
-    #overall_fig.write_html("overall_images.html")
+    overall_fig.write_html("overall_images.html")
 else:
     app = Dash(__name__)
 
