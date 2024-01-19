@@ -33,3 +33,9 @@ def get_aliases():
     return {"Mr. Phileas Fogg": "Phileas Fogg", "Mr. Fogg": "Phileas Fogg", "Jean Passepartout": "Passepartout", "Detective Fix": "Fix", "John Busby": "John Bunsby", "Colonel Proctor": "Colonel Stamp Proctor"}
 
 country_code_to_name = {"gb": "Great Britain", "fr": "France", "eg": "Egypt", "ye": "Yemen", "in": "India", "sg": "Singapore", "my": "Malaysia", "hk": "Hong Kong", "cn": "China", "jp": "Japan", "us": "USA", "ie": "Ireland"}
+
+def get_clusters():
+    return {"Sir Francis Cromarty": 1, "James Forster": 2, "Phileas Fogg": 3, "Passepartout": 3, "Andrew Stuart": 3, "Andrew Stuart_2": 3, "British consul": 4, 
+            "Reverend Samuel Wilson": 5, "John Bunsby": 5, "Aouda": 6, "Parsee": 6, "Samuel Fallentin": 7, "Samuel Fallentin_2": 7, "John Sullivan": 7, "John Sullivan_2": 7, "Gauthier Ralph": 7, "Gauthier Ralph_2": 7, 
+            "Thomas Flanagan": 7, "Thomas Flanagan_2": 7, "Lord Albemarle": 7, "Fix": 7, "Elder William Hitch": 8, "Honourable William Batulcar": 8, "Mormon Man": 8,  "Colonel Stamp Proctor": 8,
+            "Andrew Speedy": 9, "Mudge": 9, "James Strand": 10}

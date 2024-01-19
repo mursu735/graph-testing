@@ -19,6 +19,8 @@ from gen_pygraphviz import get_positions, update_character_locations
 
 use_new_sorting = True
 
+img_size_x = 256
+
 def generate_positions(path):
     G = nx.MultiDiGraph()
 
@@ -232,15 +234,14 @@ def generate_country(path):
     landscape_aspect_ratio = 7 / 4
     portrait_aspect_ratio = 4 / 7
     dpi = 96.0
-    img_size_x = 128
+    #wimg_size_x = 256
     img_size_y = img_size_x
     #size_y = size_x * aspect_ratio
     padding = 5
 
+    # Calculate the boundaries of the large box that surrounds the pictures
     for loc in locations:
-        if "backup" not in loc:            # Calculate the boundaries of the large box that surrounds the pictures
-        #if loc == "gb":
-            #location_shapes[loc]["test"] = True
+        if "backup" not in loc:
             # Each country should have a manually written file called layout that determines how the final panel will be shaped
             with open(f"pictures/Chapters/{loc}/layout", encoding="utf-8") as file:
                 text = file.readlines()
@@ -282,14 +283,14 @@ def generate_country(path):
 
 
     #pos = nx.spring_layout(G)
-    # 16:9 ratio
-    ratio = 1.78
+    # 16:9 ratio. graphviz ratio is height / width unlike traditional aspect ratio
+    ratio = 1.0/1.78
     # What the window most likely will look like
     #ratio = 8.5
     pos = nx.drawing.nx_agraph.pygraphviz_layout(
         G,
         prog='dot',
-        args='-Grankdir=LR' + ' ' + '-Gordering=in' + " " + f"-Gratio={ratio}" + " " + "-Gnodesep=10.0"
+        args='-Grankdir=LR' + ' ' + '-Gordering=in' + " " + f"-Gratio={ratio}" + " " + "-Gnodesep=5.0"
     )
     #print(pos)
 
@@ -326,16 +327,17 @@ def generate_country(path):
             max_x = pos[loc]["x"]
         if pos[loc]["y"] > max_y:
             max_y = pos[loc]["y"]
-    print("Maximum:", max_x, max_y)
-    aspect_ratio = max_y / max_x
+    print(f"Maximum: x: {max_x}, y: {max_y}")
+    aspect_ratio = max_x / max_y
     print("Aspect ratio:", aspect_ratio)
 
 
     landscape_aspect_ratio = 7 / 4
     portrait_aspect_ratio = 4 / 7
     #img_size_x = 1024
-    img_size_y = img_size_x * aspect_ratio
-    size_y = size_x * aspect_ratio
+    img_size_y = img_size_x# / aspect_ratio
+    #size_y = img_size_x# * aspect_ratio
+    print(f"Image size: x: {img_size_x}, y: {img_size_y}")
     padding = 5
 
     #print(pos)
@@ -421,8 +423,11 @@ def generate_country(path):
 
     edge_x = {}
     edge_y = {}
+    label_data = {}
     markers = {}
     edges_seen = {}
+
+    character_clusters = helpers.get_clusters()
     #print(G.nodes.data())
     #print(f"!!!edges:\n {G.edges()}")
     for edge in G.edges():
@@ -433,6 +438,7 @@ def generate_country(path):
         edge_data = G.get_edge_data(edge[0], edge[1])
         people_in_edge_start = people_starting_in_location[edge[0]]
         people_in_edge_end = people_ending_in_location[edge[1]]
+        
         # NOTE: With reverse=True: old sorting based on location
         # Without reverse=True: new sorting based only on z3 optimizer
         if use_new_sorting:
@@ -441,8 +447,14 @@ def generate_country(path):
         else:
             end_edge_order = sorted(people_in_edge_end, key=sort_func, reverse=True)
             start_edge_order = sorted(people_in_edge_start, key=sort_func, reverse=True)
-        #print(f"Start edge: {edge[0]}, people in it: {start_edge_order}")
-        #print(f"End edge: {edge[1]}, people in it: {end_edge_order}")
+        # Cluster ranking is based on the character with the highest ranking in the cluster
+        clusters_in_edge_start = []
+        [clusters_in_edge_start.append(character_clusters[x]) for x in start_edge_order if character_clusters[x] not in clusters_in_edge_start]
+        clusters_in_edge_end = []
+        [clusters_in_edge_end.append(character_clusters[x]) for x in end_edge_order if character_clusters[x] not in clusters_in_edge_end]
+        
+        #print(f"Start edge: {edge[0]}, people in it: {start_edge_order}, clusters in it: {clusters_in_edge_start}")
+        #print(f"End edge: {edge[1]}, people in it: {end_edge_order}, clusters in it: {clusters_in_edge_end}")
         #print(edge_order)
         #print(len(edge_data))
         #print(f"Edge {edge}, {edge_data}")
@@ -452,6 +464,7 @@ def generate_country(path):
             edge_x[person] = []
             edge_y[person] = []
             markers[person] = []
+            label_data[person] = []
         # Edge starts from a person so no need to do the complex calculations
         #print(edge[0])
         if edge[0] in people_list:
@@ -461,22 +474,27 @@ def generate_country(path):
             #print(location_shapes[edge[0]])
             x0, start_y = location_shapes[edge[0]]['x1'], location_shapes[edge[0]]['y1']
             number_of_edges_start = start_counts[edge[0]] + 1
-            start_gap = size_y
+            #start_gap = size_y
             #if "test" in location_shapes[edge[0]]:
-            start_gap = location_shapes[edge[0]]["rows"] * img_size_y
+            #start_gap = location_shapes[edge[0]]["rows"] * img_size_y
+            start_gap = location_shapes[edge[0]]["y1"] - location_shapes[edge[0]]["y0"]
             start_increment = start_gap / number_of_edges_start
             start_location = start_edge_order.index(person) + 1
             y0 = start_y - (start_location * start_increment)
         # Get the rank of person, determine where the edge should end along the shape y axis
         x1, end_y = location_shapes[edge[1]]['x0'], location_shapes[edge[1]]['y1']
         # Determine into how many pieces the edge should be divided 
-        number_of_edges_end = end_counts[edge[1]] + 1
-        end_gap = size_y
+        #number_of_edges_end = end_counts[edge[1]] + 1
+        number_of_edges_end = len(clusters_in_edge_end) + 1
+        #print("Number of edges ending", number_of_edges_end)
+        #end_gap = size_y
         #if "test" in location_shapes[edge[1]]:
-        end_gap = location_shapes[edge[1]]["rows"] * img_size_y
+        end_gap = location_shapes[edge[1]]["y1"] - location_shapes[edge[1]]["y0"]
+        #end_gap = location_shapes[edge[1]]["rows"] * img_size_y
         end_increment = end_gap / number_of_edges_end
         #print(edge[1], end_increment, number_of_edges_end)
-        end_location = end_edge_order.index(person) + 1
+        #end_location = end_edge_order.index(person) + 1
+        end_location = clusters_in_edge_end.index(character_clusters[person]) + 1
         y1 = end_y - (end_location * end_increment)
         #x1, y1 = pos[edge[1]]
         #print(f"Person: {person}, edge {edge}: {x0, x1}, {y0, y1}")
@@ -484,30 +502,29 @@ def generate_country(path):
         dx = x1 - x0
         dy = y1 - y0
         #x1, y1 = (x1 - 0.02*dx, y1)
+        # Smoothen edges
         point1x, point1y = (x0 + 0.25*dx, y0 + 0.05*dy)
         point2x, point2y = (x0 + 0.75*dx, y1 - 0.05*dy) 
-        # Smoothen edges
-        edge_x[person].append(x0)
-        edge_x[person].append(point1x)
-        edge_x[person].append(point2x)
-        edge_x[person].append(x1)
-        edge_x[person].append(None)
-        edge_y[person].append(y0)
-        edge_y[person].append(point1y)
-        edge_y[person].append(point2y)
-        edge_y[person].append(y1)
-        edge_y[person].append(None)
+        
+        edge_x[person].extend([x0, point1x, point2x, x1, None])
+        edge_y[person].extend([y0, point1y, point2y, y1, None])
         # Add arrows only to the last trace
-        markers[person].append(0)
-        markers[person].append(0)
-        markers[person].append(0)
-        markers[person].append(1)
-        markers[person].append(0)
+        markers[person].extend([0, 0, 0, 1, 0])
+        label_text = person
+        if edge[0] in helpers.country_code_to_name:
+            label_text += f", start: {helpers.country_code_to_name[edge[0]]}"
+        else: 
+            label_text += f", start: {edge[0]}"
+        if edge[1] in helpers.country_code_to_name:
+            label_text += f", end: {helpers.country_code_to_name[edge[1]]}"
+        else: 
+            label_text += f", end: {edge[1]}"
+        label_data[person].extend([label_text] * 5)
 
 
     traces = []
 
-    #print(edge_x)
+    print(edge_x)
 
     for person in edge_x:
         traces.append(go.Scatter( 
@@ -515,7 +532,8 @@ def generate_country(path):
         line=dict(width=1, color=people_list[person]),
         line_shape='spline',
         hoverinfo='text',
-        hovertemplate="%{x}, %{y}",
+        customdata=label_data[person],
+        hovertemplate="%{x}, %{y}, %{customdata}",
         text=person,
         mode='lines+markers',
         marker=dict(
@@ -595,8 +613,8 @@ def generate_country(path):
     return fig, location_shapes, aspect_ratio, max_x
 
 def add_images(fig, location_shapes, aspect_ratio):
-    img_size_x = 128
-    img_size_y = img_size_x * aspect_ratio
+    #img_size_x = 128
+    img_size_y = img_size_x# / aspect_ratio
     landscape_aspect_ratio = 7 / 4
     padding = 5
     
@@ -769,6 +787,9 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
 #print(generate_positions("whole_book.csv"))
 figs = []
 base_fig, location_shapes, aspect_ratio, max_x = generate_country("whole_book.csv")
+base_fig.update_layout(
+    width=1920,
+    height=1080)
 print("Base figure generated, adding images")
 detailed_fig = add_images(go.Figure(base_fig), location_shapes, aspect_ratio)
 figs.append(detailed_fig)
@@ -776,11 +797,14 @@ overall_fig = add_overall_images(go.Figure(base_fig), location_shapes, aspect_ra
 figs.append(overall_fig)
 #fig.show()
 
-run_server = False
+run_server = True
 
 if not run_server:
-    #detailed_fig.show()
+    base_fig.show()
+    detailed_fig.show()
+    #detailed_fig.write_html("detailed_images.html")
     overall_fig.show()
+    #overall_fig.write_html("overall_images.html")
 else:
     app = Dash(__name__)
 
@@ -793,7 +817,7 @@ else:
 
     x_range = max_x
     lod_cutoff = x_range / 2
-    print(lod_cutoff)
+    print("LOD cutoff:", lod_cutoff)
 
     '''
     def nonlinspace(start, stop, num):

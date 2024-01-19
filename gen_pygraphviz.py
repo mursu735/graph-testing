@@ -96,6 +96,7 @@ def get_positions(characters, pos, graph):
     # Character must go through a specific nodes
     # Minimize the number of edge crossings
     x_ranks, y_ranks = create_path_ranks(characters, pos, graph)
+    print("Calculating character rankings with z3")
     solver = Optimize()
     n_vertices = len(characters)
 
@@ -143,8 +144,8 @@ def get_positions(characters, pos, graph):
     result = {}
     for person in Assignment:
         result[conversion_map[person]] = answer[person]
-
-    print("Results:", result)
+    in_order = sorted(result.items(), key=lambda x:x[1].as_long())
+    print("Results:", in_order)
     return result
 
 
