@@ -617,6 +617,7 @@ def add_images(fig, location_shapes, aspect_ratio):
     img_size_y = img_size_x# / aspect_ratio
     landscape_aspect_ratio = 7 / 4
     padding = 5
+    images_map = {}
     
     for loc in location_shapes:
         #if "test" in location_shapes[loc]:
@@ -690,41 +691,18 @@ def add_images(fig, location_shapes, aspect_ratio):
                             fill="toself",
                             mode='lines',
                             name='',
-                            text=f"{country}, Chapter {chapter}: {summary}",
+                            customdata=[{"Image": filename, "Graph": 0, "Country": country, "Chapter": chapter, "Summary": summary}],
+                            hoverinfo="none",
+                            #text=f"{country}, Chapter {chapter}: {summary}",
                             #text=f"{loc}, Chapter {chapter}, x0: {x0}, x1: {x1}, y0: {y0}, y1: {y1}",
                             opacity=1
                         ))
+                    images_map[filename] = image
                 else:
                     print(f"WARN: Image name {filename} not found, ignoring it")
             previous_y -= largest_y_in_row
-        '''  
-        else:
-            img_path = location_shapes[loc]["image"]
-            image = Image.open(f"pictures/Flags/{img_path}.png")
-            #print(loc, "x:", location_shapes[loc]['x0'], location_shapes[loc]['x1'], ", y:", location_shapes[loc]['y0'], location_shapes[loc]['y1'])
-            fig.add_layout_image(
-                x=location_shapes[loc]['x0'] + (size_x/2),
-                y=location_shapes[loc]['y0'] + (size_y/2),
-                source=image,
-                xref="x",
-                yref="y",
-                sizex=size_x,
-                sizey=size_y,
-                xanchor="center",
-                yanchor="middle",
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=[location_shapes[loc]['x0'],location_shapes[loc]['x0'],location_shapes[loc]['x1'],location_shapes[loc]['x1'],location_shapes[loc]['x0']], #x1-x1-x2-x2-x1
-                    y=[location_shapes[loc]['y0'],location_shapes[loc]['y1'],location_shapes[loc]['y1'],location_shapes[loc]['y0'],location_shapes[loc]['y0']], #y1-y2-y2-y1-y1
-                    fill="toself",
-                    mode='lines',
-                    name='',
-                    text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
-                    opacity=1
-                ))
-        '''
-    return fig
+
+    return fig, images_map
 
 
 def add_overall_images(fig, location_shapes, aspect_ratio):
@@ -732,7 +710,7 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
     #img_size_y = img_size_x * aspect_ratio
     #landscape_aspect_ratio = 7 / 4
     #padding = 5
-    
+    images_map = {}
     for loc in location_shapes:
         #if "test" in location_shapes[loc]:
         #path = location_shapes[loc]['image']
@@ -749,6 +727,8 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
                 fill="toself",
                 mode='lines',
                 name='',
+                hoverinfo="none",
+                customdata=[{"Image": loc, "Graph": 1}],
                 text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
                 opacity=1
             ))
@@ -776,28 +756,33 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
                 xanchor="center",
                 yanchor="middle",
             )
-
+            images_map[loc] = image
         else:
             print(f"WARN: Image name {filename} not found, ignoring it")
-        
-    return fig
+
+    
+    
+    return fig, images_map
 
 
 
 #print(generate_positions("whole_book.csv"))
 figs = []
+hover_imgs = []
 base_fig, location_shapes, aspect_ratio, max_x = generate_country("whole_book.csv")
 base_fig.update_layout(
     width=1920,
     height=1080)
 print("Base figure generated, adding images")
-detailed_fig = add_images(go.Figure(base_fig), location_shapes, aspect_ratio)
+detailed_fig, detailed_images_dict = add_images(go.Figure(base_fig), location_shapes, aspect_ratio)
 figs.append(detailed_fig)
-overall_fig = add_overall_images(go.Figure(base_fig), location_shapes, aspect_ratio)
+hover_imgs.append(detailed_images_dict)
+overall_fig, overall_images_dict = add_overall_images(go.Figure(base_fig), location_shapes, aspect_ratio)
 figs.append(overall_fig)
+hover_imgs.append(overall_images_dict)
 #fig.show()
 
-run_server = False
+run_server = True
 
 if not run_server:
     base_fig.show()
@@ -819,47 +804,6 @@ else:
     lod_cutoff = x_range / 2
     print("LOD cutoff:", lod_cutoff)
 
-    '''
-    def nonlinspace(start, stop, num):
-        linear = np.linspace(0, 1, num)
-        my_curvature = 1
-        curve = 1 - np.exp(-my_curvature*linear)
-        curve = curve/np.max(curve)   #  normalize between 0 and 1
-        curve  = curve*(stop - start-1) + start
-        return curve
-
-
-
-    x = []
-    y = []
-
-    for i in range(0, 100, 5):
-        x.append(i)
-        y.append(math.sin(i))
-
-    #x_range = max(x)
-    lod_cutoff = x_range
-    print(lod_cutoff)
-    figs = []
-
-    arr = nonlinspace(0.1, 5, 5)
-    print(arr)
-
-    for level in range(1, 6):
-        x = []
-        y = []
-        step = arr[level - 1]
-        for i in np.arange(0, 100, step):
-            x.append(i)
-            y.append(math.sin(i))
-        fig = go.Figure(
-            data=[go.Scatter(x=x, y=y)],
-            layout=go.Layout(
-                title=go.layout.Title(text="A Figure Specified By A Graph Object")
-            )
-        )
-        figs.append(fig)
-    '''
 
     @callback(Output('map', 'figure'),
             Output('click-data', 'children'),
@@ -884,10 +828,73 @@ else:
             return figs[-1], json.dumps(relayoutData, indent=2)
         return dash.no_update, json.dumps(relayoutData, indent=2)
 
+    @app.callback(
+    Output("graph-tooltip", "show"),
+    Output("graph-tooltip", "bbox"),
+    Output("graph-tooltip", "children"),
+    Input("map", "hoverData"),
+)
+    def display_hover(hoverData):
+        print(hoverData)
+        if hoverData is None:
+            return False, dash.no_update, dash.no_update
+
+        # demo only shows the first point, but other points may also be available
+        print(hoverData)
+        pt = hoverData["points"][0]
+        bbox = pt["bbox"]
+        num = "None"
+        print(pt)
+            
+        '''
+        df_row = df.iloc[num]
+        img_src = df_row['IMG_URL']
+        name = df_row['NAME']
+        form = df_row['FORM']
+        desc = df_row['DESC']
+        if len(desc) > 300:
+            desc = desc[:100] + '...'
+        '''
+        if "customdata" in pt:
+            num = pt["customdata"][0]
+            print(num)
+            if "Graph" in num:
+                graph = num["Graph"]
+                print(graph)
+                image = num["Image"]
+                print(image)
+                #print(num, "\n", graph, "\n", image)
+                img_src = hover_imgs[graph][image]
+                #print(img_src)
+                children = [
+                    html.Div([
+                        html.Img(src=img_src, style={"width": "100%"}),
+                        #html.H2(f"{name}", style={"color": "darkblue"}),
+                        #html.P(f"{form}"),
+                        html.P(f"{pt}"),
+                        html.P(f"{bbox}"),
+                        html.P(f"{num}"),
+                    ], style={'width': '200px', 'white-space': 'normal'})
+                ]
+            else:
+                return False, dash.no_update, dash.no_update
+        else:
+            children = [
+                html.Div([
+                    #html.Img(src=img_src, style={"width": "100%"}),
+                    #html.H2(f"{name}", style={"color": "darkblue"}),
+                    #html.P(f"{form}"),
+                    html.P(f"{pt}"),
+                    html.P(f"{bbox}"),
+                    html.P(f"{num}"),
+                ], style={'width': '200px', 'white-space': 'normal'})
+            ]
+        return True, bbox, children
 
     app.layout = html.Div([
         dcc.Graph(id="map", figure=figs[-1]),
-        html.Pre(id='click-data', style=styles['pre'])
+        html.Pre(id='click-data', style=styles['pre']),
+        dcc.Tooltip(id="graph-tooltip"),
     ])
 
     if __name__ == '__main__':
