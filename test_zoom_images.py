@@ -9,6 +9,7 @@ import json
 import helpers
 import os
 import math
+import textwrap
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
@@ -16,6 +17,7 @@ import plotly.express as px
 import networkx as nx
 import matplotlib.pyplot as plt
 from gen_pygraphviz import get_positions, update_character_locations
+from datetime import timedelta
 
 use_new_sorting = True
 
@@ -531,9 +533,9 @@ def generate_country(path):
         x=edge_x[person], y=edge_y[person],
         line=dict(width=1, color=people_list[person]),
         line_shape='spline',
-        hoverinfo='text',
-        customdata=label_data[person],
-        hovertemplate="%{x}, %{y}, %{customdata}",
+        hoverinfo='skip',
+        #customdata=label_data[person],
+        #hovertemplate="%{x}, %{y}, %{customdata}",
         text=person,
         mode='lines+markers',
         marker=dict(
@@ -791,6 +793,13 @@ if not run_server:
     overall_fig.show()
     overall_fig.write_html("overall_images.html")
 else:
+    date_df = pd.read_csv("output/GPT/chapter_durations_fixed.csv", sep=";")
+    date_df["Start Date"] = pd.to_datetime(date_df["Start Date"])
+    date_df["End Date"] = pd.to_datetime(date_df["End Date"])
+    start = date_df["Start Date"].min()
+    end = start + timedelta(days=80)
+
+
     app = Dash(__name__)
 
     styles = {
@@ -837,7 +846,7 @@ else:
     def display_hover(hoverData):
         print(hoverData)
         if hoverData is None:
-            return False, dash.no_update, dash.no_update
+            return False, None, None
 
         # demo only shows the first point, but other points may also be available
         print(hoverData)
@@ -855,30 +864,137 @@ else:
         if len(desc) > 300:
             desc = desc[:100] + '...'
         '''
+        # Hovering over an image
         if "customdata" in pt:
+            #print(df)
+            #print(start)
             num = pt["customdata"][0]
             print(num)
             if "Graph" in num:
+                timefig = go.Figure()
+                #for idx, row in df.iterrows():
                 graph = num["Graph"]
                 print(graph)
                 image = num["Image"]
                 print(image)
+                
+                # Per Chapter
+                if graph == 0:
+                    row = date_df.loc[date_df['Chapter'] == image]
+                    text = f"Chapter start: {row['Start Date'].strftime('%d/%m/%Y')}, chapter end: {row['End Date'].strftime('%d/%m/%Y')}"
+                    chapter_text = f"Chapter {row['Chapter']}"
+                    date_text = ""
+                    if row["Start Date"] == row["End Date"]:
+                        date_text = f"Day {(row['Start Date'] - start).days}"
+                    else:
+                        date_text = f"Days {(row['Start Date'] - start).days} - {(row['End Date'] - start).days}"
+
+                    total_text = f"{helpers.country_code_to_name[country_text]} - {date_text}"
+                    header = html.Div([
+                        html.H2(chapter_text),
+                        html.P(total_text),
+                        ])
+
+                #Overview of country
+                else:
+                    country = image
+                    for idx, row in date_df.iterrows():
+                        countries = row["Country"].split(",")
+                        date_df.loc[idx,'Include'] = country in countries
+                    #print(df)
+                    rows = date_df[date_df["Include"] == True]
+                    #print(rows)
+                    country_text = country.split("_")[0]
+                    row = {'Start Date': rows["Start Date"].min(), 'End Date': rows["End Date"].max(), "Chapter": f"Country: {helpers.country_code_to_name[country_text]}, from chapter {rows['Chapter'].min()} to chapter {rows['Chapter'].max()}"}
+                    text = f"Country: {helpers.country_code_to_name[country_text]}, from chapter {rows['Chapter'].min()} ({row['Start Date'].strftime('%d/%m/%Y')}) to chapter {rows['Chapter'].max()} ({row['End Date'].strftime('%d/%m/%Y')})"
+                    print(rows['Chapter'].min(), rows['Chapter'].max())
+                    chapter_text = ""
+                    if rows['Chapter'].min() == rows['Chapter'].max():
+                        chapter_text = f"Chapter {rows['Chapter'].min()}"
+                    else:
+                        print("In multiple chapters")
+                        chapter_text = f"Chapters {rows['Chapter'].min()} - {rows['Chapter'].max()}"
+                    
+                    date_text = ""
+                    if row["Start Date"] == row["End Date"]:
+                        date_text = f"Day {(row['Start Date'] - start).days}"
+                    else:
+                        date_text = f"Days {(row['Start Date'] - start).days} - {(row['End Date'] - start).days}"
+
+                    total_text = f"{helpers.country_code_to_name[country_text]} - {date_text}"
+                    header = html.Div([
+                        html.H2(chapter_text),
+                        html.P(total_text),
+                        ])
+                    #chapters = os.listdir(f"pictures/Chapters")
+                    #row = date_df.loc[date_df['column_name'] == some_value]
+
+                text = '<br>'.join(textwrap.wrap(text, width=30))
+                journey_text = f"Journey start: {start.strftime('%d/%m/%Y')}, journey end: {end.strftime('%d/%m/%Y')}"
+                journey_text = '<br>'.join(textwrap.wrap(journey_text, width=30))
+                timefig.add_trace(go.Line(x=[start, end], y=[0, 0], name="total", text=journey_text, hoverinfo='text', line={'width': 1, 'color': 'black'}))
+                timefig.add_trace(go.Line(x=[row["Start Date"], row["End Date"]], y=[0, 0], text=text, hoverinfo='text', name=str(row["Chapter"]), line={'width': 50, 'color': 'blue'}))
+                
+                print(row)
+                print(type(start), type(end))
+                print(row["Start Date"], type(row["Start Date"]))
+                
+                timefig.update_layout(
+                    width=180,
+                    height=150,
+                    margin={
+                        "pad": 0,
+                        "t": 0,
+                        "r": 0,
+                        "l": 0,
+                        "b": 0,
+                    },
+                    hoverlabel_namelength=-1
+                    )
+
+                timefig.update_xaxes(range=[start, end])
+                timefig.update_yaxes(showticklabels=False)
+
+                timefig.update_layout({
+                            'yaxis': {'fixedrange': True},
+                            'yaxis2': {'fixedrange': True},
+                            'showlegend': False,
+                            'paper_bgcolor': 'rgba(0,0,0,0)',
+                            'plot_bgcolor': 'rgba(0,0,0,0)'
+                    })
+
+                '''
+                html.Div(
+                            dcc.Graph(id="timeline", figure=timefig),
+                            style={
+                                "width": "100%",
+                                "height": "100%",
+                            },
+                        ),
+                '''
                 #print(num, "\n", graph, "\n", image)
                 img_src = hover_imgs[graph][image]
                 #print(img_src)
                 children = [
                     html.Div([
+                        header,
                         html.Img(src=img_src, style={"width": "100%"}),
                         #html.H2(f"{name}", style={"color": "darkblue"}),
                         #html.P(f"{form}"),
-                        html.P(f"{pt}"),
-                        html.P(f"{bbox}"),
-                        html.P(f"{num}"),
+                        dcc.Graph(id="timeline",
+                                  figure=timefig,
+                                  config={
+                                        'displayModeBar':False
+                                    }),
+                        #html.P(f"{pt}"),
+                        #html.P(f"{bbox}"),
+                        #html.P(f"{num}"),
                     ], style={'width': '200px', 'white-space': 'normal'})
-                ]
+                ]   
             else:
-                return False, dash.no_update, dash.no_update
+                return False, None, None
         else:
+            return False, None, None
             children = [
                 html.Div([
                     #html.Img(src=img_src, style={"width": "100%"}),
