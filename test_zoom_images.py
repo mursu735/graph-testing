@@ -18,6 +18,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 from gen_pygraphviz import get_positions, update_character_locations
 from datetime import timedelta
+import gen_images
 
 use_new_sorting = True
 
@@ -533,9 +534,9 @@ def generate_country(path):
         x=edge_x[person], y=edge_y[person],
         line=dict(width=1, color=people_list[person]),
         line_shape='spline',
-        hoverinfo='skip',
-        #customdata=label_data[person],
-        #hovertemplate="%{x}, %{y}, %{customdata}",
+        #hoverinfo='skip',
+        customdata=label_data[person],
+        hovertemplate="%{x}, %{y}, %{customdata}",
         text=person,
         mode='lines+markers',
         marker=dict(
@@ -612,6 +613,19 @@ def generate_country(path):
                         xanchor="center",
                         yanchor="bottom",
                     )
+    image = Image.open(f"pictures/background.jpg")
+
+    fig.add_layout_image(
+        x=0,
+        y=0,
+        source=image,
+        xref="x",
+        yref="y",
+        sizex=1920,
+        sizey=1080,
+        sizing="stretch",
+        layer="below"
+    )
     return fig, location_shapes, aspect_ratio, max_x
 
 def add_images(fig, location_shapes, aspect_ratio):
@@ -729,7 +743,7 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
                 fill="toself",
                 mode='lines',
                 name='',
-                hoverinfo="none",
+                hoverinfo="text",
                 customdata=[{"Image": loc, "Graph": 1}],
                 text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
                 opacity=1
@@ -769,17 +783,18 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
 
 
 #print(generate_positions("whole_book.csv"))
+
 figs = []
 hover_imgs = []
-base_fig, location_shapes, aspect_ratio, max_x = generate_country("whole_book.csv")
+base_fig, location_shapes, aspect_ratio, max_x = gen_images.generate_country("whole_book.csv")
 base_fig.update_layout(
     width=1920,
     height=1080)
 print("Base figure generated, adding images")
-detailed_fig, detailed_images_dict = add_images(go.Figure(base_fig), location_shapes, aspect_ratio)
+detailed_fig, detailed_images_dict = gen_images.add_images(go.Figure(base_fig), location_shapes, aspect_ratio)
 figs.append(detailed_fig)
 hover_imgs.append(detailed_images_dict)
-overall_fig, overall_images_dict = add_overall_images(go.Figure(base_fig), location_shapes, aspect_ratio)
+overall_fig, overall_images_dict = gen_images.add_overall_images(go.Figure(base_fig), location_shapes, aspect_ratio)
 figs.append(overall_fig)
 hover_imgs.append(overall_images_dict)
 #fig.show()

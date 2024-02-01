@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<!--<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>  -->
+<h1>Here's a Plotly graph!</h1>
+{{ fig }}
+<script>
+    var fig = document.getElementById('plotDiv');
+    fig.on('plotly_click', function(data){
+        
+        console.log(data);
+        var txt = data.points[0].data.customdata[0]["Image"];
+        alert('Clicked point: '+ txt);
+        /*
+        var pts = '';
+        for(var i=0; i < data.points.length; i++){
+        pts = 'x = '+data.points[i].x +'\ny = '+
+            data.points[i].y.toPrecision(4) + '\n\n';
+        }
+    alert('Closest point clicked:\n\n'+pts);
+    */
+});
+</script>
+<p>And here's some text after the graph.</p>
+</body>
+</html>
