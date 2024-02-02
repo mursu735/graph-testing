@@ -2,6 +2,7 @@ from dash import Dash, dcc, html, Input, Output, State, callback
 from collections import Counter
 from PIL import Image
 import dash
+import textwrap
 import random
 
 import helpers
@@ -141,6 +142,7 @@ def generate_country(path):
     named_colors = px.colors.DEFAULT_PLOTLY_COLORS
     used_colors = []
     aliases = helpers.get_aliases()
+    aliases_reversed = helpers.get_aliases_reversed()
     for idx, row in df.iterrows():
         target = row["Country"]# + "_" + str(row["Chapter"])
         if target not in country_last_chapter:
@@ -423,8 +425,10 @@ def generate_country(path):
     label_data = {}
     markers = {}
     edges_seen = {}
-
+    
     character_clusters = helpers.get_clusters()
+    character_descriptions = helpers.get_character_descriptions()
+
     #print(G.nodes.data())
     #print(f"!!!edges:\n {G.edges()}")
     for edge in G.edges():
@@ -446,9 +450,9 @@ def generate_country(path):
             start_edge_order = sorted(people_in_edge_start, key=sort_func, reverse=True)
         # Cluster ranking is based on the character with the highest ranking in the cluster
         clusters_in_edge_start = []
-        [clusters_in_edge_start.append(character_clusters[x]) for x in start_edge_order if character_clusters[x] not in clusters_in_edge_start]
+        [clusters_in_edge_start.append(character_clusters[x.split("_")[0]]) for x in start_edge_order if character_clusters[x.split("_")[0]] not in clusters_in_edge_start]
         clusters_in_edge_end = []
-        [clusters_in_edge_end.append(character_clusters[x]) for x in end_edge_order if character_clusters[x] not in clusters_in_edge_end]
+        [clusters_in_edge_end.append(character_clusters[x.split("_")[0]]) for x in end_edge_order if character_clusters[x.split("_")[0]] not in clusters_in_edge_end]
         
         #print(f"Start edge: {edge[0]}, people in it: {start_edge_order}, clusters in it: {clusters_in_edge_start}")
         #print(f"End edge: {edge[1]}, people in it: {end_edge_order}, clusters in it: {clusters_in_edge_end}")
@@ -456,7 +460,7 @@ def generate_country(path):
         #print(len(edge_data))
         #print(f"Edge {edge}, {edge_data}")
         person = edge_data[edges_seen[edge]]
-        person = person["person"]
+        person = person["person"].split("_")[0]
         if person not in edge_x:
             edge_x[person] = []
             edge_y[person] = []
@@ -508,6 +512,52 @@ def generate_country(path):
         # Add arrows only to the last trace
         markers[person].extend([0, 0, 0, 1, 0])
         label_text = person
+        # Line is between countries, so give the summary of the events that happened in the country per person
+        if edge[0] in helpers.country_code_to_name:
+            start_chapter = df.loc[(df["Person"].str.contains(person)) & (df["Country"] == edge[0].split('_')[0])]["Chapter"].min()
+            end_chapter = df.loc[(df["Person"].str.contains(person)) & (df["Chapter"] >= start_chapter) & (df["Country"] == edge[1].split('_')[0])]["Chapter"].min()
+            label_text += f", start: {helpers.country_code_to_name[edge[0]]} (chapter {start_chapter})"
+            if edge[1].split("_")[0] in helpers.country_code_to_name:
+                label_text += f", end: {helpers.country_code_to_name[edge[1].split('_')[0]]} (chapter {end_chapter})"
+            else: 
+                label_text += f", end: {edge[1]}"
+            label_text += "<br>"
+            # Get chapters where the location started and ended, combine the summaries
+            
+            #chapters = df.loc[(df["Country"] == edge[0]) & (df["Chapter"] <= chapter_cutoff) & (df["Person"].str.contains(person))]
+            '''
+            #if edge[0] == "ie":
+            if person == "John Bunsby":
+                print(f"Searching for {edge[0]} and character {person}, chapter start {start_chapter}, end {end_chapter} (country {edge[1]})")
+                #print(chapters)
+            '''    
+            print(f"Searching for character {person}, chapter start {start_chapter} (country {edge[0]}), end {end_chapter} (country {edge[1]})")
+            for i in range(start_chapter, end_chapter+1):
+                if os.path.isfile(f"output/GPT/character_summaries/{i}/{person}.txt"):
+                        print(f"Searching for chapter {i}, found person {person}")
+                        with open(f"output/GPT/character_summaries/{i}/{person}.txt") as file:
+                            label_text += file.read() + " "
+                else:
+                    if person in aliases_reversed:
+                        possible_aliases = aliases_reversed[person]
+                        for alias in possible_aliases:
+                            if os.path.isfile(f"output/GPT/character_summaries/{i}/{alias}.txt"):
+                                print(f"Searching for chapter {i}, person {person}: found alias {alias}")
+                                with open(f"output/GPT/character_summaries/{i}/{alias}.txt") as file:
+                                    label_text += file.read() + " "
+                                continue
+                    
+            label_text = '<br>'.join(textwrap.wrap(label_text, width=30)).strip()
+            #start_chapter = chapters["Chapter"].min()
+            #end_chapter = chapters["Chapter"].max()
+           # label_text += f", start chapter: {start_chapter}, end chapter: {end_chapter}"
+        # First place the character was introduced so just give the description
+        else: 
+            text = f"{person}: {character_descriptions[person]}"
+            total = '<br>'.join(textwrap.wrap(text, width=30))
+            label_text = total
+
+        '''
         if edge[0] in helpers.country_code_to_name:
             label_text += f", start: {helpers.country_code_to_name[edge[0]]}"
         else: 
@@ -516,6 +566,7 @@ def generate_country(path):
             label_text += f", end: {helpers.country_code_to_name[edge[1]]}"
         else: 
             label_text += f", end: {edge[1]}"
+        '''
         label_data[person].extend([label_text] * 5)
 
 
@@ -530,7 +581,7 @@ def generate_country(path):
         line_shape='spline',
         #hoverinfo='skip',
         customdata=label_data[person],
-        hovertemplate="%{x}, %{y}, %{customdata}",
+        hovertemplate="%{customdata}",
         text=person,
         mode='lines+markers',
         marker=dict(
@@ -548,7 +599,13 @@ def generate_country(path):
         #print(node)
         data = {}
         x, y = pos[node]["x"], pos[node]["y"]
-        data["label"] = node.split("_")[0]
+        character = node.split("_")[0]
+        
+        desc = character_descriptions[character]
+        total = f"{character}: {desc}"
+        total = '<br>'.join(textwrap.wrap(total, width=30))
+        data["label"] = character
+        data["info"] = total
         data["x"] = x
         data["y"] = y
         data["shape"] = G.nodes.data()[node]["shape"]
@@ -569,6 +626,8 @@ def generate_country(path):
         mode='markers+text',
         text=df["label"],
         textposition="top center",
+        customdata=df["info"],
+        hovertemplate='%{customdata}',
         marker=dict(size=30,symbol=df["shape"],color=df["color"],opacity=df["opacity"])))
               
     fig = go.Figure(data=traces,
@@ -581,7 +640,7 @@ def generate_country(path):
                     yaxis=dict(showgrid=False, zeroline=False, showticklabels=False, scaleanchor="x", scaleratio=1)
                     )
                 )
-
+    print(location_shapes)
     # Flags and the big boxes should be the same in both levels of detail
     for loc in location_shapes:
         fig.add_trace(

@@ -28,7 +28,7 @@ def create_heatmap(matrix, character_list):
     heat_data = heat_data[dendro_leaves,:]
     heat_data = heat_data[:,dendro_leaves]
 
-    print(heat_data)
+    print("Heatmap data:\n", heat_data)
 
     heatmap = [
         go.Heatmap(
@@ -91,11 +91,17 @@ def create_heatmap(matrix, character_list):
 
     fig2.show()
 
+    
+
 
 
 df = pd.read_csv("whole_book.csv", sep=";")
 aliases = helpers.get_aliases()
 
+# 1. Go through all chapters, list people in them
+# 2. Go through all lists and combinations, add one to all combinations
+
+character_appearances = {}
 character_list = []
 for idx, row in df.iterrows():
     #print(row) 
@@ -104,13 +110,39 @@ for idx, row in df.iterrows():
     for character in characters:
         if character in aliases:
             character = aliases[character]
+        chapter = row["Chapter"]
         if character not in character_list:
             character_list.append(character)
-
+        if chapter not in character_appearances:
+            character_appearances[chapter] = []
+        if character not in character_appearances[chapter]:
+            character_appearances[chapter].append(character)
+        
+print(character_appearances)
+print(character_list)
 last_chapter = df["Chapter"].max()
 
-appearance = np.zeros((len(character_list), last_chapter))
+appearances_together = np.zeros((len(character_list), len(character_list)))
+print(appearances_together)
 
+for chapter in character_appearances:
+    characters = character_appearances[chapter]
+    #print(characters)
+    for i in range(0, len(characters)):
+        for j in range(0, len(characters)):
+            first_character = character_list.index(characters[i])
+            second_character = character_list.index(characters[j])
+            #print(characters[i], first_character, characters[j], second_character)
+            appearances_together[first_character, second_character] += 1
+            #appearances_together[j, i] += 1
+
+print(appearances_together)
+
+
+#appearance = np.zeros((len(character_list), last_chapter))
+
+
+'''
 for idx, row in df.iterrows():
     #print(row) 
     characters = row["Person"].split("|")
@@ -126,13 +158,13 @@ for character in character_list:
     print(character)
     index = character_list.index(character)
     print(appearance[index])
-
+'''
 distances = np.zeros((len(character_list), len(character_list)))
 
 for i in range(0, len(character_list)):
-    current = appearance[:, i]
+    current = appearances_together[:, i]
     for j in range(0, len(character_list)):
-        comparison = appearance[:, j]
+        comparison = appearances_together[:, j]
         cosine = np.dot(current, comparison) / (np.linalg.norm(current) * np.linalg.norm(comparison))
         distances[i, j] = cosine
 
@@ -146,20 +178,10 @@ for i in range(0, len(character_list)):
         cosine = np.dot(current, comparison) / (np.linalg.norm(current) * np.linalg.norm(comparison))
         similarity_of_similarities[i, j] = cosine
 
-'''
-dendro_side = ff.create_dendrogram(similarity_of_similarities, orientation='right')
-for i in range(len(dendro_side['data'])):
-    dendro_side['data'][i]['xaxis'] = 'x2'
 
-dendro_leaves = dendro_side['layout']['yaxis']['ticktext']
-dendro_leaves = list(map(int, dendro_leaves))
+#create_heatmap(similarity_of_similarities, character_list)
+heat_data, order, character_list = create_heatmap(distances, character_list)
 
-data_dist = pdist(similarity_of_similarities)
-heat_data = squareform(data_dist)
-heat_data = heat_data[dendro_leaves,:]
-heat_data = heat_data[:,dendro_leaves]
+fogg = character_list.index("Phileas Fogg")
 
-
-print(heat_data)
-'''
-create_heatmap(similarity_of_similarities, character_list)
+print(order)
