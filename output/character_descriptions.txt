@@ -1,12 +1,14 @@
-Mr. Phileas Fogg: A polished, enigmatic Englishman in his 40s, possibly from London. Fogg is compared to Lord Byron in appearance, suggesting a distinctively handsome face with Byronic features. However, he differs from Byron in his tranquil demeanor and bearded appearance. He gives an impression of agelessness, suggesting a man who might live for a thousand years without aging. His personality is mysterious, quiet, and he is not known to be talkative. He has a habit of avoiding attention and lives a very structured and precise life.
+Phileas Fogg: A polished, enigmatic Englishman in his 40s, possibly from London. Fogg is compared to Lord Byron in appearance, suggesting a distinctively handsome face with Byronic features. However, he differs from Byron in his tranquil demeanor and bearded appearance. He gives an impression of agelessness, suggesting a man who might live for a thousand years without aging. His personality is mysterious, quiet, and he is not known to be talkative. He has a habit of avoiding attention and lives a very structured and precise life.
 
-Jean Passepartout: A Frenchman around 30 years old, Passepartout is described as adaptable and versatile, having had several occupations including a singer, circus rider, gymnastics professor, and a sergeant fireman in Paris. He has a history of changing professions frequently, which is reflected in his surname "Passepartout," indicating his ability to fit into various roles. He is honest and seeks a stable, tranquil life as a valet. His physical appearance isn't detailed, but his background suggests someone athletic and possibly agile.
+Passepartout: A Frenchman around 30 years old, Passepartout is described as adaptable and versatile, having had several occupations including a singer, circus rider, gymnastics professor, and a sergeant fireman in Paris. He has a history of changing professions frequently, which is reflected in his surname "Passepartout," indicating his ability to fit into various roles. He is honest and seeks a stable, tranquil life as a valet. His physical appearance isn't detailed, but his background suggests someone athletic and possibly agile.
 
 James Forster: He is the dismissed servant of Mr. Fogg, mentioned briefly in the text. There are no specific details about his physical appearance or characteristics, other than the fact that he was dismissed for a minor error in his duties, indicating Fogg's strict adherence to precision and detail.
 
 Andrew Stuart: An engineer, likely to be a person of practical and analytical mindset. His appearance is not described, but being a member of the Reform Club, he is probably well-dressed and carries himself with the confidence befitting his professional status.
 
-John Sullivan and Samuel Fallentin: Both are bankers, implying they are likely to be individuals with a serious demeanor, accustomed to dealing with financial matters. Their appearance is not detailed, but as members of an elite club, they would present themselves in a manner befitting their status.
+John Sullivan: Banker, implying they are likely to be individuals with a serious demeanor, accustomed to dealing with financial matters. Their appearance is not detailed, but as members of an elite club, they would present themselves in a manner befitting their status.
+
+Samuel Fallentin: Banker, implying they are likely to be individuals with a serious demeanor, accustomed to dealing with financial matters. Their appearance is not detailed, but as members of an elite club, they would present themselves in a manner befitting their status.
 
 Thomas Flanagan: A brewer, Flanagan might have a more down-to-earth appearance compared to the bankers, but still well-kept as a member of the prestigious club. He engages in the conversation about the robbery, showing his interest in current events.
 
@@ -20,7 +22,7 @@ Aouda: The young woman they plan to rescue, Aouda is described as a celebrated b
 
 The Guards and Priests at the Pagoda: The guards of the rajah are likely Indian soldiers, armed and alert, while the priests are probably robed in traditional religious attire. They would have an authoritative demeanor, befitting their roles in the religious ceremony.
 
-The British Consul at Suez: He is likely a middle-aged, well-dressed British official. As a consul, he would have a dignified and professional demeanor, accustomed to dealing with international matters and visitors. His appearance would be that of a typical English government official of the time, possibly wearing a suit or formal attire suitable for his office.
+British consul: He is likely a middle-aged, well-dressed British official. As a consul, he would have a dignified and professional demeanor, accustomed to dealing with international matters and visitors. His appearance would be that of a typical English government official of the time, possibly wearing a suit or formal attire suitable for his office.
 
 Fix: Fix is a detective for the British police. He described as small and slight-built, with a nervous and intelligent face in his 30s. His bright eyes and incessantly twitching eyebrows suggest a man who is alert and observant, typical of a detective. He's showing signs of impatience and is intensely focused on his task. His attire would likely be that of a plainclothes detective of the era, practical yet unassuming.
 
@@ -38,4 +40,14 @@ Elder William Hitch: He is a tall and dark Mormon missionary, distinguished by h
 
 Mudge: An American sledge driver, probably rugged in appearance, dressed for cold weather and outdoor work. He is practical and confident in his ability to navigate the sledge across the snowy landscape.
 
-Captain Andrew Speedy: The captain of the “Henrietta,” a trading vessel. He is described as a sea-wolf, around 50 years old, with big eyes, oxidized copper complexion, red hair, and a thick neck. He has a growling voice and a forthright manner, as indicated by his blunt refusals to Fogg's propositions.
+Andrew Speedy: The captain of the “Henrietta,” a trading vessel. He is described as a sea-wolf, around 50 years old, with big eyes, oxidized copper complexion, red hair, and a thick neck. He has a growling voice and a forthright manner, as indicated by his blunt refusals to Fogg's propositions.
+
+Reverend Samuel Wilson: Though not directly described in this excerpt, the Reverend Samuel Wilson of Marylebone parish is mentioned as the clergyman whom Fogg intends to officiate his marriage to Aouda. His inclusion at this juncture signifies the societal formalities and personal resolutions that Fogg is eager to fulfill, even in the face of personal calamity.
+
+James Strand: Identified as the real bank robber, his arrest in Edinburgh shifts public opinion back in Fogg's favor, transforming him from a suspect to a celebrated adventurer. Though not directly described, the impact of his capture on the story highlights the dramatic turns of public perception and the twists of fate.
+
+Lord Albemarle: Described as an elderly paralytic gentleman, Lord Albemarle is likely to appear as an older, distinguished member of the aristocracy. Bound to his chair, he seems to hold a romantic view of adventure and exploration, eager to support Fogg's endeavor.
+
+John Bunsby: The master of the pilot-boat “Tankadere.” Bunsby is described as a vigorous, sunburnt man in his mid-forties, with an energetic and self-reliant appearance. He is depicted as taking pride in his vessel, which is neat and well-maintained, indicating his competence and professionalism.
+
+Mormon Man: This man appears breathless and exhausted, having run to catch the train. His appearance might be disheveled due to his exertion. His statement about having only one wife suggests he might be dressed in a way that identifies him as a Mormon, but also as an ordinary citizen of the time.
