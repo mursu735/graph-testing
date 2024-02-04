@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html>
 <body>
-<!--<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>  -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+
 <h1>Here's a Plotly graph!</h1>
 {{ fig }}
+
+<!--
+<div id="plot-0" class="toshow" style="display:none">
+{{ figures[0]|safe }} 
+</div>
+
+<div id="plot-1" class="toshow" style="display:none">
+{{ figures[1]|safe }} 
+</div>
+-->
+
+<div id="hiddenPlots" class="toshow" style="display:none">
+{{ figures[0]|safe }} 
+{{ figures[1]|safe }} 
+
+</div>
+
 <script>
     var fig = document.getElementById('plotDiv');
-    fig.on('plotly_click', function(data){
-        
+    var lodCutoff = {{ lodCutoff }};
+
+    fig.on('plotly_click', function(data){  
         console.log(data);
         var txt = data.points[0].data.customdata[0]["Image"];
         alert('Clicked point: '+ txt);
@@ -19,7 +39,38 @@
         }
     alert('Closest point clicked:\n\n'+pts);
     */
-});
+    });
+
+    fig.on('plotly_relayout', function(eventdata){ 
+        if (!('xaxis.autorange' in eventdata))
+        {
+            var x_min = eventdata['xaxis.range[0]'];
+            var x_max = eventdata['xaxis.range[1]'];
+            var x_delta = x_max - x_min;
+            var lodLevel = Math.floor(x_delta / lodCutoff);
+            var newPlot = "plot-" + lodLevel;
+            var figure = document.getElementById(newPlot).innerHTML;
+            //var figure = figs[lodLevel];
+            //var actual = figure[lodLevel]
+            console.log(figure);
+            alert( 'ZOOM!' + '\n\n' +
+                'Event data:' + '\n' +
+                JSON.stringify(eventdata) + '\n\n' +
+                'x-axis start:' + eventdata['xaxis.range[0]'] + '\n' +
+                'x-axis end:' + eventdata['xaxis.range[1]'] + "\n" + 
+                'LOD level:' + lodLevel);
+            //$( "#plotDiv" ).replaceWith( $("#" + newPlot) );
+            document.getElementById(newPlot).setAttribute("id", "plotDiv")
+            //Plotly.newPlot("plotDiv", figure.data, figure.layout)
+        }
+        else
+        {
+            alert( 'ZOOM RESET!' + '\n\n' +
+                'Event data:' + '\n' +
+                JSON.stringify(eventdata));
+        }
+        
+    });
 </script>
 <p>And here's some text after the graph.</p>
 </body>

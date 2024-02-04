@@ -199,6 +199,13 @@ def generate_country(path):
                 people_ending_in_location[target].append(person)
             # First time person was seen, choose color and add to list
             if person not in people_list:
+                # TODO: Have default plotly colors for important characters and the CSS list for others
+                width = 1
+                line_style = "dot"
+                # Important characters
+                if os.path.isfile(f"pictures/People/{person}_face.png"):
+                    width = 2
+                    line_style = "solid"
                 col = random.choice(named_colors)
                 while col in used_colors:
                     col = random.choice(named_colors)
@@ -208,27 +215,26 @@ def generate_country(path):
                     
                 used_colors.append(col)
                 G.add_node(person, shape="circle", color=col)
-                people_list[person] = col
+                people_list[person] = {"color": col, "width": width, "dash": line_style}
             
             # First location person was in, add edge from person to first node
             if person not in people_and_locations:
                 people_and_locations[person] = []
                 people_starting_in_location[person] = [] 
                 people_starting_in_location[person].append(person)
-                G.add_edge(person, target, person=person, color=people_list[person])
+                G.add_edge(person, target, person=person, color=people_list[person]["color"])
                 people_and_locations[person].append(target)
             # Add edge from last location to current location, but only if it does not exist in the list
             else:
                 if target not in people_and_locations[person]:
                     if person not in people_starting_in_location[people_and_locations[person][-1]]:
-                        G.add_edge(people_and_locations[person][-1], target, person=person, color=people_list[person])
+                        G.add_edge(people_and_locations[person][-1], target, person=person, color=people_list[person]["color"])
                         people_starting_in_location[people_and_locations[person][-1]].append(person)
                         people_and_locations[person].append(target)
             
 
 
     #print("People and locations:", people_and_locations)
-    # TODO: Change flags to GPT generated images in some layout, try with just UK for now, then add the other images
     print("Location importance:", location_importance)
     landscape_aspect_ratio = 7 / 4
     portrait_aspect_ratio = 4 / 7
@@ -409,7 +415,7 @@ def generate_country(path):
 
     # Ranks for each character, this determines the y-coordinate of the node
     #print(people_list)
-    ranks = sorted(people_list, key=sort_func, reverse=True)
+    #ranks = sorted(people_list, key=sort_func, reverse=True)
     #print(f"Sorted list: {ranks}")
 
     edge_starts = [i[0] for i in G.edges()]
@@ -574,10 +580,11 @@ def generate_country(path):
 
     print(edge_x)
 
+    # Lines between places
     for person in edge_x:
         traces.append(go.Scatter( 
         x=edge_x[person], y=edge_y[person],
-        line=dict(width=1, color=people_list[person]),
+        line=dict(width=people_list[person]["width"], dash=people_list[person]["dash"], color=people_list[person]["color"]),
         line_shape='spline',
         #hoverinfo='skip',
         customdata=label_data[person],
@@ -621,6 +628,7 @@ def generate_country(path):
 
     #print(df["label"])
 
+    # Character points
     traces.append(go.Scatter(
         x=df["x"], y=df["y"],
         mode='markers+text',
@@ -628,7 +636,8 @@ def generate_country(path):
         textposition="top center",
         customdata=df["info"],
         hovertemplate='%{customdata}',
-        marker=dict(size=30,symbol=df["shape"],color=df["color"],opacity=df["opacity"])))
+        marker=dict(size=30,symbol=df["shape"],color=df["color"],opacity=df["opacity"])
+        ))
               
     fig = go.Figure(data=traces,
                 layout=go.Layout(
