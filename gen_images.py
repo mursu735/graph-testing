@@ -612,7 +612,7 @@ def generate_country(path):
         total = f"{character}: {desc}"
         total = '<br>'.join(textwrap.wrap(total, width=30))
         data["label"] = character
-        data["info"] = total
+        data["info"] = "<b>Test something here</b><br>" + total
         data["x"] = x
         data["y"] = y
         data["shape"] = G.nodes.data()[node]["shape"]

@@ -20,11 +20,15 @@ input_template_path = r"html/templates/template.html"
 
 overall_html_shown = overall_fig.to_html(full_html=False, include_plotlyjs=True, div_id="plotDiv")
 
-overall_html_hidden = overall_fig.to_html(full_html=False, include_plotlyjs=True, div_id="plot-1")
-detailed_html_hidden = detailed_fig.to_html(full_html=False, include_plotlyjs=True, div_id="plot-0")
-#overall_html_hidden = overall_fig.to_json()
-#detailed_html_hidden = detailed_fig.to_json()
+#overall_html_hidden = overall_fig.to_html(full_html=False, include_plotlyjs=True, div_id="plot-1")
+#detailed_html_hidden = detailed_fig.to_html(full_html=False, include_plotlyjs=True, div_id="plot-0")
+overall_html_hidden = overall_fig.to_json(pretty=True)
+detailed_html_hidden = detailed_fig.to_json(pretty=True)
 
+'''
+with open("asd.json", "w") as file:
+    file.write(overall_html_hidden)
+'''
 lod_cutoff = max_x / 2
 
 plotly_jinja_data = {"fig":overall_html_shown,

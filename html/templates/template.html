@@ -7,7 +7,7 @@
 <h1>Here's a Plotly graph!</h1>
 {{ fig }}
 
-<!--
+
 <div id="plot-0" class="toshow" style="display:none">
 {{ figures[0]|safe }} 
 </div>
@@ -15,17 +15,11 @@
 <div id="plot-1" class="toshow" style="display:none">
 {{ figures[1]|safe }} 
 </div>
--->
-
-<div id="hiddenPlots" class="toshow" style="display:none">
-{{ figures[0]|safe }} 
-{{ figures[1]|safe }} 
-
-</div>
 
 <script>
-    var fig = document.getElementById('plotDiv');
+    
     var lodCutoff = {{ lodCutoff }};
+    var fig = document.getElementById('plotDiv');
 
     fig.on('plotly_click', function(data){  
         console.log(data);
@@ -41,37 +35,82 @@
     */
     });
 
-    fig.on('plotly_relayout', function(eventdata){ 
+
+    function handleZoomEvent(eventdata)
+    {
+        //var fig = document.getElementById('plotDiv');
+        console.log(eventdata);
         if (!('xaxis.autorange' in eventdata))
         {
-            var x_min = eventdata['xaxis.range[0]'];
-            var x_max = eventdata['xaxis.range[1]'];
-            var x_delta = x_max - x_min;
-            var lodLevel = Math.floor(x_delta / lodCutoff);
-            var newPlot = "plot-" + lodLevel;
-            var figure = document.getElementById(newPlot).innerHTML;
-            //var figure = figs[lodLevel];
-            //var actual = figure[lodLevel]
-            console.log(figure);
-            alert( 'ZOOM!' + '\n\n' +
-                'Event data:' + '\n' +
-                JSON.stringify(eventdata) + '\n\n' +
-                'x-axis start:' + eventdata['xaxis.range[0]'] + '\n' +
-                'x-axis end:' + eventdata['xaxis.range[1]'] + "\n" + 
-                'LOD level:' + lodLevel);
-            //$( "#plotDiv" ).replaceWith( $("#" + newPlot) );
-            document.getElementById(newPlot).setAttribute("id", "plotDiv")
-            //Plotly.newPlot("plotDiv", figure.data, figure.layout)
+            // There are also 2 other events, one for only x-axis and one for only y-axis
+            if (('xaxis.range[0]' in eventdata) && ('yaxis.range[0]' in eventdata))
+            {
+                var x_min = eventdata['xaxis.range[0]'];
+                var x_max = eventdata['xaxis.range[1]'];
+                var x_delta = x_max - x_min;
+                var lodLevel = Math.floor(x_delta / lodCutoff);
+                var newPlot = "plot-" + lodLevel;
+                //var figure = document.getElementById(newPlot).innerHTML;
+                //var figure = figs[lodLevel];
+                //var actual = figure[lodLevel]
+                console.log(newPlot);
+                /*
+                alert( 'ZOOM!' + '\n\n' +
+                    'Event data:' + '\n' +
+                    JSON.stringify(eventdata) + '\n\n' +
+                    'x-axis start:' + eventdata['xaxis.range[0]'] + '\n' +
+                    'x-axis end:' + eventdata['xaxis.range[1]'] + "\n" + 
+                    'LOD level:' + lodLevel);
+                */
+                var figure = JSON.parse(document.getElementById(newPlot).innerHTML);
+                Plotly.react("plotDiv", figure.data, figure.layout);
+                Plotly.relayout("plotDiv", 'xaxis.range', [x_min, x_max]);
+                Plotly.relayout("plotDiv", 'yaxis.range', [eventdata['yaxis.range[0]'], eventdata['yaxis.range[1]']]);
+
+            }
+            
         }
         else
         {
+            /*
             alert( 'ZOOM RESET!' + '\n\n' +
                 'Event data:' + '\n' +
                 JSON.stringify(eventdata));
-        }
-        
+            */
+            var newPlot = "plot-1";
+            var figure = JSON.parse(document.getElementById(newPlot).innerHTML);
+            Plotly.react("plotDiv", figure.data, figure.layout);
+        }        
+
+
+    }
+
+    fig.on('plotly_hover', function(data){ 
+        console.log(data);
+        var x_pos = data.points[0].bbox["x0"];
+        var y_pos = data.points[0].bbox["y0"];
+        var div = document.createElement("div");
+        div.style.width = "100px";
+        div.style.height = "100px";
+        div.style.background = "red";
+        div.style.color = "white";
+        div.innerHTML = "Hello";
+        div.style.position = "absolute";
+        div.style.left = 2000+'px';
+        div.style.top = 1920+'px';
+        const currentDiv = document.getElementById("text");
+        document.body.insertBefore(div, currentDiv);
     });
+
+
+
+    fig.on('plotly_relayout', function(eventdata){ 
+        handleZoomEvent(eventdata);
+    });
+
+    
+    
 </script>
-<p>And here's some text after the graph.</p>
+<p id="text">And here's some text after the graph.</p>
 </body>
 </html>
