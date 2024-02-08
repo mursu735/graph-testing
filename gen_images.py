@@ -1,7 +1,6 @@
-from dash import Dash, dcc, html, Input, Output, State, callback
 from collections import Counter
+from datetime import timedelta
 from PIL import Image
-import dash
 import textwrap
 import random
 
@@ -732,6 +731,11 @@ def add_images(fig, location_shapes, aspect_ratio):
     landscape_aspect_ratio = 7 / 4
     padding = 5
     images_map = {}
+    date_df = pd.read_csv("output/GPT/chapter_durations_fixed.csv", sep=";")
+    date_df["Start Date"] = pd.to_datetime(date_df["Start Date"])
+    date_df["End Date"] = pd.to_datetime(date_df["End Date"])
+    start = date_df["Start Date"].min()
+    end = start + timedelta(days=80)
     
     for loc in location_shapes:
         #if "test" in location_shapes[loc]:
@@ -805,7 +809,7 @@ def add_images(fig, location_shapes, aspect_ratio):
                             fill="toself",
                             mode='lines',
                             name='',
-                            customdata=[{"Image": filename, "Graph": 0, "Country": country, "Chapter": chapter, "Summary": summary}],
+                            customdata=[{"Image": filename, "Graph": 0, "Country": country, "Chapter": chapter, "Summary": summary}], # Needed information: Chapter name, Image, day
                             hoverinfo="text",
                             #text=f"{country}, Chapter {chapter}: {summary}",
                             text=f"{loc}, Chapter {chapter}, x0: {x0}, x1: {x1}, y0: {y0}, y1: {y1}",
@@ -824,6 +828,11 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
     #img_size_y = img_size_x * aspect_ratio
     #landscape_aspect_ratio = 7 / 4
     #padding = 5
+    date_df = pd.read_csv("output/GPT/chapter_durations_fixed.csv", sep=";")
+    date_df["Start Date"] = pd.to_datetime(date_df["Start Date"])
+    date_df["End Date"] = pd.to_datetime(date_df["End Date"])
+    start = date_df["Start Date"].min()
+    end = start + timedelta(days=80)
     images_map = {}
     for loc in location_shapes:
         #if "test" in location_shapes[loc]:
@@ -834,7 +843,26 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
         with open(f"pictures/Chapters/{loc}/layout_overview", encoding="utf-8") as file:
             layout = file.readline()
         print(images)
-        fig.add_trace(
+        for idx, row in date_df.iterrows():
+            countries = row["Country"].split(",")
+            date_df.loc[idx,'Include'] = loc in countries
+        rows = date_df[date_df["Include"] == True]
+        print(rows)
+        #row = -1
+        #previous_y = location_shapes[loc]['y1'] - (padding)
+        #print(layout)
+        # Go through layout file, add the required images
+        filename = layout
+        if f"{filename}.webp" in images:
+            image = Image.open(f"pictures/Chapters/{path}/{filename}.webp")
+            img_aspect_ratio = image.width / image.height
+            x0, x1 = location_shapes[loc]['x0'], location_shapes[loc]['x1']
+            center = (x1 + x0) / 2
+            y0, y1 = location_shapes[loc]['y0'], location_shapes[loc]['y1']
+            middle = (y0 + y1) / 2
+            img_size_x = x1 - x0
+            img_size_y = y1 - y0
+            fig.add_trace(
             go.Scatter(
                 x=[location_shapes[loc]['x0'],location_shapes[loc]['x0'],location_shapes[loc]['x1'],location_shapes[loc]['x1'],location_shapes[loc]['x0']], #x1-x1-x2-x2-x1
                 y=[location_shapes[loc]['y0'],location_shapes[loc]['y1'],location_shapes[loc]['y1'],location_shapes[loc]['y0'],location_shapes[loc]['y0']], #y1-y2-y2-y1-y1
@@ -842,23 +870,21 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
                 mode='lines',
                 name='',
                 hoverinfo="text",
-                customdata=[{"Image": loc, "Graph": 1}],
+                customdata=[{"Image": loc,
+                             "Graph": 1,
+                             "Start Date": rows["Start Date"].min(),
+                             "End Date": rows["End Date"].max(),
+                             "Start Chapter": rows['Chapter'].min(),
+                             "End Chapter": rows['Chapter'].max(),
+                             "Total Start": start,
+                             "Total End": end,
+                             "Image Path": f"../../pictures/Chapters/{path}/{layout}.webp",
+                             "Country": helpers.country_code_to_name[loc.split("_")[0]],
+                             "Aspect Ratio": img_aspect_ratio}
+                             ],
                 text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
                 opacity=1
             ))
-        row = -1
-        #previous_y = location_shapes[loc]['y1'] - (padding)
-        #print(layout)
-        # Go through layout file, add the required images
-        filename = layout
-        if f"{filename}.webp" in images:
-            image = Image.open(f"pictures/Chapters/{path}/{filename}.webp")
-            x0, x1 = location_shapes[loc]['x0'], location_shapes[loc]['x1']
-            center = (x1 + x0) / 2
-            y0, y1 = location_shapes[loc]['y0'], location_shapes[loc]['y1']
-            middle = (y0 + y1) / 2
-            img_size_x = x1 - x0
-            img_size_y = y1 - y0
             fig.add_layout_image(
                 x=center,
                 y=middle,
