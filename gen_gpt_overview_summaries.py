@@ -69,13 +69,14 @@ countries = list(chapters_in_country.keys())
 files = [file for file in countries if not determine(file)]
 first = True
 print(f"Processing files {files}")
-'''
+number = 1
 last_request = time.time()
 
 for filename in files:
     prompt = "prompt:"
     #filename = file
-    print(f"Processing country {filename}, from chapter {chapters_in_country[filename]['start']} to chapter {chapters_in_country[filename]['end']}")
+    print(f"Processing country {filename}, from chapter {chapters_in_country[filename]['start']} to chapter {chapters_in_country[filename]['end']}, country {number}/{len(files)}")
+    number += 1
     whole_prompt = instruction + "\n"
     start = chapters_in_country[filename]['start']
     end = chapters_in_country[filename]['end']
@@ -83,13 +84,13 @@ for filename in files:
         chapter = helpers.get_chapter(i, False)
         prompt += chapter
         whole_prompt += chapter
-
-    #if not os.path.isdir("dump"):
-    #    os.mkdir("dump")
-    #with open(f"dump/whole_{filename}.txt", "w", encoding="utf-8") as file:
-    #    file.write(whole_prompt)
-    #with open(f"dump/{filename}.txt", "w", encoding="utf-8") as file:
-    #    file.write(prompt)
+    
+    if not os.path.isdir("dump"):
+        os.mkdir("dump")
+    with open(f"dump/whole_{filename}.txt", "w", encoding="utf-8") as file:
+        file.write(whole_prompt)
+    with open(f"dump/{filename}.txt", "w", encoding="utf-8") as file:
+        file.write(prompt)
     
     # Check for number of tokens sent in the last minute
     encoding = tiktoken.encoding_for_model("gpt-4")
@@ -129,4 +130,3 @@ for filename in files:
     #locations = parts[0]
     with open(f"output/GPT/summary/{filename}.txt", "w", encoding="utf-8") as file:
         file.write(message)
-'''
