@@ -351,8 +351,6 @@ def generate_country(path):
             #location_shapes[loc] = {'x0': pos[loc]["x"] - padding, 'x1': pos[loc]["x"] + (size_x + (scale_x * location_importance[loc])), 'y0': pos[loc]["y"] - padding, 'y1': pos[loc]["y"] + (size_y + (scale_y * location_importance[loc])), 'image': loc.split("_")[0]}
             location_shapes[loc] = {'x0': pos[loc]["x"] - padding, 'y0': pos[loc]["y"] - padding, 'image': loc.split("_")[0]}
             # Calculate the boundaries of the large box that surrounds the pictures
-            #if loc == "gb":
-                #location_shapes[loc]["test"] = True
             # Each country should have a manually written file called layout that determines how the final panel will be shaped
             with open(f"pictures/Chapters/{loc}/layout", encoding="utf-8") as file:
                 text = file.readlines()
@@ -736,6 +734,8 @@ def add_images(fig, location_shapes, aspect_ratio):
     date_df["End Date"] = pd.to_datetime(date_df["End Date"])
     start = date_df["Start Date"].min()
     end = start + timedelta(days=80)
+    with open("output/chapter_names.txt", encoding="utf-8") as file:
+        chapter_names = file.readlines()
     
     for loc in location_shapes:
         #if "test" in location_shapes[loc]:
@@ -798,10 +798,12 @@ def add_images(fig, location_shapes, aspect_ratio):
                     summary = ""
                     with open(f"output/GPT/summary/{chapter}.txt", encoding="utf-8") as file:
                         summary = file.read()
-                        summary = summary.replace(". ", ".<br>")
-                    country = loc
+                        summary = '\n'.join(textwrap.wrap(summary, width=60)).strip(),
+                    country = loc.split("_")[0]
                     if country in helpers.country_code_to_name:
                         country = helpers.country_code_to_name[country]
+                    img_aspect_ratio = image.width / image.height
+                    row = date_df.loc[date_df['Chapter'] == int(chapter)].iloc[0]
                     fig.add_trace(
                         go.Scatter(
                             x=[x0,x0,x1,x1,x0], #x1-x1-x2-x2-x1
@@ -809,8 +811,21 @@ def add_images(fig, location_shapes, aspect_ratio):
                             fill="toself",
                             mode='lines',
                             name='',
-                            customdata=[{"Image": filename, "Graph": 0, "Country": country, "Chapter": chapter, "Summary": summary}], # Needed information: Chapter name, Image, day
-                            hoverinfo="text",
+                            customdata=[{
+                                "Image": filename,
+                                "Graph": 0,
+                                "Country": country,
+                                "Chapter": chapter,
+                                "Summary": summary,
+                                "Aspect Ratio": img_aspect_ratio,
+                                "Image Path": f"../../pictures/Chapters/{path}/{filename}.webp",
+                                "Chapter Name": '\n'.join(textwrap.wrap(chapter_names[int(chapter)-1], width=50)).strip(),
+                                "Start Date": row["Start Date"],
+                                "End Date": row["End Date"],
+                                "Total Start": start,
+                                "Total End": end,
+                                }], # Needed information: Chapter name, Image, day
+                            hoverinfo="none",
                             #text=f"{country}, Chapter {chapter}: {summary}",
                             text=f"{loc}, Chapter {chapter}, x0: {x0}, x1: {x1}, y0: {y0}, y1: {y1}",
                             opacity=1
@@ -847,7 +862,7 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
             countries = row["Country"].split(",")
             date_df.loc[idx,'Include'] = loc in countries
         rows = date_df[date_df["Include"] == True]
-        print(rows)
+        #print(rows)
         #row = -1
         #previous_y = location_shapes[loc]['y1'] - (padding)
         #print(layout)
@@ -869,7 +884,8 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
                 fill="toself",
                 mode='lines',
                 name='',
-                hoverinfo="text",
+                hoverinfo="none",
+                #hoverinfo="text",
                 customdata=[{"Image": loc,
                              "Graph": 1,
                              "Start Date": rows["Start Date"].min(),

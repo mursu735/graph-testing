@@ -8,11 +8,17 @@ def get_instruction():
 
 def get_summary_instruction():
     instruction = ""
-    with open("input/instruction_summary.txt") as file:
+    with open("input/instruction_character_summary.txt") as file:
         instruction = ''.join(line for line in file)
     return instruction
 
-def get_chapter(chapter):
+def get_country_summary_instruction():
+    instruction = ""
+    with open("input/instruction_country_summary.txt") as file:
+        instruction = ''.join(line for line in file)
+    return instruction
+
+def get_chapter(chapter, add_prompt=True):
     prompt = ""
     '''
     if chapter > 1:
@@ -23,7 +29,10 @@ def get_chapter(chapter):
     prompt += "\n\n"
     with open(f"input/Chapters/{chapter}.txt", encoding="utf-8") as file:
         text = file.read()
-        prompt += f"prompt:\n{text}"
+        if add_prompt:
+            prompt += f"prompt:{text}"
+        else:
+            prompt += text
     return prompt
     
 def build_prompt(chapter):

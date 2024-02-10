@@ -1,0 +1,10 @@
+Given a text marked with "prompt:", try to extract the following information as accurately as possible.
+
+Extract as many people as possible and provide a brief summary of their actions in the text.
+Focus only on the actions, and not appearance. Limit the length of the summary to one sentence per character.
+Give result in the following format:
+"""
+<character name>:
+<summary>
+"""
+Separate the results with the delimiter "///" and give the delimiter in a new line.

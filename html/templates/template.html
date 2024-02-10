@@ -4,7 +4,7 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
 
-<h1>Here's a Plotly graph!</h1>
+<h1>Around the world in 80 days</h1>
 {{ fig }}
 
 
@@ -50,9 +50,6 @@
                 var x_delta = x_max - x_min;
                 var lodLevel = Math.floor(x_delta / lodCutoff);
                 var newPlot = "plot-" + lodLevel;
-                //var figure = document.getElementById(newPlot).innerHTML;
-                //var figure = figs[lodLevel];
-                //var actual = figure[lodLevel]
                 console.log(newPlot);
                 /*
                 alert( 'ZOOM!' + '\n\n' +
@@ -66,9 +63,7 @@
                 Plotly.react("plotDiv", figure.data, figure.layout);
                 Plotly.relayout("plotDiv", 'xaxis.range', [x_min, x_max]);
                 Plotly.relayout("plotDiv", 'yaxis.range', [eventdata['yaxis.range[0]'], eventdata['yaxis.range[1]']]);
-
             }
-            
         }
         else
         {
@@ -81,58 +76,49 @@
             var figure = JSON.parse(document.getElementById(newPlot).innerHTML);
             Plotly.react("plotDiv", figure.data, figure.layout);
         }        
-
-
     }
 
-    fig.on('plotly_hover', function(data){ 
+    function handleHoverEvent(data) {
         console.log(data);
         var customdata = data.points[0].data.customdata[0];
-        console.log(typeof(customdata));
-        if (typeof(customdata) == "object" && "Graph" in customdata)
-        {
-            if (customdata["Graph"] == 1)
-            {
-                var color = data.points[0].fullData.fillcolor.split(",");
-                console.log(color);
-                var r = color[0];
-                var g = color[1];
-                var b = color[2];
-                var finalColor = r + "," + g + "," + b + ", 1.0)";
-                console.log(finalColor);
-                console.log(customdata)
-                var x_pos = Math.round(data.points[0].bbox["x1"]) + 10;
-                var y_pos = Math.round(data.points[0].bbox["y0"]) - 10;
+        //console.log(typeof(customdata));
+        if (typeof(customdata) == "object" && "Graph" in customdata) {
+            var color = data.points[0].fullData.fillcolor.split(",");
+            console.log(color);
+            var r = color[0];
+            var g = color[1];
+            var b = color[2];
+            var finalColor = r + "," + g + "," + b + ", 1.0)";
+            var x_pos = Math.round(data.points[0].bbox["x1"]) + 10;
+            var y_pos = Math.round(data.points[0].bbox["y0"]) - 10;
+            // Overview graph: Add chapters, days traveled in the country, graph depicting that time period, and the picture 
+            if (customdata["Graph"] == 1) {
+                console.log(customdata);
                 // Setting chapter text
                 var chapter_text = "";
-                if (customdata["Start Chapter"] == customdata["End Chapter"])
-                {
+                if (customdata["Start Chapter"] == customdata["End Chapter"]) {
                     chapter_text = "Chapter " + customdata["Start Chapter"].toString();
                 }
-                else
-                {
+                else {
                     chapter_text = "Chapters " + customdata["Start Chapter"].toString() + " - " + customdata["End Chapter"].toString();
                 }
                 
                 // Set date text 
                 var date_text = ""
-                if (customdata["Start Date"] == customdata["End Date"])
-                {
+                if (customdata["Start Date"] == customdata["End Date"]) {
                     var start = new Date(customdata["Total Start"]);
                     var current = new Date(customdata['Start Date']);
                     var difference = ((current - start) / (1000 * 3600 * 24));
                     date_text = "Day " + difference;
                 }
-                else
-                {
+                else {
                     var journeyStart = new Date(customdata["Total Start"]);
                     var countryStart = new Date(customdata['Start Date']);
                     var countryEnd = new Date(customdata['End Date']);
                     var startDay = ((countryStart - journeyStart) / (1000 * 3600 * 24));
                     var endDay = ((countryEnd - journeyStart) / (1000 * 3600 * 24));
                     date_text = "Days " + startDay + " - " + endDay;
-                }
-                
+                }            
 
                 var div = document.createElement("div");
                 div.id = "hovertext"
@@ -145,11 +131,90 @@
 
                 var header = document.createElement("h2");
                 header.innerText = chapter_text;
+                header.style.marginTop = "0px";
+                header.style.marginBottom = "0px";
                 div.appendChild(header);
 
                 var date = document.createElement("p");
                 date.innerText = customdata["Country"] + ": " + date_text;
-                div.appendChild(date);
+                date.style.marginTop = "0px";
+                date.style.marginBottom = "0px";
+                //div.appendChild(date);
+
+                // Add timeline figure
+                var journeyStartDate = new Date(customdata["Total Start"]);
+                var journeyEndDate = new Date(customdata["Total End"]);
+                var totalJourneyText = "Journey start: " + journeyStartDate.toISOString().split("T")[0] + ", journey end: " + journeyEndDate.toISOString().split("T")[0];
+                var trace1 = {
+                    x: [new Date(customdata["Total Start"]), new Date(customdata["Total End"])],
+                    y: [0, 0],
+                    name: "total",
+                    text: totalJourneyText, 
+                    type: 'line',
+                    hoverinfo: 'text',
+                    line: {'width': 1, 'color': 'black'}
+                };
+                
+                var currentStart = new Date(customdata['Start Date']);
+                var currentEnd = new Date(customdata['End Date']);
+                var currentText = "Country: " + customdata["Country"] + ", from chapter " + customdata["Start Chapter"] + "(" + currentStart.toISOString().split("T")[0] + ")" +  "to chapter " + customdata["End Chapter"] + "(" + currentEnd.toISOString().split("T")[0] + ")";
+                var trace2 = {
+                    x: [new Date(customdata['Start Date']), new Date(customdata['End Date'])],
+                    y: [0, 0],
+                    name: "current",
+                    text: currentText, 
+                    type: 'line',
+                    hoverinfo: 'text',
+                    line: {'width': 50, 'color': 'blue'}
+                }
+
+                var layout = {
+                    showlegend: false,
+                    width: 100,
+                    height: 15,
+                    yaxis: {
+                        fixedrange: true,
+                        showgrid: false,
+                        showticklabels: false
+                    },
+                    xaxis: {
+                        fixedrange: true,
+                        showgrid: false,
+                        range: [journeyStartDate, journeyEndDate],
+                        showticklabels: false
+                    },
+                    margin: {
+                        l: 0,
+                        r: 0,
+                        b: 0,
+                        t: 0,
+                        pad: 0
+                    },
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                    plot_bgcolor: 'rgba(0,0,0,0)'
+                    };
+
+                var data = [trace1, trace2];
+
+                var figure = document.createElement("div");
+                Plotly.newPlot(figure, data, layout);
+                figure.style.marginLeft = "5px";
+                var countryAndFig = {
+                    date: date,
+                    fig: figure
+                };
+                countryAndFig.date.style.display = 'inline-block';
+                //countryAndFig.country.style.border = "thin solid black"; 
+                countryAndFig.fig.style.display = 'inline-block';
+                //countryAndFig.fig.style.border = "thin solid black"; 
+
+
+                var countryAndFigDiv = document.createElement("div");
+                countryAndFigDiv.appendChild(countryAndFig.date);
+                countryAndFigDiv.appendChild(countryAndFig.fig);
+                countryAndFigDiv.style.marginTop = "0px";
+                countryAndFigDiv.style.marginBottom = "0px";
+                div.appendChild(countryAndFigDiv);
 
                 // Set image
                 console.log(customdata["Image Path"]);
@@ -157,23 +222,198 @@
                 image.src = customdata["Image Path"];
                 var aspectRatio = customdata["Aspect Ratio"];
                 var width = 256;
-                var height = Math.round(width * aspectRatio);
+                var height = Math.round(width / aspectRatio);
                 image.setAttribute("height", height);
                 image.setAttribute("width", width);
                 div.appendChild(image)
-
-                //div.innerHTML = "Hello";
                 
                 div.style.position = "absolute";
                 div.style.left = x_pos+'px';
                 div.style.top = y_pos+'px';
+                div.style.border = "thin solid black"; 
                 const currentDiv = document.getElementById("text");
                 document.body.insertBefore(div, currentDiv);
             }
+            // Per chapter graph
+            else {
+                console.log(customdata);
+                var div = document.createElement("div");
+                div.id = "hovertext"
+                console.log(x_pos, y_pos);
+                //div.style.width = "100px";
+                //div.style.height = "100px";
+                div.style.background = finalColor;
+                div.style.color = "black";
+                div.style.fontFamily = "Open Sans,sans-serif";
+                // Chapter number
+                var chapter_text = customdata["Chapter"].toString();
+                var header = document.createElement("h1");
+                header.innerText = chapter_text;
+                header.style.marginTop = "0px";
+                header.style.marginBottom = "0px";
+                
+                //div.appendChild(header);
+
+                // Country and days, side by side with timeline, and chapter name underneath that
+                var countryText = customdata["Country"];
+                var dateText = ""
+                if (customdata["Start Date"] == customdata["End Date"]) {
+                    var start = new Date(customdata["Total Start"]);
+                    var current = new Date(customdata['Start Date']);
+                    var difference = ((current - start) / (1000 * 3600 * 24));
+                    dateText = "day " + difference;
+                }
+                else {
+                    var journeyStart = new Date(customdata["Total Start"]);
+                    var countryStart = new Date(customdata['Start Date']);
+                    var countryEnd = new Date(customdata['End Date']);
+                    var startDay = ((countryStart - journeyStart) / (1000 * 3600 * 24));
+                    var endDay = ((countryEnd - journeyStart) / (1000 * 3600 * 24));
+                    dateText = "days " + startDay + " - " + endDay;
+                }   
+                countryText += " - " + dateText;
+                var countryDiv = document.createElement("p");
+                countryDiv.innerText = countryText;
+                countryDiv.style.marginTop = "0px";
+                countryDiv.style.marginBottom = "0px";
+
+                var chapterName = customdata["Chapter Name"];
+                var chapterNameDiv = document.createElement("h3");
+                chapterNameDiv.innerText = chapterName;
+                chapterNameDiv.style.marginTop = "0px";
+                chapterNameDiv.style.marginBottom = "0px";
+                //chapterNameDiv.style.border = "thin solid black"; 
+
+                // Add timeline figure
+                var journeyStartDate = new Date(customdata["Total Start"]);
+                var journeyEndDate = new Date(customdata["Total End"]);
+                var totalJourneyText = "Journey start: " + journeyStartDate.toISOString().split("T")[0] + ", journey end: " + journeyEndDate.toISOString().split("T")[0];
+                var trace1 = {
+                    x: [new Date(customdata["Total Start"]), new Date(customdata["Total End"])],
+                    y: [0, 0],
+                    name: "total",
+                    text: totalJourneyText, 
+                    type: 'line',
+                    hoverinfo: 'text',
+                    line: {'width': 1, 'color': 'black'}
+                };
+                
+                var currentStart = new Date(customdata['Start Date']);
+                var currentEnd = new Date(customdata['End Date']);
+                var currentText = "Country: " + customdata["Country"] + ", chapter " + customdata["Chapter"] + "(" + currentStart.toISOString().split("T")[0] + " - " + currentEnd.toISOString().split("T")[0] + ")";
+                var trace2 = {
+                    x: [new Date(customdata['Start Date']), new Date(customdata['End Date'])],
+                    y: [0, 0],
+                    name: "current",
+                    text: currentText, 
+                    type: 'line',
+                    hoverinfo: 'text',
+                    line: {'width': 15, 'color': 'blue'}
+                }
+
+                var layout = {
+                    showlegend: false,
+                    width: 100,
+                    height: 15,
+                    yaxis: {
+                        fixedrange: true,
+                        showgrid: false,
+                        showticklabels: false
+                    },
+                    xaxis: {
+                        fixedrange: true,
+                        showgrid: false,
+                        range: [journeyStartDate, journeyEndDate],
+                        showticklabels: false
+                    },
+                    margin: {
+                        l: 0,
+                        r: 0,
+                        b: 0,
+                        t: 0,
+                        pad: 0
+                    },
+                    paper_bgcolor: 'rgba(0,0,0,0)',
+                    plot_bgcolor: 'rgba(0,0,0,0)'
+                    };
+
+                var data = [trace1, trace2];
+
+                var figure = document.createElement("div");
+                Plotly.newPlot(figure, data, layout);
+                figure.style.marginLeft = "5px";
+                var countryAndFig = {
+                    country: countryDiv,
+                    fig: figure
+                };
+                countryAndFig.country.style.display = 'inline-block';
+                //countryAndFig.country.style.border = "thin solid black"; 
+                countryAndFig.fig.style.display = 'inline-block';
+                //countryAndFig.fig.style.border = "thin solid black"; 
+
+
+                var countryAndNameDiv = document.createElement("div");
+                countryAndNameDiv.appendChild(countryAndFig.country);
+                countryAndNameDiv.appendChild(countryAndFig.fig);
+                countryAndNameDiv.appendChild(chapterNameDiv);
+                countryAndNameDiv.style.marginTop = "0px";
+                countryAndNameDiv.style.marginBottom = "0px";
+
+
+                var divContents = {
+                    chapter: header,
+                    country: countryAndNameDiv
+                }
+                divContents.chapter.style.display = 'inline-block';
+                //divContents.chapter.style.border = "thin solid black"; 
+                //divContents.chapter.style.position = "relative";
+                //divContents.chapter.style.top = "-50px";
+
+                divContents.country.style.display = 'inline-block';
+                //divContents.country.style.border = "thin solid black"; 
+                divContents.country.style.marginTop = "0px"; 
+                
+                div.appendChild(divContents.chapter);
+                div.appendChild(divContents.country);
+
+                // Chapter description and picture wrapped
+                var descriptionDiv = document.createElement("div");
+                var summary = customdata["Summary"];
+                var summaryElement = document.createElement("p");
+                summaryElement.innerText = summary;
+                summaryElement.style.marginTop = "0px";
+                summaryElement.style.marginBottom = "0px";
+
+                var image = document.createElement("img");
+                image.src = customdata["Image Path"];
+                var aspectRatio = customdata["Aspect Ratio"];
+                var width = 256;
+                var height = Math.round(width / aspectRatio);
+                image.setAttribute("height", height);
+                image.setAttribute("width", width);
+                descriptionDiv.appendChild(summaryElement);
+
+                div.appendChild(descriptionDiv);
+                div.appendChild(image);
+
+                div.style.position = "absolute";
+                div.style.left = x_pos+'px';
+                div.style.top = y_pos+'px';
+                div.style.border = "thin solid black";
+                div.style.marginTop = "0px";
+                div.style.marginBottom = "0px";
+                const currentDiv = document.getElementById("text");
+                document.body.insertBefore(div, currentDiv);
+
+            }
             
         }
-    });
+    }
 
+    fig.on('plotly_hover', function(data){ 
+        handleHoverEvent(data)
+    });
+    
     fig.on('plotly_unhover', function(data){
         var element = document.getElementById("hovertext");
         if (typeof(element) != 'undefined' && element != null)
@@ -182,7 +422,6 @@
         }
         
     });
-
 
 
     fig.on('plotly_relayout', function(eventdata){ 
