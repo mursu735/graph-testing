@@ -218,6 +218,14 @@
 
                 // Set image
                 console.log(customdata["Image Path"]);
+                // Chapter description and picture wrapped
+                var descriptionDiv = document.createElement("div");
+                var summary = customdata["Summary"];
+                var summaryElement = document.createElement("p");
+                summaryElement.innerText = summary;
+                summaryElement.style.marginTop = "0px";
+                summaryElement.style.marginBottom = "0px";
+
                 var image = document.createElement("img");
                 image.src = customdata["Image Path"];
                 var aspectRatio = customdata["Aspect Ratio"];
@@ -225,7 +233,10 @@
                 var height = Math.round(width / aspectRatio);
                 image.setAttribute("height", height);
                 image.setAttribute("width", width);
-                div.appendChild(image)
+                descriptionDiv.appendChild(summaryElement);
+                
+                div.appendChild(descriptionDiv);
+                div.appendChild(image);
                 
                 div.style.position = "absolute";
                 div.style.left = x_pos+'px';

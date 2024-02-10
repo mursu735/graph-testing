@@ -877,6 +877,10 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
             middle = (y0 + y1) / 2
             img_size_x = x1 - x0
             img_size_y = y1 - y0
+            summary = ""
+            with open(f"output/GPT/summary/{loc}.txt", encoding="utf-8") as file:
+                summary = file.read()
+                summary = '\n'.join(textwrap.wrap(summary, width=60)).strip(),
             fig.add_trace(
             go.Scatter(
                 x=[location_shapes[loc]['x0'],location_shapes[loc]['x0'],location_shapes[loc]['x1'],location_shapes[loc]['x1'],location_shapes[loc]['x0']], #x1-x1-x2-x2-x1
@@ -896,6 +900,7 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
                              "Total End": end,
                              "Image Path": f"../../pictures/Chapters/{path}/{layout}.webp",
                              "Country": helpers.country_code_to_name[loc.split("_")[0]],
+                             "Summary": summary,
                              "Aspect Ratio": img_aspect_ratio}
                              ],
                 text=f"{loc}, x0: {location_shapes[loc]['x0']}, x1: {location_shapes[loc]['x1']}, y0: {location_shapes[loc]['y0']}, y1: {location_shapes[loc]['y1']}",
