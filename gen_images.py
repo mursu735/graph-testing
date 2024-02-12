@@ -133,13 +133,14 @@ def generate_country(path):
     locations = []
     people_ending_in_location = {}
     people_starting_in_location = {}
-    '''
+    
     with open("colors.txt") as file:
-        named_colors = file.read()
-        named_colors = named_colors.replace("\n", " ").split(", ")
-     '''   
-    named_colors = px.colors.DEFAULT_PLOTLY_COLORS
-    used_colors = []
+        side_character_colors = file.read()
+        side_character_colors = side_character_colors.replace("\n", " ").split(", ")
+      
+    main_character_colors = px.colors.DEFAULT_PLOTLY_COLORS
+    main_used_colors = []
+    side_used_colors = []
     aliases = helpers.get_aliases()
     aliases_reversed = helpers.get_aliases_reversed()
     for idx, row in df.iterrows():
@@ -201,18 +202,33 @@ def generate_country(path):
                 # TODO: Have default plotly colors for important characters and the CSS list for others
                 width = 1
                 line_style = "dot"
-                # Important characters
-                if os.path.isfile(f"pictures/People/{person}_face.png"):
-                    width = 2
-                    line_style = "solid"
-                col = random.choice(named_colors)
-                while col in used_colors:
-                    col = random.choice(named_colors)
-                    # Reset in case there are too many characters for the colors
-                    if len(used_colors) > (len(named_colors) - 2):
-                        used_colors = []
-                    
-                used_colors.append(col)
+                # Character was seen previously but reintroduced, keep the old color
+                if person.split("_")[0] in people_list:
+                    col = people_list[person.split("_")[0]]["color"]
+                else:
+                    # Use a different color palette for important characters
+                    if os.path.isfile(f"pictures/People/{person}_face.png"):
+                        width = 2
+                        line_style = "solid"
+                        col = random.choice(main_character_colors)
+                        while col in main_used_colors:
+                            print("Clash in main character color selection", col)
+                            col = random.choice(main_character_colors)
+                            # Reset in case there are too many characters for the colors
+                            if len(main_used_colors) == (len(main_character_colors)):
+                                main_used_colors = []
+                            main_used_colors.append(col)
+                    else:
+                        col = random.choice(side_character_colors)
+                        while col in side_used_colors:
+                            print("Clash in side character color selection", col)
+                            col = random.choice(side_character_colors)
+                            # Reset in case there are too many characters for the colors
+                            if len(side_used_colors) == (len(side_character_colors)):
+                                side_used_colors = []
+                            side_used_colors.append(col)
+                
+
                 G.add_node(person, shape="circle", color=col)
                 people_list[person] = {"color": col, "width": width, "dash": line_style}
             
@@ -609,7 +625,7 @@ def generate_country(path):
         total = f"{character}: {desc}"
         total = '<br>'.join(textwrap.wrap(total, width=30))
         data["label"] = character
-        data["info"] = "<b>Test something here</b><br>" + total
+        data["info"] = "<b>Test something here</b><br>" + total + f"color: {people_list[character]['color']}"
         data["x"] = x
         data["y"] = y
         data["shape"] = G.nodes.data()[node]["shape"]
@@ -642,8 +658,8 @@ def generate_country(path):
                     titlefont_size=16,
                     showlegend=False,
                     hovermode='closest',
-                    xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-                    yaxis=dict(showgrid=False, zeroline=False, showticklabels=False, scaleanchor="x", scaleratio=1)
+                    xaxis=dict(showgrid=True, zeroline=False, showticklabels=True),
+                    yaxis=dict(showgrid=True, zeroline=False, showticklabels=True, scaleanchor="x", scaleratio=1)
                     )
                 )
     print(location_shapes)
@@ -888,8 +904,8 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
                 fill="toself",
                 mode='lines',
                 name='',
-                hoverinfo="none",
-                #hoverinfo="text",
+                #hoverinfo="none",
+                hoverinfo="text",
                 customdata=[{"Image": loc,
                              "Graph": 1,
                              "Start Date": rows["Start Date"].min(),

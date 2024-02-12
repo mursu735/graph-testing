@@ -89,8 +89,7 @@
             var g = color[1];
             var b = color[2];
             var finalColor = r + "," + g + "," + b + ", 1.0)";
-            var x_pos = Math.round(data.points[0].bbox["x1"]) + 10;
-            var y_pos = Math.round(data.points[0].bbox["y0"]) - 10;
+            var width = 256;
             // Overview graph: Add chapters, days traveled in the country, graph depicting that time period, and the picture 
             if (customdata["Graph"] == 1) {
                 console.log(customdata);
@@ -194,10 +193,10 @@
                     plot_bgcolor: 'rgba(0,0,0,0)'
                     };
 
-                var data = [trace1, trace2];
+                var figData = [trace1, trace2];
 
                 var figure = document.createElement("div");
-                Plotly.newPlot(figure, data, layout);
+                Plotly.newPlot(figure, figData, layout);
                 figure.style.marginLeft = "5px";
                 var countryAndFig = {
                     date: date,
@@ -229,21 +228,14 @@
                 var image = document.createElement("img");
                 image.src = customdata["Image Path"];
                 var aspectRatio = customdata["Aspect Ratio"];
-                var width = 256;
-                var height = Math.round(width / aspectRatio);
+                var imgWidth = 256;
+                var height = Math.round(imgWidth / aspectRatio);
                 image.setAttribute("height", height);
-                image.setAttribute("width", width);
+                image.setAttribute("width", imgWidth);
                 descriptionDiv.appendChild(summaryElement);
                 
                 div.appendChild(descriptionDiv);
                 div.appendChild(image);
-                
-                div.style.position = "absolute";
-                div.style.left = x_pos+'px';
-                div.style.top = y_pos+'px';
-                div.style.border = "thin solid black"; 
-                const currentDiv = document.getElementById("text");
-                document.body.insertBefore(div, currentDiv);
             }
             // Per chapter graph
             else {
@@ -348,10 +340,10 @@
                     plot_bgcolor: 'rgba(0,0,0,0)'
                     };
 
-                var data = [trace1, trace2];
+                var figData = [trace1, trace2];
 
                 var figure = document.createElement("div");
-                Plotly.newPlot(figure, data, layout);
+                Plotly.newPlot(figure, figData, layout);
                 figure.style.marginLeft = "5px";
                 var countryAndFig = {
                     country: countryDiv,
@@ -398,25 +390,54 @@
                 var image = document.createElement("img");
                 image.src = customdata["Image Path"];
                 var aspectRatio = customdata["Aspect Ratio"];
-                var width = 256;
-                var height = Math.round(width / aspectRatio);
+                var imgWidth = 256;
+                var height = Math.round(imgWidth / aspectRatio);
                 image.setAttribute("height", height);
-                image.setAttribute("width", width);
+                image.setAttribute("width", imgWidth);
                 descriptionDiv.appendChild(summaryElement);
 
                 div.appendChild(descriptionDiv);
                 div.appendChild(image);
-
-                div.style.position = "absolute";
-                div.style.left = x_pos+'px';
-                div.style.top = y_pos+'px';
-                div.style.border = "thin solid black";
-                div.style.marginTop = "0px";
-                div.style.marginBottom = "0px";
-                const currentDiv = document.getElementById("text");
-                document.body.insertBefore(div, currentDiv);
-
             }
+            var leftBBox = Math.round(data.points[0].bbox["x1"]) + 10;
+            var clientHeight = div.clientHeight;
+            var figWidth = div.clientWidth;
+            //console.log(div)
+
+            div.style.position = "absolute";
+            div.style.marginTop = "0px";
+            div.style.marginBottom = "0px";
+            div.style.border = "thin solid black"; 
+            const currentDiv = document.getElementById("text");
+            document.body.insertBefore(div, currentDiv);
+            var leftBBox = Math.round(data.points[0].bbox["x1"]) + 10;
+            var clientHeight = div.clientHeight;
+            var clientWidth = div.clientWidth;
+            console.log("Div width and height post", clientHeight, clientWidth);
+            console.log(div)
+            var figWidth = data.event.target.width.animVal.value;
+            var figHeight = data.event.target.height.animVal.value;
+            //var figWidth = 1920;
+            // Attempt to align hover label to the right, if it goes too far, put it to the right
+            if (leftBBox + clientWidth > figWidth) {
+                console.log("Place div on left");
+                var x_pos = Math.round(data.points[0].bbox["x0"]) - 10 - clientWidth;
+            }
+            else {
+                console.log("Place div on right");
+                var x_pos = Math.round(data.points[0].bbox["x1"]) + 10;
+            }
+            
+            //var x_pos = Math.round(data.points[0].bbox["x1"]) + 10;
+            
+            var y_pos = Math.round(data.points[0].bbox["y0"]) - 10;
+            console.log(y_pos);
+            if (y_pos - clientHeight < 0) {
+                console.log("Move div up by" , clientHeight - y_pos, "pixels")
+                y_pos -= ((clientHeight - y_pos) / 2); 
+            }
+            div.style.left = x_pos+'px';
+            div.style.top = y_pos+'px';
             
         }
     }

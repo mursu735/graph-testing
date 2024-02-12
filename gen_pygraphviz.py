@@ -15,6 +15,9 @@ from z3 import *
 
 use_new_sorting = True
 
+def Abs(x):
+    return If(x >= 0, x, -x)
+
 def create_path_ranks(characters, pos, graph):
     keys = list(set(pos.keys()) - set(characters))
     place_positions = {k:pos[k] for k in keys}
@@ -104,16 +107,18 @@ def get_positions(characters, pos, graph):
     # `Assignment` is represented by character name
     Assignment = []
     conversion_map = {}
+    string_to_z3_var = {}
     for person in characters:
         as_variable = Int(person)
         Assignment.append(as_variable)
         conversion_map[as_variable] = person
+        string_to_z3_var[person] = as_variable
 
     
     for Person in Assignment:
         solver.add(Person >= 1)
         solver.add(Person <= n_vertices)
-        person = conversion_map[Person]
+        #person = conversion_map[Person]
 
     solver.add(Distinct(Assignment))
     #print(Assignment)
@@ -131,9 +136,33 @@ def get_positions(characters, pos, graph):
                 # And(first > second, first_path < second_path)
                 #if (first_path < second_path):
                 #edges.append(If(And(not first_path == -1, not second_path == -1, And(first > second, first_path < second_path)), 1, 0))
+                # If the characters cross, add penalty
                 edges.append(If(And(first > second, first_path < second_path), 1, 0))
+                #edges.append(If(first > second, 1, 0))
                 # TODO: May need to improve this
     #print(edges)
+    # Penalize characters in the same cluster being far away
+    # NOTE: The solver is MUCH faster, if the problem can be formulated as a binary statement.
+    # E.g. having the below problem be simply Abs(first - second) will get the solver stuck 
+    clusters = helpers.get_clusters()
+    cluster_list = {}
+    for character in clusters:
+        #print(character)
+        cluster_num = clusters[character]
+        if cluster_num not in cluster_list:
+            cluster_list[cluster_num] = []
+        cluster_list[cluster_num].append(character)
+    #print(conversion_map)
+    
+    for cluster in cluster_list:
+        characters = cluster_list[cluster]
+        if len(characters) > 1:
+            for i in range(0, len(characters)):
+                first = string_to_z3_var[characters[i]]
+                for j in range(i+1, len(characters)):
+                    second = string_to_z3_var[characters[j]]
+                    edges.append(If(Abs(first - second) > len(characters), 1, 0))
+                    #print(characters[i], characters[j])
     #Crossings = Sum([ Abs(character - level) for character in Assignment for level in y_ranks[conversion_map[character]] ])
     Crossings = Sum(edges)
     #print(Crossings)
