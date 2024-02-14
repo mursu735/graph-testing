@@ -10,5 +10,6 @@ pandas
 pygraphviz
 geopy
 scipy
+jinja2
 en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.6.0/en_core_web_sm-3.6.0-py3-none-any.whl
 en_core_web_trf @ https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.6.1/en_core_web_trf-3.6.1-py3-none-any.whl

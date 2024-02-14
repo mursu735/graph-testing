@@ -1,0 +1,300 @@
+;Unnamed: 0;Person;City;Latitude;Longitude;Location;Order;Importance;Country;Chapter
+0;0;Mr. Phileas Fogg;London;51.5074;0.1278;No. 7, Saville Row, Burlington Gardens;1;1.0;gb;1
+1;1;Jean Passepartout;London;51.5074;0.1278;No. 7, Saville Row, Burlington Gardens;2;0.8;gb;1
+2;2;James Forster;London;51.5074;0.1278;No. 7, Saville Row, Burlington Gardens;3;0.6;gb;1
+3;0;Phileas Fogg;London;51.5074;0.1278;Saville Row;1;1.0;gb;2
+4;1;Jean Passepartout;London;51.5074;0.1278;Saville Row;2;0.8;gb;2
+5;0;Phileas Fogg;London;51.5074;0.1278;Saville Row;1;1.0;gb;3
+6;1;Phileas Fogg|Andrew Stuart|John Sullivan|Samuel Fallentin|Thomas Flanagan|Gauthier Ralph;London;51.5074;0.1278;Reform Club;2|3|4|5|6|7;0.8|0.6|0.6|0.6|0.6|0.6;gb;3
+7;0;Phileas Fogg;London;51.5074;0.1278;Reform Club;1;1.0;gb;4
+8;1;Phileas Fogg|Passepartout;London;51.5074;0.1278;Saville Row;2|3;1.0|0.8;gb;4
+9;2;Phileas Fogg|Passepartout;London;51.5074;0.1278;Charing Cross;4|5;1.0|0.8;gb;4
+10;3;Phileas Fogg|Passepartout;London;51.5074;0.1278;Railway Station;6|7;1.0|0.8;gb;4
+11;4;Phileas Fogg|Passepartout;On a train;51.5074;0.1278;;8|9;1.0|0.8;gb;4
+12;0;Phileas Fogg;London;51.5074;0.1278;Reform Club;1;1.0;gb;5
+13;1;Passepartout;London;51.5074;0.1278;Reform Club;2;0.8;gb;5
+14;2;Lord Albemarle;London;51.5074;0.1278;unknown;3;0.6;gb;5
+15;3;Fix;Suez;29.9668;32.5498;unknown;4;0.7;eg;5
+16;0;Phileas Fogg;London;51.5074;0.1278;all;1;1.0;gb;6
+17;1;Passepartout;London;51.5074;0.1278;all;2;0.8;gb;6
+18;2;Phileas Fogg|Passepartout;Dover;51.1279;1.3134;all;3|4;1.0|0.8;gb;6
+19;3;Phileas Fogg|Passepartout;Calais;50.9513;1.8587;all;5|6;1.0|0.8;fr;6
+20;4;Phileas Fogg|Passepartout;Paris;48.8566;2.3522;all;7|8;1.0|0.8;fr;6
+21;5;Fix;Suez;29.9668;32.5498;all;9;0.6;eg;6
+22;6;British consul;Suez;29.9668;32.5498;all;10;0.4;eg;6
+23;7;Phileas Fogg;Suez;29.9668;32.5498;all;11;1.0;eg;6
+24;8;Passepartout;Suez;29.9668;32.5498;all;12;0.8;eg;6
+25;0;Detective Fix;Suez;29.9745;32.5263;Consul's office;1;0.8;eg;7
+26;1;Phileas Fogg|Passepartout;Suez;29.9745;32.5263;Consul's office;2|3;1|0.6;eg;7
+27;2;Phileas Fogg|Passepartout;Suez;29.9745;32.5263;Quay;4|5;1|0.6;eg;7
+28;3;Phileas Fogg;Suez;29.9745;32.5263;Mongolia's cabin;6;1;eg;7
+29;0;Phileas Fogg;Suez;29.9745;32.5263;Consul's office;1;1.0;eg;8
+30;1;Passepartout|Fix;Suez;29.9745;32.5263;Quay;2|3;0.9|0.8;eg;8
+31;3;Passepartout|Fix;Suez;29.9745;32.5263;Shop;6|7;0.9|0.8;eg;8
+32;4;Fix;Suez;29.9745;32.5263;Consulate;8;0.8;eg;8
+33;5;Fix;Suez;29.9745;32.5263;Telegraph office;9;0.8;eg;8
+34;6;Phileas Fogg|Passepartout|Fix;Suez;29.9745;32.5263;"Ship ""Mongolia""";4|5;1.0|0.9|0.8;eg;8
+35;0;Phileas Fogg|Passepartout|Fix;Suez;29.9668;32.5498;Consul's office;1|2|3;1|0.8|0.6;eg;9
+36;1;Phileas Fogg|Passepartout|Fix;Suez;29.9668;32.5498;"Ship ""Mongolia""";4|5|6;1|0.8|0.6;eg;9
+37;2;Phileas Fogg|Passepartout|Fix;Aden;12.7855;45.0187;Steamer Point;7|8|9;1|0.8|0.6;ye;9
+38;3;Phileas Fogg|Passepartout|Fix;Bombay;19.076;72.8777;;10|11|12;1|0.8|0.6;in;9
+39;0;Mr. Fogg;Bombay;18.975;72.8258;Passport office;1;1.0;in;10
+40;1;Mr. Fogg;Bombay;18.975;72.8258;Railway station;2;1.0;in;10
+41;2;Fix;Bombay;18.975;72.8258;Headquarters of the Bombay police;1;0.8;in;10
+42;3;Passepartout;Bombay;18.975;72.8258;Streets of Bombay;1;0.7;in;10
+43;4;Passepartout;Bombay;18.975;72.8258;Pagoda on Malabar Hill;2;0.7;in;10
+44;5;Passepartout;Bombay;18.975;72.8258;Railway station;3;0.7;in;10
+45;6;Fix;Bombay;18.975;72.8258;Railway station;2;0.8;in;10
+46;7;Mr. Fogg;Bombay;18.975;72.8258;Train;3;1.0;in;10
+47;8;Passepartout;Bombay;18.975;72.8258;Train;4;0.7;in;10
+48;9;Fix;Bombay;18.975;72.8258;Train;3;0.8;in;10
+49;0;Phileas Fogg;Bombay;18.975;72.8258;Train;1;1.0;in;11
+50;1;Sir Francis Cromarty;Bombay;18.975;72.8258;Train;2;0.8;in;11
+51;2;Passepartout;Bombay;18.975;72.8258;Train;3;0.7;in;11
+52;3;Phileas Fogg;Kholby;27.702;77.897;Elephant;2;1.0;in;11
+53;4;Sir Francis Cromarty;Kholby;27.702;77.897;Elephant;2;0.8;in;11
+54;5;Passepartout;Kholby;27.702;77.897;Elephant;3;0.7;in;11
+55;0;Phileas Fogg|Sir Francis Cromarty|Parsee;Vindhia Mountains;23.0412;77.2354;Forest;1|2|3;1.0;in;12
+56;1;Phileas Fogg|Sir Francis Cromarty|Parsee;Bundelcund;25.4305;78.5671;Ruined bungalow;4|5|6;1.0;in;12
+57;2;Phileas Fogg|Sir Francis Cromarty|Parsee;Allahabad;25.4358;81.8463;Under a clump of bananas;7|8|9;1.0;in;12
+58;3;Phileas Fogg|Sir Francis Cromarty|Parsee;Bundelcund;25.4305;78.5671;Thick forest;10|11|12;1.0;in;12
+59;4;Phileas Fogg|Sir Francis Cromarty|Parsee;Bundelcund;25.4305;78.5671;Thicket;13|14|15;1.0;in;12
+60;0;Phileas Fogg;Pagoda of Pillaji;24.5854;73.7125;Elephant;1;1.0;in;13
+61;1;Sir Francis Cromarty;Pagoda of Pillaji;24.5854;73.7125;Elephant;2;0.8;in;13
+62;2;Passepartout;Pagoda of Pillaji;24.5854;73.7125;Elephant;3;0.7;in;13
+63;3;Aouda;Pagoda of Pillaji;24.5854;73.7125;Elephant;4;0.6;in;13
+64;0;Phileas Fogg;Allahabad;25.4358;81.8463;Train station;1;1.0;in;14
+65;1;Aouda;Allahabad;25.4358;81.8463;Train station;2;0.8;in;14
+66;2;Passepartout;Allahabad;25.4358;81.8463;Train station;3;0.7;in;14
+67;3;Phileas Fogg;Allahabad;25.4358;81.8463;City streets;2;1.0;in;14
+68;4;Passepartout;Allahabad;25.4358;81.8463;City streets;4;0.7;in;14
+69;5;Phileas Fogg;Benares;25.3176;82.9739;Train;3;1.0;in;14
+70;6;Aouda;Benares;25.3176;82.9739;Train;3;0.8;in;14
+71;7;Passepartout;Benares;25.3176;82.9739;Train;5;0.7;in;14
+72;8;Sir Francis Cromarty;Benares;25.3176;82.9739;Train;1;0.8;in;14
+73;9;Phileas Fogg;Calcutta;22.5726;88.3639;Train station;4;1.0;in;14
+74;10;Aouda;Calcutta;22.5726;88.3639;Train station;4;0.8;in;14
+75;11;Passepartout;Calcutta;22.5726;88.3639;Train station;6;0.7;in;14
+76;0;Phileas Fogg;Calcutta;22.5726;88.3639;Train station;1;1.0;in;15
+77;1;Aouda;Calcutta;22.5726;88.3639;Train station;2;0.8;in;15
+78;2;Passepartout;Calcutta;22.5726;88.3639;Train station;3;0.7;in;15
+79;3;Phileas Fogg;Calcutta;22.5726;88.3639;Palkigahri;2;1.0;in;15
+80;4;Aouda;Calcutta;22.5726;88.3639;Palkigahri;2;0.8;in;15
+81;5;Passepartout;Calcutta;22.5726;88.3639;Palkigahri;3;0.7;in;15
+82;6;Phileas Fogg;Calcutta;22.5726;88.3639;Courtroom;3;1.0;in;15
+83;7;Aouda;Calcutta;22.5726;88.3639;Courtroom;3;0.8;in;15
+84;8;Passepartout;Calcutta;22.5726;88.3639;Courtroom;3;0.7;in;15
+85;9;Phileas Fogg;Calcutta;22.5726;88.3639;Quay;4;1.0;in;15
+86;10;Aouda;Calcutta;22.5726;88.3639;Quay;4;0.8;in;15
+87;11;Passepartout;Calcutta;22.5726;88.3639;Quay;4;0.7;in;15
+88;0;Phileas Fogg;Calcutta;22.5726;88.3639;Rangoon;1;1.0;in;16
+89;1;Aouda;Calcutta;22.5726;88.3639;Rangoon;2;0.8;in;16
+90;2;Phileas Fogg;Andaman Islands;12.6131;92.6258;Rangoon;2;1.0;in;16
+91;3;Aouda;Andaman Islands;12.6131;92.6258;Rangoon;2;0.8;in;16
+92;4;Phileas Fogg;Straits of Malacca;4.2105;100.6034;Rangoon;3;1.0;my;16
+93;5;Aouda;Straits of Malacca;4.2105;100.6034;Rangoon;3;0.8;my;16
+94;6;Detective Fix;Calcutta;22.5726;88.3639;Rangoon;1;0.7;in;16
+95;7;Detective Fix;Andaman Islands;12.6131;92.6258;Rangoon;2;0.7;in;16
+96;8;Detective Fix;Straits of Malacca;4.2105;100.6034;Rangoon;3;0.7;my;16
+97;9;Passepartout;Calcutta;22.5726;88.3639;Rangoon;3;0.7;in;16
+98;10;Passepartout;Andaman Islands;12.6131;92.6258;Rangoon;4;0.7;in;16
+99;11;Passepartout;Straits of Malacca;4.2105;100.6034;Rangoon;5;0.7;my;16
+100;0;Phileas Fogg;Singapore;1.3521;103.8198;"On the steamer ""Rangoon""";1;1.0;sg;17
+101;1;Aouda;Singapore;1.3521;103.8198;"On the steamer ""Rangoon""";2;0.8;sg;17
+102;2;Fix;Singapore;1.3521;103.8198;"On the steamer ""Rangoon""";3;0.6;sg;17
+103;3;Passepartout;Singapore;1.3521;103.8198;"On the steamer ""Rangoon""";4;0.7;sg;17
+104;4;Phileas Fogg|Aouda;Singapore;1.3521;103.8198;On a walk on shore;5|6;1.0|0.8;sg;17
+105;5;Fix;Singapore;1.3521;103.8198;Following Fogg and Aouda;7;0.6;sg;17
+106;6;Passepartout;Singapore;1.3521;103.8198;Doing his usual errands;8;0.7;sg;17
+107;7;Phileas Fogg|Aouda;Singapore;1.3521;103.8198;In a carriage;9|10;1.0|0.8;sg;17
+108;8;Phileas Fogg|Aouda;Singapore;1.3521;103.8198;Returning to the town;11|12;1.0|0.8;sg;17
+109;9;Passepartout;Singapore;1.3521;103.8198;Purchasing mangoes;14;0.7;sg;17
+110;10;Phileas Fogg;On the way to Hong Kong;22.3193;114.1694;"On the steamer ""Rangoon""";15;1.0;hk;17
+111;11;Aouda;On the way to Hong Kong;22.3193;114.1694;"On the steamer ""Rangoon""";16;0.8;hk;17
+112;12;Fix;On the way to Hong Kong;22.3193;114.1694;"On the steamer ""Rangoon""";17;0.6;hk;17
+113;13;Passepartout;On the way to Hong Kong;22.3193;114.1694;"On the steamer ""Rangoon""";18;0.7;hk;17
+114;0;Phileas Fogg;Hong Kong;22.3193;114.1694;Rangoon;1;1.0;hk;18
+115;1;Aouda;Hong Kong;22.3193;114.1694;Rangoon;2;0.8;hk;18
+116;2;Detective Fix;Hong Kong;22.3193;114.1694;Rangoon;1;0.7;hk;18
+117;3;Passepartout;Hong Kong;22.3193;114.1694;Rangoon;3;0.7;hk;18
+118;4;Phileas Fogg;Hong Kong;22.3193;114.1694;Club Hotel;2;1.0;hk;18
+119;5;Aouda;Hong Kong;22.3193;114.1694;Club Hotel;2;0.8;hk;18
+120;6;Passepartout;Hong Kong;22.3193;114.1694;Club Hotel;4;0.7;hk;18
+121;7;Phileas Fogg;Hong Kong;22.3193;114.1694;Exchange;3;1.0;hk;18
+122;8;Aouda;Hong Kong;22.3193;114.1694;Exchange;3;0.8;hk;18
+123;9;Phileas Fogg;Hong Kong;22.3193;114.1694;Carnatic;4;1.0;hk;18
+124;10;Aouda;Hong Kong;22.3193;114.1694;Carnatic;4;0.8;hk;18
+125;11;Passepartout;Hong Kong;22.3193;114.1694;Carnatic;5;0.7;hk;18
+126;0;Phileas Fogg|Aouda|Fix|Passepartout;Hong Kong;22.3193;114.1694;Victoria port;1|2|3|4;1|0.8|0.6|0.9;hk;19
+127;1;Phileas Fogg|Aouda|Fix|Passepartout;Hong Kong;22.3193;114.1694;Steamer office;5|6|7|8;1|0.8|0.6|0.9;hk;19
+128;2;Phileas Fogg|Aouda|Fix|Passepartout;Hong Kong;22.3193;114.1694;Tavern;9|10|11|12;1|0.8|0.6|0.9;hk;19
+129;0;Phileas Fogg;Hong Kong;22.3193;114.1694;English quarter;1;1.0;hk;20
+130;1;Aouda;Hong Kong;22.3193;114.1694;English quarter;2;0.9;hk;20
+131;2;Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Hotel;3|4;1.0|0.9;hk;20
+132;3;Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Quay;5|6;1.0|0.9;hk;20
+133;4;Fix;Hong Kong;22.3193;114.1694;Quay;7;0.8;hk;20
+134;5;Phileas Fogg|Aouda;Hong Kong;22.3193;114.1694;Docks;8|9;1.0|0.9;hk;20
+135;6;Phileas Fogg|Aouda|Fix;Hong Kong;22.3193;114.1694;Police station;10|11|12;1.0|0.9|0.8;hk;20
+136;7;Phileas Fogg|Aouda|Fix;Hong Kong;22.3193;114.1694;Wharf;13|14|15;1.0|0.9|0.8;hk;20
+137;8;Phileas Fogg|Aouda|Fix;Hong Kong;22.3193;114.1694;"On board the ""Tankadere""";16|17|18;1.0|0.9|0.8;hk;20
+138;9;John Bunsby;Hong Kong;22.3193;114.1694;"On board the ""Tankadere""";19;0.7;hk;20
+139;0;Phileas Fogg;Hong Kong;22.3193;114.1694;Tankadere;1;1.0;hk;21
+140;1;Aouda;Hong Kong;22.3193;114.1694;Tankadere;2;0.8;hk;21
+141;2;Detective Fix;Hong Kong;22.3193;114.1694;Tankadere;1;0.7;hk;21
+142;3;Phileas Fogg;Straits of Fo-Kien;26.0745;119.2965;Tankadere;2;1.0;cn;21
+143;4;Aouda;Straits of Fo-Kien;26.0745;119.2965;Tankadere;2;0.8;cn;21
+144;5;Detective Fix;Straits of Fo-Kien;26.0745;119.2965;Tankadere;2;0.7;cn;21
+145;6;Phileas Fogg;Shanghai;31.2304;121.4737;Tankadere;3;1.0;cn;21
+146;7;Aouda;Shanghai;31.2304;121.4737;Tankadere;3;0.8;cn;21
+147;8;Detective Fix;Shanghai;31.2304;121.4737;Tankadere;3;0.7;cn;21
+148;0;Passepartout;Hong Kong;22.3193;114.1694;Carnatic;1;0.7;hk;22
+149;1;Passepartout;Yokohama;35.4437;139.638;Carnatic;2;0.7;jp;22
+150;2;Passepartout;Yokohama;35.4437;139.638;After-deck;3;0.7;jp;22
+151;3;Passepartout;Yokohama;35.4437;139.638;Saloon;4;0.7;jp;22
+152;4;Passepartout;Yokohama;35.4437;139.638;Streets of Yokohama;5;0.7;jp;22
+153;5;Passepartout;Yokohama;35.4437;139.638;Benten;6;0.7;jp;22
+154;6;Passepartout;Yokohama;35.4437;139.638;Fields;7;0.7;jp;22
+155;7;Passepartout;Yokohama;35.4437;139.638;Harbour;8;0.7;jp;22
+156;0;Passepartout;Yokohama;35.4437;139.638;Tea-house;1;0.7;jp;23
+157;1;Passepartout;Yokohama;35.4437;139.638;Docks;2;0.7;jp;23
+158;2;Passepartout;Yokohama;35.4437;139.638;Japanese quarter;3;0.7;jp;23
+159;3;Passepartout;Yokohama;35.4437;139.638;William Batulcar's establishment;4;0.7;jp;23
+160;4;Phileas Fogg;Yokohama;35.4437;139.638;William Batulcar's establishment;1;1.0;jp;23
+161;5;Aouda;Yokohama;35.4437;139.638;William Batulcar's establishment;1;0.8;jp;23
+162;6;Passepartout;Yokohama;35.4437;139.638;Theatre;5;0.7;jp;23
+163;7;Phileas Fogg;Yokohama;35.4437;139.638;Theatre;2;1.0;jp;23
+164;8;Aouda;Yokohama;35.4437;139.638;Theatre;2;0.8;jp;23
+165;9;Passepartout;Yokohama;35.4437;139.638;American steamer;6;0.7;jp;23
+166;10;Phileas Fogg;Yokohama;35.4437;139.638;American steamer;3;1.0;jp;23
+167;11;Aouda;Yokohama;35.4437;139.638;American steamer;3;0.8;jp;23
+168;0;Passepartout;Yokohama;35.4437;139.638;Cabin;1;0.8;jp;24
+169;1;Honourable William Batulcar;Yokohama;35.4437;139.638;Cabin;2;0.4;jp;24
+170;2;Phileas Fogg|Aouda;Yokohama;35.4437;139.638;American steamer;3|4;1|0.9;jp;24
+171;3;John Bunsby;Yokohama;35.4437;139.638;American steamer;5;0.3;jp;24
+172;4;Fix;Yokohama;35.4437;139.638;American steamer;6;0.7;jp;24
+173;5;Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;"Steamer ""General Grant""";7|8|9|10;1|0.9|0.8|0.7;us;24
+174;0;Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;International Hotel;1|2|3|4;1|0.8|0.7|0.6;us;25
+175;1;Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;Montgomery Street;1|2|3|4;1|0.8|0.7|0.6;us;25
+176;2;Phileas Fogg|Aouda|Fix;San Francisco;37.7749;-122.4194;Tailor's;1|2|3;1|0.8|0.6;us;25
+177;3;Phileas Fogg|Aouda|Passepartout|Fix;San Francisco;37.7749;-122.4194;Train Station;1|2|3|4;1|0.8|0.7|0.6;us;25
+178;0;Phileas Fogg;San Francisco;37.7749;-122.4194;Oakland station;1;1.0;us;26
+179;1;Phileas Fogg;Omaha;41.2565;-95.9345;;2;1.0;us;26
+180;2;Phileas Fogg;New York;40.7128;-74.006;;3;1.0;us;26
+181;3;Phileas Fogg;Sacramento;38.5816;-121.4944;;4;1.0;us;26
+182;4;Phileas Fogg;Sierra Nevada;36.5786;-118.292;;5;1.0;us;26
+183;5;Phileas Fogg;Nevada;38.8026;-116.4194;Carson Valley;6;1.0;us;26
+184;6;Phileas Fogg;Reno;39.5296;-119.8138;;7;1.0;us;26
+185;7;Phileas Fogg;Nevada;38.8026;-116.4194;Humboldt Range;8;1.0;us;26
+186;8;Phileas Fogg;Utah;39.3209;-111.0937;Great Salt Lake;9;1.0;us;26
+187;9;Passepartout;San Francisco;37.7749;-122.4194;Oakland station;1;0.8;us;26
+188;10;Passepartout;Omaha;41.2565;-95.9345;;2;0.8;us;26
+189;11;Passepartout;New York;40.7128;-74.006;;3;0.8;us;26
+190;12;Passepartout;Sacramento;38.5816;-121.4944;;4;0.8;us;26
+191;13;Passepartout;Sierra Nevada;36.5786;-118.292;;5;0.8;us;26
+192;14;Passepartout;Nevada;38.8026;-116.4194;Carson Valley;6;0.8;us;26
+193;15;Passepartout;Reno;39.5296;-119.8138;;7;0.8;us;26
+194;16;Passepartout;Nevada;38.8026;-116.4194;Humboldt Range;8;0.8;us;26
+195;17;Passepartout;Utah;39.3209;-111.0937;Great Salt Lake;9;0.8;us;26
+196;0;Passepartout;Train;40.7608;-111.891;Train No. 48;1;1.0;us;27
+197;1;Elder William Hitch;Train;40.7608;-111.891;Train No. 48;2;0.8;us;27
+198;2;Mr. Fogg;Ogden;41.223;-111.9738;Ogden Train Station;3;0.6;us;27
+199;3;Fix;Ogden;41.223;-111.9738;Ogden Train Station;4;0.4;us;27
+200;4;Passepartout|Mr. Fogg|Fix;Salt Lake City;40.7608;-111.891;Salt Lake City;5|6|7;1.0|0.6|0.4;us;27
+201;5;Mormon Man|Passepartout|Mr. Fogg|Fix;Train;40.7608;-111.891;Train;8;0.2|1.0|0.6|0.4;us;27
+202;0;Phileas Fogg|Passepartout|Fix|Aouda;Great Salt Lake;41.0961;-112.0997;Train;1|2|3|4;1|0.6|0.8|0.7;us;28
+203;1;Phileas Fogg|Passepartout|Fix|Aouda;Weber River;41.2826;-111.9534;Train;5|6|7|8;1|0.6|0.8|0.7;us;28
+204;2;Phileas Fogg|Passepartout|Fix|Aouda;Wahsatch Mountains;40.6197;-111.5379;Train;9|10|11|12;1|0.6|0.8|0.7;us;28
+205;3;Phileas Fogg|Passepartout|Fix|Aouda;Bitter Creek Valley;41.3622;-108.9346;Train;13|14|15|16;1|0.6|0.8|0.7;us;28
+206;4;Phileas Fogg|Passepartout|Fix|Aouda;Fort Bridger;41.3172;-110.387;Train;17|18|19|20;1|0.6|0.8|0.7;us;28
+207;5;Phileas Fogg|Passepartout|Fix|Aouda;Wyoming;43.0759;-107.2903;Train;21|22|23|24;1|0.6|0.8|0.7;us;28
+208;6;Phileas Fogg|Passepartout|Fix|Aouda;Green River;41.5286;-109.4662;Train;25|26|27|28;1|0.6|0.8|0.7;us;28
+209;7;Phileas Fogg|Passepartout|Fix|Aouda;Bridger Pass;41.3975;-106.5472;Train;29|30|31|32;1|0.6|0.8|0.7;us;28
+210;8;Phileas Fogg|Passepartout|Fix|Aouda;Fort Halleck;41.8975;-106.2736;Train;33|34|35|36;1|0.6|0.8|0.7;us;28
+211;9;Phileas Fogg|Passepartout|Fix|Aouda;Medicine Bow;41.895;-106.2028;Train;37|38|39|40;1|0.6|0.8|0.7;us;28
+212;10;Colonel Stamp Proctor;Medicine Bow;41.895;-106.2028;Train;41;0.5;us;28
+213;0;Phileas Fogg;San Francisco;37.7749;-122.4194;Train;1;1.0;us;29
+214;1;Phileas Fogg;Cheyne Pass;41.1465;-104.5202;Train;2;1.0;us;29
+215;2;Phileas Fogg;Evans Pass;39.5501;-105.7821;Train;3;1.0;us;29
+216;3;Phileas Fogg;Denver;39.7392;-104.9903;Train;4;1.0;us;29
+217;4;Phileas Fogg;Fort Saunders;42.8486;-106.3253;Train;5;1.0;us;29
+218;5;Phileas Fogg;Camp Walbach;41.1403;-104.8202;Train;6;1.0;us;29
+219;6;Phileas Fogg;Lodge Pole Creek;41.2107;-102.6346;Train;7;1.0;us;29
+220;7;Phileas Fogg;Sedgwick;40.9359;-102.5264;Train;8;1.0;us;29
+221;8;Phileas Fogg;Julesburg;40.9875;-102.2644;Train;9;1.0;us;29
+222;9;Phileas Fogg;Fort McPherson;40.72;-100.6436;Train;10;1.0;us;29
+223;10;Phileas Fogg;North Platte;41.1239;-100.7654;Train;11;1.0;us;29
+224;11;Phileas Fogg;Omaha;41.2565;-95.9345;Train;12;1.0;us;29
+225;12;Phileas Fogg;Plum Creek;40.8089;-99.9812;Train;13;1.0;us;29
+226;13;Colonel Proctor;Plum Creek;40.8089;-99.9812;Train;14;0.8;us;29
+227;14;Aouda;Plum Creek;40.8089;-99.9812;Train;15;0.7;us;29
+228;15;Fix;Plum Creek;40.8089;-99.9812;Train;16;0.6;us;29
+229;16;Passepartout;Plum Creek;40.8089;-99.9812;Train;17;0.5;us;29
+230;17;Phileas Fogg;Fort Kearney;40.6994;-99.0817;Train;18;1.0;us;29
+231;18;Colonel Proctor;Fort Kearney;40.6994;-99.0817;Train;19;0.8;us;29
+232;19;Aouda;Fort Kearney;40.6994;-99.0817;Train;20;0.7;us;29
+233;20;Fix;Fort Kearney;40.6994;-99.0817;Train;21;0.6;us;29
+234;21;Passepartout;Fort Kearney;40.6994;-99.0817;Train;22;0.5;us;29
+235;0;Phileas Fogg;Plum Creek;40.5253;-98.0526;Train;1;1.0;us;30
+236;1;Aouda;Plum Creek;40.5253;-98.0526;Train;2;0.9;us;30
+237;2;Passepartout;Plum Creek;40.5253;-98.0526;Train;3;0.8;us;30
+238;3;Fix;Plum Creek;40.5253;-98.0526;Train;4;0.7;us;30
+239;4;Colonel Proctor;Plum Creek;40.5253;-98.0526;Train;5;0.6;us;30
+240;5;Phileas Fogg;Fort Kearney;40.6995;-99.0815;;1;1.0;us;30
+241;6;Aouda;Fort Kearney;40.6995;-99.0815;;2;0.9;us;30
+242;7;Fix;Fort Kearney;40.6995;-99.0815;;3;0.7;us;30
+243;8;Phileas Fogg;South of Fort Kearney;40.6995;-99.0815;;2;1.0;us;30
+244;9;Passepartout;South of Fort Kearney;40.6995;-99.0815;;4;0.8;us;30
+245;10;Colonel Proctor;Train;40.6995;-99.0815;;6;0.6;us;30
+246;0;Phileas Fogg;Fort Kearney;40.6995;-99.0817;Fort Kearney;1;1.0;us;31
+247;1;Aouda;Fort Kearney;40.6995;-99.0817;Fort Kearney;2;0.8;us;31
+248;2;Fix;Fort Kearney;40.6995;-99.0817;Fort Kearney;3;0.7;us;31
+249;3;Mudge;Fort Kearney;40.6995;-99.0817;Fort Kearney;4;0.6;us;31
+250;4;Phileas Fogg;Omaha;41.2565;-95.9345;Omaha train station;5;1.0;us;31
+251;5;Aouda;Omaha;41.2565;-95.9345;Omaha train station;6;0.8;us;31
+252;6;Fix;Omaha;41.2565;-95.9345;Omaha train station;7;0.7;us;31
+253;7;Passepartout;Omaha;41.2565;-95.9345;Omaha train station;8;0.9;us;31
+254;8;Phileas Fogg;Chicago;41.8781;-87.6298;Chicago train station;9;1.0;us;31
+255;9;Aouda;Chicago;41.8781;-87.6298;Chicago train station;10;0.8;us;31
+256;10;Fix;Chicago;41.8781;-87.6298;Chicago train station;11;0.7;us;31
+257;11;Passepartout;Chicago;41.8781;-87.6298;Chicago train station;12;0.9;us;31
+258;12;Phileas Fogg;New York;40.7128;-74.006;Cunard Line Pier;13;1.0;us;31
+259;13;Aouda;New York;40.7128;-74.006;Cunard Line Pier;14;0.8;us;31
+260;14;Fix;New York;40.7128;-74.006;Cunard Line Pier;15;0.7;us;31
+261;15;Passepartout;New York;40.7128;-74.006;Cunard Line Pier;16;0.9;us;31
+262;0;Phileas Fogg;New York;40.7128;-74.006;St. Nicholas Hotel;1;1.0;us;32
+263;1;Passepartout|Aouda|Fix;New York;40.7128;-74.006;St. Nicholas Hotel;2|3|4;0.8|0.7|0.6;us;32
+264;2;Phileas Fogg;New York;40.7128;-74.006;Banks of the Hudson;5;1.0;us;32
+265;3;Andrew Speedy;New York;40.7128;-74.006;"On board the ""Henrietta""";7;0.5;us;32
+266;4;Phileas Fogg|Passepartout|Aouda|Fix;New York;40.7128;-74.006;"On board the ""Henrietta""";8|9|10|11;1.0|0.8|0.7|0.6;us;32
+267;0;Phileas Fogg|Passepartout|Aouda|Fix;New York;40.7128;-74.006;Hotel;1|2|3|4;1|0.8|0.6|0.4;us;33
+268;1;Phileas Fogg|Passepartout|Aouda|Fix;New York;40.7128;-74.006;Henrietta;1|2|3|4;1|0.8|0.6|0.4;us;33
+269;2;Phileas Fogg|Passepartout|Aouda|Fix;Atlantic Ocean;14.5994;-28.6731;Henrietta;1|2|3|4;1|0.8|0.6|0.4;sea;33
+270;4;Phileas Fogg|Passepartout|Aouda|Fix;Queenstown;51.8503;-8.2943;Henrietta;1|2|3|4;1|0.8|0.6|0.4;ie;33
+271;5;Phileas Fogg|Passepartout|Aouda|Fix;Dublin;53.3498;-6.2603;Train;1|2|3|4;1|0.8|0.6|0.4;ie;33
+272;6;Phileas Fogg|Passepartout|Aouda|Fix;Liverpool;53.4084;-2.9916;Steamer;1|2|3|4;1|0.8|0.6|0.4;gb;33
+273;7;Phileas Fogg|Passepartout|Aouda|Fix;Liverpool;53.4084;-2.9916;Train;1|2|3|4;1|0.8|0.6|0.4;gb;33
+274;0;Phileas Fogg;Liverpool;53.4084;-2.9916;Custom House;1;1.0;gb;34
+275;1;Phileas Fogg;London;51.5074;-0.1278;Reform Club;2;1.0;gb;34
+276;2;Passepartout;Liverpool;53.4084;-2.9916;Custom House;1;0.8;gb;34
+277;3;Passepartout;London;51.5074;-0.1278;Train station;2;0.8;gb;34
+278;4;Aouda;Liverpool;53.4084;-2.9916;Custom House;1;0.7;gb;34
+279;5;Aouda;London;51.5074;-0.1278;Train station;2;0.7;gb;34
+280;6;Fix;Liverpool;53.4084;-2.9916;Custom House;1;0.6;gb;34
+281;7;Fix;London;51.5074;-0.1278;Train station;2;0.6;gb;34
+282;0;Phileas Fogg;Liverpool;53.4084;-2.9916;Custom House;1;1.0;gb;35
+283;1;Passepartout|Aouda|Fix;Liverpool;53.4084;-2.9916;Outside the Custom House;2|3|4;0.9|0.8|0.7;gb;35
+284;2;Phileas Fogg|Passepartout|Aouda|Fix;London;51.5074;-0.1278;Prison;5|6|7|8;1.0|0.9|0.8|0.7;gb;35
+285;3;Phileas Fogg|Passepartout|Aouda;London;51.5074;-0.1278;Reform Club;9|10|11;1.0|0.9|0.8;gb;35
+286;4;Phileas Fogg;London;51.5074;-0.1278;His domicile in Saville Row;12;1.0;gb;35
+287;5;Aouda;London;51.5074;-0.1278;Room in the house in Saville Row;13;0.8;gb;35
+288;6;Phileas Fogg|Aouda;London;51.5074;-0.1278;Aouda's room in the house in Saville Row;14|15;1.0|0.8;gb;35
+289;0;Phileas Fogg|Aouda|Passepartout;London;51.5074;0.1278;Saville Row;1|2|3;1.0|0.8|0.8;gb;36
+290;1;Phileas Fogg;Saville Row, London;51.5074;0.1278;House;1;1;gb;36
+291;2;James Strand;Edinburgh;55.9533;-3.1883;;2;0.7;gb;36
+292;3;Phileas Fogg;Reform Club, Pall Mall, London;51.5073;0.1337;Threshold;3;1;gb;36
+293;4;Phileas Fogg|John Sullivan|Samuel Fallentin|Andrew Stuart|Gauthier Ralph|Thomas Flanagan;Reform Club, Pall Mall, London;51.5073;0.1337;Great Saloon;4|5|6|7|8;1.0|0.8|0.8|0.8|0.8|0.8;gb;36
+294;0;Phileas Fogg;London;51.5074;0.1278;Saville Row;1;1.0;gb;37
+295;1;Passepartout;London;51.5074;0.1278;Saville Row;2;0.8;gb;37
+296;2;James Strand;Edinburgh;55.9533;-3.1883;;3;0.2;gb;37
+297;3;Reverend Samuel Wilson|Passepartout;London;51.5074;0.1278;His house;4;0.6|0.8;gb;37
+298;4;Aouda;London;51.5074;0.1278;Phileas Fogg's house;5;0.9;gb;37
