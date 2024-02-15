@@ -1,5 +1,6 @@
 import gen_images
 import plotly
+import os
 import plotly.graph_objects as go
 from jinja2 import Template
 
@@ -37,6 +38,9 @@ plotly_jinja_data = {"fig":overall_html_shown,
 #plotly_jinja_data = {"fig":base_fig.to_html(full_html=False, include_plotlyjs=False, div_id="plotDiv")}
 #plotly_jinja_data = {"fig":plotly.offline.plot(base_fig, include_plotlyjs=False, output_type='div')}
 #consider also defining the include_plotlyjs parameter to point to an external Plotly.js as described above
+
+if not os.path.isdir("html/output"):
+    os.mkdir("html/output")
 
 print("Creating HTML file")
 with open(output_html_path, "w", encoding="utf-8") as output_file:
