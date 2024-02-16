@@ -217,7 +217,7 @@ def generate_country(path):
                             # Reset in case there are too many characters for the colors
                             if len(main_used_colors) == (len(main_character_colors)):
                                 main_used_colors = []
-                            main_used_colors.append(col)
+                        main_used_colors.append(col)
                     else:
                         col = random.choice(side_character_colors)
                         while col in side_used_colors:
@@ -226,7 +226,7 @@ def generate_country(path):
                             # Reset in case there are too many characters for the colors
                             if len(side_used_colors) == (len(side_character_colors)):
                                 side_used_colors = []
-                            side_used_colors.append(col)
+                        side_used_colors.append(col)
                 
 
                 G.add_node(person, shape="circle", color=col)
@@ -530,7 +530,7 @@ def generate_country(path):
         edge_y[person].extend([y0, point1y, point2y, y1, None])
         # Add arrows only to the last trace
         markers[person].extend([0, 0, 0, 1, 0])
-        label_text = person
+        label_text = f"<b>{person}</b>"
         # Line is between countries, so give the summary of the events that happened in the country per person
         if edge[0] in helpers.country_code_to_name:
             start_chapter = df.loc[(df["Person"].str.contains(person)) & (df["Country"] == edge[0].split('_')[0])]["Chapter"].min()
@@ -550,10 +550,10 @@ def generate_country(path):
                 print(f"Searching for {edge[0]} and character {person}, chapter start {start_chapter}, end {end_chapter} (country {edge[1]})")
                 #print(chapters)
             '''    
-            print(f"Searching for character {person}, chapter start {start_chapter} (country {edge[0]}), end {end_chapter} (country {edge[1]})")
+            #print(f"Searching for character {person}, chapter start {start_chapter} (country {edge[0]}), end {end_chapter} (country {edge[1]})")
             for i in range(start_chapter, end_chapter+1):
                 if os.path.isfile(f"output/GPT/character_summaries/{i}/{person}.txt"):
-                        print(f"Searching for chapter {i}, found person {person}")
+                        #print(f"Searching for chapter {i}, found person {person}")
                         with open(f"output/GPT/character_summaries/{i}/{person}.txt") as file:
                             label_text += file.read() + " "
                 else:
@@ -561,7 +561,7 @@ def generate_country(path):
                         possible_aliases = aliases_reversed[person]
                         for alias in possible_aliases:
                             if os.path.isfile(f"output/GPT/character_summaries/{i}/{alias}.txt"):
-                                print(f"Searching for chapter {i}, person {person}: found alias {alias}")
+                                #print(f"Searching for chapter {i}, person {person}: found alias {alias}")
                                 with open(f"output/GPT/character_summaries/{i}/{alias}.txt") as file:
                                     label_text += file.read() + " "
                                 continue
@@ -572,7 +572,7 @@ def generate_country(path):
            # label_text += f", start chapter: {start_chapter}, end chapter: {end_chapter}"
         # First place the character was introduced so just give the description
         else: 
-            text = f"{person}: {character_descriptions[person]}"
+            text = f"<b>{person}</b>: {character_descriptions[person]}"
             total = '<br>'.join(textwrap.wrap(text, width=30))
             label_text = total
 
@@ -601,14 +601,14 @@ def generate_country(path):
         line_shape='spline',
         #hoverinfo='skip',
         customdata=label_data[person],
-        hovertemplate="%{customdata}",
+        hovertemplate="%{customdata}<extra></extra>",
         text=person,
         mode='lines+markers',
         marker=dict(
             symbol="arrow",
             opacity=markers[person],
             angle=90,
-            size=20)
+            size=20),
         ))
 
     #print(G)
@@ -622,10 +622,10 @@ def generate_country(path):
         character = node.split("_")[0]
         
         desc = character_descriptions[character]
-        total = f"{character}: {desc}"
+        total = f"<b>{character}</b>: {desc}"
         total = '<br>'.join(textwrap.wrap(total, width=30))
         data["label"] = character
-        data["info"] = "<b>Test something here</b><br>" + total + f"color: {people_list[character]['color']}"
+        data["info"] = total + f"color: {people_list[character]['color']}"
         data["x"] = x
         data["y"] = y
         data["shape"] = G.nodes.data()[node]["shape"]
@@ -648,18 +648,20 @@ def generate_country(path):
         text=df["label"],
         textposition="top center",
         customdata=df["info"],
-        hovertemplate='%{customdata}',
+        hovertemplate='%{customdata}<extra></extra>',
         marker=dict(size=30,symbol=df["shape"],color=df["color"],opacity=df["opacity"])
         ))
               
     fig = go.Figure(data=traces,
                 layout=go.Layout(
-                    title='<br>Network graph made with Python',
+                    #title='<br>Network graph made with Python',
                     titlefont_size=16,
                     showlegend=False,
                     hovermode='closest',
-                    xaxis=dict(showgrid=True, zeroline=False, showticklabels=True),
-                    yaxis=dict(showgrid=True, zeroline=False, showticklabels=True, scaleanchor="x", scaleratio=1)
+                    xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+                    yaxis=dict(showgrid=False, zeroline=False, showticklabels=False, scaleanchor="x", scaleratio=1),
+                    font=dict(family="Special Elite"),
+                    hoverlabel=dict(font_family="Special Elite")
                     )
                 )
     print(location_shapes)
@@ -746,6 +748,7 @@ def add_images(fig, location_shapes, aspect_ratio):
     padding = 5
     images_map = {}
     date_df = pd.read_csv("output/GPT/chapter_durations_fixed.csv", sep=";")
+    money_spent = pd.read_csv("output/GPT/money_spent.csv", sep=";")
     date_df["Start Date"] = pd.to_datetime(date_df["Start Date"])
     date_df["End Date"] = pd.to_datetime(date_df["End Date"])
     start = date_df["Start Date"].min()
@@ -831,7 +834,7 @@ def add_images(fig, location_shapes, aspect_ratio):
                                 "Image": filename,
                                 "Graph": 0,
                                 "Country": country,
-                                "Chapter": chapter,
+                                "Chapter": int(chapter),
                                 "Summary": summary,
                                 "Aspect Ratio": img_aspect_ratio,
                                 "Image Path": f"../../pictures/Chapters/{path}/{filename}.webp",
@@ -840,6 +843,8 @@ def add_images(fig, location_shapes, aspect_ratio):
                                 "End Date": row["End Date"],
                                 "Total Start": start,
                                 "Total End": end,
+                                "Money Spent": money_spent.loc[money_spent["Chapter"] == int(chapter)]["Spent"].iloc[0],
+                                "Total Money Spent": money_spent.loc[money_spent["Chapter"] <= int(chapter)]["Spent"].sum(),
                                 }], # Needed information: Chapter name, Image, day
                             hoverinfo="none",
                             #text=f"{country}, Chapter {chapter}: {summary}",
@@ -862,6 +867,7 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
     date_df = pd.read_csv("output/GPT/chapter_durations_fixed.csv", sep=";")
     date_df["Start Date"] = pd.to_datetime(date_df["Start Date"])
     date_df["End Date"] = pd.to_datetime(date_df["End Date"])
+    money_spent = pd.read_csv("output/GPT/money_spent.csv", sep=";")
     start = date_df["Start Date"].min()
     end = start + timedelta(days=80)
     images_map = {}
@@ -916,6 +922,8 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
                              "Total End": end,
                              "Image Path": f"../../pictures/Chapters/{path}/{layout}.webp",
                              "Country": helpers.country_code_to_name[loc.split("_")[0]],
+                             "Money Spent": money_spent.loc[(money_spent["Chapter"] >= rows['Chapter'].min()) & (money_spent["Chapter"] <= rows['Chapter'].max())]["Spent"].sum(),
+                             "Total Money Spent": money_spent.loc[money_spent["Chapter"] <= rows['Chapter'].max()]["Spent"].sum(),
                              "Summary": summary,
                              "Aspect Ratio": img_aspect_ratio}
                              ],

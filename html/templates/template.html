@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script> -->
 
-<h1>Around the world in 80 days</h1>
+<h1 style="font-family: Special Elite">Around the world in 80 days</h1>
 {{ fig }}
 
 
@@ -18,13 +21,62 @@
 
 <script>
     
+    var texts = {{ texts }};
+
     var lodCutoff = {{ lodCutoff }};
     var fig = document.getElementById('plotDiv');
 
     fig.on('plotly_click', function(data){  
         console.log(data);
-        var txt = data.points[0].data.customdata[0]["Image"];
-        alert('Clicked point: '+ txt);
+        var customdata = data.points[0].data.customdata[0];
+        
+        console.log(customdata);
+        if (customdata['Graph'] == 1) {
+            var x = data.points[0].data.x;
+            for (let i = 0; i < x.length; i++) {
+                console.log(x[i], typeof(x[i]));
+            }
+            var x0 = Math.min(...data.points[0].data.x);
+            var x1 = Math.max(...data.points[0].data.x);
+            var y0 = Math.min(...data.points[0].data.y);
+            var y1 = Math.max(...data.points[0].data.y);
+            console.log(x0, x1, y0, y1)
+            var centerX = (x0 + x1) / 2;
+            var centerY = (y0 + y1) / 2;
+            var height = y1 - y0;
+            var width = x1 - x0;
+            // Height-limited
+            if (height > width) {
+                var finalHeight = height + 800;
+                var finalWidth = height * 1.7;
+            }
+            // Width-limited
+            else {
+                var finalWidth = width + 800;
+                var finalHeight = width * 1.7;
+            }
+
+            //alert('Clicked on overview graph, point:\n'+ JSON.stringify(customdata) + "\n\n" + "Center point x:" + centerX + " y: " + centerY + "\n"
+            //    + "Final width: " + finalWidth + ", final height: " + finalHeight);
+            var zoomData = {
+                "xaxis.range[0]": centerX - (finalWidth / 2),
+                "xaxis.range[1]": centerX + (finalWidth / 2),
+                "yaxis.range[0]": centerY - (finalHeight / 2),
+                "yaxis.range[1]": centerY + (finalHeight / 2), 
+            }
+            handleZoomEvent(zoomData);
+        }
+        else {
+            var chapter = customdata['Chapter'];
+            
+            //alert("Chapter " + chapter + "\n" + text);
+            if (chapter != undefined) {
+                var text = texts[chapter - 1];
+                document.getElementById('text').innerText = text;
+            }
+            
+            //alert('Clicked on chapter graph, point:\n'+ JSON.stringify(customdata));
+        }
         /*
         var pts = '';
         for(var i=0; i < data.points.length; i++){
@@ -75,6 +127,7 @@
             var newPlot = "plot-1";
             var figure = JSON.parse(document.getElementById(newPlot).innerHTML);
             Plotly.react("plotDiv", figure.data, figure.layout);
+            document.getElementById('text').innerText = "Click on a country to zoom in, click on a single chapter to see the full text"
         }        
     }
 
@@ -126,7 +179,7 @@
                 //div.style.height = "100px";
                 div.style.background = finalColor;
                 div.style.color = "black";
-                div.style.fontFamily = "Open Sans,sans-serif";
+                div.style.fontFamily = "Special Elite,Open Sans,sans-serif";
 
                 var header = document.createElement("h2");
                 header.innerText = chapter_text;
@@ -215,6 +268,18 @@
                 countryAndFigDiv.style.marginBottom = "0px";
                 div.appendChild(countryAndFigDiv);
 
+                var moneySpent = customdata["Money Spent"];
+                var totalMoneySpent = customdata["Total Money Spent"];
+
+                var moneyText = "Money spent in country: \u00A3" + moneySpent + "\n" + "Money spent in total: \u00A3" + totalMoneySpent;
+                var moneyElement = document.createElement("p");
+                moneyElement.innerText = moneyText;
+                moneyElement.style.marginTop = "0px";
+                moneyElement.style.marginBottom = "0px";
+                //moneyElement.style.backgroundColor = "lightgrey";
+                div.appendChild(moneyElement);
+
+
                 // Set image
                 console.log(customdata["Image Path"]);
                 // Chapter description and picture wrapped
@@ -224,6 +289,7 @@
                 summaryElement.innerText = summary;
                 summaryElement.style.marginTop = "0px";
                 summaryElement.style.marginBottom = "0px";
+                summaryElement.style.backgroundColor = "lightgrey";
 
                 var image = document.createElement("img");
                 image.src = customdata["Image Path"];
@@ -234,8 +300,9 @@
                 image.setAttribute("width", imgWidth);
                 descriptionDiv.appendChild(summaryElement);
                 
-                div.appendChild(descriptionDiv);
                 div.appendChild(image);
+                div.appendChild(descriptionDiv);
+                
             }
             // Per chapter graph
             else {
@@ -247,7 +314,7 @@
                 //div.style.height = "100px";
                 div.style.background = finalColor;
                 div.style.color = "black";
-                div.style.fontFamily = "Open Sans,sans-serif";
+                div.style.fontFamily = "Special Elite,Open Sans,sans-serif";
                 // Chapter number
                 var chapter_text = customdata["Chapter"].toString();
                 var header = document.createElement("h1");
@@ -356,9 +423,9 @@
 
 
                 var countryAndNameDiv = document.createElement("div");
+                countryAndNameDiv.appendChild(chapterNameDiv);
                 countryAndNameDiv.appendChild(countryAndFig.country);
                 countryAndNameDiv.appendChild(countryAndFig.fig);
-                countryAndNameDiv.appendChild(chapterNameDiv);
                 countryAndNameDiv.style.marginTop = "0px";
                 countryAndNameDiv.style.marginBottom = "0px";
 
@@ -379,6 +446,17 @@
                 div.appendChild(divContents.chapter);
                 div.appendChild(divContents.country);
 
+                var moneySpent = customdata["Money Spent"];
+                var totalMoneySpent = customdata["Total Money Spent"];
+
+                var moneyText = "Money spent in chapter: \u00A3" + moneySpent + "\n" + "Money spent in total: \u00A3" + totalMoneySpent;
+                var moneyElement = document.createElement("p");
+                moneyElement.innerText = moneyText;
+                moneyElement.style.marginTop = "0px";
+                moneyElement.style.marginBottom = "0px";
+                //moneyElement.style.backgroundColor = "lightgrey";
+                div.appendChild(moneyElement);
+
                 // Chapter description and picture wrapped
                 var descriptionDiv = document.createElement("div");
                 var summary = customdata["Summary"];
@@ -386,6 +464,7 @@
                 summaryElement.innerText = summary;
                 summaryElement.style.marginTop = "0px";
                 summaryElement.style.marginBottom = "0px";
+                summaryElement.style.backgroundColor = "lightgrey";
 
                 var image = document.createElement("img");
                 image.src = customdata["Image Path"];
@@ -394,11 +473,13 @@
                 var height = Math.round(imgWidth / aspectRatio);
                 image.setAttribute("height", height);
                 image.setAttribute("width", imgWidth);
+                descriptionDiv.appendChild(image);
                 descriptionDiv.appendChild(summaryElement);
 
+                
                 div.appendChild(descriptionDiv);
-                div.appendChild(image);
             }
+
             var leftBBox = Math.round(data.points[0].bbox["x1"]) + 10;
             var clientHeight = div.clientHeight;
             var figWidth = div.clientWidth;
@@ -463,6 +544,6 @@
     
     
 </script>
-<p id="text">And here's some text after the graph.</p>
+<p id="text" style="font-family: Special Elite">Click on a country to zoom in, click on a single chapter to see the full text.</p>
 </body>
 </html>

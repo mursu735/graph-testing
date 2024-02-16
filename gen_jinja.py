@@ -1,5 +1,6 @@
 import gen_images
 import plotly
+import os
 import plotly.graph_objects as go
 from jinja2 import Template
 
@@ -31,9 +32,17 @@ with open("asd.json", "w") as file:
 '''
 lod_cutoff = max_x / 2
 
+chapters = os.listdir("input/Chapters")
+texts = []
+
+for chapter in chapters:
+    with open(f"input/Chapters/{chapter}", encoding="utf-8") as file:
+        texts.append(file.read().strip())
+
 plotly_jinja_data = {"fig":overall_html_shown,
                      "figures": [detailed_html_hidden, overall_html_hidden],
-                     "lodCutoff": lod_cutoff}
+                     "lodCutoff": lod_cutoff,
+                     "texts": texts}
 #plotly_jinja_data = {"fig":base_fig.to_html(full_html=False, include_plotlyjs=False, div_id="plotDiv")}
 #plotly_jinja_data = {"fig":plotly.offline.plot(base_fig, include_plotlyjs=False, output_type='div')}
 #consider also defining the include_plotlyjs parameter to point to an external Plotly.js as described above
