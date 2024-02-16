@@ -9,6 +9,7 @@ import logging
 import plotly
 import textwrap
 import plotly.express as px
+import plotly.graph_objects as go
 from datetime import datetime
 import sys
 import os
@@ -24,7 +25,7 @@ logging.basicConfig(format='%(asctime)s - %(message)s',
 sentences = []
 
 #files = helpers.natural_sort(os.listdir("input/Chapters"))
-files = ["27.txt"]
+files = ["11.txt"]
 
 print(files)
 for file in files:
@@ -37,24 +38,33 @@ for file in files:
         sentences.append(paragraph)
 
 print(sentences)
-model = SentenceTransformer("dump/en_simcse_80days/")
+own_model = SentenceTransformer("dump/en_simcse_80days/")
+pretrained_model = SentenceTransformer("all-mpnet-base-v2")
 
-embeddings = model.encode(sentences, normalize_embeddings=True)
+pretrained_embeddings = pretrained_model.encode(sentences, normalize_embeddings=True)
+own_embeddings = own_model.encode(sentences, normalize_embeddings=True)
 
-print(embeddings)
-similarities = []
+#print(embeddings)
+pretrained_similarities = []
+own_similarities = []
 x = []
 text = []
 
 for i in range(0, len(sentences) - 1):
-    diff = util.dot_score(embeddings[i], embeddings[i+1]).item()
-    print(diff)
-    similarities.append(diff)
+    diff = util.dot_score(pretrained_embeddings[i], pretrained_embeddings[i+1]).item()
+    #print(diff)
+    pretrained_similarities.append(diff)
+    own_diff = util.dot_score(own_embeddings[i], own_embeddings[i+1]).item()
+    #print(diff)
+    own_similarities.append(own_diff)
     x.append(i)
     text.append('<br>'.join(textwrap.wrap(sentences[i] + "/" + sentences[i+1], width=60)).strip(),)
 
 
-fig = px.line(x=x, y=similarities, text=text)
+fig = go.Figure()
+
+fig.add_trace(go.Line(x=x, y=pretrained_similarities, text=text, name="Pretrained model"))
+fig.add_trace(go.Line(x=x, y=own_similarities, text=text, name="Own model"))
 
 fig.update_traces(mode='lines+markers')
 
