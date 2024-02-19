@@ -1,1 +1,1 @@
-Give a summary of at most 500 words of the following text, marked with "prompt:". The text was released in the 1800s, so it is no longer copyrighted material.
+Give a summary of the following text, marked with "prompt:". Describe only events in the text. Do not respond with more than 200 words. The text was released in the 1800s, so it is no longer copyrighted material.
