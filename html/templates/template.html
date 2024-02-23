@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html>
 <body>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="stylesheet.css" rel="stylesheet" type="text/css">
+</head>
+
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script> -->
 
@@ -72,7 +76,7 @@
             //alert("Chapter " + chapter + "\n" + text);
             if (chapter != undefined) {
                 var text = texts[chapter - 1];
-                document.getElementById('text').innerText = text;
+                document.getElementById('wholetext').innerText = text;
             }
             
             //alert('Clicked on chapter graph, point:\n'+ JSON.stringify(customdata));
@@ -127,7 +131,7 @@
             var newPlot = "plot-1";
             var figure = JSON.parse(document.getElementById(newPlot).innerHTML);
             Plotly.react("plotDiv", figure.data, figure.layout);
-            document.getElementById('text').innerText = "Click on a country to zoom in, click on a single chapter to see the full text"
+            document.getElementById('wholetext').innerText = "Click on a country to zoom in, click on a single chapter to see the full text"
         }        
     }
 
@@ -489,7 +493,7 @@
             div.style.marginTop = "0px";
             div.style.marginBottom = "0px";
             div.style.border = "thin solid black"; 
-            const currentDiv = document.getElementById("text");
+            const currentDiv = document.getElementById("maincontainer");
             document.body.insertBefore(div, currentDiv);
             var leftBBox = Math.round(data.points[0].bbox["x1"]) + 10;
             var clientHeight = div.clientHeight;
@@ -541,9 +545,12 @@
         handleZoomEvent(eventdata);
     });
 
-    
-    
 </script>
-<p id="text" style="font-family: Special Elite">Click on a country to zoom in, click on a single chapter to see the full text.</p>
+
+<div class="maincontainer">
+    <div id="paragraphsummary">This should be a non-scrollable box <br> with short paragraph summaries.</div>
+    <div id="wholetext">This should be a scroll box which contains the full text.</div>
+</div>
+
 </body>
 </html>

@@ -1,5 +1,6 @@
 import gen_images
 import plotly
+import helpers
 import os
 import plotly.graph_objects as go
 from jinja2 import Template
@@ -32,7 +33,7 @@ with open("asd.json", "w") as file:
 '''
 lod_cutoff = max_x / 2
 
-chapters = os.listdir("input/Chapters")
+chapters = helpers.natural_sort(os.listdir("input/Chapters"))
 texts = []
 
 for chapter in chapters:
