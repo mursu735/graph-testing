@@ -1,0 +1,4 @@
+Phileas Fogg's calmness in the face of a storm delays his journey; Passepartout is frustrated.
+Passepartout's frustration grows as the storm delays their journey; Fogg remains calm.
+The storm delays the journey, frustrating Passepartout while Fogg remains composed.
+Fogg's journey is delayed by a storm, frustrating Passepartout but Fogg remains composed.

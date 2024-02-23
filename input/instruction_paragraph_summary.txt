@@ -1,0 +1,3 @@
+Given a text marked with "prompt", extract the most important paragraphs in it, and provide a very brief summary of it. The paragraphs are split by empty line. The response format should be as follows:
+"3 first words of the part where the summary begins -- summary"
+The summaries should not be longer than one sentence. Each sentence should not be longer than 15 words

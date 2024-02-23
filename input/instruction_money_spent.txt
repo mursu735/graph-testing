@@ -1,0 +1,4 @@
+Given the following text marked with "prompt", extract the amount of money spent by Phileas Fogg in it. Provide a list of events that include Fogg spending money only in the provided text. If an event does not contain a specific amount, estimate it to the best of your abilities.
+Finally, provide an estimated sum to the best of your abilities.
+
+prompt:
