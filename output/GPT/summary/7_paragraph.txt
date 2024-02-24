@@ -1,1 +1,5 @@
-The consul proceeded to sign and date the passport, after which he added his official seal. -- Mr. Fogg's meticulous travel itinerary and methodical record-keeping habits.
+    The detective passed -- The detective visits the consul's office.
+    The consul did not -- Mr. Fogg requests a visa for his passport from the consul.
+    The consul proceeded -- The consul visas Fogg's passport, who then leaves the office.
+    Fix started off -- Fix searches for Passepartout.
+    Meanwhile Mr. Fogg -- Fogg reviews his travel itinerary, noting he's on schedule.

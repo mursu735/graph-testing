@@ -84,7 +84,10 @@ for file in files:
     print(f"Processing chapter {file}")
     #number += 1
     whole_prompt = instruction + "\n" + prompt
-    
+
+    with open(f"dump/paragraphs/{filename}_paragraph.txt", "w", encoding="utf-8") as f:
+        f.write(whole_prompt)
+
     # Check for number of tokens sent in the last minute
     encoding = tiktoken.encoding_for_model("gpt-3.5-turbo-0125")
     num_tokens = len(encoding.encode(whole_prompt))
@@ -111,7 +114,7 @@ for file in files:
     print("Send request to GPT")
     # create a chat completion
     last_request = time.time()
-    chat_completion = openai.ChatCompletion.create(model="gpt-3.5-turbo-0125", messages=[{"role": "system", "content": instruction}, {"role": "user", "content": prompt}], temperature=0)
+    chat_completion = openai.ChatCompletion.create(model="gpt-4-0125-preview", messages=[{"role": "system", "content": instruction}, {"role": "user", "content": prompt}], temperature=0)
     #chat_completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "system", "content": instruction}, {"role": "user", "content": prompt}])
     # print the chat completion
     message = chat_completion.choices[0].message.content
@@ -120,16 +123,16 @@ for file in files:
     completion_tokens = chat_completion.usage["completion_tokens"]
     total_tokens = chat_completion.usage["total_tokens"]
     total_used += total_tokens
-    if not os.path.isfile(f"output/GPT/tokens/tokens_paragraph_summary.csv"):
-        with open("output/GPT/tokens/tokens_paragraph_summary.csv", "w", encoding='utf-8') as file:
-            file.write("Chapter;Prompt;Completion;Total\n")
+    
+    #if not os.path.isfile(f"output/GPT/tokens/tokens_paragraph_summary.csv"):
+    #    with open("output/GPT/tokens/tokens_paragraph_summary.csv", "w", encoding='utf-8') as file:
+    #        file.write("Chapter;Prompt;Completion;Total\n")
 
-    with open("output/GPT/tokens/tokens_paragraph_summary.csv", "a", encoding="utf-8") as file:
-        file.write(f"{filename};{prompt_tokens};{completion_tokens};{total_tokens}\n")
+    #with open("output/GPT/tokens/tokens_paragraph_summary.csv", "a", encoding="utf-8") as file:
+    #    file.write(f"{filename};{prompt_tokens};{completion_tokens};{total_tokens}\n")
     #print(message)
-
+    
     # Put all main locations to single file
     #locations = parts[0]
     with open(f"output/GPT/summary/{filename}_paragraph.txt", "w", encoding="utf-8") as file:
         file.write(message)
-    
