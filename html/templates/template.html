@@ -27,6 +27,10 @@
     
     var texts = {{ texts }};
 
+    var paragraphSummaries = {{ paragraphSummaries }};
+
+    var matchingParts = {{ matchingParts }};
+
     var lodCutoff = {{ lodCutoff }};
     var fig = document.getElementById('plotDiv');
 
@@ -77,6 +81,26 @@
             if (chapter != undefined) {
                 var text = texts[chapter - 1];
                 document.getElementById('wholetext').innerText = text;
+                var summaries = paragraphSummaries[chapter];
+                // Get the matching part of the whole text
+                console.log(paragraphSummaries[chapter]);
+                //var summaryText = "";
+                const element = document.getElementById("paragraphsummary");
+                while (element.firstChild) {
+                    element.removeChild(element.firstChild);
+                }
+                for (summary of summaries) {
+                    var text = summary["summary"];
+                    console.log(text);
+                    var div = document.createElement("div");
+                    div.style.fontFamily = "Special Elite,Open Sans,sans-serif";
+                    div.innerText = text;
+                    div.addEventListener("click", function (e) {
+                       scrollToPart(this.innerText);
+                    });
+                    document.getElementById('paragraphsummary').appendChild(div);
+                }
+                
             }
             
             //alert('Clicked on chapter graph, point:\n'+ JSON.stringify(customdata));
@@ -91,6 +115,17 @@
     */
     });
 
+
+    function scrollToPart(text) {
+        var searchTerm = matchingParts[text];
+        console.log("Should move to words:", searchTerm);
+        var fullText = document.getElementById("wholetext").innerHTML;
+        var replaced = fullText.replace(searchTerm, "<span id='place'>" + searchTerm + "</span>");
+        document.getElementById("wholetext").innerHTML = replaced;
+        const loc = document.getElementById("place");
+        place.scrollIntoView({behavior: "smooth"});
+        document.getElementById("wholetext").innerHTML = fullText;
+    };
 
     function handleZoomEvent(eventdata)
     {

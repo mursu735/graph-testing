@@ -40,10 +40,37 @@ for chapter in chapters:
     with open(f"input/Chapters/{chapter}", encoding="utf-8") as file:
         texts.append(file.read().strip())
 
+paragraph_summaries = {}
+matching_parts = {}
+summaries = os.listdir("output/GPT/summary")
+summaries = helpers.natural_sort([summary for summary in summaries if "paragraph" in summary])
+
+with open("input/around the world.txt", encoding="utf-8") as f:
+    full_text = f.read()
+
+for summary in summaries:
+    chapter = summary.split("_")[0]
+    with open(f"output/GPT/summary/{summary}", encoding="utf-8") as file:
+        lines = file.readlines()
+    lines = [s.strip().replace("\n", " ") for s in lines]
+    lines = list(filter(None, lines))
+    #print(lines)
+    chapter_paragraphs = []
+    for line in lines:
+        whole_text, summary = line.split("--")
+        whole_text = whole_text.strip().replace('"', "")
+        current = {"summary": summary.strip(), "wholeText": whole_text}
+        matching_parts[summary.strip()] = whole_text
+        chapter_paragraphs.append(current)
+    paragraph_summaries[chapter] = chapter_paragraphs
+
+
 plotly_jinja_data = {"fig":overall_html_shown,
                      "figures": [detailed_html_hidden, overall_html_hidden],
                      "lodCutoff": lod_cutoff,
-                     "texts": texts}
+                     "texts": texts,
+                     "paragraphSummaries": paragraph_summaries,
+                     "matchingParts": matching_parts}
 #plotly_jinja_data = {"fig":base_fig.to_html(full_html=False, include_plotlyjs=False, div_id="plotDiv")}
 #plotly_jinja_data = {"fig":plotly.offline.plot(base_fig, include_plotlyjs=False, output_type='div')}
 #consider also defining the include_plotlyjs parameter to point to an external Plotly.js as described above
