@@ -3,7 +3,7 @@ from datetime import timedelta
 from PIL import Image
 import textwrap
 import random
-
+import math
 import helpers
 import os
 
@@ -665,6 +665,32 @@ def generate_country(path):
                     )
                 )
     print(location_shapes)
+    tutorial_box = "in"
+    box_x0 = location_shapes[tutorial_box]['x0']
+    box_x1 = (0.75) * location_shapes[tutorial_box]['x0'] + (0.25) * location_shapes[tutorial_box]['x1']
+    box_dx = box_x1 - box_x0
+    box_y0 = location_shapes[tutorial_box]['y1'] + 400
+    box_y1 = location_shapes[tutorial_box]['y1'] + 10
+    box_dy = box_y1 - box_y0
+    angle = 90 - math.degrees(math.atan2(box_dy, box_dx))
+
+    fig.add_trace(go.Scatter(
+        x=[box_x0, box_x1],
+        y=[box_y0, box_y1],
+        mode='lines+markers',
+        marker=dict(
+            symbol="arrow",
+            opacity=[0, 1],
+            angle=angle,
+            size=20),
+    ))
+    fig.add_trace(go.Scatter(
+        x=[location_shapes[tutorial_box]['x0']],
+        y=[location_shapes[tutorial_box]['y1'] + 450],
+        mode='text',
+        text="Click on any image to zoom",
+    ))
+
     # Flags and the big boxes should be the same in both levels of detail
     for loc in location_shapes:
         fig.add_trace(
