@@ -664,7 +664,8 @@ def generate_country(path):
                     hoverlabel=dict(font_family="Special Elite")
                     )
                 )
-    print(location_shapes)
+    #print(location_shapes)
+    # Tutorial arrow and text, and infosheet
     tutorial_box = "in"
     box_x0 = location_shapes[tutorial_box]['x0']
     box_x1 = (0.75) * location_shapes[tutorial_box]['x0'] + (0.25) * location_shapes[tutorial_box]['x1']
@@ -690,6 +691,24 @@ def generate_country(path):
         mode='text',
         text="Click on any image to zoom",
     ))
+
+    infosheet = Image.open("pictures/infosheet.png")
+
+    info_height = 3250
+    info_aspect_ratio = 1.41
+
+    fig.add_layout_image(
+        x=6000,
+        y=3250,
+        xanchor="center",
+        yanchor="top",
+        source=infosheet,
+        xref="x",
+        yref="y",
+        sizex=info_height/info_aspect_ratio,
+        sizey=info_height,
+        sizing="stretch"
+    )
 
     # Flags and the big boxes should be the same in both levels of detail
     for loc in location_shapes:
