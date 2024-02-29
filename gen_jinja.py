@@ -10,10 +10,13 @@ base_fig, location_shapes, aspect_ratio, max_x = gen_images.generate_country("wh
 base_fig.update_layout(
     width=1920,
     height=1080)
+print(location_shapes)
 print("Base figure generated, adding images")
 detailed_fig, detailed_images_dict = gen_images.add_images(go.Figure(base_fig), location_shapes, aspect_ratio)
 
-overall_fig, overall_images_dict = gen_images.add_overall_images(go.Figure(base_fig), location_shapes, aspect_ratio)
+overall_fig, overall_images_dict, chapter_locations = gen_images.add_overall_images(go.Figure(base_fig), location_shapes, aspect_ratio)
+
+print("Chapter locations:", chapter_locations)
 
 #overall_fig.show()
 
@@ -70,7 +73,8 @@ plotly_jinja_data = {"fig":overall_html_shown,
                      "lodCutoff": lod_cutoff,
                      "texts": texts,
                      "paragraphSummaries": paragraph_summaries,
-                     "matchingParts": matching_parts}
+                     "matchingParts": matching_parts,
+                     "chapterLocations": chapter_locations}
 #plotly_jinja_data = {"fig":base_fig.to_html(full_html=False, include_plotlyjs=False, div_id="plotDiv")}
 #plotly_jinja_data = {"fig":plotly.offline.plot(base_fig, include_plotlyjs=False, output_type='div')}
 #consider also defining the include_plotlyjs parameter to point to an external Plotly.js as described above

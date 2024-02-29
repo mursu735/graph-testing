@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color:bisque;">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="infosheet.css" rel="stylesheet" type="text/css">
+</head>
+
+<h1>Around the world in 80 days</h1>
+
+<div>
+<p id="author">Author: {{ author }}</p>
+<p id="release">Publication date: {{ pubdate }}</p>
+</div>
+
+
+<div class="text">
+    <img src="{{ imgpath }}\cover.jpg" id="cover">
+
+    <p id="blurb">
+    {{ blurb }}
+    </p>
+</div>
+
+
+
+</body>
+</html>

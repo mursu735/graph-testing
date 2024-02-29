@@ -108,6 +108,7 @@ def get_positions(characters, pos, graph):
     Assignment = []
     conversion_map = {}
     string_to_z3_var = {}
+    print(characters)
     for person in characters:
         as_variable = Int(person)
         Assignment.append(as_variable)
@@ -147,11 +148,12 @@ def get_positions(characters, pos, graph):
     clusters = helpers.get_clusters()
     cluster_list = {}
     for character in clusters:
-        #print(character)
-        cluster_num = clusters[character]
-        if cluster_num not in cluster_list:
-            cluster_list[cluster_num] = []
-        cluster_list[cluster_num].append(character)
+        if character in characters:
+            #print(character)
+            cluster_num = clusters[character]
+            if cluster_num not in cluster_list:
+                cluster_list[cluster_num] = []
+            cluster_list[cluster_num].append(character)
     #print(conversion_map)
     
     for cluster in cluster_list:
@@ -221,7 +223,7 @@ def generate_graph(path):
     used_colors = []
     aliases = helpers.get_aliases()
     for idx, row in df.iterrows():
-        target = row["City"] + ", " + str(row["Location"]) + "_" + str(row["Chapter"])
+        target = row["City"] + ", " + str(row["Location"]) + "_" + path.split("/")[-1] # + str(row["Chapter"])
         if target not in locations:
             G.add_node(target, shape="rect")
             locations.append(target)
@@ -306,13 +308,13 @@ def generate_graph(path):
 
     # Calculate where the edge of each character should be relative to each other
     def sort_func(e):
-        if use_new_sorting:
+        if use_new_sorting and len(people_list) > 1:
             return result[e].as_long()
         else:
             return pos[e]
 
     # Ranks for each character, this determines the y-coordinate of the node
-    ranks = sorted(people_list, key=sort_func, reverse=True)
+    #ranks = sorted(people_list, key=sort_func, reverse=True)
     #print(f"Sorted list: {ranks}")
 
     edge_starts = [i[0] for i in G.edges()]

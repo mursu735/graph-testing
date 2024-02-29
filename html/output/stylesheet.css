@@ -12,3 +12,19 @@
     width:400px;
     overflow-y:auto;
 }
+
+#currentchapter {
+    font-family: "Special Elite";
+    display:inline-block;
+    margin-right: 50px
+}
+
+#currentchapter {
+    font-family: "Special Elite";
+    display:inline-block;
+    margin-right: 50px
+}
+
+button {
+    font-family: "Special Elite";
+}

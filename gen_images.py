@@ -692,7 +692,7 @@ def generate_country(path):
         text="Click on any image to zoom",
     ))
 
-    infosheet = Image.open("pictures/infosheet.png")
+    infosheet = Image.open("pictures/infosheet_html.png")
 
     info_height = 3250
     info_aspect_ratio = 1.41
@@ -916,6 +916,7 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
     start = date_df["Start Date"].min()
     end = start + timedelta(days=80)
     images_map = {}
+    chapter_locations = {}
     for loc in location_shapes:
         #if "test" in location_shapes[loc]:
         #path = location_shapes[loc]['image']
@@ -987,9 +988,15 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
                 yanchor="middle",
             )
             images_map[loc] = image
+            for chapter in range(rows['Chapter'].min(), rows['Chapter'].max() + 1):
+                x0 = location_shapes[loc]['x0']
+                x1 = location_shapes[loc]['x1']
+                y0 = location_shapes[loc]['y0']
+                y1 = location_shapes[loc]['y1']
+                chapter_locations[chapter] = {"x0": x0, "x1": x1, "y0": y0, "y1": y1}
         else:
             print(f"WARN: Image name {filename} not found, ignoring it")
 
     
     
-    return fig, images_map
+    return fig, images_map, chapter_locations

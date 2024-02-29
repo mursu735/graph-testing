@@ -23,6 +23,17 @@
 {{ figures[1]|safe }} 
 </div>
 
+<div id="chaptercontrols">
+    <h3 id="currentchapter">No chapter selected</h3>
+    <button id="back">Previous</button>
+    <button id="next">Next</button>
+</div>
+
+<div class="maincontainer">
+    <div id="paragraphsummary">Click on a country to zoom in, click on a single chapter to see the full text</div>
+    <div id="wholetext">Click on a chapter to open full text.</div>
+</div>
+
 <script>
     
     var texts = {{ texts }};
@@ -32,88 +43,74 @@
     var matchingParts = {{ matchingParts }};
 
     var lodCutoff = {{ lodCutoff }};
+
+    var chapterLocations = {{ chapterLocations }};
+
     var fig = document.getElementById('plotDiv');
+
+    var currentPlot = "plot-1";
+
+    var selectedChapter = 0;
 
     fig.on('plotly_click', function(data){  
         console.log(data);
         var customdata = data.points[0].data.customdata[0];
         
         console.log(customdata);
+        // Overview graph
         if (customdata['Graph'] == 1) {
             var x = data.points[0].data.x;
+            /*
             for (let i = 0; i < x.length; i++) {
                 console.log(x[i], typeof(x[i]));
             }
-            var x0 = Math.min(...data.points[0].data.x);
-            var x1 = Math.max(...data.points[0].data.x);
-            var y0 = Math.min(...data.points[0].data.y);
-            var y1 = Math.max(...data.points[0].data.y);
-            console.log(x0, x1, y0, y1)
-            var centerX = (x0 + x1) / 2;
-            var centerY = (y0 + y1) / 2;
-            var height = y1 - y0;
-            var width = x1 - x0;
-            // Height-limited
-            if (height > width) {
-                var finalHeight = height + 800;
-                var finalWidth = height * 1.7;
-            }
-            // Width-limited
-            else {
-                var finalWidth = width + 800;
-                var finalHeight = width * 1.7;
-            }
-
-            //alert('Clicked on overview graph, point:\n'+ JSON.stringify(customdata) + "\n\n" + "Center point x:" + centerX + " y: " + centerY + "\n"
-            //    + "Final width: " + finalWidth + ", final height: " + finalHeight);
-            var zoomData = {
-                "xaxis.range[0]": centerX - (finalWidth / 2),
-                "xaxis.range[1]": centerX + (finalWidth / 2),
-                "yaxis.range[0]": centerY - (finalHeight / 2),
-                "yaxis.range[1]": centerY + (finalHeight / 2), 
-            }
-            handleZoomEvent(zoomData);
+            */
+            var newLocation = {
+                "x0": Math.min(...data.points[0].data.x),
+                "x1": Math.max(...data.points[0].data.x),
+                "y0": Math.min(...data.points[0].data.y),
+                "y1": Math.max(...data.points[0].data.y) 
+            } 
+            moveCamera(newLocation);
         }
+        // Chapter graph
         else {
             var chapter = customdata['Chapter'];
-            
-            //alert("Chapter " + chapter + "\n" + text);
             if (chapter != undefined) {
-                var text = texts[chapter - 1];
-                document.getElementById('wholetext').innerText = text;
-                var summaries = paragraphSummaries[chapter];
-                // Get the matching part of the whole text
-                console.log(paragraphSummaries[chapter]);
-                //var summaryText = "";
-                const element = document.getElementById("paragraphsummary");
-                while (element.firstChild) {
-                    element.removeChild(element.firstChild);
-                }
-                for (summary of summaries) {
-                    var text = summary["summary"];
-                    console.log(text);
-                    var div = document.createElement("div");
-                    div.style.fontFamily = "Special Elite,Open Sans,sans-serif";
-                    div.innerText = text;
-                    div.addEventListener("click", function (e) {
-                       scrollToPart(this.innerText);
-                    });
-                    document.getElementById('paragraphsummary').appendChild(div);
-                }
-                
+                setSummaryAndText(chapter);
+                var location = chapterLocations[chapter];
+                moveCamera(location);
             }
             
-            //alert('Clicked on chapter graph, point:\n'+ JSON.stringify(customdata));
         }
-        /*
-        var pts = '';
-        for(var i=0; i < data.points.length; i++){
-        pts = 'x = '+data.points[i].x +'\ny = '+
-            data.points[i].y.toPrecision(4) + '\n\n';
-        }
-    alert('Closest point clicked:\n\n'+pts);
-    */
     });
+
+    function setSummaryAndText(chapter) {
+        var text = texts[chapter - 1];
+        document.getElementById('wholetext').innerText = text;
+        var summaries = paragraphSummaries[chapter];
+        // Get the matching part of the whole text
+        console.log(paragraphSummaries[chapter]);
+        var guideText = document.getElementById("currentchapter");
+        guideText.innerText = "Current chapter: " + chapter
+        selectedChapter = chapter;
+        //var summaryText = "";
+        const element = document.getElementById("paragraphsummary");
+        while (element.firstChild) {
+            element.removeChild(element.firstChild);
+        }
+        for (summary of summaries) {
+            var text = summary["summary"];
+            console.log(text);
+            var div = document.createElement("div");
+            div.style.fontFamily = "Special Elite,Open Sans,sans-serif";
+            div.innerText = text;
+            div.addEventListener("click", function (e) {
+                scrollToPart(this.innerText);
+            });
+            document.getElementById('paragraphsummary').appendChild(div);
+        }
+    };
 
 
     function scrollToPart(text) {
@@ -150,8 +147,12 @@
                     'x-axis end:' + eventdata['xaxis.range[1]'] + "\n" + 
                     'LOD level:' + lodLevel);
                 */
-                var figure = JSON.parse(document.getElementById(newPlot).innerHTML);
-                Plotly.react("plotDiv", figure.data, figure.layout);
+                if (newPlot != currentPlot) {
+                    var figure = JSON.parse(document.getElementById(newPlot).innerHTML);
+                    Plotly.react("plotDiv", figure.data, figure.layout);
+                    currentPlot = newPlot;
+                }
+                
                 Plotly.relayout("plotDiv", 'xaxis.range', [x_min, x_max]);
                 Plotly.relayout("plotDiv", 'yaxis.range', [eventdata['yaxis.range[0]'], eventdata['yaxis.range[1]']]);
             }
@@ -164,9 +165,23 @@
                 JSON.stringify(eventdata));
             */
             var newPlot = "plot-1";
+            currentPlot = newPlot;
             var figure = JSON.parse(document.getElementById(newPlot).innerHTML);
             Plotly.react("plotDiv", figure.data, figure.layout);
             document.getElementById('wholetext').innerText = "Click on a country to zoom in, click on a single chapter to see the full text"
+            var guideText = document.getElementById("currentchapter");
+            guideText.innerText = "No chapter selected";
+            selectedChapter = 0;
+            const element = document.getElementById("paragraphsummary");
+            while (element.firstChild) {
+                element.removeChild(element.firstChild);
+            }
+            var summary = document.createElement("p"); 
+            summary.innerText = "Click on a chapter to open paragraph summaries";
+            summary.style.marginTop = "0px";
+            summary.style.fontFamily = "Special Elite";
+            summary.style.marginBottom = "0px";
+            element.appendChild(summary);
         }        
     }
 
@@ -562,6 +577,38 @@
         }
     }
 
+    function moveCamera(bounds) {
+        var x0 = bounds["x0"];
+        var x1 = bounds["x1"];
+        var y0 = bounds["y0"];
+        var y1 = bounds["y1"];
+        console.log(x0, x1, y0, y1)
+        var centerX = (x0 + x1) / 2;
+        var centerY = (y0 + y1) / 2;
+        var height = y1 - y0;
+        var width = x1 - x0;
+        // Height-limited
+        if (height > width) {
+            var finalHeight = height + 800;
+            var finalWidth = height * 1.7;
+        }
+        // Width-limited
+        else {
+            var finalWidth = width + 800;
+            var finalHeight = width * 1.7;
+        }
+
+        //alert('Clicked on overview graph, point:\n'+ JSON.stringify(customdata) + "\n\n" + "Center point x:" + centerX + " y: " + centerY + "\n"
+        //    + "Final width: " + finalWidth + ", final height: " + finalHeight);
+        var zoomData = {
+            "xaxis.range[0]": centerX - (finalWidth / 2),
+            "xaxis.range[1]": centerX + (finalWidth / 2),
+            "yaxis.range[0]": centerY - (finalHeight / 2),
+            "yaxis.range[1]": centerY + (finalHeight / 2), 
+        }
+        handleZoomEvent(zoomData);
+    }
+
     fig.on('plotly_hover', function(data){ 
         handleHoverEvent(data)
     });
@@ -580,12 +627,31 @@
         handleZoomEvent(eventdata);
     });
 
-</script>
+    var back = document.getElementById("back");
 
-<div class="maincontainer">
-    <div id="paragraphsummary">This should be a non-scrollable box <br> with short paragraph summaries.</div>
-    <div id="wholetext">This should be a scroll box which contains the full text.</div>
-</div>
+    back.addEventListener("click", function() {
+        console.log("Back button clicked, selected chapter", selectedChapter);
+        if (selectedChapter > 1) {
+            var chapter = selectedChapter - 1;
+            setSummaryAndText(chapter);
+            var location = chapterLocations[chapter];
+            moveCamera(location);
+        }
+    }); 
+
+    var next = document.getElementById("next");
+
+    next.addEventListener("click", function() {
+        console.log("next button clicked, selected chapter", selectedChapter);
+        if (selectedChapter < 37) {
+            var chapter = selectedChapter + 1;
+            setSummaryAndText(chapter);
+            var location = chapterLocations[chapter];
+            moveCamera(location);
+        }
+    }); 
+
+</script>
 
 <div id ="license">
     <p>

@@ -1,0 +1,33 @@
+h1 {
+    font-family: "Special Elite";
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+p {
+    font-family: "Special Elite";
+}
+
+#author {
+    display:inline-block;
+    margin-right:175px;
+    margin-left:25px
+}
+
+#release {
+    display:inline-block;
+}
+
+#cover {
+    float: left;
+    height: 400px;
+    margin-right: 25px;
+    margin-left: 25px;
+    margin-bottom: 25px;
+}
+
+#blurb {
+    max-width: 600px;
+    margin-left: 25px;
+    margin-right: 25px
+}
