@@ -48,8 +48,8 @@ matching_parts = {}
 summaries = os.listdir("output/GPT/summary")
 summaries = helpers.natural_sort([summary for summary in summaries if "paragraph" in summary])
 
-with open("input/around the world.txt", encoding="utf-8") as f:
-    full_text = f.read()
+#with open("input/around the world.txt", encoding="utf-8") as f:
+#    full_text = f.read()
 
 for summary in summaries:
     chapter = summary.split("_")[0]
@@ -62,11 +62,13 @@ for summary in summaries:
     for line in lines:
         whole_text, summary = line.split("--")
         whole_text = whole_text.strip().replace('"', "")
+        # Apostrophes cause an issue with onmouseover/out events, so change them out
+        summary = summary.replace("'", "`")
         current = {"summary": summary.strip(), "wholeText": whole_text}
         matching_parts[summary.strip()] = whole_text
+        texts[int(chapter) - 1] = texts[int(chapter) - 1].replace(whole_text, f"<span onmouseover=\"highlightText(\'{summary.strip()}\')\" onmouseout=\"unhighlightText(\'{summary.strip()}\')\">{whole_text}</span>").replace("\n", "<br>")
         chapter_paragraphs.append(current)
     paragraph_summaries[chapter] = chapter_paragraphs
-
 
 plotly_jinja_data = {"fig":overall_html_shown,
                      "figures": [detailed_html_hidden, overall_html_hidden],

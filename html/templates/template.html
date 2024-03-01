@@ -87,7 +87,7 @@
 
     function setSummaryAndText(chapter) {
         var text = texts[chapter - 1];
-        document.getElementById('wholetext').innerText = text;
+        document.getElementById('wholetext').innerHTML = text;
         var summaries = paragraphSummaries[chapter];
         // Get the matching part of the whole text
         console.log(paragraphSummaries[chapter]);
@@ -105,12 +105,42 @@
             var div = document.createElement("div");
             div.style.fontFamily = "Special Elite,Open Sans,sans-serif";
             div.innerText = text;
+            div.id = text;
             div.addEventListener("click", function (e) {
                 scrollToPart(this.innerText);
+            });
+            div.addEventListener("mouseover", function(e) {
+                highlightFullText(matchingParts[this.innerText])
+            });
+            div.addEventListener("mouseout", function(e) {
+                unhighlightFullText(matchingParts[this.innerText])
             });
             document.getElementById('paragraphsummary').appendChild(div);
         }
     };
+
+    function highlightText(summary) {
+        var div = document.getElementById(summary);
+        div.style.backgroundColor = "red";
+    };
+
+    function highlightFullText(summary) {
+        console.log("Highlighting part:", summary);
+        var fullText = document.getElementById("wholetext").innerHTML;
+        var replaced = fullText.replace(summary, "<span style=\"background-color:red;\">" + summary + "</span>");
+        document.getElementById("wholetext").innerHTML = replaced;
+
+    };
+
+    function unhighlightFullText(summary) {
+        document.getElementById("wholetext").innerHTML = texts[selectedChapter - 1];
+    };
+
+    function unhighlightText(summary) {
+        var div = document.getElementById(summary);
+        div.style.backgroundColor="transparent"
+    }
+
 
 
     function scrollToPart(text) {

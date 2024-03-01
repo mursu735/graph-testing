@@ -1,4 +1,4 @@
-aliceblue, aqua, aquamarine, azure,
+aqua, aquamarine, azure,
 beige, black, blanchedalmond, blue,
 blueviolet, brown, cadetblue,
 chartreuse, chocolate, coral, cornflowerblue,
