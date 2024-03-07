@@ -1,0 +1,10 @@
+Generate a text description for the text marked with "prompt:" that could be used in a prompt to generate an image based on it. DO NOT generate an image, generate a textual description
+
+prompt:
+
+
+Given a text marked with "prompt:" calculate the importance of each chapter to the story. The importance should be a floating point number between 0 and 1.0.
+The chapters are marked with "CHAPTER" followed by a roman numeral and the name of the chapter in uppercase letters. Convert the numeral into arabic numbers and ignore the chapter name. Give the response as a CSV file in the following format:
+CHAPTER:IMPORTANCE
+
+The text will contain multiple parts, do not provide an answer until the word "STOP" is provided

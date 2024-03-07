@@ -1,0 +1,6 @@
+Generate an image based on the description provided by "setting". The image must contain the following people, their description is denoted by "characters". The image should feature only features consistent with 1870s
+characters:
+<characters>
+
+setting:
+<setting>
