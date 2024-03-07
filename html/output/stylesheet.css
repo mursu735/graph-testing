@@ -2,8 +2,22 @@
     font-family: "Special Elite";
     display:inline-block;
     vertical-align: top;
-    margin-right: 50px
+    margin-right: 50px;
+    width: 600px;
 }
+
+#chaptercontrols {
+    margin-left: 500px;
+}
+
+#title {
+    margin-left: 80px;
+}
+
+.maincontainer {
+    margin-left: 80px;
+}
+
 
 #wholetext {
     font-family: "Special Elite";
@@ -25,6 +39,18 @@
     margin-right: 50px
 }
 
+#linktext {
+    display:inline-block;
+}
+
+#link {
+    display:inline-block;
+}
+
 button {
     font-family: "Special Elite";
+}
+
+#importantback {
+    margin-left: 25px;
 }

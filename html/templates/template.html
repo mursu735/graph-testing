@@ -11,7 +11,7 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script> -->
 
-<h1 style="font-family: Special Elite">Around the world in 80 days</h1>
+<h1 style="font-family: Special Elite" id="title">Around the world in 80 days</h1>
 {{ fig }}
 
 
@@ -27,6 +27,9 @@
     <h3 id="currentchapter">No chapter selected</h3>
     <button id="back">Previous</button>
     <button id="next">Next</button>
+    <button id="importantback">Previous Key Chapter</button>
+    <button id="importantnext">Next Key Chapter</button>
+
 </div>
 
 <div class="maincontainer">
@@ -45,6 +48,8 @@
     var lodCutoff = {{ lodCutoff }};
 
     var chapterLocations = {{ chapterLocations }};
+
+    var importantChapters = {{ importantChapters }};
 
     var fig = document.getElementById('plotDiv');
 
@@ -77,6 +82,9 @@
         else {
             var chapter = customdata['Chapter'];
             if (chapter != undefined) {
+                if (typeof chapter === "Array") {
+                    chapter = customdata['Chapter'][0];
+                }
                 setSummaryAndText(chapter);
                 var location = chapterLocations[chapter];
                 moveCamera(location);
@@ -105,7 +113,7 @@
             var div = document.createElement("div");
             div.style.fontFamily = "Special Elite,Open Sans,sans-serif";
             div.innerText = text;
-            div.id = text;
+            div.id = summary["id"];
             div.addEventListener("click", function (e) {
                 scrollToPart(this.innerText);
             });
@@ -639,8 +647,11 @@
         handleZoomEvent(zoomData);
     }
 
-    fig.on('plotly_hover', function(data){ 
-        handleHoverEvent(data)
+    fig.on('plotly_hover', function(data){
+        if ('customdata' in data.points[0].data) {
+            handleHoverEvent(data)
+        }
+        
     });
     
     fig.on('plotly_unhover', function(data){
@@ -681,10 +692,40 @@
         }
     }); 
 
+    var keyBack = document.getElementById("importantback");
+
+    keyBack.addEventListener("click", function() {
+        console.log("Skip to next key chapter, selected chapter", selectedChapter);
+        var chapter = Math.max(...importantChapters.filter( num => num < selectedChapter ));
+        if (Number.isFinite(chapter)) {
+            console.log("Go to chapter", chapter);
+            setSummaryAndText(chapter);
+            var location = chapterLocations[chapter];
+            moveCamera(location);
+        }
+        
+    }); 
+
+    var keyNext = document.getElementById("importantnext");
+
+    keyNext.addEventListener("click", function() {
+        console.log("Skip to next key chapter, selected chapter", selectedChapter);
+        var chapter = Math.min(...importantChapters.filter( num => num > selectedChapter ));
+        if (Number.isFinite(chapter)) {
+            console.log("Go to chapter", chapter);
+            setSummaryAndText(chapter);
+            var location = chapterLocations[chapter];
+            moveCamera(location);
+        }
+
+    }); 
+
 </script>
 
 <div id ="license">
+    <p id="linktext">Full book available at Project Gutenberg library: </p> <a href="https://www.gutenberg.org/ebooks/103" id="link">https://www.gutenberg.org/ebooks/103</a>
     <p>
+        License:<br>
         This eBook is for the use of anyone anywhere in the United States and most <br>
         other parts of the world at no cost and with almost no restrictions<br>
         whatsoever. You may copy it, give it away or re-use it under the terms<br>

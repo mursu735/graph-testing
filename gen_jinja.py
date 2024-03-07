@@ -51,6 +51,13 @@ summaries = helpers.natural_sort([summary for summary in summaries if "paragraph
 #with open("input/around the world.txt", encoding="utf-8") as f:
 #    full_text = f.read()
 
+important_chapters = []
+
+with open("output/GPT/important_chapters.txt", encoding="utf-8") as f:
+    for line in f.readlines():
+        important_chapters.append(int(line.split(":")[0]))
+
+
 for summary in summaries:
     chapter = summary.split("_")[0]
     with open(f"output/GPT/summary/{summary}", encoding="utf-8") as file:
@@ -63,10 +70,9 @@ for summary in summaries:
         whole_text, summary = line.split("--")
         whole_text = whole_text.strip().replace('"', "")
         # Apostrophes cause an issue with onmouseover/out events, so change them out
-        summary = summary.replace("'", "`")
-        current = {"summary": summary.strip(), "wholeText": whole_text}
+        current = {"summary": summary.strip(), "wholeText": whole_text, "id": summary.strip().replace('"', '').replace("'", "`")}
         matching_parts[summary.strip()] = whole_text
-        texts[int(chapter) - 1] = texts[int(chapter) - 1].replace(whole_text, f"<span onmouseover=\"highlightText(\'{summary.strip()}\')\" onmouseout=\"unhighlightText(\'{summary.strip()}\')\">{whole_text}</span>").replace("\n", "<br>")
+        texts[int(chapter) - 1] = texts[int(chapter) - 1].replace(whole_text, f"<span onmouseover=\"highlightText(\'{current['id']}\')\" onmouseout=\"unhighlightText(\'{current['id']}\')\">{whole_text}</span>").replace("\n", "<br>")
         chapter_paragraphs.append(current)
     paragraph_summaries[chapter] = chapter_paragraphs
 
@@ -76,7 +82,8 @@ plotly_jinja_data = {"fig":overall_html_shown,
                      "texts": texts,
                      "paragraphSummaries": paragraph_summaries,
                      "matchingParts": matching_parts,
-                     "chapterLocations": chapter_locations}
+                     "chapterLocations": chapter_locations,
+                     "importantChapters": important_chapters}
 #plotly_jinja_data = {"fig":base_fig.to_html(full_html=False, include_plotlyjs=False, div_id="plotDiv")}
 #plotly_jinja_data = {"fig":plotly.offline.plot(base_fig, include_plotlyjs=False, output_type='div')}
 #consider also defining the include_plotlyjs parameter to point to an external Plotly.js as described above

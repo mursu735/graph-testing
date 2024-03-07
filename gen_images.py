@@ -133,6 +133,7 @@ def generate_country(path):
     locations = []
     people_ending_in_location = {}
     people_starting_in_location = {}
+    countries_in_chapters = {}
     
     with open("colors.txt") as file:
         side_character_colors = file.read()
@@ -176,6 +177,10 @@ def generate_country(path):
                 if row["Chapter"] - country_last_chapter[target] == 1:
                     location_importance[target] += 1
                 country_last_chapter[target] = row["Chapter"]
+            if row["Chapter"] not in countries_in_chapters:
+                countries_in_chapters[row["Chapter"]] = []
+            else:
+                countries_in_chapters[row["Chapter"]].append(target)
             
                  
         people = row["Person"].split("|")
@@ -250,6 +255,7 @@ def generate_country(path):
 
 
     #print("People and locations:", people_and_locations)
+    print(countries_in_chapters)
     print("Location importance:", location_importance)
     landscape_aspect_ratio = 7 / 4
     portrait_aspect_ratio = 4 / 7
@@ -669,28 +675,23 @@ def generate_country(path):
     tutorial_box = "in"
     box_x0 = location_shapes[tutorial_box]['x0']
     box_x1 = (0.75) * location_shapes[tutorial_box]['x0'] + (0.25) * location_shapes[tutorial_box]['x1']
-    box_dx = box_x1 - box_x0
     box_y0 = location_shapes[tutorial_box]['y1'] + 400
     box_y1 = location_shapes[tutorial_box]['y1'] + 10
-    box_dy = box_y1 - box_y0
-    angle = 90 - math.degrees(math.atan2(box_dy, box_dx))
-
-    fig.add_trace(go.Scatter(
-        x=[box_x0, box_x1],
-        y=[box_y0, box_y1],
-        mode='lines+markers',
-        marker=dict(
-            symbol="arrow",
-            opacity=[0, 1],
-            angle=angle,
-            size=20),
-    ))
-    fig.add_trace(go.Scatter(
-        x=[location_shapes[tutorial_box]['x0']],
-        y=[location_shapes[tutorial_box]['y1'] + 450],
-        mode='text',
-        text="Click on any image to zoom",
-    ))
+    fig.add_annotation(
+        ax=box_x0,
+        ay=box_y0,
+        xref="x",
+        yref="y",
+        x=box_x1,  # arrows' tail
+        y=box_y1,  # arrows' tail
+        showarrow=True,
+        axref="x",
+        ayref="y",
+        arrowhead=3,
+        arrowwidth=3,
+        arrowcolor='orange',
+        text="These indicate key chapters in the book"
+    )
 
     infosheet = Image.open("pictures/infosheet_html.png")
 
@@ -709,6 +710,20 @@ def generate_country(path):
         sizey=info_height,
         sizing="stretch"
     )
+
+    # Important chapters
+    important_chapters = {}
+    with open("output/GPT/important_chapters.txt", encoding="utf-8") as f:
+        for line in f.readlines():
+            chapter, description = line.split(":")
+            country = countries_in_chapters[int(chapter)][0]
+            if country not in important_chapters:
+                important_chapters[country] = {}
+                important_chapters[country]["text"] = [f"<b>Important chapter {chapter}:</b> " + description]
+                important_chapters[country]["chapter"] = [chapter]
+            else:
+                important_chapters[country]["text"].append(f"<b>Important chapter {chapter}:</b> " + description)
+                important_chapters[country]["chapter"].append(chapter)
 
     # Flags and the big boxes should be the same in both levels of detail
     for loc in location_shapes:
@@ -740,6 +755,52 @@ def generate_country(path):
                         xanchor="center",
                         yanchor="bottom",
                     )
+        if loc in important_chapters:
+            print("Adding important location note for location", loc)
+            for i in range(0, len(important_chapters[loc]["chapter"])):
+                print("Adding chapter", important_chapters[loc]["chapter"][i])
+                x0 = middle + country_image_size_x
+                x1 = x0 + x_delta / 6
+                y0 = location_shapes[loc]['y1'] + ((x_delta / 6) * (i))
+                y1 = y0 + ((x_delta / 6))
+                fig.add_trace(
+                go.Scatter(
+                    x=[x0,x0,x1,x1,x0], #x1-x1-x2-x2-x1
+                    y=[y0,y1,y1,y0,y0], #y1-y2-y2-y1-y1
+                    fill="toself",
+                    mode='lines',
+                    name='',
+                    text="<br>".join(textwrap.wrap(important_chapters[loc]["text"][i], width=60)).strip(),
+                    opacity=1,
+                    customdata= [{
+                        "Chapter": int(important_chapters[loc]["chapter"][i])
+                    }],
+                    line=dict(color="grey")
+                ))
+            # Add tutorial text for key chapters
+            if loc == "gb":
+                tut_x0 = x1 + 300
+                tut_x1 = x1 + 10
+                tut_dx = tut_x0 - tut_x1
+                tut_y0 = y1 + 350
+                tut_y1 = y1 + 10
+                tut_dy = tut_y1 - tut_y0
+                fig.add_annotation(
+                    ax=tut_x0,
+                    ay=tut_y0,
+                    xref="x",
+                    yref="y",
+                    x=tut_x1,  # arrows' tail
+                    y=tut_y1,  # arrows' tail
+                    showarrow=True,
+                    axref="x",
+                    ayref="y",
+                    arrowhead=3,
+                    arrowwidth=3,
+                    arrowcolor='orange',
+                    text="These indicate key chapters in the book"
+                )
+
     image = Image.open(f"pictures/background.jpg")
 
     # Add background image
@@ -838,6 +899,8 @@ def add_images(fig, location_shapes, aspect_ratio):
                         current_img_size_x = img_size_x
                         current_img_size_y = img_size_y * landscape_aspect_ratio
                     x0 = previous_x
+                    if len(pictures) > 1:
+                        x0 += padding
                     #print("after:", filename, "x:", current_img_size_x, "y:", current_img_size_y)
                     x1 = x0 + current_img_size_x
                     previous_x = x1
