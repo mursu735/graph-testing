@@ -1,9 +1,0 @@
-Person;Mode;Order
-
-
-Passepartout;train;1
-Elder William Hitch;train;2
-Mr. Fogg;train;3
-Fix;train;4
-Passepartout|Mr. Fogg|Fix;walking;5|6|7
-Mormon Man;running;8

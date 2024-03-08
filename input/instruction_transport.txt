@@ -1,0 +1,4 @@
+Given a text marked with "prompt", try to extract the important methods of transports for each chapter as accurately as possible. This may be difficult, and the text may not explicitly state them, but try to estimate them to the best of your abilities.
+If there are multiple methods in one chapter, provide them in chronological order. Provide the result in a list with each method in a new line. If the method is not used by the main character, ignore it. If the transport is not in the country that the characters are currently, ignore it.
+Respond as briefly as possible, but include the name of the transport if is mentioned.
+
