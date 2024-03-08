@@ -855,6 +855,8 @@ def add_images(fig, location_shapes, aspect_ratio):
     images_map = {}
     date_df = pd.read_csv("output/GPT/chapter_durations_fixed.csv", sep=";")
     money_spent = pd.read_csv("output/GPT/money_spent.csv", sep=";")
+    transport = pd.read_csv("output/GPT/transport.csv", sep=";")
+
     date_df["Start Date"] = pd.to_datetime(date_df["Start Date"])
     date_df["End Date"] = pd.to_datetime(date_df["End Date"])
     start = date_df["Start Date"].min()
@@ -953,6 +955,7 @@ def add_images(fig, location_shapes, aspect_ratio):
                                 "Total End": end,
                                 "Money Spent": money_spent.loc[money_spent["Chapter"] == int(chapter)]["Spent"].iloc[0],
                                 "Total Money Spent": money_spent.loc[money_spent["Chapter"] <= int(chapter)]["Spent"].sum(),
+                                "Transport": transport.loc[transport["Chapter"] == int(chapter)]["Transport"].tolist(),
                                 }], # Needed information: Chapter name, Image, day
                             hoverinfo="none",
                             #text=f"{country}, Chapter {chapter}: {summary}",

@@ -371,7 +371,7 @@
                 //moneyElement.style.backgroundColor = "lightgrey";
                 div.appendChild(moneyElement);
 
-
+                
                 // Set image
                 console.log(customdata["Image Path"]);
                 // Chapter description and picture wrapped
@@ -548,6 +548,26 @@
                 moneyElement.style.marginBottom = "0px";
                 //moneyElement.style.backgroundColor = "lightgrey";
                 div.appendChild(moneyElement);
+
+                div.appendChild(moneyElement);
+
+                var transport = customdata["Transport"];
+                console.log(transport);
+                var transportList = document.createElement("ul");
+                var transportText = document.createElement("p");
+                transportText.innerText = "Main methods of transport";
+
+                transport.forEach((item) => {
+                    let li = document.createElement("li");
+                    li.innerText = item;
+                    transportList.appendChild(li);
+                });
+                transportList.style.marginTop = "0px";
+                transportList.style.marginBottom = "0px";
+                transportText.style.marginTop = "0px";
+                transportText.style.marginBottom = "0px";
+                div.appendChild(transportText);
+                div.appendChild(transportList);
 
                 // Chapter description and picture wrapped
                 var descriptionDiv = document.createElement("div");
