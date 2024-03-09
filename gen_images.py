@@ -631,7 +631,7 @@ def generate_country(path):
         total = f"<b>{character}</b>: {desc}"
         total = '<br>'.join(textwrap.wrap(total, width=30))
         data["label"] = character
-        data["info"] = total + f"color: {people_list[character]['color']}"
+        data["info"] = total# + f"color: {people_list[character]['color']}"
         data["x"] = x
         data["y"] = y
         data["shape"] = G.nodes.data()[node]["shape"]
@@ -690,7 +690,7 @@ def generate_country(path):
         arrowhead=3,
         arrowwidth=3,
         arrowcolor='orange',
-        text="These indicate key chapters in the book"
+        text="Click on any image to zoom"
     )
 
     infosheet = Image.open("pictures/infosheet_html.png")
@@ -775,7 +775,8 @@ def generate_country(path):
                     customdata= [{
                         "Chapter": int(important_chapters[loc]["chapter"][i])
                     }],
-                    line=dict(color="grey")
+                    line=dict(color="grey"),
+                    hoverlabel=dict(bgcolor="lightgrey")
                 ))
             # Add tutorial text for key chapters
             if loc == "gb":
