@@ -6,6 +6,10 @@
     width: 600px;
 }
 
+.paragraphs {
+    margin-bottom: 15px;
+}
+
 #chaptercontrols {
     margin-left: 500px;
 }

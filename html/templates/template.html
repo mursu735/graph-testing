@@ -114,6 +114,7 @@
             div.style.fontFamily = "Special Elite,Open Sans,sans-serif";
             div.innerText = text;
             div.id = summary["id"];
+            div.className = "paragraphs";
             div.addEventListener("click", function (e) {
                 scrollToPart(this.innerText);
             });

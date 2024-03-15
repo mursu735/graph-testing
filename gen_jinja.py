@@ -41,7 +41,7 @@ texts = []
 
 for chapter in chapters:
     with open(f"input/Chapters/{chapter}", encoding="utf-8") as file:
-        texts.append(file.read().strip())
+        texts.append(file.read().strip().replace("\n\n", "///").replace("\n", " ").replace("///", "\n\n"))
 
 paragraph_summaries = {}
 matching_parts = {}
