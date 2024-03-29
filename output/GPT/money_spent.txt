@@ -257,11 +257,9 @@ Chapter 29:
 In the provided text, there are no explicit mentions of Phileas Fogg spending money. The focus is primarily on the journey of the train through various territories and the dramatic attack by the Sioux, which results in a dangerous and action-packed situation for Fogg and his companions. Therefore, there are no financial transactions to summarize from this section of the text.
 
 Chapter 30:
-In the provided text, Phileas Fogg makes a financial commitment but does not immediately spend money in the traditional sense. The events related to potential financial transactions or commitments are as follows:
+Phileas Fogg promised to divide a sum of $5,000 among the soldiers for their assistance in the rescue operation. Converted into British pounds at the approximate 1870s exchange rate, this amount would be around £1,000.
 
-    Reward Promised to Soldiers: Fogg promises to divide five thousand dollars among the soldiers if they save the prisoners. It's indicated that he distributed the reward he had promised after the rescue, implying that he fulfilled his commitment to reward the soldiers for their assistance. Assuming he did as he promised, this would be a direct expense.
-
-Given this information, the estimated sum spent by Phileas Fogg, based directly on the text, is five thousand dollars. This is the amount he committed to dividing among the soldiers for their aid in the rescue operation, which was successfully completed.
+Therefore, based on the provided text, Phileas Fogg's expenditure or financial commitment related to rescuing the prisoners can be estimated at £1,000. 
 
 Chapter 31:
 In the provided text, there are indirect references to financial transactions made by Phileas Fogg but no explicit amounts mentioned for these specific expenses. Here are the events related to potential financial transactions:
@@ -275,11 +273,9 @@ Given the absence of specific amounts, it's not possible to provide an estimated
 Chapter 32:
 In the provided text, the financial transactions related to Phileas Fogg's efforts to secure passage to Liverpool are detailed with specific amounts for a significant transaction:
 
-    Negotiation with Captain Speedy for Passage on the "Henrietta": Phileas Fogg offers to pay $2,000 per person to Captain Speedy to carry him and three others to Liverpool, despite the captain's initial refusal to deviate from his intended route to Bordeaux. Since there are four individuals (Phileas Fogg, Aouda, Passepartout, and presumably Fix), the total amount offered to Captain Speedy for this urgent passage is $8,000.
+    Phileas Fogg's expenditure for chartering the vessel "Henrietta" to transport him and three others to Liverpool amounted to $8,000. Converted into British pounds at the approximate 1870s exchange rate, this amount would be around £1,600.
 
-Given this information, the sum of money spent or committed to be spent by Phileas Fogg in this segment of the text is $8,000. This does not account for any other unspecified expenses for lodging, transportation to and from the ship, or any other incidental costs that might have been incurred but are not explicitly mentioned in the text.
-
-Chapter 33: (hallucination, actual cost $60,000, £12,000, conversion rate https://fred.stlouisfed.org/graph/?g=1hg49)
+Chapter 33:
 In the provided text, Phileas Fogg engages in significant financial transactions to ensure his continued journey towards fulfilling his wager. Here are the key events involving spending or commitments to spending money, along with estimates where explicit amounts are not provided:
 
     Purchasing the "Henrietta": Phileas Fogg buys the "Henrietta" from Captain Speedy for $50,000. This is a direct transaction where Fogg takes ownership of the vessel to ensure he can reach Liverpool.
@@ -290,7 +286,9 @@ In the provided text, Phileas Fogg engages in significant financial transactions
 
     The Final Leg from Queenstown to Liverpool: The cost of this journey, including the express train from Queenstown to Dublin and the steamer to Liverpool, is not specified. However, given the urgency and the need to charter or secure rapid passage, it's reasonable to infer significant expenditure. For calculation, we will focus only on explicit amounts provided.
 
-Given the explicit information, the sum of money spent by Phileas Fogg in this segment of the text is $50,000 for the purchase of the "Henrietta." Other actions imply further financial commitments, but without specific amounts provided, they cannot be accurately totaled.
+Phileas Fogg's expenditure for purchasing the vessel "Henrietta" amounted to $60,000. Converted into British pounds at the approximate 1870s exchange rate, this amount would be around £12,000.
+
+Therefore, the primary financial transaction detailed in the provided text, which can be quantified, is the purchase of the "Henrietta" for a total estimated cost of £12,000. This does not account for the unspecified sum used to bribe the crew into supporting his commandeering of the ship, which would add to the total expenditure in an unquantified manner.
 
 Chapter 34:
 In the given text, Phileas Fogg undertakes several financial actions to facilitate his return to London, though not all of them are quantified in terms of monetary value. Here's a breakdown of the events involving expenditures or potential expenditures:

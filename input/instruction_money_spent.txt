@@ -1,4 +1,4 @@
 Given the following text marked with "prompt", extract the amount of money spent by Phileas Fogg in it. Provide a list of events that include Fogg spending money only in the provided text. If an event does not contain a specific amount, estimate it to the best of your abilities.
-Finally, provide an estimated sum to the best of your abilities.
+Finally, provide an estimated sum to the best of your abilities. If the currency is not in British pounds, convert them to the best of your abilities. The book was set in the 1870s, so use currency rates equivalent to that time period.
 
 prompt:

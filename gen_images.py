@@ -330,7 +330,7 @@ def generate_country(path):
     print(pos)
     #nx.draw_networkx(G, pos=pos, with_labels = True)
     
-    #nx.drawing.nx_agraph.write_dot(G, "network.dot")
+    nx.drawing.nx_agraph.write_dot(G, "network.dot")
     #plt.show()
     '''
     if (len(people_list) > 1):
@@ -876,14 +876,14 @@ def add_images(fig, location_shapes, aspect_ratio):
         number_of_rows = len(layout)
         #print(images)
         row = -1
-        previous_y = location_shapes[loc]['y1'] - (padding)
+        previous_y = location_shapes[loc]['y1']
         #print(layout)
         # Go through layout file, add the required images
         for line in layout:
             line = line.replace("\n", "")
             largest_y_in_row = 0
             pictures = line.split(",")
-            previous_x = location_shapes[loc]['x0'] + (padding)
+            previous_x = location_shapes[loc]['x0']
             for i in range(len(pictures)):
                 current = pictures[i]
                 filename, shape = current.split("/")
@@ -948,7 +948,7 @@ def add_images(fig, location_shapes, aspect_ratio):
                                 "Chapter": int(chapter),
                                 "Summary": summary,
                                 "Aspect Ratio": img_aspect_ratio,
-                                "Image Path": f"../../pictures/Chapters/{path}/{filename}.webp",
+                                "Image Path": f"pictures/Chapters/{path}/{filename}.webp",
                                 "Chapter Name": '\n'.join(textwrap.wrap(chapter_names[int(chapter)-1], width=50)).strip(),
                                 "Start Date": row["Start Date"],
                                 "End Date": row["End Date"],
@@ -1033,7 +1033,7 @@ def add_overall_images(fig, location_shapes, aspect_ratio):
                              "End Chapter": rows['Chapter'].max(),
                              "Total Start": start,
                              "Total End": end,
-                             "Image Path": f"../../pictures/Chapters/{path}/{layout}.webp",
+                             "Image Path": f"pictures/Chapters/{path}/{layout}.webp",
                              "Country": helpers.country_code_to_name[loc.split("_")[0]],
                              "Money Spent": money_spent.loc[(money_spent["Chapter"] >= rows['Chapter'].min()) & (money_spent["Chapter"] <= rows['Chapter'].max())]["Spent"].sum(),
                              "Total Money Spent": money_spent.loc[money_spent["Chapter"] <= rows['Chapter'].max()]["Spent"].sum(),
