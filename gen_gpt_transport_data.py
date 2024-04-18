@@ -69,7 +69,7 @@ for file in files:
         with open("output/GPT/tokens/tokens_paragraph_summary.csv", "w", encoding='utf-8') as file:
             file.write("Chapter;Prompt;Completion;Total;Time\n")
 
-    with open("output/GPT/tokens/tokens_paragraph_summary.csv", "a", encoding="utf-8") as file:
+    with open("output/GPT/tokens/tokens_transport.csv", "a", encoding="utf-8") as file:
         file.write(f"{chapter};{prompt_tokens};{completion_tokens};{total_tokens};{difference}\n")
     print(message)
     '''

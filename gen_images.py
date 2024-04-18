@@ -321,8 +321,8 @@ def generate_country(path):
     #print(pos)
 
     result = get_positions(list(people_list.keys()), pos, G)
-
-    update_character_locations(pos, result)
+    if use_new_sorting:
+        update_character_locations(pos, result)
     print("Updated character positions")
     #pos_tuple = {}
     #for loc in pos:
@@ -430,7 +430,7 @@ def generate_country(path):
         if use_new_sorting:
             return result[e].as_long()
         else:
-            return (pos[e]["x"], pos[e]["y"])
+            return (pos[e]["x"], -pos[e]["y"])
 
     # Ranks for each character, this determines the y-coordinate of the node
     #print(people_list)
@@ -471,8 +471,8 @@ def generate_country(path):
             end_edge_order = sorted(people_in_edge_end, key=sort_func)#, reverse=True)
             start_edge_order = sorted(people_in_edge_start, key=sort_func)#, reverse=True)
         else:
-            end_edge_order = sorted(people_in_edge_end, key=sort_func, reverse=True)
-            start_edge_order = sorted(people_in_edge_start, key=sort_func, reverse=True)
+            end_edge_order = sorted(people_in_edge_end, key=sort_func)#, reverse=True)
+            start_edge_order = sorted(people_in_edge_start, key=sort_func)#, reverse=True)
         # Cluster ranking is based on the character with the highest ranking in the cluster
         clusters_in_edge_start = []
         [clusters_in_edge_start.append(character_clusters[x.split("_")[0]]) for x in start_edge_order if character_clusters[x.split("_")[0]] not in clusters_in_edge_start]
@@ -803,7 +803,6 @@ def generate_country(path):
                 )
 
     image = Image.open(f"pictures/background.jpg")
-
     # Add background image
     fig.add_layout_image(
         x=max_x/2,
@@ -819,7 +818,6 @@ def generate_country(path):
         layer="below",
         opacity=0.5
     )
-
     for node in node_list:
         character = node["label"]
         #character_portraits = os.listdir("pictures/People")
@@ -842,7 +840,6 @@ def generate_country(path):
                         yanchor="middle",
                         layer="above"
                     )
-
     #fig.update_yaxes(title='y', visible=False, showticklabels=False, scaleanchor="x", scaleratio=1)
     #fig.update_xaxes(title='x', visible=False, showticklabels=False)
     

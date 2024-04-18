@@ -4,7 +4,11 @@ import helpers
 import os
 import plotly.graph_objects as go
 from jinja2 import Template
+from datetime import datetime
 
+
+total_start = datetime.now()
+start = datetime.now()
 
 base_fig, location_shapes, aspect_ratio, max_x = gen_images.generate_country("whole_book.csv")
 base_fig.update_layout(
@@ -12,9 +16,17 @@ base_fig.update_layout(
     height=1080)
 print(location_shapes)
 print("Base figure generated, adding images")
+
+fig_gen = (datetime.now() - start).total_seconds()
+start = datetime.now()
+
 detailed_fig, detailed_images_dict = gen_images.add_images(go.Figure(base_fig), location_shapes, aspect_ratio)
 
 overall_fig, overall_images_dict, chapter_locations = gen_images.add_overall_images(go.Figure(base_fig), location_shapes, aspect_ratio)
+
+images_gen = (datetime.now() - start).total_seconds()
+start = datetime.now()
+
 
 print("Chapter locations:", chapter_locations)
 
@@ -30,10 +42,13 @@ overall_html_shown = overall_fig.to_html(full_html=False, include_plotlyjs=True,
 overall_html_hidden = overall_fig.to_json(pretty=True)
 detailed_html_hidden = detailed_fig.to_json(pretty=True)
 
-'''
-with open("asd.json", "w") as file:
-    file.write(overall_html_hidden)
-'''
+images_gen = (datetime.now() - start).total_seconds()
+start = datetime.now()
+
+
+#with open("asd2.json", "w") as file:
+#    file.write(detailed_html_hidden)
+
 lod_cutoff = max_x / 2
 
 chapters = helpers.natural_sort(os.listdir("input/Chapters"))
@@ -88,6 +103,9 @@ plotly_jinja_data = {"fig":overall_html_shown,
 #plotly_jinja_data = {"fig":plotly.offline.plot(base_fig, include_plotlyjs=False, output_type='div')}
 #consider also defining the include_plotlyjs parameter to point to an external Plotly.js as described above
 
+jinja_data_gen = (datetime.now() - start).total_seconds()
+start = datetime.now()
+
 if not os.path.isdir("html/output"):
     os.mkdir("html/output")
 
@@ -96,3 +114,14 @@ with open(output_html_path, "w", encoding="utf-8") as output_file:
     with open(input_template_path) as template_file:
         j2_template = Template(template_file.read())
         output_file.write(j2_template.render(plotly_jinja_data))
+
+html_gen = (datetime.now() - start).total_seconds()
+
+total = (datetime.now() - total_start).total_seconds()
+
+print("Time taken")
+print("Generating base figure:", fig_gen)
+print("Adding images:", images_gen)
+print("Creating Jinja data:", jinja_data_gen)
+print("Generating HTML:", html_gen)
+print("Total time taken:", total)
